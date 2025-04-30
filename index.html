@@ -1,12 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Página Web</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de Juegos</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>¡Hola, mundo!</h1>
-  <p>Bienvenido a mi primera página en GitHub Pages.</p>
+
+    <header class="recently-added">
+        <h2>Añadidos Recientemente</h2>
+        <div class="game-covers">
+            <!-- Aquí irán las 8 portadas de juegos -->
+            <div class="game-cover-placeholder"></div>
+            <div class="game-cover-placeholder"></div>
+            <div class="game-cover-placeholder"></div>
+            <div class="game-cover-placeholder"></div>
+            <div class="game-cover-placeholder"></div>
+            <div class="game-cover-placeholder"></div>
+            <div class="game-cover-placeholder"></div>
+            <div class="game-cover-placeholder"></div>
+        </div>
+    </header>
+
+    <main class="search-section">
+        <h1>Encuentra tu próximo juego</h1>
+        <form id="search-form">
+            <input type="text" id="search-input" placeholder="Buscar juegos...">
+            <button type="submit">Buscar</button>
+        </form>
+        <!-- Aquí se podrían mostrar los resultados de la búsqueda -->
+        <div class="search-results">
+            <!-- Los resultados aparecerán aquí -->
+        </div>
+    </main>
+
+    <footer>
+        <!-- Puedes añadir información de pie de página si lo deseas -->
+    </footer>
+
+    <!-- Opcional: Enlace a un archivo JavaScript si necesitas interactividad -->
+    <!-- <script src="script.js"></script> -->
 </body>
 </html>

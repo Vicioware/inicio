@@ -1,0 +1,108 @@
+/* Estilos generales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #222;
+}
+
+/* Sección de Añadidos Recientemente */
+.recently-added {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.recently-added h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.game-covers {
+    display: flex;
+    justify-content: space-around; /* O space-between si prefieres */
+    overflow-x: auto; /* Permite scroll horizontal si no caben */
+    padding-bottom: 10px; /* Espacio para la barra de scroll si aparece */
+}
+
+.game-cover-placeholder {
+    width: 120px; /* Ancho de la portada */
+    height: 160px; /* Alto de la portada */
+    background-color: #e0e0e0; /* Color placeholder */
+    border: 1px solid #ccc;
+    flex-shrink: 0; /* Evita que las portadas se encojan */
+    margin-right: 10px; /* Espacio entre portadas */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #888;
+    /* Podrías añadir texto o un icono aquí */
+    /* content: "Portada"; */
+}
+
+.game-cover-placeholder:last-child {
+    margin-right: 0;
+}
+
+/* Sección de Búsqueda */
+.search-section {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto; /* Centra la sección de búsqueda */
+}
+
+#search-form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#search-input {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px; /* Bordes redondeados a la izquierda */
+    width: 70%; /* Ancho del campo de búsqueda */
+    max-width: 500px;
+}
+
+#search-form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff; /* Azul profesional */
+    color: white;
+    border: 1px solid #007bff;
+    border-left: none; /* Quita el borde izquierdo para unirlo al input */
+    border-radius: 0 4px 4px 0; /* Bordes redondeados a la derecha */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#search-form button:hover {
+    background-color: #0056b3; /* Azul más oscuro al pasar el ratón */
+}
+
+.search-results {
+    /* Estilos para mostrar los resultados de búsqueda */
+    margin-top: 30px;
+    text-align: center;
+    color: #666;
+}
+
+/* Estilos responsivos básicos (opcional) */
+@media (max-width: 768px) {
+    .game-covers {
+        justify-content: flex-start; /* Alinea al inicio en pantallas pequeñas */
+    }
+    #search-input {
+        width: 60%;
+    }
+}
