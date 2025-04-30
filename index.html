@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscador de Juegos</title>
+    <title>Buscador de Juegos Pro</title> {/* Título actualizado */}
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
     <header class="recently-added">
         <h2>Añadidos Recientemente</h2>
         <div class="game-covers">
-            <!-- Aquí irán las 8 portadas de juegos -->
+            <!-- Mantener los 8 placeholders o reemplazarlos con <img> -->
             <div class="game-cover-placeholder"></div>
             <div class="game-cover-placeholder"></div>
             <div class="game-cover-placeholder"></div>
@@ -23,20 +23,61 @@
         </div>
     </header>
 
-    <main class="search-section">
-        <h1>Encuentra tu próximo juego</h1>
-        <form id="search-form">
-            <input type="text" id="search-input" placeholder="Buscar juegos...">
-            <button type="submit">Buscar</button>
-        </form>
-        <!-- Aquí se podrían mostrar los resultados de la búsqueda -->
-        <div class="search-results">
-            <!-- Los resultados aparecerán aquí -->
-        </div>
+    <main>
+        <section class="search-section">
+            <h1>Encuentra tu próximo juego</h1>
+            <form id="search-form">
+                <input type="text" id="search-input" placeholder="Buscar por título, género, plataforma...">
+                <button type="submit">Buscar</button>
+            </form>
+            <div class="search-results" id="search-results-container">
+                <!-- Ejemplo de cómo podría verse un resultado -->
+                <!--
+                <div class="search-result-item">
+                    <img src="placeholder-cover.jpg" alt="Portada del Juego" class="result-cover">
+                    <div class="result-info">
+                        <h3>Título del Juego</h3>
+                        <p>Género: Acción, RPG</p>
+                        <p>Plataformas: PC, PS5, Xbox Series X</p>
+                        <a href="#">Ver detalles</a>
+                    </div>
+                </div>
+                -->
+                <p>Introduce tu búsqueda para ver resultados.</p>
+            </div>
+        </section>
+
+        <section class="categories-section">
+            <h2>Explorar por Categoría</h2>
+            <div class="category-list">
+                <a href="#" class="category-tag">Acción</a>
+                <a href="#" class="category-tag">Aventura</a>
+                <a href="#" class="category-tag">RPG</a>
+                <a href="#" class="category-tag">Estrategia</a>
+                <a href="#" class="category-tag">Simulación</a>
+                <a href="#" class="category-tag">Deportes</a>
+                <a href="#" class="category-tag">Puzzle</a>
+                <a href="#" class="category-tag">Indie</a>
+                <!-- Añadir más categorías según sea necesario -->
+            </div>
+        </section>
+
+        <section class="featured-games">
+            <h2>Juegos Destacados</h2>
+            <div class="game-list">
+                <!-- Placeholder para juegos destacados - similar a los añadidos recientemente pero quizás con más detalle -->
+                <div class="featured-game-item"></div>
+                <div class="featured-game-item"></div>
+                <div class="featured-game-item"></div>
+                <div class="featured-game-item"></div>
+            </div>
+        </section>
+
     </main>
 
     <footer>
-        <!-- Puedes añadir información de pie de página si lo deseas -->
+        <p>&copy; 2023 Tu Buscador de Juegos. Todos los derechos reservados.</p>
+        <!-- Podrías añadir enlaces a redes sociales, política de privacidad, etc. -->
     </footer>
 
     <!-- Opcional: Enlace a un archivo JavaScript si necesitas interactividad -->

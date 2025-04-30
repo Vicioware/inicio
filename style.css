@@ -54,9 +54,13 @@ h1, h2 {
 
 /* Sección de Búsqueda */
 .search-section {
-    padding: 20px;
+    padding: 30px 20px; /* Más padding vertical */
     max-width: 800px;
     margin: 0 auto; /* Centra la sección de búsqueda */
+    background-color: #fff; /* Fondo blanco para destacar */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Sombra sutil */
+    margin-bottom: 30px;
+    border-radius: 5px; /* Bordes redondeados */
 }
 
 #search-form {
@@ -91,18 +95,161 @@ h1, h2 {
 }
 
 .search-results {
-    /* Estilos para mostrar los resultados de búsqueda */
     margin-top: 30px;
-    text-align: center;
+    text-align: left; /* Alinear resultados a la izquierda */
     color: #666;
 }
 
-/* Estilos responsivos básicos (opcional) */
+/* Estilos para un item de resultado individual (ejemplo) */
+.search-result-item {
+    display: flex;
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    padding: 15px;
+    align-items: center; /* Centrar verticalmente */
+}
+
+.result-cover {
+    width: 80px; /* Tamaño de la portada en resultados */
+    height: 100px;
+    object-fit: cover; /* Asegura que la imagen cubra el espacio */
+    margin-right: 15px;
+    background-color: #e0e0e0; /* Placeholder si no hay imagen */
+    flex-shrink: 0;
+}
+
+.result-info h3 {
+    margin: 0 0 5px 0;
+    color: #333;
+}
+
+.result-info p {
+    margin: 4px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.result-info a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.result-info a:hover {
+    text-decoration: underline;
+}
+
+
+/* Sección de Categorías */
+.categories-section {
+    max-width: 1000px; /* Ancho mayor para categorías */
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border-radius: 5px;
+}
+
+.categories-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.category-list {
+    display: flex;
+    flex-wrap: wrap; /* Permite que las etiquetas pasen a la siguiente línea */
+    justify-content: center; /* Centra las etiquetas */
+    gap: 10px; /* Espacio entre etiquetas */
+}
+
+.category-tag {
+    display: inline-block;
+    background-color: #e9ecef; /* Gris claro */
+    color: #495057; /* Gris oscuro */
+    padding: 8px 15px;
+    border-radius: 20px; /* Bordes redondeados para forma de píldora */
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.category-tag:hover {
+    background-color: #007bff; /* Azul al pasar el ratón */
+    color: #fff; /* Texto blanco */
+}
+
+/* Sección de Juegos Destacados */
+.featured-games {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.featured-games h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.game-list {
+    display: grid; /* Usar grid para mejor control */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Columnas responsivas */
+    gap: 20px; /* Espacio entre items */
+}
+
+.featured-game-item {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    /* Placeholder - Añadir contenido real (imagen, título) aquí */
+    height: 250px; /* Altura de ejemplo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    background-color: #f0f0f0;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #343a40; /* Gris oscuro */
+    color: #f8f9fa; /* Texto claro */
+    font-size: 14px;
+}
+
+footer p {
+    margin: 0;
+}
+
+
+/* Estilos responsivos básicos (ajustes) */
 @media (max-width: 768px) {
     .game-covers {
-        justify-content: flex-start; /* Alinea al inicio en pantallas pequeñas */
+        justify-content: flex-start;
     }
     #search-input {
-        width: 60%;
+        width: 65%; /* Ajustar ancho en móvil */
+    }
+    .search-result-item {
+        flex-direction: column; /* Apilar elementos en móvil */
+        align-items: flex-start; /* Alinear al inicio */
+    }
+    .result-cover {
+        margin-right: 0;
+        margin-bottom: 10px; /* Espacio debajo de la portada */
+        width: 100%; /* Ancho completo */
+        height: auto; /* Altura automática */
+        max-width: 150px; /* Limitar tamaño máximo */
+    }
+    .game-list {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Columnas más pequeñas en móvil */
     }
 }
