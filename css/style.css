@@ -149,7 +149,7 @@ header a:hover, header .current a {
     color: #D8000C; /* Rojo error */
     background-color: #FFD2D2;
     border: 1px solid #D8000C;
-    padding: 10px 15px; /* Ajustar padding */
+    padding: 10px 15px;
     margin: 15px 0;
     border-radius: 3px;
     text-align: center;
@@ -173,7 +173,7 @@ header a:hover, header .current a {
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* *** PREVENIR DESBORDAMIENTO GENERAL DEL ITEM *** */
+    overflow: hidden; /* Prevenir desbordamiento general del item */
 }
 
 .game-item:hover {
@@ -184,7 +184,7 @@ header a:hover, header .current a {
 .game-item > a {
     display: block;
     text-decoration: none;
-    color: inherit; /* Heredar color para que el h3 no sea siempre naranja */
+    color: inherit;
 }
 
 .game-item img {
@@ -192,7 +192,7 @@ header a:hover, header .current a {
     aspect-ratio: 16 / 9;
     object-fit: cover;
     width: 100%;
-    border-bottom: 1px solid #eee; /* Separador sutil */
+    border-bottom: 1px solid #eee;
 }
 
 .game-item h3 {
@@ -200,11 +200,11 @@ header a:hover, header .current a {
      font-size: 1.1em;
      color: #35424a;
      line-height: 1.3;
-     /* *** FIX DESBORDAMIENTO TÍTULO: Limitar a 2 líneas con puntos suspensivos *** */
+     /* Fix desbordamiento título: Limitar a 2 líneas */
      height: 2.6em; /* Aprox 2 líneas (1.3 * 2) */
      overflow: hidden;
      text-overflow: ellipsis;
-     /* Para soporte multi-línea en navegadores Webkit (Chrome, Safari, Edge) */
+     /* Soporte multi-línea webkit */
      display: -webkit-box;
      -webkit-line-clamp: 2;
      -webkit-box-orient: vertical;
@@ -217,31 +217,43 @@ header a:hover, header .current a {
     padding: 0 15px 15px 15px;
     font-size: 0.85em;
     color: #555;
-    margin-top: auto;
-    flex-grow: 1; /* Asegura que ocupe espacio disponible */
-    display: flex; /* Usar flex para controlar el contenido interno */
+    margin-top: auto; /* Empuja detalles hacia abajo */
+    flex-grow: 1;
+    display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* Empuja el contenido hacia abajo */
+    justify-content: flex-end;
 }
+
 .game-item .details p {
     margin: 5px 0;
     line-height: 1.4;
-    /* *** FIX DESBORDAMIENTO DETALLES: Limitar altura y ocultar exceso *** */
-    max-height: 4.2em; /* Aprox 3 líneas (1.4 * 3) */
-    overflow: hidden;
+    /* Quitar max-height y overflow aquí si se aplica abajo */
 }
-/* Aplicar específicamente a las listas de géneros y plataformas si es necesario */
+
+/* *** CORRECCIÓN DESBORDAMIENTO SPANS (Plataformas/Géneros) *** */
 .game-item .details p.genres-list,
 .game-item .details p.platforms-list {
-     /* Podrían tener su propia max-height si fuera necesario diferenciarlas */
+     margin: 5px 0; /* Mantener margen */
+     line-height: 1.4; /* Mantener altura de línea */
+     /* Limitar a un número específico de líneas (ej. 2) */
+     overflow: hidden;
+     display: -webkit-box;
+     -webkit-line-clamp: 2; /* Número de líneas a mostrar */
+     -webkit-box-orient: vertical;
+     /* Asegurar que el texto dentro de los spans no se rompa */
+     word-break: keep-all; /* Evita romper palabras dentro de los spans, aunque puede ayudar break-word si un span es MUY largo */
 }
+
 
 .game-item .rating {
     font-weight: bold;
     color: #e8491d;
     margin-bottom: 8px !important;
-    max-height: none; /* Asegurar que el rating no se corte */
-    overflow: visible; /* Asegurar que el rating no se corte */
+    /* Asegurar que el rating no se corte por las reglas anteriores */
+    max-height: none;
+    overflow: visible;
+    display: block; /* Asegurar que sea block para no verse afectado por line-clamp */
+    -webkit-line-clamp: unset;
 }
 
 .game-item .platforms-list span,
@@ -250,11 +262,12 @@ header a:hover, header .current a {
     background-color: #eee;
     color: #555;
     padding: 2px 6px;
-    margin: 2px 2px 2px 0;
+    margin: 2px 3px 2px 0; /* Ajustar margen */
     border-radius: 3px;
-    font-size: 0.9em;
+    font-size: 0.9em; /* Mantener o ajustar tamaño */
     line-height: 1.3;
-    white-space: nowrap; /* Evitar que se partan las píldoras */
+    white-space: nowrap; /* Evitar que el texto dentro del span se parta */
+    vertical-align: baseline; /* Mejorar alineación vertical */
 }
 .game-item .platforms-list strong,
 .game-item .genres-list strong {
@@ -262,7 +275,7 @@ header a:hover, header .current a {
     margin-bottom: 3px;
     color: #333;
     font-size: 0.9em;
-    font-weight: bold; /* Asegurar negrita */
+    font-weight: bold;
 }
 
 
@@ -304,23 +317,23 @@ header a:hover, header .current a {
     margin-top: 30px;
     padding-top: 20px;
     border-top: 1px solid #eee;
-    display: flex; /* Cambiado a flex para mejor alineación */
+    display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap; /* Permitir que se envuelva en pantallas pequeñas */
+    flex-wrap: wrap;
 }
 .pagination button {
-    margin: 5px 10px; /* Añadido margen vertical */
+    margin: 5px 10px;
     padding: 8px 15px;
 }
 .pagination span#page-info {
-    margin: 5px 15px; /* Añadido margen vertical */
+    margin: 5px 15px;
     vertical-align: middle;
     font-weight: bold;
     color: #555;
 }
 .pagination button:disabled {
-    background-color: #ccc !important; /* Usar !important con cuidado */
+    background-color: #ccc !important;
     border-color: #ccc !important;
     color: #666 !important;
     cursor: not-allowed !important;
@@ -380,8 +393,6 @@ header a:hover, header .current a {
 }
 .detail-info ul li span {
      display: inline-block;
-     /* Ajustar ancho disponible si es necesario, pero usualmente no hace falta */
-     /* width: calc(100% - 140px); */
 }
 
 #game-website a {
@@ -434,7 +445,6 @@ header a:hover, header .current a {
     margin-top: 0;
     font-size: 1.1em;
 }
-/* Contenedor para tags y tiendas para permitir wrapping */
 #game-tags, #game-stores {
     line-height: 1.8; /* Espacio vertical para píldoras envueltas */
 }
@@ -449,8 +459,8 @@ header a:hover, header .current a {
     font-size: 0.9em;
     text-decoration: none;
     transition: background-color 0.3s ease, color 0.3s ease;
-    line-height: 1.4; /* Normalizar altura */
-    vertical-align: baseline; /* Mejor alineación si varían tamaños */
+    line-height: 1.4;
+    vertical-align: baseline;
 }
 .stores-list a {
     background-color: #d8eaff;
@@ -476,7 +486,6 @@ header a:hover, header .current a {
     margin-bottom: 15px;
     margin-top: 0;
 }
-/* Indicadores específicos para screenshots */
 #screenshots-loading, #screenshots-error {
     text-align: center;
     padding: 15px;
@@ -484,7 +493,7 @@ header a:hover, header .current a {
     font-size: 1em;
     color: #666;
 }
-#screenshots-error { /* Hereda .error-msg pero puede tener ajustes */
+#screenshots-error {
      color: #D8000C;
      background-color: #FFD2D2;
      border: 1px solid #D8000C;
@@ -523,7 +532,7 @@ header a:hover, header .current a {
     text-align: center;
     transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
     text-decoration: none;
-    vertical-align: middle; /* Alinear bien con texto/iconos */
+    vertical-align: middle;
 }
 
 .btn-primary {
@@ -658,16 +667,23 @@ footer {
        grid-template-columns: 1fr; /* Una columna */
     }
      .game-item h3 {
-        font-size: 1em;
-        height: auto; /* Permitir que el título ocupe más si solo hay 1 columna */
-        -webkit-line-clamp: unset; /* Quitar límite de líneas */
+        height: auto; /* Permitir más líneas si solo hay 1 columna */
+        -webkit-line-clamp: unset;
     }
-     .game-item .details p {
-         max-height: none; /* Quitar límite de altura en detalles */
-         overflow: visible;
+     /* Quitar límite de líneas en detalles en móvil si se prefiere ver todo */
+     .game-item .details p.genres-list,
+     .game-item .details p.platforms-list {
+         /* Comentar o quitar estas líneas si quieres ver todos los spans */
+         /* overflow: hidden; */
+         /* display: -webkit-box; */
+         /* -webkit-line-clamp: 2; */
+         /* -webkit-box-orient: vertical; */
+          max-height: none; /* Alternativa: quitar max-height */
+          overflow: visible; /* Alternativa: hacerlo visible */
+          display: block; /* Cambiar display si quitamos line-clamp */
      }
      .game-item .details {
-         padding-bottom: 10px; /* Reducir padding inferior */
+         padding-bottom: 10px;
      }
 
     #search-bar form {
@@ -686,11 +702,11 @@ footer {
     }
 
     .pagination {
-        /* El flex-wrap ya debería manejarlo bien */
+        /* flex-wrap ya debería manejarlo */
     }
     .pagination button {
         padding: 6px 10px;
-        margin: 3px 5px; /* Ajustar margen para wrap */
+        margin: 3px 5px;
     }
      .pagination span#page-info {
         margin: 3px 8px;
