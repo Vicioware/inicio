@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchForm = document.getElementById('search-form');
     const searchInput = document.getElementById('search-input');
     const resultsContainer = document.getElementById('search-results-container');
-    const apiKey = 'YOUR_API_KEY'; // <-- ¡IMPORTANTE! Reemplaza esto con tu API Key de RAWG
+    const apiKey = '6e5005c8f10d4fef99e4fad701d856c5'; // <-- ¡IMPORTANTE! Reemplaza esto con tu API Key de RAWG
 
     searchForm.addEventListener('submit', async (event) => {
         event.preventDefault(); // Evita que la página se recargue al enviar el formulario
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        if (apiKey === 'YOUR_API_KEY') {
+        if (apiKey === '6e5005c8f10d4fef99e4fad701d856c5') {
              resultsContainer.innerHTML = '<p style="color: red;">Error: Debes añadir tu API Key de RAWG en script.js.</p>';
              return;
         }
