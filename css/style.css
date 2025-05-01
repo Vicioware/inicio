@@ -33,6 +33,7 @@ img {
     max-width: 100%; /* Asegura que las imágenes no se desborden */
     height: auto;
     display: block; /* Evita espacio extra debajo de las imágenes */
+    vertical-align: middle; /* Mejor alineación vertical */
 }
 
 /* --- Header --- */
@@ -78,29 +79,6 @@ header li {
 header a:hover, header .current a {
     color: #e8491d;
     font-weight: bold;
-}
-
-/* --- Showcase Section (Opcional, si decides usarla) --- */
-#showcase {
-    min-height: 350px;
-    background: url('../img/showcase.jpg') no-repeat center center/cover; /* Ruta relativa a CSS */
-    text-align: center;
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-}
-
-#showcase h1 {
-    font-size: 50px;
-    margin-bottom: 10px;
-    color: #ffffff;
-}
-
-#showcase p {
-    font-size: 18px;
 }
 
 /* --- Search Bar --- */
@@ -156,7 +134,7 @@ header a:hover, header .current a {
     padding: 20px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     border-radius: 5px;
-    align-self: flex-start; /* Evita que se estire si el contenido principal es largo */
+    align-self: flex-start;
 }
 
 /* --- Indicadores y Errores --- */
@@ -171,7 +149,7 @@ header a:hover, header .current a {
     color: #D8000C; /* Rojo error */
     background-color: #FFD2D2;
     border: 1px solid #D8000C;
-    padding: 10px;
+    padding: 10px 15px; /* Ajustar padding */
     margin: 15px 0;
     border-radius: 3px;
     text-align: center;
@@ -181,20 +159,21 @@ header a:hover, header .current a {
 /* --- Game Grid (Index) --- */
 .game-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Aumentado tamaño mínimo */
-    gap: 25px; /* Aumentado espacio */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
     margin-top: 20px;
 }
 
 .game-item {
     border: 1px solid #ddd;
-    text-align: left; /* Alinear texto a la izquierda */
+    text-align: left;
     background: #ffffff;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    display: flex; /* Usar flex para mejor control vertical */
+    display: flex;
     flex-direction: column;
+    overflow: hidden; /* *** PREVENIR DESBORDAMIENTO GENERAL DEL ITEM *** */
 }
 
 .game-item:hover {
@@ -202,70 +181,88 @@ header a:hover, header .current a {
      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
-/* Enlace que envuelve imagen y título */
 .game-item > a {
     display: block;
     text-decoration: none;
+    color: inherit; /* Heredar color para que el h3 no sea siempre naranja */
 }
 
 .game-item img {
-    border-radius: 5px 5px 0 0; /* Redondear solo esquinas superiores */
-    aspect-ratio: 16 / 9; /* Ratio común para imágenes de juegos */
+    border-radius: 5px 5px 0 0;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
-    width: 100%; /* Asegurar que la imagen ocupe todo el ancho */
-    margin-bottom: 0; /* Quitar margen inferior de la imagen */
+    width: 100%;
+    border-bottom: 1px solid #eee; /* Separador sutil */
 }
 
 .game-item h3 {
-     margin: 10px 15px 5px 15px; /* Padding interno para título */
+     margin: 10px 15px 5px 15px;
      font-size: 1.1em;
      color: #35424a;
      line-height: 1.3;
-     /* Limitar altura del título si es necesario */
-     /* height: 2.6em; */
-     /* overflow: hidden; */
+     /* *** FIX DESBORDAMIENTO TÍTULO: Limitar a 2 líneas con puntos suspensivos *** */
+     height: 2.6em; /* Aprox 2 líneas (1.3 * 2) */
+     overflow: hidden;
+     text-overflow: ellipsis;
+     /* Para soporte multi-línea en navegadores Webkit (Chrome, Safari, Edge) */
+     display: -webkit-box;
+     -webkit-line-clamp: 2;
+     -webkit-box-orient: vertical;
 }
-.game-item > a:hover h3 { /* Cambiar color título al hacer hover en el enlace */
+.game-item > a:hover h3 {
      color: #e8491d;
 }
 
-/* Contenedor para detalles debajo del título */
 .game-item .details {
-    padding: 0 15px 15px 15px; /* Padding interno para detalles */
-    font-size: 0.85em; /* Ligeramente más grande */
-    color: #555; /* Más oscuro */
-    margin-top: auto; /* Empuja los detalles hacia abajo si el item se estira */
+    padding: 0 15px 15px 15px;
+    font-size: 0.85em;
+    color: #555;
+    margin-top: auto;
+    flex-grow: 1; /* Asegura que ocupe espacio disponible */
+    display: flex; /* Usar flex para controlar el contenido interno */
+    flex-direction: column;
+    justify-content: flex-end; /* Empuja el contenido hacia abajo */
 }
 .game-item .details p {
-    margin: 5px 0; /* Espacio entre párrafos de detalles */
+    margin: 5px 0;
     line-height: 1.4;
+    /* *** FIX DESBORDAMIENTO DETALLES: Limitar altura y ocultar exceso *** */
+    max-height: 4.2em; /* Aprox 3 líneas (1.4 * 3) */
+    overflow: hidden;
+}
+/* Aplicar específicamente a las listas de géneros y plataformas si es necesario */
+.game-item .details p.genres-list,
+.game-item .details p.platforms-list {
+     /* Podrían tener su propia max-height si fuera necesario diferenciarlas */
 }
 
 .game-item .rating {
     font-weight: bold;
     color: #e8491d;
-    margin-bottom: 8px !important; /* Más espacio debajo del rating */
+    margin-bottom: 8px !important;
+    max-height: none; /* Asegurar que el rating no se corte */
+    overflow: visible; /* Asegurar que el rating no se corte */
 }
 
-/* Estilo para las "píldoras" de plataformas y géneros */
 .game-item .platforms-list span,
 .game-item .genres-list span {
     display: inline-block;
     background-color: #eee;
     color: #555;
     padding: 2px 6px;
-    margin: 2px 2px 2px 0; /* Espacio a la derecha */
+    margin: 2px 2px 2px 0;
     border-radius: 3px;
-    font-size: 0.9em; /* Ajuste tamaño */
-    line-height: 1.3; /* Asegurar que no se solapen */
+    font-size: 0.9em;
+    line-height: 1.3;
     white-space: nowrap; /* Evitar que se partan las píldoras */
 }
 .game-item .platforms-list strong,
 .game-item .genres-list strong {
-    display: block; /* Poner "Plataformas:" y "Géneros:" en su propia línea */
+    display: block;
     margin-bottom: 3px;
     color: #333;
     font-size: 0.9em;
+    font-weight: bold; /* Asegurar negrita */
 }
 
 
@@ -291,7 +288,7 @@ header a:hover, header .current a {
      transition: color 0.3s ease;
      display: block;
 }
-#sidebar ul li a:hover, #sidebar ul li a.active-filter { /* Estilo para filtro activo */
+#sidebar ul li a:hover, #sidebar ul li a.active-filter {
      color: #e8491d;
      font-weight: bold;
 }
@@ -307,24 +304,27 @@ header a:hover, header .current a {
     margin-top: 30px;
     padding-top: 20px;
     border-top: 1px solid #eee;
+    display: flex; /* Cambiado a flex para mejor alineación */
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Permitir que se envuelva en pantallas pequeñas */
 }
 .pagination button {
-    margin: 0 10px;
+    margin: 5px 10px; /* Añadido margen vertical */
     padding: 8px 15px;
-    /* Hereda estilos de .btn-primary / .btn-secondary */
 }
 .pagination span#page-info {
-    margin: 0 15px;
+    margin: 5px 15px; /* Añadido margen vertical */
     vertical-align: middle;
     font-weight: bold;
     color: #555;
 }
 .pagination button:disabled {
-    background-color: #ccc;
-    border-color: #ccc;
-    color: #666;
-    cursor: not-allowed;
-    opacity: 0.7;
+    background-color: #ccc !important; /* Usar !important con cuidado */
+    border-color: #ccc !important;
+    color: #666 !important;
+    cursor: not-allowed !important;
+    opacity: 0.7 !important;
 }
 
 /* --- Estilos Página de Detalles (`gamecard.html`) --- */
@@ -335,17 +335,17 @@ header a:hover, header .current a {
     border-radius: 5px;
 }
 
-#game-detail-content h1#game-title { /* Título del juego */
+#game-detail-content h1#game-title {
     margin-top: 0;
     border-bottom: 2px solid #e8491d;
     padding-bottom: 10px;
-    margin-bottom: 25px; /* Más espacio */
+    margin-bottom: 25px;
 }
 
 .detail-grid {
     display: grid;
-    grid-template-columns: 1fr 1.8fr; /* Ajustar proporción imagen/info */
-    gap: 35px; /* Más espacio */
+    grid-template-columns: 1fr 1.8fr;
+    gap: 35px;
     margin-bottom: 30px;
     align-items: flex-start;
 }
@@ -353,13 +353,13 @@ header a:hover, header .current a {
 .detail-image img#game-main-image {
     border: 1px solid #ddd;
     border-radius: 5px;
-    width: 100%; /* Asegurar que use el espacio asignado */
+    width: 100%;
 }
 
 .detail-info h2 {
     margin-top: 0;
     border-bottom: 1px solid #eee;
-    padding-bottom: 8px; /* Más padding */
+    padding-bottom: 8px;
     margin-bottom: 15px;
 }
 
@@ -368,50 +368,48 @@ header a:hover, header .current a {
     padding: 0;
 }
 .detail-info ul li {
-    margin-bottom: 12px; /* Más espacio entre items */
-    line-height: 1.5; /* Mejorar legibilidad */
+    margin-bottom: 12px;
+    line-height: 1.5;
 }
 .detail-info ul li strong {
     color: #35424a;
-    min-width: 130px; /* Ajustar si es necesario */
+    min-width: 130px;
     display: inline-block;
     vertical-align: top;
-    margin-right: 5px; /* Pequeño espacio */
+    margin-right: 5px;
 }
 .detail-info ul li span {
      display: inline-block;
-     /* Permitir que el span ocupe el resto, ajustando con el strong */
+     /* Ajustar ancho disponible si es necesario, pero usualmente no hace falta */
      /* width: calc(100% - 140px); */
 }
 
 #game-website a {
-    word-break: break-all; /* Evita que URLs largas rompan el layout */
+    word-break: break-all;
 }
 
 #game-description {
-    background-color: #fdfdfd; /* Fondo muy sutil */
-    padding: 20px; /* Más padding */
+    background-color: #fdfdfd;
+    padding: 20px;
     border-radius: 4px;
     border: 1px solid #eee;
-    margin: 25px 0; /* Espacio arriba y abajo */
-    line-height: 1.7; /* Mejorar legibilidad de descripción */
-    clear: both; /* Asegurar que esté debajo de flotantes si los hubiera */
+    margin: 25px 0;
+    line-height: 1.7;
+    clear: both;
 }
-#game-description h2 { /* Título dentro de la descripción */
+#game-description h2 {
      border-bottom: 1px solid #eee;
      padding-bottom: 5px;
      margin-bottom: 15px;
-     margin-top: 0; /* Quitar margen superior si es el primer elemento */
+     margin-top: 0;
 }
-
-/* Estilos para elementos que pueden venir en la descripción de RAWG */
 #game-description p {
-    margin-bottom: 1.2em; /* Espacio entre párrafos */
+    margin-bottom: 1.2em;
 }
 #game-description h3 {
     margin-top: 1.8em;
     margin-bottom: 0.6em;
-    font-size: 1.3em; /* Tamaño para subtítulos */
+    font-size: 1.3em;
     color: #35424a;
 }
 #game-description ul {
@@ -436,24 +434,30 @@ header a:hover, header .current a {
     margin-top: 0;
     font-size: 1.1em;
 }
+/* Contenedor para tags y tiendas para permitir wrapping */
+#game-tags, #game-stores {
+    line-height: 1.8; /* Espacio vertical para píldoras envueltas */
+}
+
 .tags-list span, .stores-list a {
     display: inline-block;
     background-color: #e0e0e0;
     color: #333;
-    padding: 4px 10px; /* Ligeramente más grandes */
-    margin: 4px; /* Más espacio */
-    border-radius: 12px; /* Más redondeado */
+    padding: 4px 10px;
+    margin: 4px;
+    border-radius: 12px;
     font-size: 0.9em;
     text-decoration: none;
     transition: background-color 0.3s ease, color 0.3s ease;
-    line-height: 1.4;
+    line-height: 1.4; /* Normalizar altura */
+    vertical-align: baseline; /* Mejor alineación si varían tamaños */
 }
 .stores-list a {
-    background-color: #d8eaff; /* Color diferente para tiendas */
+    background-color: #d8eaff;
     color: #0b5fbd;
 }
 .tags-list span:hover {
-    background-color: #c7c7c7; /* Hover solo para tags (no son enlaces) */
+    background-color: #c7c7c7;
 }
 .stores-list a:hover {
     background-color: #b9d7ff;
@@ -472,10 +476,25 @@ header a:hover, header .current a {
     margin-bottom: 15px;
     margin-top: 0;
 }
+/* Indicadores específicos para screenshots */
+#screenshots-loading, #screenshots-error {
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 15px;
+    font-size: 1em;
+    color: #666;
+}
+#screenshots-error { /* Hereda .error-msg pero puede tener ajustes */
+     color: #D8000C;
+     background-color: #FFD2D2;
+     border: 1px solid #D8000C;
+     border-radius: 3px;
+}
+
 
 .media-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Tamaño mínimo mayor */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 15px;
 }
 
@@ -486,10 +505,10 @@ header a:hover, header .current a {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     aspect-ratio: 16 / 9;
     object-fit: cover;
-    width: 100%; /* Asegurar que llenen el espacio del grid */
+    width: 100%;
 }
 .media-grid img:hover {
-    transform: scale(1.03); /* Efecto de zoom sutil */
+    transform: scale(1.03);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
@@ -503,7 +522,8 @@ header a:hover, header .current a {
     font-size: 1em;
     text-align: center;
     transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
-    text-decoration: none; /* Asegurar que no tengan subrayado si son <a> */
+    text-decoration: none;
+    vertical-align: middle; /* Alinear bien con texto/iconos */
 }
 
 .btn-primary {
@@ -515,13 +535,12 @@ header a:hover, header .current a {
 }
 
 .btn-secondary {
-    background-color: #6c757d; /* Gris secundario */
+    background-color: #6c757d;
     color: white;
 }
 .btn-secondary:hover {
     background-color: #5a6268;
 }
-/* Estilo para botones deshabilitados (ya incluido en paginación, pero útil genéricamente) */
 button:disabled, .btn-primary:disabled, .btn-secondary:disabled {
     background-color: #ccc !important;
     border-color: #ccc !important;
@@ -534,21 +553,21 @@ button:disabled, .btn-primary:disabled, .btn-secondary:disabled {
 /* --- Footer --- */
 footer {
     padding: 20px 0;
-    margin-top: 40px; /* Más espacio antes del footer */
+    margin-top: 40px;
     color: #ffffff;
     background-color: #35424a;
     text-align: center;
     font-size: 0.9em;
 }
  footer p {
-     margin: 8px 0; /* Más espacio vertical */
+     margin: 8px 0;
  }
  footer a {
      color: #e8491d;
      transition: color 0.3s ease;
  }
  footer a:hover {
-     color: #ffffff; /* Cambiar a blanco en hover */
+     color: #ffffff;
      text-decoration: underline;
  }
 
@@ -558,7 +577,7 @@ footer {
         width: 90%;
     }
      .detail-grid {
-        grid-template-columns: 1fr 1.5fr; /* Ajustar proporción en pantallas medianas */
+        grid-template-columns: 1fr 1.5fr;
         gap: 25px;
     }
      .game-grid {
@@ -580,14 +599,14 @@ footer {
         margin-top: 10px;
     }
     header #branding h1 {
-        padding-top: 5px; /* Reducir padding */
+        padding-top: 5px;
     }
 
     #main-content {
         flex-direction: column;
     }
     #sidebar {
-        margin-top: 20px; /* Espacio cuando se apila */
+        margin-top: 20px;
     }
 
     .container {
@@ -595,22 +614,19 @@ footer {
     }
 
     .game-grid {
-       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Más pequeño en móvil */
+       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
        gap: 15px;
-    }
-    .game-item {
-        /* Ajustes menores si son necesarios para móvil */
     }
 
     #search-bar input[type="search"] {
-        width: 65%; /* Ajustar ancho */
+        width: 65%;
     }
     #search-bar button {
         padding: 10px 15px;
     }
 
     .detail-grid {
-        grid-template-columns: 1fr; /* Apila imagen y detalles */
+        grid-template-columns: 1fr;
         gap: 20px;
     }
     .detail-image {
@@ -618,18 +634,18 @@ footer {
         margin-bottom: 10px;
     }
     .detail-image img#game-main-image {
-        max-width: 80%; /* Limita tamaño imagen en móvil */
-        margin: 0 auto; /* Centrar imagen */
+        max-width: 80%;
+        margin: 0 auto;
     }
     .stores-list {
-        text-align: center; /* Centrar tiendas bajo la imagen */
+        text-align: center;
     }
 
     #game-detail-content {
-        padding: 20px; /* Menos padding en móvil */
+        padding: 20px;
     }
     #game-detail-content h1#game-title {
-        font-size: 1.8em; /* Título más pequeño */
+        font-size: 1.8em;
     }
 
      .media-grid {
@@ -639,22 +655,28 @@ footer {
 
 @media(max-width: 480px){
     .game-grid {
-       grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+       grid-template-columns: 1fr; /* Una columna */
     }
      .game-item h3 {
         font-size: 1em;
+        height: auto; /* Permitir que el título ocupe más si solo hay 1 columna */
+        -webkit-line-clamp: unset; /* Quitar límite de líneas */
     }
+     .game-item .details p {
+         max-height: none; /* Quitar límite de altura en detalles */
+         overflow: visible;
+     }
      .game-item .details {
-        font-size: 0.8em;
-    }
+         padding-bottom: 10px; /* Reducir padding inferior */
+     }
 
     #search-bar form {
-        flex-direction: column; /* Apilar input y botón */
+        flex-direction: column;
         align-items: center;
     }
     #search-bar input[type="search"] {
         width: 90%;
-        border-radius: 3px; /* Bordes normales */
+        border-radius: 3px;
         margin-bottom: 5px;
         border-right: 1px solid #ccc;
     }
@@ -663,12 +685,15 @@ footer {
         border-radius: 3px;
     }
 
+    .pagination {
+        /* El flex-wrap ya debería manejarlo bien */
+    }
     .pagination button {
         padding: 6px 10px;
-        margin: 0 5px;
+        margin: 3px 5px; /* Ajustar margen para wrap */
     }
      .pagination span#page-info {
-        margin: 0 8px;
+        margin: 3px 8px;
         font-size: 0.9em;
     }
 
@@ -676,12 +701,11 @@ footer {
         font-size: 1.5em;
     }
      .detail-info ul li strong {
-        display: block; /* Poner etiquetas en su propia línea */
+        display: block;
         margin-bottom: 3px;
-        min-width: auto; /* Quitar ancho mínimo */
+        min-width: auto;
     }
      .media-grid {
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     }
-
 }
