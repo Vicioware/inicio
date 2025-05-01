@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detalles del juego obtenidos de RAWG.io">
+    <title>Detalles del Juego - Mi Biblioteca de Juegos</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><a href="index.html">Mi Biblioteca de Juegos</a></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="main-content" class="container">
+        <div id="loading-indicator" style="text-align: center; padding: 40px;">Cargando detalles del juego...</div>
+        <div id="error-message" class="error-msg" style="display: none; text-align: center; padding: 40px;"></div>
+
+        <div id="game-detail-content" style="display: none;">
+            <h1 id="game-title">[Título del Juego]</h1>
+
+            <div class="detail-grid">
+                <div class="detail-image">
+                    <img id="game-main-image" src="" alt="Portada del juego">
+                     <div id="game-stores" class="stores-list">
+                         </div>
+                </div>
+                <div class="detail-info">
+                    <h2>Detalles</h2>
+                    <ul id="game-details-list">
+                        <li><strong>Género(s):</strong> <span id="game-genres"></span></li>
+                        <li><strong>Plataforma(s):</strong> <span id="game-platforms"></span></li>
+                        <li><strong>Lanzamiento:</strong> <span id="game-release-date"></span></li>
+                        <li><strong>Desarrollador(es):</strong> <span id="game-developers"></span></li>
+                        <li><strong>Editor(es):</strong> <span id="game-publishers"></span></li>
+                        <li><strong>Rating RAWG:</strong> <span id="game-rating"></span></li>
+                        <li><strong>Metacritic:</strong> <span id="game-metacritic"></span></li>
+                        <li><strong>Website:</strong> <span id="game-website"></span></li>
+                        </ul>
+                </div>
+            </div>
+
+            <div class="detail-tags" id="game-tags-container">
+                 <h3>Tags:</h3>
+                 <div id="game-tags" class="tags-list">
+                     </div>
+            </div>
+
+            <div class="detail-description">
+                <h2>Descripción</h2>
+                <div id="game-description"></div> </div>
+
+            <div class="detail-media">
+                <h2>Screenshots</h2>
+                 <div id="screenshots-loading" style="display: none;">Cargando screenshots...</div>
+                 <div id="screenshots-error" class="error-msg" style="display: none;"></div>
+                <div class="media-grid" id="screenshots-grid">
+                    </div>
+            </div>
+
+             <div style="margin-top: 30px;">
+                 <a href="index.html" class="btn-secondary">&laquo; Volver a la Búsqueda</a>
+             </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+             <p>Mi Biblioteca de Juegos &copy; 2025 - Usando la API de <a href="https://rawg.io/" target="_blank" rel="noopener noreferrer">RAWG.io</a></p>
+             <p>
+                 <a href="#">Acerca de</a> |
+                 <a href="#">Privacidad</a> |
+                 <a href="#">Términos</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/gamecard.js"></script>
+</body>
+</html>

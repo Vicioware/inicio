@@ -1,0 +1,687 @@
+/* --- Estilos Generales --- */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden; /* Clear floats */
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #e8491d; /* Color de enlace principal */
+}
+
+h1, h2, h3 {
+    color: #35424a; /* Azul oscuro para títulos */
+}
+
+img {
+    max-width: 100%; /* Asegura que las imágenes no se desborden */
+    height: auto;
+    display: block; /* Evita espacio extra debajo de las imágenes */
+}
+
+/* --- Header --- */
+header {
+    background: #35424a;
+    color: #ffffff;
+    padding-top: 20px;
+    min-height: 70px;
+    border-bottom: #e8491d 3px solid;
+}
+
+header a {
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+header #branding {
+    float: left;
+}
+
+header #branding h1 {
+    margin: 0;
+    padding-top: 10px;
+    font-size: 24px;
+    color: #ffffff;
+}
+header #branding h1 a {
+    font-size: 24px;
+}
+
+header nav {
+    float: right;
+    margin-top: 10px;
+}
+
+header li {
+    display: inline;
+    padding: 0 15px;
+}
+
+header a:hover, header .current a {
+    color: #e8491d;
+    font-weight: bold;
+}
+
+/* --- Showcase Section (Opcional, si decides usarla) --- */
+#showcase {
+    min-height: 350px;
+    background: url('../img/showcase.jpg') no-repeat center center/cover; /* Ruta relativa a CSS */
+    text-align: center;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+#showcase h1 {
+    font-size: 50px;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+#showcase p {
+    font-size: 18px;
+}
+
+/* --- Search Bar --- */
+#search-bar {
+     padding: 15px 0;
+     background: #e6e6e6;
+     border-bottom: 1px solid #ccc;
+}
+
+#search-bar form {
+    display: flex;
+    justify-content: center;
+}
+
+#search-bar input[type="search"] {
+    padding: 10px;
+    width: 50%;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 3px 0 0 3px;
+    border-right: none;
+}
+
+#search-bar button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #e8491d;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 0 3px 3px 0;
+    transition: background-color 0.3s ease;
+}
+
+#search-bar button:hover {
+    background-color: #35424a;
+}
+
+/* --- Main Content Layout (Index) --- */
+#main-content {
+    padding: 20px 0;
+    display: flex;
+    gap: 30px;
+}
+
+#game-library {
+    flex: 3; /* Ocupa más espacio */
+}
+
+#sidebar {
+    flex: 1; /* Ocupa menos espacio */
+    background: #ffffff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    align-self: flex-start; /* Evita que se estire si el contenido principal es largo */
+}
+
+/* --- Indicadores y Errores --- */
+#loading-indicator {
+    font-size: 1.2em;
+    color: #666;
+    text-align: center;
+    padding: 20px;
+}
+
+.error-msg {
+    color: #D8000C; /* Rojo error */
+    background-color: #FFD2D2;
+    border: 1px solid #D8000C;
+    padding: 10px;
+    margin: 15px 0;
+    border-radius: 3px;
+    text-align: center;
+}
+
+
+/* --- Game Grid (Index) --- */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Aumentado tamaño mínimo */
+    gap: 25px; /* Aumentado espacio */
+    margin-top: 20px;
+}
+
+.game-item {
+    border: 1px solid #ddd;
+    text-align: left; /* Alinear texto a la izquierda */
+    background: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: flex; /* Usar flex para mejor control vertical */
+    flex-direction: column;
+}
+
+.game-item:hover {
+     transform: translateY(-5px);
+     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* Enlace que envuelve imagen y título */
+.game-item > a {
+    display: block;
+    text-decoration: none;
+}
+
+.game-item img {
+    border-radius: 5px 5px 0 0; /* Redondear solo esquinas superiores */
+    aspect-ratio: 16 / 9; /* Ratio común para imágenes de juegos */
+    object-fit: cover;
+    width: 100%; /* Asegurar que la imagen ocupe todo el ancho */
+    margin-bottom: 0; /* Quitar margen inferior de la imagen */
+}
+
+.game-item h3 {
+     margin: 10px 15px 5px 15px; /* Padding interno para título */
+     font-size: 1.1em;
+     color: #35424a;
+     line-height: 1.3;
+     /* Limitar altura del título si es necesario */
+     /* height: 2.6em; */
+     /* overflow: hidden; */
+}
+.game-item > a:hover h3 { /* Cambiar color título al hacer hover en el enlace */
+     color: #e8491d;
+}
+
+/* Contenedor para detalles debajo del título */
+.game-item .details {
+    padding: 0 15px 15px 15px; /* Padding interno para detalles */
+    font-size: 0.85em; /* Ligeramente más grande */
+    color: #555; /* Más oscuro */
+    margin-top: auto; /* Empuja los detalles hacia abajo si el item se estira */
+}
+.game-item .details p {
+    margin: 5px 0; /* Espacio entre párrafos de detalles */
+    line-height: 1.4;
+}
+
+.game-item .rating {
+    font-weight: bold;
+    color: #e8491d;
+    margin-bottom: 8px !important; /* Más espacio debajo del rating */
+}
+
+/* Estilo para las "píldoras" de plataformas y géneros */
+.game-item .platforms-list span,
+.game-item .genres-list span {
+    display: inline-block;
+    background-color: #eee;
+    color: #555;
+    padding: 2px 6px;
+    margin: 2px 2px 2px 0; /* Espacio a la derecha */
+    border-radius: 3px;
+    font-size: 0.9em; /* Ajuste tamaño */
+    line-height: 1.3; /* Asegurar que no se solapen */
+    white-space: nowrap; /* Evitar que se partan las píldoras */
+}
+.game-item .platforms-list strong,
+.game-item .genres-list strong {
+    display: block; /* Poner "Plataformas:" y "Géneros:" en su propia línea */
+    margin-bottom: 3px;
+    color: #333;
+    font-size: 0.9em;
+}
+
+
+/* --- Sidebar (Index) --- */
+#sidebar h3 {
+    border-bottom: 2px solid #e8491d;
+    padding-bottom: 5px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+#sidebar ul li {
+    margin-bottom: 10px;
+    border-bottom: 1px dotted #eee;
+    padding-bottom: 8px;
+}
+#sidebar ul li:last-child {
+    border-bottom: none;
+}
+
+#sidebar ul li a {
+     color: #333;
+     transition: color 0.3s ease;
+     display: block;
+}
+#sidebar ul li a:hover, #sidebar ul li a.active-filter { /* Estilo para filtro activo */
+     color: #e8491d;
+     font-weight: bold;
+}
+#sidebar p small {
+    color: #888;
+    font-style: italic;
+}
+
+
+/* --- Paginación (Index) --- */
+.pagination {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+.pagination button {
+    margin: 0 10px;
+    padding: 8px 15px;
+    /* Hereda estilos de .btn-primary / .btn-secondary */
+}
+.pagination span#page-info {
+    margin: 0 15px;
+    vertical-align: middle;
+    font-weight: bold;
+    color: #555;
+}
+.pagination button:disabled {
+    background-color: #ccc;
+    border-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* --- Estilos Página de Detalles (`gamecard.html`) --- */
+#game-detail-content {
+    background: #ffffff;
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    border-radius: 5px;
+}
+
+#game-detail-content h1#game-title { /* Título del juego */
+    margin-top: 0;
+    border-bottom: 2px solid #e8491d;
+    padding-bottom: 10px;
+    margin-bottom: 25px; /* Más espacio */
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr; /* Ajustar proporción imagen/info */
+    gap: 35px; /* Más espacio */
+    margin-bottom: 30px;
+    align-items: flex-start;
+}
+
+.detail-image img#game-main-image {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%; /* Asegurar que use el espacio asignado */
+}
+
+.detail-info h2 {
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px; /* Más padding */
+    margin-bottom: 15px;
+}
+
+.detail-info ul#game-details-list {
+    list-style: none;
+    padding: 0;
+}
+.detail-info ul li {
+    margin-bottom: 12px; /* Más espacio entre items */
+    line-height: 1.5; /* Mejorar legibilidad */
+}
+.detail-info ul li strong {
+    color: #35424a;
+    min-width: 130px; /* Ajustar si es necesario */
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 5px; /* Pequeño espacio */
+}
+.detail-info ul li span {
+     display: inline-block;
+     /* Permitir que el span ocupe el resto, ajustando con el strong */
+     /* width: calc(100% - 140px); */
+}
+
+#game-website a {
+    word-break: break-all; /* Evita que URLs largas rompan el layout */
+}
+
+#game-description {
+    background-color: #fdfdfd; /* Fondo muy sutil */
+    padding: 20px; /* Más padding */
+    border-radius: 4px;
+    border: 1px solid #eee;
+    margin: 25px 0; /* Espacio arriba y abajo */
+    line-height: 1.7; /* Mejorar legibilidad de descripción */
+    clear: both; /* Asegurar que esté debajo de flotantes si los hubiera */
+}
+#game-description h2 { /* Título dentro de la descripción */
+     border-bottom: 1px solid #eee;
+     padding-bottom: 5px;
+     margin-bottom: 15px;
+     margin-top: 0; /* Quitar margen superior si es el primer elemento */
+}
+
+/* Estilos para elementos que pueden venir en la descripción de RAWG */
+#game-description p {
+    margin-bottom: 1.2em; /* Espacio entre párrafos */
+}
+#game-description h3 {
+    margin-top: 1.8em;
+    margin-bottom: 0.6em;
+    font-size: 1.3em; /* Tamaño para subtítulos */
+    color: #35424a;
+}
+#game-description ul {
+    list-style: disc;
+    margin-left: 25px;
+    margin-bottom: 1em;
+}
+#game-description li {
+    margin-bottom: 0.5em;
+}
+
+
+/* Estilos para Tags y Tiendas */
+.detail-tags, .stores-list {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    clear: both;
+}
+.detail-tags h3, .stores-list h3 {
+    margin-bottom: 10px;
+    margin-top: 0;
+    font-size: 1.1em;
+}
+.tags-list span, .stores-list a {
+    display: inline-block;
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 4px 10px; /* Ligeramente más grandes */
+    margin: 4px; /* Más espacio */
+    border-radius: 12px; /* Más redondeado */
+    font-size: 0.9em;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    line-height: 1.4;
+}
+.stores-list a {
+    background-color: #d8eaff; /* Color diferente para tiendas */
+    color: #0b5fbd;
+}
+.tags-list span:hover {
+    background-color: #c7c7c7; /* Hover solo para tags (no son enlaces) */
+}
+.stores-list a:hover {
+    background-color: #b9d7ff;
+    color: #07478a;
+}
+
+/* Estilos para la sección de Multimedia */
+.detail-media {
+     margin-top: 30px;
+     padding-top: 20px;
+     border-top: 1px solid #eee;
+     clear: both;
+}
+
+.detail-media h2 {
+    margin-bottom: 15px;
+    margin-top: 0;
+}
+
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Tamaño mínimo mayor */
+    gap: 15px;
+}
+
+.media-grid img {
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    width: 100%; /* Asegurar que llenen el espacio del grid */
+}
+.media-grid img:hover {
+    transform: scale(1.03); /* Efecto de zoom sutil */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* --- Botones Genéricos --- */
+.btn-primary, .btn-secondary {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 1em;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+    text-decoration: none; /* Asegurar que no tengan subrayado si son <a> */
+}
+
+.btn-primary {
+    background-color: #e8491d;
+    color: white;
+}
+.btn-primary:hover {
+     background-color: #d34012;
+}
+
+.btn-secondary {
+    background-color: #6c757d; /* Gris secundario */
+    color: white;
+}
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+/* Estilo para botones deshabilitados (ya incluido en paginación, pero útil genéricamente) */
+button:disabled, .btn-primary:disabled, .btn-secondary:disabled {
+    background-color: #ccc !important;
+    border-color: #ccc !important;
+    color: #666 !important;
+    cursor: not-allowed !important;
+    opacity: 0.7 !important;
+}
+
+
+/* --- Footer --- */
+footer {
+    padding: 20px 0;
+    margin-top: 40px; /* Más espacio antes del footer */
+    color: #ffffff;
+    background-color: #35424a;
+    text-align: center;
+    font-size: 0.9em;
+}
+ footer p {
+     margin: 8px 0; /* Más espacio vertical */
+ }
+ footer a {
+     color: #e8491d;
+     transition: color 0.3s ease;
+ }
+ footer a:hover {
+     color: #ffffff; /* Cambiar a blanco en hover */
+     text-decoration: underline;
+ }
+
+/* --- Media Queries (Responsividad) --- */
+@media(max-width: 992px){
+    .container {
+        width: 90%;
+    }
+     .detail-grid {
+        grid-template-columns: 1fr 1.5fr; /* Ajustar proporción en pantallas medianas */
+        gap: 25px;
+    }
+     .game-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+
+@media(max-width: 768px){
+    header #branding,
+    header nav,
+    header nav li {
+        float: none;
+        text-align: center;
+        width: 100%;
+        padding: 5px 0;
+    }
+    header nav ul {
+        margin-top: 10px;
+    }
+    header #branding h1 {
+        padding-top: 5px; /* Reducir padding */
+    }
+
+    #main-content {
+        flex-direction: column;
+    }
+    #sidebar {
+        margin-top: 20px; /* Espacio cuando se apila */
+    }
+
+    .container {
+        width: 95%;
+    }
+
+    .game-grid {
+       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Más pequeño en móvil */
+       gap: 15px;
+    }
+    .game-item {
+        /* Ajustes menores si son necesarios para móvil */
+    }
+
+    #search-bar input[type="search"] {
+        width: 65%; /* Ajustar ancho */
+    }
+    #search-bar button {
+        padding: 10px 15px;
+    }
+
+    .detail-grid {
+        grid-template-columns: 1fr; /* Apila imagen y detalles */
+        gap: 20px;
+    }
+    .detail-image {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .detail-image img#game-main-image {
+        max-width: 80%; /* Limita tamaño imagen en móvil */
+        margin: 0 auto; /* Centrar imagen */
+    }
+    .stores-list {
+        text-align: center; /* Centrar tiendas bajo la imagen */
+    }
+
+    #game-detail-content {
+        padding: 20px; /* Menos padding en móvil */
+    }
+    #game-detail-content h1#game-title {
+        font-size: 1.8em; /* Título más pequeño */
+    }
+
+     .media-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
+@media(max-width: 480px){
+    .game-grid {
+       grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+    }
+     .game-item h3 {
+        font-size: 1em;
+    }
+     .game-item .details {
+        font-size: 0.8em;
+    }
+
+    #search-bar form {
+        flex-direction: column; /* Apilar input y botón */
+        align-items: center;
+    }
+    #search-bar input[type="search"] {
+        width: 90%;
+        border-radius: 3px; /* Bordes normales */
+        margin-bottom: 5px;
+        border-right: 1px solid #ccc;
+    }
+    #search-bar button {
+        width: 90%;
+        border-radius: 3px;
+    }
+
+    .pagination button {
+        padding: 6px 10px;
+        margin: 0 5px;
+    }
+     .pagination span#page-info {
+        margin: 0 8px;
+        font-size: 0.9em;
+    }
+
+     #game-detail-content h1#game-title {
+        font-size: 1.5em;
+    }
+     .detail-info ul li strong {
+        display: block; /* Poner etiquetas en su propia línea */
+        margin-bottom: 3px;
+        min-width: auto; /* Quitar ancho mínimo */
+    }
+     .media-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+
+}

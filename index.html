@@ -3,224 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tu biblioteca personal de videojuegos. Explora, organiza y descubre nuevos juegos.">
-    <title>Mi Biblioteca de Juegos</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-
-        header {
-            background: #35424a;
-            color: #ffffff;
-            padding-top: 30px;
-            min-height: 70px;
-            border-bottom: #e8491d 3px solid;
-        }
-
-        header a {
-            color: #ffffff;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 16px;
-        }
-
-        header ul {
-            padding: 0;
-            margin: 0;
-            list-style: none;
-            float: right; /* Alinea la navegación a la derecha */
-            margin-top: 10px; /* Ajusta la alineación vertical */
-        }
-
-        header li {
-            display: inline;
-            padding: 0 20px 0 20px;
-        }
-
-        header #branding {
-            float: left;
-        }
-
-        header #branding h1 {
-            margin: 0;
-            font-size: 24px; /* Tamaño más adecuado para el título */
-        }
-
-        header nav {
-           margin-top: 10px; /* Ayuda a alinear la nav */
-        }
-
-        header a:hover {
-            color: #e8491d;
-            font-weight: bold;
-        }
-
-        #showcase {
-            min-height: 400px;
-            background: url('img/showcase.jpg') no-repeat 0 -400px; /* Reemplaza con una imagen de fondo */
-            background-size: cover;
-            text-align: center;
-            color: #ffffff;
-            display: flex; /* Usar flexbox para centrar */
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #showcase h1 {
-            margin-top: 100px; /* Ajustado ya que flexbox centra */
-            margin-bottom: 10px;
-             font-size: 55px;
-             text-shadow: 2px 2px 4px #000; /* Sombra para legibilidad */
-        }
-
-        #showcase p {
-            font-size: 20px;
-            text-shadow: 1px 1px 2px #000; /* Sombra para legibilidad */
-        }
-
-         #search-bar {
-             padding: 20px;
-             background: #e6e6e6;
-             text-align: center;
-         }
-
-         #search-bar input[type="search"] {
-            padding: 10px;
-            width: 60%;
-            font-size: 16px;
-            border: 1px solid #ccc;
-         }
-
-         #search-bar button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #e8491d;
-            color: white;
-            border: none;
-            cursor: pointer;
-         }
-
-         #search-bar button:hover {
-            background-color: #35424a;
-         }
-
-
-        #main-content {
-            padding: 20px 0;
-            display: flex; /* Para layout de contenido principal y sidebar */
-            gap: 20px; /* Espacio entre contenido y sidebar */
-        }
-
-        #game-library {
-            flex: 3; /* Ocupa 3 partes del espacio */
-            background: #ffffff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-
-        #sidebar {
-            flex: 1; /* Ocupa 1 parte del espacio */
-            background: #ffffff;
-            padding: 20px;
-             box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-
-        .game-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Grid responsivo */
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .game-item {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-            background: #f9f9f9;
-            transition: transform 0.2s ease-in-out;
-        }
-         .game-item:hover {
-             transform: scale(1.05);
-             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-         }
-
-        .game-item img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 10px;
-        }
-
-         .game-item h3 a {
-             text-decoration: none;
-             color: #35424a;
-         }
-         .game-item h3 a:hover {
-             color: #e8491d;
-         }
-
-        .game-item p {
-            font-size: 0.9em;
-            color: #666;
-        }
-
-        #sidebar h3 {
-            border-bottom: 2px solid #e8491d;
-            padding-bottom: 5px;
-            margin-top: 0;
-        }
-
-        #sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        #sidebar ul li {
-            margin-bottom: 10px;
-            border-bottom: 1px dotted #ccc;
-            padding-bottom: 5px;
-        }
-
-        #sidebar ul li a {
-             text-decoration: none;
-             color: #333;
-        }
-        #sidebar ul li a:hover {
-             color: #e8491d;
-        }
-
-
-        footer {
-            padding: 20px;
-            margin-top: 20px;
-            color: #ffffff;
-            background-color: #35424a;
-            text-align: center;
-        }
-         footer p {
-             margin: 5px 0;
-         }
-         footer a {
-             color: #e8491d;
-             text-decoration: none;
-         }
-         footer a:hover {
-             text-decoration: underline;
-         }
-
-    </style>
+    <meta name="description" content="Explora y busca videojuegos usando la API de RAWG.io.">
+    <title>Mi Biblioteca de Juegos - Explora</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -232,25 +17,15 @@
             <nav>
                 <ul>
                     <li class="current"><a href="index.html">Inicio</a></li>
-                    <li><a href="#explorar">Explorar</a></li>
-                    <li><a href="#categorias">Categorías</a></li>
-                    <li><a href="#novedades">Novedades</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                </ul>
+                    </ul>
             </nav>
         </div>
     </header>
 
-    <section id="showcase">
-        <div class="container">
-            <h1>Tu Universo de Juegos Personal</h1>
-            <p>Descubre, organiza y disfruta de tu colección de videojuegos como nunca antes.</p>
-        </div>
-    </section>
-
     <section id="search-bar">
         <div class="container">
-            <form action="#" method="get"> <input type="search" name="query" placeholder="Buscar juegos por título, género, plataforma...">
+            <form action="#" id="search-form">
+                <input type="search" id="search-input" name="query" placeholder="Buscar juegos en RAWG.io..." required>
                 <button type="submit">Buscar</button>
             </form>
         </div>
@@ -259,114 +34,45 @@
     <section id="main-content" class="container">
 
         <div id="game-library">
-            <h2 id="explorar">Explora Nuestra Colección</h2>
-            <div class="game-grid">
-                <article class="game-item">
-                    <a href="detalle_juego_1.html"> <img src="img/juego_placeholder_1.jpg" alt="Portada Juego 1"> <h3>Juego Ejemplo 1</h3>
-                    </a>
-                    <p>Aventura / PC, PS5</p>
-                </article>
-
-                <article class="game-item">
-                     <a href="detalle_juego_2.html">
-                        <img src="img/juego_placeholder_2.jpg" alt="Portada Juego 2">
-                        <h3>Título Largo del Juego 2</h3>
-                     </a>
-                    <p>RPG / Switch</p>
-                </article>
-
-                <article class="game-item">
-                     <a href="detalle_juego_3.html">
-                        <img src="img/juego_placeholder_3.jpg" alt="Portada Juego 3">
-                        <h3>Shooter Genérico</h3>
-                     </a>
-                    <p>Shooter / Xbox, PC</p>
-                </article>
-
-                <article class="game-item">
-                     <a href="detalle_juego_4.html">
-                        <img src="img/juego_placeholder_4.jpg" alt="Portada Juego 4">
-                        <h3>Indie Pixel Art</h3>
-                     </a>
-                    <p>Plataformas / PC</p>
-                </article>
-
-                <article class="game-item">
-                    <a href="detalle_juego_5.html">
-                        <img src="img/juego_placeholder_5.jpg" alt="Portada Juego 5">
-                        <h3>Simulador de Granja</h3>
-                    </a>
-                    <p>Simulación / Multiplataforma</p>
-                </article>
-
-                 <article class="game-item">
-                    <a href="detalle_juego_6.html">
-                        <img src="img/juego_placeholder_6.jpg" alt="Portada Juego 6">
-                        <h3>Estrategia Espacial</h3>
-                    </a>
-                    <p>Estrategia / PC</p>
-                </article>
+            <h2 id="results-title">Juegos Populares</h2> <div id="loading-indicator" style="display: none; text-align: center; padding: 20px;">Cargando...</div>
+            <div id="error-message" class="error-msg" style="display: none; text-align: center; padding: 20px;"></div>
+            <div class="game-grid" id="game-grid">
                 </div>
-            <nav aria-label="Paginación de juegos" style="text-align: center; margin-top: 30px;">
-                <ul style="list-style: none; padding: 0; display: inline-block;">
-                    <li style="display: inline; margin: 0 5px;"><a href="#" style="text-decoration: none; padding: 5px 10px; border: 1px solid #ccc;">&laquo; Anterior</a></li>
-                    <li style="display: inline; margin: 0 5px;"><a href="#" style="text-decoration: none; padding: 5px 10px; border: 1px solid #ccc; background-color: #e8491d; color: white;">1</a></li>
-                    <li style="display: inline; margin: 0 5px;"><a href="#" style="text-decoration: none; padding: 5px 10px; border: 1px solid #ccc;">2</a></li>
-                    <li style="display: inline; margin: 0 5px;"><a href="#" style="text-decoration: none; padding: 5px 10px; border: 1px solid #ccc;">3</a></li>
-                    <li style="display: inline; margin: 0 5px;"><a href="#" style="text-decoration: none; padding: 5px 10px; border: 1px solid #ccc;">Siguiente &raquo;</a></li>
-                </ul>
-            </nav>
+            <div class="pagination" id="pagination-controls" style="display: none;">
+                 <button id="prev-page" class="btn-secondary">Anterior</button>
+                 <span id="page-info"></span>
+                 <button id="next-page" class="btn-primary">Siguiente</button>
+            </div>
         </div>
 
         <aside id="sidebar">
-            <div id="categorias">
-                <h3>Categorías</h3>
-                <ul>
-                    <li><a href="#">Aventura</a></li>
-                    <li><a href="#">Acción</a></li>
-                    <li><a href="#">RPG</a></li>
-                    <li><a href="#">Estrategia</a></li>
-                    <li><a href="#">Simulación</a></li>
-                    <li><a href="#">Deportes</a></li>
-                    <li><a href="#">Puzzle</a></li>
-                    <li><a href="#">Indie</a></li>
-                </ul>
-            </div>
-
-            <div id="plataformas" style="margin-top: 20px;">
-                <h3>Plataformas</h3>
-                 <ul>
-                    <li><a href="#">PC</a></li>
-                    <li><a href="#">PlayStation 5</a></li>
-                    <li><a href="#">Xbox Series X/S</a></li>
-                    <li><a href="#">Nintendo Switch</a></li>
-                    <li><a href="#">Móvil</a></li>
-                </ul>
-            </div>
-
-             <div id="novedades" style="margin-top: 20px;">
-                 <h3>Últimas Novedades</h3>
-                 <ul>
-                     <li><a href="detalle_juego_nuevo1.html">Nuevo Juego Épico</a> (01/05/2025)</li>
-                     <li><a href="detalle_juego_nuevo2.html">Remake Clásico</a> (15/04/2025)</li>
-                     <li><a href="detalle_juego_nuevo3.html">Indie Sorpresa</a> (05/04/2025)</li>
+            <div id="genres-list">
+                <h3>Géneros Populares</h3>
+                 <ul id="popular-genres">
+                     <li>Acción</li>
+                     <li>Aventura</li>
+                     <li>RPG</li>
+                     <li>Estrategia</li>
+                     <li>Shooter</li>
+                     <li>Puzzle</li>
                  </ul>
-             </div>
-        </aside>
+                 <p><small><i>(Filtro por género no implementado en este ejemplo)</i></small></p>
+            </div>
+             </aside>
 
     </section>
 
     <footer>
         <div class="container">
-            <p>Mi Biblioteca de Juegos &copy; 2025</p>
+            <p>Mi Biblioteca de Juegos &copy; 2025 - Usando la API de <a href="https://rawg.io/" target="_blank" rel="noopener noreferrer">RAWG.io</a></p>
              <p>
-                 <a href="#about">Acerca de Nosotros</a> |
-                 <a href="#privacy">Política de Privacidad</a> |
-                 <a href="#terms">Términos de Servicio</a> |
-                 <a id="contacto" href="mailto:info@bibliotecajuegos.com">Contacto</a>
+                 <a href="#">Acerca de</a> |
+                 <a href="#">Privacidad</a> |
+                 <a href="#">Términos</a>
             </p>
         </div>
     </footer>
 
+    <script src="js/script.js"></script>
 </body>
 </html>
