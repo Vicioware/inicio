@@ -30,20 +30,34 @@ h1, h2, h3 {
 }
 
 img {
-    max-width: 100%; /* Asegura que las imágenes no se desborden */
+    max-width: 100%;
     height: auto;
-    display: block; /* Evita espacio extra debajo de las imágenes */
-    vertical-align: middle; /* Mejor alineación vertical */
+    display: block;
+    vertical-align: middle;
 }
 
 /* --- Header --- */
 header {
     background: #35424a;
     color: #ffffff;
-    padding-top: 20px;
-    min-height: 70px;
+    padding-top: 0; /* Quitar padding top para controlar alineación con logo */
+    min-height: 70px; /* Mantener altura mínima */
     border-bottom: #e8491d 3px solid;
+    /* Usar flexbox para alinear logo y nav más fácilmente */
+    display: flex;
+    align-items: center; /* Centrar verticalmente los items */
 }
+
+/* Ajustar el contenedor para que flex funcione bien */
+header .container {
+    display: flex;
+    justify-content: space-between; /* Pone branding a la izq y nav a la der */
+    align-items: center; /* Centra verticalmente dentro del container */
+    width: 100%; /* Asegurar que el container use todo el ancho del header */
+    padding: 0 10%; /* Reaplicar padding lateral que estaba implícito en width: 80% */
+    box-sizing: border-box; /* Incluir padding en el width */
+}
+
 
 header a {
     color: #ffffff;
@@ -53,22 +67,27 @@ header a {
 }
 
 header #branding {
-    float: left;
+    float: none; /* Quitar float ya que usamos flexbox */
+    /* Añadir padding si es necesario, pero flex align-items debería centrar */
+     padding: 5px 0; /* Padding vertical pequeño para el contenedor del logo */
 }
 
-header #branding h1 {
-    margin: 0;
-    padding-top: 10px;
-    font-size: 24px;
-    color: #ffffff;
+/* *** ESTILOS PARA EL LOGO *** */
+#site-logo {
+    height: 50px; /* Altura deseada para el logo */
+    width: auto; /* Ancho automático para mantener proporción */
+    display: block; /* Asegurar que sea bloque para aplicar altura */
+    /* vertical-align: middle; Ya no es necesario con flex align-items */
 }
-header #branding h1 a {
-    font-size: 24px;
-}
+
+/* Eliminar estilos del H1 anterior si existían explícitamente */
+/* header #branding h1 { display: none; } */
+
 
 header nav {
-    float: right;
-    margin-top: 10px;
+    float: none; /* Quitar float ya que usamos flexbox */
+    margin-top: 0; /* Resetear margen top */
+    /* align-self: center; Ya está en el contenedor padre */
 }
 
 header li {
@@ -125,11 +144,11 @@ header a:hover, header .current a {
 }
 
 #game-library {
-    flex: 3; /* Ocupa más espacio */
+    flex: 3;
 }
 
 #sidebar {
-    flex: 1; /* Ocupa menos espacio */
+    flex: 1;
     background: #ffffff;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -146,7 +165,7 @@ header a:hover, header .current a {
 }
 
 .error-msg {
-    color: #D8000C; /* Rojo error */
+    color: #D8000C;
     background-color: #FFD2D2;
     border: 1px solid #D8000C;
     padding: 10px 15px;
@@ -173,7 +192,7 @@ header a:hover, header .current a {
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Prevenir desbordamiento general del item */
+    overflow: hidden;
 }
 
 .game-item:hover {
@@ -200,11 +219,9 @@ header a:hover, header .current a {
      font-size: 1.1em;
      color: #35424a;
      line-height: 1.3;
-     /* Fix desbordamiento título: Limitar a 2 líneas */
-     height: 2.6em; /* Aprox 2 líneas (1.3 * 2) */
+     height: 2.6em;
      overflow: hidden;
      text-overflow: ellipsis;
-     /* Soporte multi-línea webkit */
      display: -webkit-box;
      -webkit-line-clamp: 2;
      -webkit-box-orient: vertical;
@@ -217,31 +234,25 @@ header a:hover, header .current a {
     padding: 0 15px 15px 15px;
     font-size: 0.85em;
     color: #555;
-    margin-top: auto; /* Empuja detalles hacia abajo */
+    margin-top: auto;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
 }
-
 .game-item .details p {
     margin: 5px 0;
     line-height: 1.4;
-    /* Quitar max-height y overflow aquí si se aplica abajo */
 }
-
-/* *** CORRECCIÓN DESBORDAMIENTO SPANS (Plataformas/Géneros) *** */
 .game-item .details p.genres-list,
 .game-item .details p.platforms-list {
-     margin: 5px 0; /* Mantener margen */
-     line-height: 1.4; /* Mantener altura de línea */
-     /* Limitar a un número específico de líneas (ej. 2) */
+     margin: 5px 0;
+     line-height: 1.4;
      overflow: hidden;
      display: -webkit-box;
-     -webkit-line-clamp: 2; /* Número de líneas a mostrar */
+     -webkit-line-clamp: 2;
      -webkit-box-orient: vertical;
-     /* Asegurar que el texto dentro de los spans no se rompa */
-     word-break: keep-all; /* Evita romper palabras dentro de los spans, aunque puede ayudar break-word si un span es MUY largo */
+     word-break: keep-all;
 }
 
 
@@ -249,10 +260,9 @@ header a:hover, header .current a {
     font-weight: bold;
     color: #e8491d;
     margin-bottom: 8px !important;
-    /* Asegurar que el rating no se corte por las reglas anteriores */
     max-height: none;
     overflow: visible;
-    display: block; /* Asegurar que sea block para no verse afectado por line-clamp */
+    display: block;
     -webkit-line-clamp: unset;
 }
 
@@ -262,12 +272,12 @@ header a:hover, header .current a {
     background-color: #eee;
     color: #555;
     padding: 2px 6px;
-    margin: 2px 3px 2px 0; /* Ajustar margen */
+    margin: 2px 3px 2px 0;
     border-radius: 3px;
-    font-size: 0.9em; /* Mantener o ajustar tamaño */
+    font-size: 0.9em;
     line-height: 1.3;
-    white-space: nowrap; /* Evitar que el texto dentro del span se parta */
-    vertical-align: baseline; /* Mejorar alineación vertical */
+    white-space: nowrap;
+    vertical-align: baseline;
 }
 .game-item .platforms-list strong,
 .game-item .genres-list strong {
@@ -446,7 +456,7 @@ header a:hover, header .current a {
     font-size: 1.1em;
 }
 #game-tags, #game-stores {
-    line-height: 1.8; /* Espacio vertical para píldoras envueltas */
+    line-height: 1.8;
 }
 
 .tags-list span, .stores-list a {
@@ -582,9 +592,8 @@ footer {
 
 /* --- Media Queries (Responsividad) --- */
 @media(max-width: 992px){
-    .container {
-        width: 90%;
-    }
+    header .container { padding: 0 5%; } /* Reducir padding en tablet */
+    .container { width: 90%; }
      .detail-grid {
         grid-template-columns: 1fr 1.5fr;
         gap: 25px;
@@ -592,136 +601,60 @@ footer {
      .game-grid {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
+     #site-logo { height: 45px; } /* Logo un poco más pequeño */
 }
 
 
 @media(max-width: 768px){
-    header #branding,
-    header nav,
-    header nav li {
-        float: none;
-        text-align: center;
-        width: 100%;
-        padding: 5px 0;
-    }
-    header nav ul {
-        margin-top: 10px;
-    }
-    header #branding h1 {
-        padding-top: 5px;
-    }
+    /* Ajustar header para logo y nav centrados */
+    header { min-height: auto; padding: 10px 0; } /* Altura auto, padding */
+    header .container { flex-direction: column; padding: 0 5%; }
+    header #branding { margin-bottom: 10px; padding: 0; } /* Espacio debajo del logo */
+    header nav { margin-top: 0; }
+    header nav li { padding: 0 10px; } /* Menos padding entre links */
+    #site-logo { height: 40px; } /* Logo aún más pequeño */
 
-    #main-content {
-        flex-direction: column;
-    }
-    #sidebar {
-        margin-top: 20px;
-    }
+    #main-content { flex-direction: column; }
+    #sidebar { margin-top: 20px; }
+    .container { width: 95%; }
+    .game-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
 
-    .container {
-        width: 95%;
-    }
+    #search-bar input[type="search"] { width: 65%; }
+    #search-bar button { padding: 10px 15px; }
 
-    .game-grid {
-       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-       gap: 15px;
-    }
+    .detail-grid { grid-template-columns: 1fr; gap: 20px; }
+    .detail-image { text-align: center; margin-bottom: 10px; }
+    .detail-image img#game-main-image { max-width: 80%; margin: 0 auto; }
+    .stores-list { text-align: center; }
 
-    #search-bar input[type="search"] {
-        width: 65%;
-    }
-    #search-bar button {
-        padding: 10px 15px;
-    }
-
-    .detail-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    .detail-image {
-        text-align: center;
-        margin-bottom: 10px;
-    }
-    .detail-image img#game-main-image {
-        max-width: 80%;
-        margin: 0 auto;
-    }
-    .stores-list {
-        text-align: center;
-    }
-
-    #game-detail-content {
-        padding: 20px;
-    }
-    #game-detail-content h1#game-title {
-        font-size: 1.8em;
-    }
-
-     .media-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    }
+    #game-detail-content { padding: 20px; }
+    #game-detail-content h1#game-title { font-size: 1.8em; }
+    .media-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
 }
 
 @media(max-width: 480px){
-    .game-grid {
-       grid-template-columns: 1fr; /* Una columna */
-    }
-     .game-item h3 {
-        height: auto; /* Permitir más líneas si solo hay 1 columna */
-        -webkit-line-clamp: unset;
-    }
-     /* Quitar límite de líneas en detalles en móvil si se prefiere ver todo */
+    .game-grid { grid-template-columns: 1fr; }
+     .game-item h3 { height: auto; -webkit-line-clamp: unset; }
      .game-item .details p.genres-list,
      .game-item .details p.platforms-list {
-         /* Comentar o quitar estas líneas si quieres ver todos los spans */
-         /* overflow: hidden; */
-         /* display: -webkit-box; */
-         /* -webkit-line-clamp: 2; */
-         /* -webkit-box-orient: vertical; */
-          max-height: none; /* Alternativa: quitar max-height */
-          overflow: visible; /* Alternativa: hacerlo visible */
-          display: block; /* Cambiar display si quitamos line-clamp */
+          max-height: none;
+          overflow: visible;
+          display: block;
+          -webkit-line-clamp: unset;
      }
-     .game-item .details {
-         padding-bottom: 10px;
-     }
+     .game-item .details { padding-bottom: 10px; }
 
-    #search-bar form {
-        flex-direction: column;
-        align-items: center;
-    }
-    #search-bar input[type="search"] {
-        width: 90%;
-        border-radius: 3px;
-        margin-bottom: 5px;
-        border-right: 1px solid #ccc;
-    }
-    #search-bar button {
-        width: 90%;
-        border-radius: 3px;
-    }
+    #search-bar form { flex-direction: column; align-items: center; }
+    #search-bar input[type="search"] { width: 90%; border-radius: 3px; margin-bottom: 5px; border-right: 1px solid #ccc; }
+    #search-bar button { width: 90%; border-radius: 3px; }
 
-    .pagination {
-        /* flex-wrap ya debería manejarlo */
-    }
-    .pagination button {
-        padding: 6px 10px;
-        margin: 3px 5px;
-    }
-     .pagination span#page-info {
-        margin: 3px 8px;
-        font-size: 0.9em;
-    }
+    .pagination button { padding: 6px 10px; margin: 3px 5px; }
+    .pagination span#page-info { margin: 3px 8px; font-size: 0.9em; }
 
-     #game-detail-content h1#game-title {
-        font-size: 1.5em;
-    }
-     .detail-info ul li strong {
-        display: block;
-        margin-bottom: 3px;
-        min-width: auto;
-    }
-     .media-grid {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    }
+    #game-detail-content h1#game-title { font-size: 1.5em; }
+    .detail-info ul li strong { display: block; margin-bottom: 3px; min-width: auto; }
+    .media-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+    header nav li { padding: 0 8px; } /* Aún menos padding en móvil */
+    #site-logo { height: 35px; } /* Logo muy pequeño */
+
 }
