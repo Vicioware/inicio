@@ -61,10 +61,11 @@ img {
 
 /* --- Header --- */
 header {
-    min-height: 70px; /* Mantener una altura mínima consistente */
+    /* Ajustar min-height si el logo más grande lo requiere, o confiar en padding */
+    min-height: 80px; /* Aumentado ligeramente para acomodar mejor logo de 65px */
     display: flex;
     align-items: center;
-    padding: 5px 0; /* Reducir padding vertical para acomodar logo más grande */
+    padding: 5px 0; /* Mantener padding vertical */
     position: relative;
     z-index: 10;
 }
@@ -90,17 +91,17 @@ header a {
 
 header #branding {
     float: none;
-    padding: 0; /* Quitar padding extra del contenedor */
-    display: flex; /* Asegurar que el contenedor use flex si es necesario */
-    align-items: center; /* Alinear contenido interno (el enlace/imagen) */
+    padding: 0;
+    display: flex;
+    align-items: center;
 }
 
-/* *** MODIFICACIÓN: Estilos del Logo *** */
+/* *** MODIFICACIÓN: Estilos del Logo (más grande) *** */
+/* Recuerda borrar caché del navegador (Ctrl+Shift+R) para ver cambios */
 #site-logo {
-    height: 60px; /* Aumentar altura del logo */
+    height: 65px; /* <<< Aumentar altura del logo a 65px >>> */
     width: auto; /* Ancho automático para mantener proporción */
-    display: block; /* Asegurar display block */
-    /* Asegurar que sea visible si algo lo oculta */
+    display: block;
     opacity: 1;
     visibility: visible;
 }
@@ -632,17 +633,17 @@ footer {
      .game-grid {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
-     #site-logo { height: 50px; } /* Ajustar tamaño en tablet */
+     #site-logo { height: 55px; } /* Ajustar tamaño en tablet */
 }
 
 
 @media(max-width: 768px){
-    header { min-height: auto; padding: 8px 0; } /* Ajustar padding header */
+    header { min-height: auto; padding: 8px 0; }
     header .container { flex-direction: row; justify-content: space-between;}
     header #branding { margin-bottom: 0; padding: 0; }
     header nav { margin-top: 0; }
     header nav li { padding: 0 10px; }
-    #site-logo { height: 45px; } /* Ajustar tamaño logo en móvil */
+    #site-logo { height: 50px; } /* Ajustar tamaño logo en móvil */
 
      body:has(#game-library) #main-content {
          flex-direction: column;
@@ -673,10 +674,10 @@ footer {
 }
 
 @media(max-width: 480px){
-    header .container { padding: 0 5%; } /* Ajustar padding */
-    header nav li { padding: 0 5px; } /* Menos padding aún */
+    header .container { padding: 0 5%; }
+    header nav li { padding: 0 5px; }
     header a { font-size: 14px; }
-    #site-logo { height: 40px; } /* Ajustar tamaño logo */
+    #site-logo { height: 45px; } /* Ajustar tamaño logo */
 
     .game-grid { grid-template-columns: 1fr; }
      .game-item h3 { height: auto; -webkit-line-clamp: unset; }
