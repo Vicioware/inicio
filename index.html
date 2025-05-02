@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" href="img/background.png" as="image">
     <meta name="description" content="Explora y busca videojuegos usando la API de RAWG.io.">
     <title>Mi Biblioteca de Juegos - Explora</title>
     <link rel="stylesheet" href="css/style.css">
@@ -13,13 +14,13 @@
         <div class="container">
             <div id="branding">
                 <a href="https://vicioware.github.io/inicio/">
-                    <img src="img/logo.png" alt="Vicioware Logo" id="site-logo">
-                    </a>
-                </div>
+                    <img src="img/logo.svg" alt="Vicioware Logo" id="site-logo">
+                </a>
+            </div>
             <nav>
                 <ul>
                     <li class="current"><a href="index.html">Inicio</a></li>
-                    </ul>
+                </ul>
             </nav>
         </div>
     </header>
@@ -34,9 +35,9 @@
     </section>
 
     <section id="main-content" class="container">
-
         <div id="game-library">
-            <h2 id="results-title">Juegos Populares</h2> <div id="loading-indicator" style="display: none; text-align: center; padding: 20px;">Cargando...</div>
+            <h2 id="results-title">Juegos Populares</h2>
+            <div id="loading-indicator" style="display: none; text-align: center; padding: 20px;">Cargando...</div>
             <div id="error-message" class="error-msg" style="display: none; text-align: center; padding: 20px;"></div>
             <div class="game-grid" id="game-grid">
                 </div>
@@ -58,10 +59,9 @@
                      <li>Shooter</li>
                      <li>Puzzle</li>
                  </ul>
-                 <p><small><i>(Filtro por género no implementado en este ejemplo)</i></small></p>
+                 <p><small><i>(Filtro no implementado)</i></small></p>
             </div>
         </aside>
-
     </section>
 
     <footer>

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="preload" href="img/background.png" as="image">
     <meta name="description" content="Detalles del juego obtenidos de RAWG.io">
     <title>Detalles del Juego - Mi Biblioteca de Juegos</title>
     <link rel="stylesheet" href="css/style.css">
@@ -13,13 +14,13 @@
         <div class="container">
              <div id="branding">
                 <a href="https://vicioware.github.io/inicio/">
-                    <img src="img/logo.png" alt="Vicioware Logo" id="site-logo">
+                    <img src="img/logo.svg" alt="Vicioware Logo" id="site-logo">
                 </a>
-                </div>
+            </div>
             <nav>
                 <ul>
                     <li><a href="index.html">Inicio</a></li>
-                    </ul>
+                </ul>
             </nav>
         </div>
     </header>
@@ -33,7 +34,7 @@
 
             <div class="detail-grid">
                 <div class="detail-image">
-                    <img id="game-main-image" src="" alt="Portada del juego">
+                    <img id="game-main-image" src="" alt="Portada del juego" loading="lazy">
                      <div id="game-stores" class="stores-list">
                          </div>
                 </div>

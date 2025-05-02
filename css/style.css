@@ -1,18 +1,48 @@
 /* --- Estilos Generales --- */
+html {
+    /* Asegurar que el scroll se comporte normalmente con el pseudo-elemento fijo */
+    overflow-y: scroll;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
     color: #333;
-    /* *** NUEVO: Fondo del sitio *** */
-    background-image: url('../img/background.png'); /* Ruta relativa desde css/ a img/ */
-    background-size: cover; /* Cubrir todo el viewport */
-    background-position: center center; /* Centrar la imagen */
-    background-repeat: no-repeat; /* No repetir */
-    background-attachment: fixed; /* Imagen fija al hacer scroll */
-    /* Mantener un color de fondo base por si la imagen no carga */
-    background-color: #f4f4f4;
+    /* *** MODIFICACIÓN: Quitar imagen directa del body *** */
+    /* background-image: url('../img/background.png'); */
+    /* background-size: cover; */
+    /* background-position: center center; */
+    /* background-repeat: no-repeat; */
+    /* background-attachment: fixed; */
+    background-color: #f4f4f4; /* Color de fondo base */
+    position: relative; /* Necesario para el z-index del pseudo-elemento */
+    overflow-x: hidden; /* Prevenir scroll horizontal si algo se desborda */
+}
+
+/* *** NUEVO: Pseudo-elemento para fondo con blur *** */
+body::before {
+    content: '';
+    position: fixed; /* Fijo para cubrir viewport y no moverse con scroll */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1; /* Detrás de todo el contenido del body */
+
+    /* Aplicar la imagen de fondo aquí */
+    background-image: url('../img/background.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    /* Aplicar el filtro blur */
+    filter: blur(8px); /* Ajusta este valor (e.g., 5px, 10px) según necesites */
+    -webkit-filter: blur(8px); /* Prefijo para algunos navegadores */
+
+    /* Opcional: Escalar un poco para evitar bordes raros por el blur */
+    transform: scale(1.05);
 }
 
 .container {
@@ -45,38 +75,31 @@ img {
 
 /* --- Header --- */
 header {
-    /* *** MODIFICACIÓN: Quitar fondo y borde *** */
-    /* background: #35424a; */ /* Eliminado */
-    /* border-bottom: #e8491d 3px solid; */ /* Eliminado */
-    min-height: 70px; /* Mantener altura mínima para espacio */
-    /* Usar flexbox para alinear logo y nav */
+    /* Sin fondo ni borde */
+    min-height: 70px;
     display: flex;
     align-items: center;
-    padding: 10px 0; /* Añadir padding vertical para espaciar contenido del borde */
-    position: relative; /* Para asegurar que esté sobre otros elementos si es necesario */
-    z-index: 10; /* Asegurar que esté sobre el fondo */
+    padding: 10px 0;
+    position: relative;
+    z-index: 10;
 }
 
-/* Ajustar el contenedor para que flex funcione bien */
 header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 0 10%; /* Padding lateral */
+    padding: 0 10%;
     box-sizing: border-box;
 }
 
-
 header a {
-    /* *** MODIFICACIÓN: Cambiar color de enlaces de nav para visibilidad *** */
-    color: #35424a; /* Cambiado de blanco a azul oscuro */
-    /* Añadir sombra de texto para legibilidad sobre fondos complejos */
-    text-shadow: 0px 0px 3px rgba(255, 255, 255, 0.7); /* Sombra blanca suave */
+    color: #35424a;
+    text-shadow: 0px 0px 3px rgba(255, 255, 255, 0.7);
     text-transform: uppercase;
     font-size: 16px;
     transition: color 0.3s ease;
-    font-weight: bold; /* Hacerlos negrita para destacar */
+    font-weight: bold;
 }
 
 header #branding {
@@ -84,13 +107,11 @@ header #branding {
     padding: 5px 0;
 }
 
-/* Estilos para el Logo */
 #site-logo {
     height: 50px;
     width: auto;
     display: block;
 }
-
 
 header nav {
     float: none;
@@ -102,20 +123,19 @@ header li {
     padding: 0 15px;
 }
 
-/* Hover/Current para enlaces de nav */
 header a:hover, header .current a {
-    color: #e8491d !important; /* Naranja fuerte para hover/current (usar !important con cuidado si es necesario) */
-    text-shadow: 0px 0px 4px rgba(255, 255, 255, 0.8); /* Sombra más pronunciada */
+    color: #e8491d !important;
+    text-shadow: 0px 0px 4px rgba(255, 255, 255, 0.8);
 }
 
 /* --- Search Bar --- */
-/* Mantener estilos de la barra de búsqueda */
 #search-bar {
      padding: 15px 0;
-     background: rgba(230, 230, 230, 0.9); /* Hacerla semi-transparente */
-     border-bottom: 1px solid #ccc;
-     /* Añadir un borde superior sutil para separarla del header "invisible" */
-     border-top: 1px solid rgba(0, 0, 0, 0.1);
+     background: rgba(230, 230, 230, 0.85); /* Ligeramente más transparente */
+     border-bottom: 1px solid rgba(204, 204, 204, 0.7);
+     border-top: 1px solid rgba(0, 0, 0, 0.05); /* Borde superior aún más sutil */
+     position: relative; /* Asegurar que esté sobre el pseudo-elemento */
+     z-index: 5;
 }
 
 #search-bar form {
@@ -147,33 +167,54 @@ header a:hover, header .current a {
     background-color: #35424a;
 }
 
-/* --- Main Content Layout (Index) --- */
+/* --- Main Content Layout (Index y Gamecard) --- */
 #main-content {
-    padding: 20px 0;
-    display: flex;
-    gap: 30px;
-    /* *** NUEVO: Fondo para legibilidad *** */
-    /* background-color: rgba(255, 255, 255, 0.9); */ /* Fondo blanco semi-transparente */
-    /* border-radius: 5px; */ /* Opcional: redondear esquinas */
-    /* margin-top: 20px; */ /* Opcional: separar del search-bar */
-    /* Nota: Aplicar fondo a los hijos (#game-library, #sidebar) puede ser mejor */
+    padding: 20px 0; /* Padding vertical para separar del search/header */
+    /* Quitar display:flex aquí si los hijos tienen su propio layout/fondo */
+    /* display: flex; */
+    /* gap: 30px; */
+    position: relative; /* Para asegurar contexto de apilamiento */
+    z-index: 1; /* Encima del pseudo-elemento ::before */
 }
 
-#game-library {
-    flex: 3;
-    /* *** NUEVO: Fondo individual para legibilidad *** */
-    background-color: rgba(255, 255, 255, 0.92); /* Ligeramente más opaco */
+/* Aplicar estilos a los contenedores específicos dentro de #main-content */
+#game-library, #sidebar, #game-detail-content {
+    background-color: rgba(255, 255, 255, 0.92); /* Fondo blanco semi-transparente */
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px; /* Espacio entre elementos si se apilan */
 }
+/* Re-establecer flex para index.html si #main-content ya no es flex */
+/* Esto se puede hacer añadiendo una clase al #main-content de index.html */
+/* O con un selector más específico si la estructura lo permite */
+/* Ejemplo: body:has(#game-library) #main-content { display: flex; gap: 30px;} */
+/* Por simplicidad, asumimos que #main-content puede seguir siendo flex en index */
+/* Si #main-content NO es flex, #game-library y #sidebar ocuparán ancho completo */
+/* Para mantener layout lado a lado en index.html sin flex en #main-content: */
+body:has(#game-library) #main-content > #game-library {
+     width: calc(75% - 15px); /* Ajustar según gap deseado (30px / 2) */
+     float: left;
+}
+body:has(#game-library) #main-content > #sidebar {
+     width: calc(25% - 15px);
+     float: right;
+}
+/* Limpiar floats después de #main-content si se usa float */
+#main-content::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+/* Nota: Flexbox en #main-content es generalmente preferible a floats */
+/* Restaurando Flex para index.html (si es necesario) */
+body:has(#game-library) #main-content {
+     display: flex;
+     gap: 30px;
+}
+
 
 #sidebar {
-    flex: 1;
-    background: rgba(255, 255, 255, 0.92); /* Fondo consistente */
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    border-radius: 5px;
     align-self: flex-start;
 }
 
@@ -183,13 +224,13 @@ header a:hover, header .current a {
     color: #666;
     text-align: center;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8); /* Fondo para legibilidad */
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 3px;
 }
 
 .error-msg {
     color: #D8000C;
-    background-color: #FFD2D2; /* Mantener fondo sólido para errores */
+    background-color: #FFD2D2;
     border: 1px solid #D8000C;
     padding: 10px 15px;
     margin: 15px 0;
@@ -209,7 +250,7 @@ header a:hover, header .current a {
 .game-item {
     border: 1px solid #ddd;
     text-align: left;
-    background: #ffffff; /* Fondo sólido para las tarjetas */
+    background: #ffffff;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
@@ -275,7 +316,7 @@ header a:hover, header .current a {
      display: -webkit-box;
      -webkit-line-clamp: 2;
      -webkit-box-orient: vertical;
-     word-break: keep-all;
+     word-break: keep-all; /* Puede ser útil 'break-word' si los spans son largos */
 }
 
 
@@ -374,14 +415,13 @@ header a:hover, header .current a {
 }
 
 /* --- Estilos Página de Detalles (`gamecard.html`) --- */
-/* *** NUEVO: Fondo contenedor principal detalles *** */
-#game-detail-content {
-    background: rgba(255, 255, 255, 0.95); /* Fondo casi opaco para legibilidad */
-    padding: 30px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.15); /* Sombra ligeramente más oscura */
-    border-radius: 5px;
-    margin-top: 20px; /* Separar del search-bar */
+#game-detail-content { /* Ya tiene fondo aplicado arriba */
+    /* padding: 30px; */ /* Ya aplicado */
+    /* box-shadow: 0 0 15px rgba(0,0,0,0.15); */ /* Ya aplicado */
+    /* border-radius: 5px; */ /* Ya aplicado */
+    /* margin-top: 20px; */ /* Ya aplicado */
 }
+
 
 #game-detail-content h1#game-title {
     margin-top: 0;
@@ -435,7 +475,7 @@ header a:hover, header .current a {
 }
 
 #game-description {
-    background-color: #f8f8f8; /* Fondo ligeramente distinto para descripción */
+    background-color: rgba(248, 248, 248, 0.95); /* Fondo descripción ligeramente diferente y semi-transparente */
     padding: 20px;
     border-radius: 4px;
     border: 1px solid #eee;
@@ -527,12 +567,12 @@ header a:hover, header .current a {
     margin-bottom: 15px;
     font-size: 1em;
     color: #666;
-     background-color: rgba(255, 255, 255, 0.8); /* Fondo para legibilidad */
+     background-color: rgba(255, 255, 255, 0.8);
      border-radius: 3px;
 }
 #screenshots-error {
      color: #D8000C;
-     background-color: #FFD2D2; /* Fondo sólido para error */
+     background-color: #FFD2D2;
      border: 1px solid #D8000C;
 }
 
@@ -600,11 +640,10 @@ footer {
     padding: 20px 0;
     margin-top: 40px;
     color: #ffffff;
-    /* *** MODIFICACIÓN: Fondo semi-transparente para footer *** */
-    background-color: rgba(53, 66, 74, 0.9); /* Azul oscuro semi-transparente */
+    background-color: rgba(53, 66, 74, 0.9);
     text-align: center;
     font-size: 0.9em;
-    position: relative; /* Asegurar que esté sobre el fondo del body */
+    position: relative;
     z-index: 5;
 }
  footer p {
@@ -635,16 +674,26 @@ footer {
 
 
 @media(max-width: 768px){
-    /* Ajustar header para logo y nav */
     header { min-height: auto; padding: 10px 0; }
-    header .container { flex-direction: row; justify-content: space-between;} /* Volver a fila */
+    header .container { flex-direction: row; justify-content: space-between;}
     header #branding { margin-bottom: 0; padding: 0; }
     header nav { margin-top: 0; }
     header nav li { padding: 0 10px; }
     #site-logo { height: 40px; }
 
-    #main-content { flex-direction: column; }
-    #sidebar { margin-top: 20px; }
+    /* Asegurar layout flex en index */
+     body:has(#game-library) #main-content {
+         flex-direction: column;
+         gap: 0; /* Quitar gap si se apila */
+     }
+      body:has(#game-library) #main-content > #game-library,
+      body:has(#game-library) #main-content > #sidebar {
+         width: 100%; /* Ancho completo al apilar */
+         float: none; /* Quitar float */
+     }
+     #sidebar { margin-top: 20px; } /* Espacio al apilar */
+
+
     .container { width: 95%; }
     .game-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
 
@@ -656,16 +705,16 @@ footer {
     .detail-image img#game-main-image { max-width: 80%; margin: 0 auto; }
     .stores-list { text-align: center; }
 
-    #game-detail-content { padding: 20px; margin-top: 15px; } /* Reducir margen superior */
+    #game-detail-content { padding: 20px; margin-top: 15px; }
     #game-detail-content h1#game-title { font-size: 1.8em; }
     .media-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
 }
 
 @media(max-width: 480px){
-    header .container { padding: 0 2.5%; } /* Menos padding lateral */
-    header nav li { padding: 0 5px; } /* Menos padding links nav */
-    header a { font-size: 14px; } /* Links nav más pequeños */
-    #site-logo { height: 30px; } /* Logo muy pequeño */
+    header .container { padding: 0 2.5%; }
+    header nav li { padding: 0 5px; }
+    header a { font-size: 14px; }
+    #site-logo { height: 30px; }
 
     .game-grid { grid-template-columns: 1fr; }
      .game-item h3 { height: auto; -webkit-line-clamp: unset; }
@@ -685,7 +734,7 @@ footer {
     .pagination button { padding: 6px 10px; margin: 3px 5px; }
     .pagination span#page-info { margin: 3px 8px; font-size: 0.9em; }
 
-    #game-detail-content { padding: 15px; } /* Menos padding */
+    #game-detail-content { padding: 15px; }
     #game-detail-content h1#game-title { font-size: 1.5em; }
     .detail-info ul li strong { display: block; margin-bottom: 3px; min-width: auto; }
     .media-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
