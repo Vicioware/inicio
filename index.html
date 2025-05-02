@@ -3,33 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preload" href="img/background.png" as="image">
+    <link rel="preload" href="img/background.webp" as="image">
     <link rel="icon" href="img/icon.png" type="image/png">
     <meta name="description" content="Explora y busca videojuegos usando la API de RAWG.io.">
     <title>Mi Biblioteca de Juegos - Explora</title>
     <link rel="stylesheet" href="css/style.css">
-</head>
+    </head>
 <body>
 
     <header>
         <div class="container">
             <div id="branding">
                 <a href="https://vicioware.github.io/inicio/">
-                    <img src="img/logo.png" alt="Vicioware Logo" id="site-logo">
+                    <img src="img/logo.webp" alt="Vicioware Logo" id="site-logo">
                 </a>
             </div>
             <nav>
                 <ul>
                     <li class="current"><a href="index.html">Inicio</a></li>
-                </ul>
+                    </ul>
             </nav>
         </div>
     </header>
 
     <section id="search-bar">
         <div class="container">
-            <form action="#" id="search-form">
-                <input type="search" id="search-input" name="query" placeholder="Buscar juegos en RAWG.io..." required>
+            <form action="#" id="search-form" aria-label="Formulario de búsqueda de juegos">
+                <input type="search" id="search-input" name="query" placeholder="Buscar juegos en RAWG.io..." required aria-label="Término de búsqueda">
                 <button type="submit">Buscar</button>
             </form>
         </div>
@@ -38,18 +38,18 @@
     <section id="main-content" class="container">
         <div id="game-library">
             <h2 id="results-title">Juegos Populares</h2>
-            <div id="loading-indicator" style="display: none; text-align: center; padding: 20px;">Cargando...</div>
-            <div id="error-message" class="error-msg" style="display: none; text-align: center; padding: 20px;"></div>
-            <div class="game-grid" id="game-grid">
+            <div id="loading-indicator" role="status" aria-live="polite" style="display: none; text-align: center; padding: 20px;">Cargando...</div>
+            <div id="error-message" class="error-msg" role="alert" style="display: none; text-align: center; padding: 20px;"></div>
+            <div class="game-grid" id="game-grid" aria-live="polite">
                 </div>
-            <div class="pagination" id="pagination-controls" style="display: none;">
-                 <button id="prev-page" class="btn-secondary">Anterior</button>
-                 <span id="page-info"></span>
-                 <button id="next-page" class="btn-primary">Siguiente</button>
-            </div>
+            <nav class="pagination" id="pagination-controls" aria-label="Navegación de páginas" style="display: none;">
+                 <button id="prev-page" class="btn-secondary" aria-label="Página anterior">Anterior</button>
+                 <span id="page-info" aria-live="polite"></span>
+                 <button id="next-page" class="btn-primary" aria-label="Página siguiente">Siguiente</button>
+            </nav>
         </div>
 
-        <aside id="sidebar">
+        <aside id="sidebar" aria-label="Información adicional y filtros">
             <div id="genres-list">
                 <h3>Géneros Populares</h3>
                  <ul id="popular-genres">
@@ -76,6 +76,6 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script src="js/script.js" defer></script>
 </body>
 </html>

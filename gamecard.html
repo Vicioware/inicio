@@ -3,37 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preload" href="img/background.png" as="image">
+    <link rel="preload" href="img/background.webp" as="image">
     <link rel="icon" href="img/icon.png" type="image/png">
     <meta name="description" content="Detalles del juego obtenidos de RAWG.io">
     <title>Detalles del Juego - Mi Biblioteca de Juegos</title>
     <link rel="stylesheet" href="css/style.css">
-</head>
+    </head>
 <body>
 
     <header>
         <div class="container">
              <div id="branding">
-                 <a href="https://vicioware.github.io/inicio/">
-                    <img src="img/logo.png" alt="Vicioware Logo" id="site-logo">
+                <a href="https://vicioware.github.io/inicio/">
+                    <img src="img/logo.webp" alt="Vicioware Logo" id="site-logo">
                 </a>
             </div>
             <nav>
                 <ul>
                     <li><a href="index.html">Inicio</a></li>
-                </ul>
+                    </ul>
             </nav>
         </div>
     </header>
 
     <section id="main-content" class="container">
-        <div id="loading-indicator" style="text-align: center; padding: 40px;">Cargando detalles del juego...</div>
-        <div id="error-message" class="error-msg" style="display: none; text-align: center; padding: 40px;"></div>
+        <div id="loading-indicator" role="status" aria-live="polite" style="text-align: center; padding: 40px;">Cargando detalles del juego...</div>
+        <div id="error-message" class="error-msg" role="alert" style="display: none; text-align: center; padding: 40px;"></div>
 
         <div id="game-detail-content" style="display: none;">
-            <h1 id="game-title">[Título del Juego]</h1>
-
-            <div class="detail-grid">
+            <h1 id="game-title" class="visually-hidden">[Título del Juego]</h1> <div class="detail-grid">
                 <div class="detail-image">
                     <img id="game-main-image" src="" alt="Portada del juego" loading="lazy">
                      <div id="game-stores" class="stores-list">
@@ -54,24 +52,24 @@
                 </div>
             </div>
 
-            <div class="detail-tags" id="game-tags-container">
-                 <h3>Tags:</h3>
+            <div class="detail-tags" id="game-tags-container" aria-labelledby="tags-heading">
+                 <h3 id="tags-heading">Tags:</h3>
                  <div id="game-tags" class="tags-list">
                      </div>
             </div>
 
-            <div class="detail-description">
-                <h2>Descripción</h2>
+            <section class="detail-description" aria-labelledby="description-heading">
+                <h2 id="description-heading">Descripción</h2>
                 <div id="game-description"></div>
-            </div>
+            </section>
 
-            <div class="detail-media">
-                <h2>Screenshots</h2>
-                 <div id="screenshots-loading" style="display: none;">Cargando screenshots...</div>
-                 <div id="screenshots-error" class="error-msg" style="display: none;"></div>
+            <section class="detail-media" aria-labelledby="media-heading">
+                <h2 id="media-heading">Screenshots</h2>
+                 <div id="screenshots-loading" role="status" aria-live="polite" style="display: none;">Cargando screenshots...</div>
+                 <div id="screenshots-error" class="error-msg" role="alert" style="display: none;"></div>
                 <div class="media-grid" id="screenshots-grid">
                     </div>
-            </div>
+            </section>
 
              <div style="margin-top: 30px;">
                  <a href="index.html" class="btn-secondary">&laquo; Volver a la Búsqueda</a>
@@ -90,6 +88,19 @@
         </div>
     </footer>
 
-    <script src="js/gamecard.js"></script>
+    <script src="js/gamecard.js" defer></script>
+    <style>
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
 </body>
 </html>

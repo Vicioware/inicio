@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Clave API (REEMPLAZAR CON LA TUYA PROPIA)
-    const API_KEY = '6e5005c8f10d4fef99e4fad701d856c5'; // <-- ¡REEMPLAZA ESTO!
+    // *** API Key ACTUALIZADA ***
+    const API_KEY = '6e5005c8f10d4fef99e4fad701d856c5';
     const BASE_URL = 'https://api.rawg.io/api';
 
-    // Selectores del DOM
+    // --- Selectores del DOM (cacheados) ---
     const searchForm = document.getElementById('search-form');
     const searchInput = document.getElementById('search-input');
     const gameGrid = document.getElementById('game-grid');
@@ -15,15 +15,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextButton = document.getElementById('next-page');
     const pageInfo = document.getElementById('page-info');
 
-    // Estado de paginación
+    // --- Estado ---
     let currentPage = 1;
     let currentSearchQuery = '';
     let nextPageUrl = null;
     let prevPageUrl = null;
+    let currentAbortController = null; // Para cancelar fetches anteriores
 
     // --- Funciones Auxiliares ---
-
-    // Muestra el indicador de carga y limpia errores/resultados
     const showLoading = () => {
         loadingIndicator.style.display = 'block';
         gameGrid.innerHTML = '';
@@ -31,12 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
         paginationControls.style.display = 'none';
     };
 
-    // Oculta el indicador de carga
     const hideLoading = () => {
         loadingIndicator.style.display = 'none';
     };
 
-    // Muestra un mensaje de error
     const showError = (message) => {
         errorMessage.textContent = `Error: ${message}`;
         errorMessage.style.display = 'block';
@@ -44,88 +41,88 @@ document.addEventListener('DOMContentLoaded', () => {
         paginationControls.style.display = 'none';
     };
 
-    // Función para mostrar juegos en el grid
+    // *** MODIFICACIÓN: displayGames usa DocumentFragment ***
     const displayGames = (games) => {
-        gameGrid.innerHTML = '';
+        // Crear un DocumentFragment para añadir elementos eficientemente
+        const fragment = document.createDocumentFragment();
+
         if (!games || games.length === 0) {
-            gameGrid.innerHTML = '<p style="text-align: center;">No se encontraron juegos que coincidan con tu búsqueda.</p>';
-            return;
+            const noResults = document.createElement('p');
+            noResults.textContent = 'No se encontraron juegos que coincidan con tu búsqueda.';
+            noResults.style.textAlign = 'center';
+            fragment.appendChild(noResults);
+        } else {
+            games.forEach(game => {
+                const gameElement = document.createElement('article');
+                gameElement.classList.add('game-item');
+
+                const platformNames = game.platforms?.map(p => p.platform.name).filter(Boolean).join('</span><span>') || 'N/A';
+                const genreNames = game.genres?.map(g => g.name).filter(Boolean).join('</span><span>') || 'N/A';
+                const gameName = game.name || 'Título no disponible';
+                const imageUrl = game.background_image; // Usar una URL por defecto más robusta si es necesario
+
+                // Usar plantillas literales para legibilidad, pero crear elementos puede ser marginalmente más rápido
+                gameElement.innerHTML = `
+                    <a href="gamecard.html?id=${game.id}" aria-label="Ver detalles de ${gameName}">
+                        <img src="${imageUrl || 'img/placeholder_cover.png'}" alt="Portada de ${gameName}" loading="lazy" onerror="this.onerror=null; this.src='img/placeholder_cover.png';">
+                        <h3>${gameName}</h3>
+                    </a>
+                    <div class="details">
+                        <p class="rating">⭐ ${game.rating?.toFixed(1) || 'N/A'} / 5</p>
+                        <p class="platforms-list">
+                            <strong>Plataformas:</strong>
+                            <span>${platformNames}</span>
+                        </p>
+                        <p class="genres-list">
+                            <strong>Géneros:</strong>
+                            <span>${genreNames}</span>
+                        </p>
+                    </div>
+                `;
+                fragment.appendChild(gameElement); // Añadir al fragmento, no al DOM directamente
+            });
         }
-
-        games.forEach(game => {
-            const gameElement = document.createElement('article');
-            gameElement.classList.add('game-item');
-
-            // Extraer y formatear plataformas y géneros de forma segura
-            const platformNames = game.platforms?.map(p => p.platform.name).filter(Boolean).join('</span><span>') || 'N/A';
-            const genreNames = game.genres?.map(g => g.name).filter(Boolean).join('</span><span>') || 'N/A';
-
-            // Crear el HTML del item del juego
-            // *** OPTIMIZACIÓN: Añadido loading="lazy" a la imagen ***
-            gameElement.innerHTML = `
-                <a href="gamecard.html?id=${game.id}" aria-label="Ver detalles de ${game.name}">
-                    <img src="${game.background_image || 'img/juego_placeholder_1.jpg'}" alt="Portada de ${game.name}" loading="lazy">
-                    <h3>${game.name || 'Título no disponible'}</h3>
-                </a>
-                <div class="details">
-                    <p class="rating">⭐ ${game.rating?.toFixed(1) || 'N/A'} / 5</p>
-                    <p class="platforms-list">
-                        <strong>Plataformas:</strong>
-                        <span>${platformNames}</span>
-                    </p>
-                    <p class="genres-list">
-                        <strong>Géneros:</strong>
-                        <span>${genreNames}</span>
-                    </p>
-                </div>
-            `;
-            gameGrid.appendChild(gameElement);
-        });
+        // Limpiar el grid y añadir el fragmento una sola vez
+        gameGrid.innerHTML = '';
+        gameGrid.appendChild(fragment);
     };
 
-     // Función para actualizar controles de paginación
+    // Actualiza la paginación (sin cambios mayores)
     const updatePagination = (data) => {
         nextPageUrl = data.next;
         prevPageUrl = data.previous;
 
         if (nextPageUrl || prevPageUrl) {
-            paginationControls.style.display = 'flex'; // Usar flex para centrar si se desea
+            paginationControls.style.display = 'flex';
             nextButton.disabled = !nextPageUrl;
             prevButton.disabled = !prevPageUrl;
 
-            // Calcular número de página actual (más robusto)
             let pageNum = 1;
-            const url = nextPageUrl || prevPageUrl; // Usar cualquier URL válida para extraer la página
+            const url = nextPageUrl || prevPageUrl;
             if (url) {
                  try {
                     const urlParams = new URLSearchParams(new URL(url).search);
                     const pageParam = urlParams.get('page');
                      if (pageParam) {
-                         // Si viene de next, es la página anterior + 1
-                         // Si viene de prev, es la página siguiente - 1
                          pageNum = parseInt(pageParam);
-                         if (prevPageUrl && !nextPageUrl) { // Última página
+                         if (prevPageUrl && !nextPageUrl) {
                              pageNum +=1;
-                         } else if (nextPageUrl && prevPageUrl) { // Página intermedia
-                             // Si next es page=3, estamos en la 2. Si prev es page=1, estamos en la 2.
+                         } else if (nextPageUrl && prevPageUrl) {
                              pageNum = nextPageUrl ? pageNum -1 : pageNum + 1;
                          }
-                         // Si solo hay next (estamos en pág 1), pageNum será 2, necesitamos 1
                          else if (nextPageUrl && !prevPageUrl){
                             pageNum = 1;
                          }
                      }
                  } catch (e) {
                     console.warn("Error parsing page number from URL", e);
-                    pageNum = currentPage; // Mantener página actual si hay error
+                    pageNum = currentPage;
                  }
             } else if (data.results?.length > 0) {
-                pageNum = 1; // Única página
+                pageNum = 1;
             }
-
-             currentPage = pageNum > 0 ? pageNum : 1; // Asegurar que sea al menos 1
+             currentPage = pageNum > 0 ? pageNum : 1;
              pageInfo.textContent = `Página ${currentPage}`;
-
         } else {
             paginationControls.style.display = 'none';
         }
@@ -134,31 +131,55 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Función Principal para Fetch API ---
     const fetchGames = async (url) => {
         showLoading();
-        // Validar API Key básica
-        if (!API_KEY || API_KEY === 'TU_API_KEY_AQUI') {
+
+        // *** OPTIMIZACIÓN: Cancelar fetch anterior si existe ***
+        if (currentAbortController) {
+            currentAbortController.abort();
+        }
+        // Crear un nuevo AbortController para esta petición
+        currentAbortController = new AbortController();
+        const signal = currentAbortController.signal;
+
+        // Validar API Key
+        if (!API_KEY || API_KEY === 'TU_API_KEY_AQUI') { // Verifica si aún es el placeholder
              hideLoading();
-             showError("API Key no configurada. Reemplaza 'TU_API_KEY_AQUI' en js/script.js.");
+             showError("API Key no configurada correctamente.");
+             console.error("API Key inválida o no reemplazada.");
              return;
         }
 
         try {
-            // Añadir timestamp para intentar evitar caché agresiva si es necesario (opcional)
-            // const urlWithCacheBust = `${url}&_=${new Date().getTime()}`;
-            const response = await fetch(url);
+            const response = await fetch(url, { signal }); // Pasar la señal al fetch
+
+            // Resetear controlador después de que la petición finalice (éxito o error manejado)
+            currentAbortController = null;
 
             if (!response.ok) {
-                // Manejar errores específicos como 401 (Unauthorized) o 403 (Forbidden)
                  if (response.status === 401 || response.status === 403) {
                      throw new Error(`Error de autenticación (${response.status}). Verifica tu API Key.`);
+                 } else if (response.status === 404) {
+                     // No es necesariamente un error si la búsqueda no devuelve nada
+                     hideLoading();
+                     displayGames([]); // Mostrar mensaje "No se encontraron"
+                     updatePagination({ next: null, previous: null, results: [] }); // Limpiar paginación
+                     return; // Salir sin mostrar error
                  }
                 throw new Error(`Error HTTP: ${response.status} ${response.statusText}`);
             }
+
             const data = await response.json();
             hideLoading();
             displayGames(data.results);
             updatePagination(data);
 
         } catch (error) {
+             // Resetear controlador si el fetch falló
+             currentAbortController = null;
+             // Ignorar errores de aborto intencional
+             if (error.name === 'AbortError') {
+                console.log('Fetch abortado');
+                return;
+             }
             console.error("Error fetching games:", error);
             hideLoading();
             showError(`No se pudieron cargar los juegos. ${error.message}`);
@@ -168,29 +189,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Event Listeners ---
     searchForm.addEventListener('submit', (event) => {
         event.preventDefault();
-        currentSearchQuery = searchInput.value.trim();
+        const searchTerm = searchInput.value.trim();
+        if (searchTerm === currentSearchQuery) return; // Evitar búsqueda idéntica
+
+        currentSearchQuery = searchTerm;
         currentPage = 1;
         if (currentSearchQuery) {
             resultsTitle.textContent = `Resultados para: "${currentSearchQuery}"`;
-            // page_size controla cuántos por página, 18 es un buen número para grids
             const searchUrl = `${BASE_URL}/games?key=${API_KEY}&search=${encodeURIComponent(currentSearchQuery)}&page_size=18&page=${currentPage}`;
             fetchGames(searchUrl);
         } else {
             resultsTitle.textContent = 'Juegos Populares';
-            loadInitialGames(); // Cargar populares si la búsqueda está vacía
+            loadInitialGames();
         }
     });
 
     prevButton.addEventListener('click', () => {
-        if (prevPageUrl) {
-            fetchGames(prevPageUrl);
-        }
+        if (prevPageUrl) fetchGames(prevPageUrl);
     });
 
     nextButton.addEventListener('click', () => {
-        if (nextPageUrl) {
-            fetchGames(nextPageUrl);
-        }
+        if (nextPageUrl) fetchGames(nextPageUrl);
     });
 
     // --- Carga Inicial ---
@@ -198,10 +217,9 @@ document.addEventListener('DOMContentLoaded', () => {
          resultsTitle.textContent = 'Juegos Populares';
          currentSearchQuery = '';
          currentPage = 1;
-         const initialUrl = `${BASE_URL}/games?key=${API_KEY}&ordering=-added&page_size=18&page=${currentPage}`; // Ordenar por añadidos recientemente
+         const initialUrl = `${BASE_URL}/games?key=${API_KEY}&ordering=-added&page_size=18&page=${currentPage}`;
          fetchGames(initialUrl);
     };
 
-    // Cargar juegos al iniciar
     loadInitialGames();
 });
