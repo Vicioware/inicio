@@ -1,6 +1,5 @@
 /* --- Estilos Generales --- */
 html {
-    /* Asegurar que el scroll se comporte normalmente con el pseudo-elemento fijo */
     overflow-y: scroll;
 }
 
@@ -10,38 +9,25 @@ body {
     margin: 0;
     padding: 0;
     color: #333;
-    /* *** MODIFICACIÓN: Quitar imagen directa del body *** */
-    /* background-image: url('../img/background.png'); */
-    /* background-size: cover; */
-    /* background-position: center center; */
-    /* background-repeat: no-repeat; */
-    /* background-attachment: fixed; */
-    background-color: #f4f4f4; /* Color de fondo base */
-    position: relative; /* Necesario para el z-index del pseudo-elemento */
-    overflow-x: hidden; /* Prevenir scroll horizontal si algo se desborda */
+    background-color: #f4f4f4;
+    position: relative;
+    overflow-x: hidden;
 }
 
-/* *** NUEVO: Pseudo-elemento para fondo con blur *** */
 body::before {
     content: '';
-    position: fixed; /* Fijo para cubrir viewport y no moverse con scroll */
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: -1; /* Detrás de todo el contenido del body */
-
-    /* Aplicar la imagen de fondo aquí */
+    z-index: -1;
     background-image: url('../img/background.png');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-
-    /* Aplicar el filtro blur */
-    filter: blur(8px); /* Ajusta este valor (e.g., 5px, 10px) según necesites */
-    -webkit-filter: blur(8px); /* Prefijo para algunos navegadores */
-
-    /* Opcional: Escalar un poco para evitar bordes raros por el blur */
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
     transform: scale(1.05);
 }
 
@@ -59,11 +45,11 @@ ul {
 
 a {
     text-decoration: none;
-    color: #e8491d; /* Color de enlace principal */
+    color: #e8491d;
 }
 
 h1, h2, h3 {
-    color: #35424a; /* Azul oscuro para títulos */
+    color: #35424a;
 }
 
 img {
@@ -75,11 +61,10 @@ img {
 
 /* --- Header --- */
 header {
-    /* Sin fondo ni borde */
-    min-height: 70px;
+    min-height: 70px; /* Mantener una altura mínima consistente */
     display: flex;
     align-items: center;
-    padding: 10px 0;
+    padding: 5px 0; /* Reducir padding vertical para acomodar logo más grande */
     position: relative;
     z-index: 10;
 }
@@ -93,6 +78,7 @@ header .container {
     box-sizing: border-box;
 }
 
+
 header a {
     color: #35424a;
     text-shadow: 0px 0px 3px rgba(255, 255, 255, 0.7);
@@ -104,13 +90,19 @@ header a {
 
 header #branding {
     float: none;
-    padding: 5px 0;
+    padding: 0; /* Quitar padding extra del contenedor */
+    display: flex; /* Asegurar que el contenedor use flex si es necesario */
+    align-items: center; /* Alinear contenido interno (el enlace/imagen) */
 }
 
+/* *** MODIFICACIÓN: Estilos del Logo *** */
 #site-logo {
-    height: 50px;
-    width: auto;
-    display: block;
+    height: 60px; /* Aumentar altura del logo */
+    width: auto; /* Ancho automático para mantener proporción */
+    display: block; /* Asegurar display block */
+    /* Asegurar que sea visible si algo lo oculta */
+    opacity: 1;
+    visibility: visible;
 }
 
 header nav {
@@ -131,10 +123,10 @@ header a:hover, header .current a {
 /* --- Search Bar --- */
 #search-bar {
      padding: 15px 0;
-     background: rgba(230, 230, 230, 0.85); /* Ligeramente más transparente */
+     background: rgba(230, 230, 230, 0.85);
      border-bottom: 1px solid rgba(204, 204, 204, 0.7);
-     border-top: 1px solid rgba(0, 0, 0, 0.05); /* Borde superior aún más sutil */
-     position: relative; /* Asegurar que esté sobre el pseudo-elemento */
+     border-top: 1px solid rgba(0, 0, 0, 0.05);
+     position: relative;
      z-index: 5;
 }
 
@@ -169,50 +161,23 @@ header a:hover, header .current a {
 
 /* --- Main Content Layout (Index y Gamecard) --- */
 #main-content {
-    padding: 20px 0; /* Padding vertical para separar del search/header */
-    /* Quitar display:flex aquí si los hijos tienen su propio layout/fondo */
-    /* display: flex; */
-    /* gap: 30px; */
-    position: relative; /* Para asegurar contexto de apilamiento */
-    z-index: 1; /* Encima del pseudo-elemento ::before */
+    padding: 20px 0;
+    position: relative;
+    z-index: 1;
 }
 
-/* Aplicar estilos a los contenedores específicos dentro de #main-content */
 #game-library, #sidebar, #game-detail-content {
-    background-color: rgba(255, 255, 255, 0.92); /* Fondo blanco semi-transparente */
+    background-color: rgba(255, 255, 255, 0.92);
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    margin-bottom: 20px; /* Espacio entre elementos si se apilan */
+    margin-bottom: 20px;
 }
-/* Re-establecer flex para index.html si #main-content ya no es flex */
-/* Esto se puede hacer añadiendo una clase al #main-content de index.html */
-/* O con un selector más específico si la estructura lo permite */
-/* Ejemplo: body:has(#game-library) #main-content { display: flex; gap: 30px;} */
-/* Por simplicidad, asumimos que #main-content puede seguir siendo flex en index */
-/* Si #main-content NO es flex, #game-library y #sidebar ocuparán ancho completo */
-/* Para mantener layout lado a lado en index.html sin flex en #main-content: */
-body:has(#game-library) #main-content > #game-library {
-     width: calc(75% - 15px); /* Ajustar según gap deseado (30px / 2) */
-     float: left;
-}
-body:has(#game-library) #main-content > #sidebar {
-     width: calc(25% - 15px);
-     float: right;
-}
-/* Limpiar floats después de #main-content si se usa float */
-#main-content::after {
-    content: "";
-    display: table;
-    clear: both;
-}
-/* Nota: Flexbox en #main-content es generalmente preferible a floats */
-/* Restaurando Flex para index.html (si es necesario) */
+
 body:has(#game-library) #main-content {
      display: flex;
      gap: 30px;
 }
-
 
 #sidebar {
     align-self: flex-start;
@@ -316,7 +281,7 @@ body:has(#game-library) #main-content {
      display: -webkit-box;
      -webkit-line-clamp: 2;
      -webkit-box-orient: vertical;
-     word-break: keep-all; /* Puede ser útil 'break-word' si los spans son largos */
+     word-break: keep-all;
 }
 
 
@@ -415,11 +380,9 @@ body:has(#game-library) #main-content {
 }
 
 /* --- Estilos Página de Detalles (`gamecard.html`) --- */
-#game-detail-content { /* Ya tiene fondo aplicado arriba */
-    /* padding: 30px; */ /* Ya aplicado */
-    /* box-shadow: 0 0 15px rgba(0,0,0,0.15); */ /* Ya aplicado */
-    /* border-radius: 5px; */ /* Ya aplicado */
-    /* margin-top: 20px; */ /* Ya aplicado */
+#game-detail-content {
+    padding: 30px;
+    margin-top: 20px;
 }
 
 
@@ -475,7 +438,7 @@ body:has(#game-library) #main-content {
 }
 
 #game-description {
-    background-color: rgba(248, 248, 248, 0.95); /* Fondo descripción ligeramente diferente y semi-transparente */
+    background-color: rgba(248, 248, 248, 0.95);
     padding: 20px;
     border-radius: 4px;
     border: 1px solid #eee;
@@ -669,29 +632,28 @@ footer {
      .game-grid {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
-     #site-logo { height: 45px; }
+     #site-logo { height: 50px; } /* Ajustar tamaño en tablet */
 }
 
 
 @media(max-width: 768px){
-    header { min-height: auto; padding: 10px 0; }
+    header { min-height: auto; padding: 8px 0; } /* Ajustar padding header */
     header .container { flex-direction: row; justify-content: space-between;}
     header #branding { margin-bottom: 0; padding: 0; }
     header nav { margin-top: 0; }
     header nav li { padding: 0 10px; }
-    #site-logo { height: 40px; }
+    #site-logo { height: 45px; } /* Ajustar tamaño logo en móvil */
 
-    /* Asegurar layout flex en index */
      body:has(#game-library) #main-content {
          flex-direction: column;
-         gap: 0; /* Quitar gap si se apila */
+         gap: 0;
      }
       body:has(#game-library) #main-content > #game-library,
       body:has(#game-library) #main-content > #sidebar {
-         width: 100%; /* Ancho completo al apilar */
-         float: none; /* Quitar float */
+         width: 100%;
+         float: none;
      }
-     #sidebar { margin-top: 20px; } /* Espacio al apilar */
+     #sidebar { margin-top: 20px; }
 
 
     .container { width: 95%; }
@@ -711,10 +673,10 @@ footer {
 }
 
 @media(max-width: 480px){
-    header .container { padding: 0 2.5%; }
-    header nav li { padding: 0 5px; }
+    header .container { padding: 0 5%; } /* Ajustar padding */
+    header nav li { padding: 0 5px; } /* Menos padding aún */
     header a { font-size: 14px; }
-    #site-logo { height: 30px; }
+    #site-logo { height: 40px; } /* Ajustar tamaño logo */
 
     .game-grid { grid-template-columns: 1fr; }
      .game-item h3 { height: auto; -webkit-line-clamp: unset; }
