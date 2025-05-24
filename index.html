@@ -5,8 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vicioware</title>
     <style>
+        @font-face {
+            font-family: 'Manrope'; /* Nombre que le damos a la fuente para usarla luego */
+            src: url('fonts/Manrope-Light.ttf') format('truetype'); /* Ruta al archivo de la fuente y su formato */
+            font-weight: 300; /* 'Light' suele corresponder a un peso de 300 */
+            font-style: normal;
+        }
+
         body {
-            font-family: sans-serif;
+            font-family: 'Manrope', sans-serif; /* Usamos Manrope, con sans-serif como fallback */
             margin: 0;
             background-color: #1c1c1c; /* Nuevo color de fondo */
             color: #f0f0f0; /* Color de texto general claro para contraste */
