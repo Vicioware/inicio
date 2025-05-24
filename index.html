@@ -41,7 +41,7 @@
         }
         .game-item {
             position: relative; /* Necesario para el posicionamiento absoluto del pseudo-elemento ::after */
-            background-color: #e7e7e7; /* Color de fondo fijo para la tarjeta */
+            background: linear-gradient(to bottom, #f3f3f3, #e7e7e7 40%, #dadada); /* Efecto metálico sutil */
             border-radius: 8px;
             text-align: center;
             width: 120px; /* Ancho reducido en un 40% */
@@ -58,13 +58,13 @@
             inset: -6px; /* Ligeramente más grande que la tarjeta para el efecto glow */
             background: linear-gradient(
                 -45deg, 
-                #00BFFF, /* Deep Sky Blue */
-                #32CD32, /* Lime Green */
-                #FFD700, /* Gold */
-                #FF6347, /* Tomato (Orange-Red) */
-                #BA55D3, /* Medium Orchid (Violet) */
-                #FF69B4, /* Hot Pink */
-                #00BFFF  /* Deep Sky Blue (repetimos el primer color para un bucle suave) */
+                #1E90FF, /* DodgerBlue (Azul más fuerte) */
+                #28A745, /* Verde Esmeralda (Verde visible) */
+                #FFB300, /* Ámbar (Naranja/Amarillo fuerte) */
+                #E53935, /* Rojo Fuerte */
+                #7E57C2, /* Violeta Profundo */
+                #D81B60, /* Rosa Intenso */
+                #1E90FF  /* DodgerBlue (repetimos el primer color para un bucle suave) */
             );
             background-size: 300% 300%; /* Aumentado para un mejor barrido de colores */
             animation: lavaLampEffect 15s ease-in-out infinite;
