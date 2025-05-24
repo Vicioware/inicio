@@ -49,8 +49,16 @@
             transition: transform 0.2s ease-in-out; /* Mantenemos la transición de hover */
 
             /* Efecto Lámpara de Lava */
-            background: linear-gradient(-45deg, #1e90ff, #32cd32, #ffa500, #ff4500, #9400d3, #ff69b4); /* Nueva paleta: azules, verdes, naranjas, rojos, violetas, rosados */
-            background-size: 400% 400%;
+            background: linear-gradient(
+                -45deg, 
+                #a7d8f0, /* Azul cielo pastel */
+                #b3e6b3, /* Verde menta pastel */
+                #ffdcb3, /* Naranja melocotón pastel */
+                #ffb3b3, /* Rosa salmón pastel (rojo suave) */
+                #d9b3ff, /* Lavanda pastel */
+                #ffb3e6  /* Rosa chicle pastel */
+            );
+            background-size: 200% 200%; /* Reducido para asegurar que todos los colores se muestren */
             animation: lavaLampEffect 15s ease-in-out infinite;
             color: #fff; /* Texto blanco para mejor contraste */
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Sombra para legibilidad */
