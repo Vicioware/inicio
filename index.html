@@ -3,79 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preload" href="img/background.webp" as="image">
-    <link rel="icon" href="img/icon.png" type="image/png">
-    <meta name="description" content="Explora y busca videojuegos usando la API de RAWG.io.">
-    <title>Mi Biblioteca de Juegos - Explora</title>
-    <link rel="stylesheet" href="css/style.css">
-    </head>
+    <title>Galería de Videojuegos</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em 0;
+            text-align: center;
+        }
+        .gallery-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            gap: 20px; /* Espacio entre los elementos */
+        }
+        .game-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 200px; /* Ancho fijo para cada item */
+            overflow: hidden; /* Para que el borde redondeado afecte a la imagen */
+            text-decoration: none; /* Quita el subrayado del enlace */
+            color: inherit; /* Hereda el color del texto */
+            transition: transform 0.2s ease-in-out;
+        }
+        .game-item:hover {
+            transform: scale(1.05); /* Efecto de zoom al pasar el ratón */
+        }
+        .game-item img {
+            width: 100%; /* La imagen ocupa todo el ancho del contenedor */
+            height: auto; /* Mantiene la proporción de la imagen */
+            border-bottom: 1px solid #ddd; /* Línea separadora debajo de la imagen */
+        }
+        .game-item p {
+            margin: 10px 0; /* Margen para el nombre del juego */
+            font-size: 0.9em;
+            padding: 0 5px; /* Espacio para que el texto no toque los bordes */
+        }
+    </style>
+</head>
 <body>
 
     <header>
-        <div class="container">
-            <div id="branding">
-                <a href="https://vicioware.github.io/inicio/">
-                    <img src="img/logo.webp" alt="Vicioware Logo" id="site-logo">
-                </a>
-            </div>
-            <nav>
-                <ul>
-                    <li class="current"><a href="index.html">Inicio</a></li>
-                    </ul>
-            </nav>
-        </div>
+        <h1>Mis Videojuegos Favoritos</h1>
     </header>
 
-    <section id="search-bar">
-        <div class="container">
-            <form action="#" id="search-form" aria-label="Formulario de búsqueda de juegos">
-                <input type="search" id="search-input" name="query" placeholder="Buscar juegos en RAWG.io..." required aria-label="Término de búsqueda">
-                <button type="submit">Buscar</button>
-            </form>
-        </div>
-    </section>
+    <div class="gallery-container">
+        <!-- Ejemplo de Videojuego 1 -->
+        <a href="#" class="game-item">
+            <img src="https://via.placeholder.com/200x300.png?text=Portada+Juego+1" alt="Portada Videojuego 1">
+            <p>Nombre del Juego 1</p>
+        </a>
 
-    <section id="main-content" class="container">
-        <div id="game-library">
-            <h2 id="results-title">Juegos Populares</h2>
-            <div id="loading-indicator" role="status" aria-live="polite" style="display: none; text-align: center; padding: 20px;">Cargando...</div>
-            <div id="error-message" class="error-msg" role="alert" style="display: none; text-align: center; padding: 20px;"></div>
-            <div class="game-grid" id="game-grid" aria-live="polite">
-                </div>
-            <nav class="pagination" id="pagination-controls" aria-label="Navegación de páginas" style="display: none;">
-                 <button id="prev-page" class="btn-secondary" aria-label="Página anterior">Anterior</button>
-                 <span id="page-info" aria-live="polite"></span>
-                 <button id="next-page" class="btn-primary" aria-label="Página siguiente">Siguiente</button>
-            </nav>
-        </div>
+        <!-- Ejemplo de Videojuego 2 -->
+        <a href="#" class="game-item">
+            <img src="https://via.placeholder.com/200x300.png?text=Portada+Juego+2" alt="Portada Videojuego 2">
+            <p>Nombre del Juego 2</p>
+        </a>
 
-        <aside id="sidebar" aria-label="Información adicional y filtros">
-            <div id="genres-list">
-                <h3>Géneros Populares</h3>
-                 <ul id="popular-genres">
-                     <li>Acción</li>
-                     <li>Aventura</li>
-                     <li>RPG</li>
-                     <li>Estrategia</li>
-                     <li>Shooter</li>
-                     <li>Puzzle</li>
-                 </ul>
-                 <p><small><i>(Filtro no implementado)</i></small></p>
-            </div>
-        </aside>
-    </section>
+        <!-- Ejemplo de Videojuego 3 -->
+        <a href="#" class="game-item">
+            <img src="https://via.placeholder.com/200x300.png?text=Portada+Juego+3" alt="Portada Videojuego 3">
+            <p>Nombre del Juego 3</p>
+        </a>
 
-    <footer>
-        <div class="container">
-            <p>Mi Biblioteca de Juegos &copy; 2025 - Usando la API de <a href="https://rawg.io/" target="_blank" rel="noopener noreferrer">RAWG.io</a></p>
-             <p>
-                 <a href="#">Acerca de</a> |
-                 <a href="#">Privacidad</a> |
-                 <a href="#">Términos</a>
-            </p>
-        </div>
-    </footer>
+        <!-- Ejemplo de Videojuego 4 -->
+        <a href="#" class="game-item">
+            <img src="https://via.placeholder.com/200x300.png?text=Portada+Juego+4" alt="Portada Videojuego 4">
+            <p>Nombre del Juego 4</p>
+        </a>
 
-    <script src="js/script.js" defer></script>
+        <!-- Puedes añadir más juegos aquí siguiendo el mismo formato -->
+        <a href="#" class="game-item">
+            <img src="https://via.placeholder.com/200x300.png?text=Portada+Juego+5" alt="Portada Videojuego 5">
+            <p>Un Juego con un Nombre un Poco Más Largo para Probar</p>
+        </a>
+    </div>
+
 </body>
 </html>
