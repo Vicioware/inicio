@@ -12,11 +12,6 @@
             font-style: normal;
         }
 
-        @keyframes lavaLampEffect {
-            0% { background-position: 0% 0%; }     /* Inicio del primer ciclo del gradiente duplicado */
-            100% { background-position: 75% 75%; }  /* Se mueve al final del primer ciclo (mitad del total de la anim. anterior) */
-        }
-
         body {
             font-family: 'Manrope', sans-serif; /* Usamos Manrope, con sans-serif como fallback */
             margin: 0;
@@ -55,23 +50,9 @@
         .game-item::after { /* Pseudo-elemento para el efecto de resplandor de colores (lava lamp) */
             z-index: -2; /* Detrás del resplandor blanco y del contenido de .game-item */
             inset: -6px; /* Ligeramente más grande que la tarjeta para el efecto glow */
-            background: linear-gradient(
-                -45deg,
-                var(--glow-color-1, #E53935), /* Color 1 - Rojo por defecto */
-                var(--glow-color-2, #FFA500), /* Color 2 - Naranja por defecto */
-                var(--glow-color-3, #28A745), /* Color 3 - Verde por defecto */
-                var(--glow-color-4, #1E90FF), /* Color 4 - Azul por defecto */
-                var(--glow-color-5, #7E57C2), /* Color 5 - Violeta por defecto */
-                var(--glow-color-1, #E53935), /* Fin del primer ciclo / Inicio del segundo */
-                /* Inicio del segundo ciclo (duplicado para un bucle más suave) */
-                var(--glow-color-2, #FFA500),
-                var(--glow-color-3, #28A745),
-                var(--glow-color-4, #1E90FF),
-                var(--glow-color-5, #7E57C2),
-                var(--glow-color-1, #E53935)  /* Fin del segundo ciclo */
-            );
-            background-size: 300% 300%; /* Aumentado para un mejor barrido de colores */
-            animation: lavaLampEffect 15s linear infinite;
+            /* Ahora un solo color, el predominante de la imagen, con un fallback */
+            background: var(--dominant-glow-color, rgba(200, 200, 200, 0.2)); /* Fallback: gris claro semitransparente */
+            /* Ya no se necesita animación ni background-size para un solo color */
             filter: blur(12px); /* Desenfoque para el efecto de resplandor */
             border-radius: 14px; /* (radio original de la tarjeta + valor de inset) */
             transition: opacity 0.4s ease-in-out;
@@ -183,7 +164,7 @@
         </a>
 
         <a href="#" class="game-item">
-            <img src="portadas/horizon-chase-turbo.png" loading="lazy">
+            <img src="portadas/dmc-devil-may-cry.png" loading="lazy">
             <p>DmC: Devil May Cry</p>
         </a>
 
@@ -207,16 +188,12 @@
                     // Asegurarse de que la imagen esté completamente cargada y tenga dimensiones
                     if (img.complete && img.naturalWidth > 0 && img.naturalHeight > 0) {
                         try {
-                            const palette = colorThief.getPalette(img, 5); // Extraer 5 colores
+                            const dominantColorArray = colorThief.getColor(img); // Extraer el color dominante [R, G, B]
                             
-                            if (palette && palette.length > 0) {
+                            if (dominantColorArray) {
                                 dynamicGlowColors = {};
-                                // Asignar colores, usando el primero como fallback si no hay suficientes
-                                dynamicGlowColors['--glow-color-1'] = `rgb(${palette[0][0]}, ${palette[0][1]}, ${palette[0][2]})`;
-                                dynamicGlowColors['--glow-color-2'] = palette[1] ? `rgb(${palette[1][0]}, ${palette[1][1]}, ${palette[1][2]})` : dynamicGlowColors['--glow-color-1'];
-                                dynamicGlowColors['--glow-color-3'] = palette[2] ? `rgb(${palette[2][0]}, ${palette[2][1]}, ${palette[2][2]})` : dynamicGlowColors['--glow-color-1'];
-                                dynamicGlowColors['--glow-color-4'] = palette[3] ? `rgb(${palette[3][0]}, ${palette[3][1]}, ${palette[3][2]})` : dynamicGlowColors['--glow-color-1'];
-                                dynamicGlowColors['--glow-color-5'] = palette[4] ? `rgb(${palette[4][0]}, ${palette[4][1]}, ${palette[4][2]})` : dynamicGlowColors['--glow-color-1'];
+                                const rgbString = `rgb(${dominantColorArray[0]}, ${dominantColorArray[1]}, ${dominantColorArray[2]})`;
+                                dynamicGlowColors['--dominant-glow-color'] = rgbString;
                             } else {
                                 console.warn('ColorThief: No se pudo extraer una paleta para:', img.src);
                                 dynamicGlowColors = null;
@@ -262,11 +239,7 @@
                         // Solo eliminar las propiedades si el cursor no ha vuelto a entrar en la tarjeta
                         // y si se habían establecido colores dinámicos.
                         if (dynamicGlowColors && !item.matches(':hover')) {
-                            item.style.removeProperty('--glow-color-1');
-                            item.style.removeProperty('--glow-color-2');
-                            item.style.removeProperty('--glow-color-3');
-                            item.style.removeProperty('--glow-color-4');
-                            item.style.removeProperty('--glow-color-5');
+                            item.style.removeProperty('--dominant-glow-color');
                         }
                     }, 400); // Coincide con la duración de la transición de opacidad de ::after
                 });
