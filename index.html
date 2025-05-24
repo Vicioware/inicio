@@ -54,7 +54,15 @@
             position: absolute;
             z-index: -1; /* Detrás del contenido de .game-item */
             inset: -6px; /* Ligeramente más grande que la tarjeta para el efecto glow */
-            background: linear-gradient(-45deg, #a7d8f0, #b3e6b3, #ffdcb3, #ffb3b3, #d9b3ff, #ffb3e6);
+            background: linear-gradient(
+                -45deg, 
+                #00BFFF, /* Deep Sky Blue */
+                #32CD32, /* Lime Green */
+                #FFD700, /* Gold */
+                #FF6347, /* Tomato (Orange-Red) */
+                #BA55D3, /* Medium Orchid (Violet) */
+                #FF69B4  /* Hot Pink */
+            );
             background-size: 200% 200%;
             animation: lavaLampEffect 15s ease-in-out infinite;
             filter: blur(12px); /* Desenfoque para el efecto de resplandor */
