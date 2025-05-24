@@ -41,14 +41,13 @@
         }
         .game-item {
             position: relative; /* Necesario para el posicionamiento absoluto del pseudo-elemento ::after */
-            background: linear-gradient(to bottom, #f3f3f3, #e7e7e7 40%, #dadada); /* Efecto metálico sutil */
+            background: linear-gradient(to bottom, #1a1a1a, #111111 40%, #0a0a0a); /* Estilo metálico mate oscuro */
             border-radius: 8px;
             text-align: center;
             width: 120px; /* Ancho reducido en un 40% */
             overflow: visible; /* Permitir que el resplandor del pseudo-elemento se muestre fuera */
             text-decoration: none; /* Quita el subrayado del enlace */
             transition: transform 0.2s ease-in-out; /* Mantenemos la transición de hover */
-            color: #333; /* Color de texto oscuro para contraste con fondo claro */
             z-index: 1; /* Asegurar que la tarjeta esté por encima de otros elementos si es necesario */
         }
         .game-item::after { /* Pseudo-elemento para el efecto de resplandor */
@@ -89,6 +88,8 @@
         .game-item p {
             margin: 10px 0; /* Margen para el nombre del juego */
             font-size: 0.9em;
+            color: #fff; /* Texto blanco */
+            text-shadow: 0 0 4px rgba(255, 255, 255, 0.4); /* Resplandor suave para legibilidad */
             padding: 0 5px; /* Espacio para que el texto no toque los bordes */
         }
     </style>
