@@ -59,16 +59,14 @@
             z-index: -2; /* Detrás del resplandor blanco y del contenido de .game-item */
             inset: -6px; /* Ligeramente más grande que la tarjeta para el efecto glow */
             background: linear-gradient(
-                -45deg, 
-                #E53935, /* Rojo Fuerte */
-                #FFA500, /* Naranja */
-                #FFD700, /* Amarillo Dorado */
-                #28A745, /* Verde Esmeralda */
-                #40E0D0, /* Turquesa */
-                #1E90FF, /* DodgerBlue */
-                #7E57C2, /* Violeta Profundo */
-                #D81B60, /* Rosa Intenso */
-                #E53935  /* Rojo Fuerte (repetimos el primer color para un bucle suave) */
+                -45deg,
+                var(--glow-color-1, #E53935), /* Color 1 - Rojo por defecto */
+                var(--glow-color-2, #FFA500), /* Color 2 - Naranja por defecto */
+                var(--glow-color-3, #28A745), /* Color 3 - Verde por defecto */
+                var(--glow-color-4, #1E90FF), /* Color 4 - Azul por defecto */
+                var(--glow-color-5, #7E57C2), /* Color 5 - Violeta por defecto */
+                /* Repetimos el primer color para un bucle suave con la animación */
+                var(--glow-color-1, #E53935)
             );
             background-size: 300% 300%; /* Aumentado para un mejor barrido de colores */
             animation: lavaLampEffect 15s ease-in-out infinite;
@@ -163,5 +161,79 @@
         </a>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.4.0/color-thief.umd.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const gameItems = document.querySelectorAll('.game-item');
+            const colorThief = new ColorThief();
+
+            gameItems.forEach(item => {
+                const img = item.querySelector('img');
+                let dynamicGlowColors = null; // Para almacenar los colores extraídos para este item
+
+                function extractAndStoreColors() {
+                    // Asegurarse de que la imagen esté completamente cargada y tenga dimensiones
+                    if (img.complete && img.naturalWidth > 0 && img.naturalHeight > 0) {
+                        try {
+                            const palette = colorThief.getPalette(img, 5); // Extraer 5 colores
+                            
+                            if (palette && palette.length > 0) {
+                                dynamicGlowColors = {};
+                                // Asignar colores, usando el primero como fallback si no hay suficientes
+                                dynamicGlowColors['--glow-color-1'] = `rgb(${palette[0][0]}, ${palette[0][1]}, ${palette[0][2]})`;
+                                dynamicGlowColors['--glow-color-2'] = palette[1] ? `rgb(${palette[1][0]}, ${palette[1][1]}, ${palette[1][2]})` : dynamicGlowColors['--glow-color-1'];
+                                dynamicGlowColors['--glow-color-3'] = palette[2] ? `rgb(${palette[2][0]}, ${palette[2][1]}, ${palette[2][2]})` : dynamicGlowColors['--glow-color-1'];
+                                dynamicGlowColors['--glow-color-4'] = palette[3] ? `rgb(${palette[3][0]}, ${palette[3][1]}, ${palette[3][2]})` : dynamicGlowColors['--glow-color-1'];
+                                dynamicGlowColors['--glow-color-5'] = palette[4] ? `rgb(${palette[4][0]}, ${palette[4][1]}, ${palette[4][2]})` : dynamicGlowColors['--glow-color-1'];
+                            } else {
+                                console.warn('ColorThief: No se pudo extraer una paleta para:', img.src);
+                                dynamicGlowColors = null;
+                            }
+                        } catch (error) {
+                            console.error('ColorThief error para la imagen:', img.src, error);
+                            dynamicGlowColors = null;
+                        }
+                    } else if (!img.complete) {
+                        // Si la imagen aún no está completa, no hacer nada aquí, el 'load' listener se encargará.
+                    } else {
+                        // La imagen está 'complete' pero no tiene dimensiones (ej. imagen rota)
+                        console.warn('ColorThief: Imagen cargada pero inválida (sin dimensiones):', img.src);
+                        dynamicGlowColors = null;
+                    }
+                }
+
+                // Intentar extraer colores si la imagen ya está cargada
+                // (importante para imágenes cacheadas o ya visibles)
+                if (img.complete && img.naturalWidth > 0) {
+                    extractAndStoreColors();
+                }
+                // Siempre añadir el listener 'load' para imágenes que cargan después (incluyendo lazy-loaded)
+                img.addEventListener('load', extractAndStoreColors);
+                img.addEventListener('error', () => {
+                    console.error('Error al cargar la imagen:', img.src);
+                    dynamicGlowColors = null;
+                });
+
+                item.addEventListener('mouseenter', () => {
+                    if (dynamicGlowColors) {
+                        for (const [variable, color] of Object.entries(dynamicGlowColors)) {
+                            item.style.setProperty(variable, color);
+                        }
+                    }
+                });
+
+                item.addEventListener('mouseleave', () => {
+                    // Eliminar las propiedades para volver a los colores por defecto del CSS
+                    if (dynamicGlowColors) { // Solo si se establecieron colores dinámicos
+                        item.style.removeProperty('--glow-color-1');
+                        item.style.removeProperty('--glow-color-2');
+                        item.style.removeProperty('--glow-color-3');
+                        item.style.removeProperty('--glow-color-4');
+                        item.style.removeProperty('--glow-color-5');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
