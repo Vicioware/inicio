@@ -38,38 +38,42 @@
             gap: 10px; /* Espacio leve entre los elementos */
         }
         .game-item {
-            /* background-color: #fff; Eliminado */
-            /* border: 1px solid #ddd; Eliminado */
+            position: relative; /* Necesario para el posicionamiento absoluto del pseudo-elemento ::after */
+            background-color: #e7e7e7; /* Color de fondo fijo para la tarjeta */
             border-radius: 8px;
-            /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); Eliminado */
             text-align: center;
             width: 120px; /* Ancho reducido en un 40% */
-            overflow: hidden; /* Para que el borde redondeado afecte a la imagen */
+            overflow: visible; /* Permitir que el resplandor del pseudo-elemento se muestre fuera */
             text-decoration: none; /* Quita el subrayado del enlace */
             transition: transform 0.2s ease-in-out; /* Mantenemos la transición de hover */
-
-            /* Efecto Lámpara de Lava */
-            background: linear-gradient(
-                -45deg, 
-                #a7d8f0, /* Azul cielo pastel */
-                #b3e6b3, /* Verde menta pastel */
-                #ffdcb3, /* Naranja melocotón pastel */
-                #ffb3b3, /* Rosa salmón pastel (rojo suave) */
-                #d9b3ff, /* Lavanda pastel */
-                #ffb3e6  /* Rosa chicle pastel */
-            );
-            background-size: 200% 200%; /* Reducido para asegurar que todos los colores se muestren */
+            color: #333; /* Color de texto oscuro para contraste con fondo claro */
+            z-index: 1; /* Asegurar que la tarjeta esté por encima de otros elementos si es necesario */
+        }
+        .game-item::after { /* Pseudo-elemento para el efecto de resplandor */
+            content: '';
+            position: absolute;
+            z-index: -1; /* Detrás del contenido de .game-item */
+            inset: -6px; /* Ligeramente más grande que la tarjeta para el efecto glow */
+            background: linear-gradient(-45deg, #a7d8f0, #b3e6b3, #ffdcb3, #ffb3b3, #d9b3ff, #ffb3e6);
+            background-size: 200% 200%;
             animation: lavaLampEffect 15s ease-in-out infinite;
-            color: #fff; /* Texto blanco para mejor contraste */
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Sombra para legibilidad */
+            filter: blur(12px); /* Desenfoque para el efecto de resplandor */
+            border-radius: 14px; /* (radio original de la tarjeta + valor de inset) */
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
         }
         .game-item:hover {
             transform: scale(1.05); /* Efecto de zoom al pasar el ratón */
         }
+        .game-item:hover::after {
+            opacity: 0.7; /* Mostrar el resplandor en hover, ajusta la opacidad según prefieras */
+        }
         .game-item img {
             width: 100%; /* La imagen ocupa todo el ancho del contenedor */
             height: auto; /* Mantiene la proporción de la imagen */
-            /* border-bottom: 1px solid #ddd; Eliminado */
+            display: block; /* Ayuda a evitar espacios extra y asegura que el border-radius se aplique bien */
+            border-top-left-radius: 8px; /* Redondear esquinas superiores de la imagen */
+            border-top-right-radius: 8px; /* Redondear esquinas superiores de la imagen */
         }
         .game-item p {
             margin: 10px 0; /* Margen para el nombre del juego */
