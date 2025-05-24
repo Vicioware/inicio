@@ -223,14 +223,20 @@
                 });
 
                 item.addEventListener('mouseleave', () => {
-                    // Eliminar las propiedades para volver a los colores por defecto del CSS
-                    if (dynamicGlowColors) { // Solo si se establecieron colores dinámicos
-                        item.style.removeProperty('--glow-color-1');
-                        item.style.removeProperty('--glow-color-2');
-                        item.style.removeProperty('--glow-color-3');
-                        item.style.removeProperty('--glow-color-4');
-                        item.style.removeProperty('--glow-color-5');
-                    }
+                    // La transición de opacidad para .game-item::after es de 0.4s (400ms).
+                    // Retrasamos la eliminación de las variables de color para que coincida
+                    // con la duración de la transición, evitando el parpadeo de los colores por defecto.
+                    setTimeout(() => {
+                        // Solo eliminar las propiedades si el cursor no ha vuelto a entrar en la tarjeta
+                        // y si se habían establecido colores dinámicos.
+                        if (dynamicGlowColors && !item.matches(':hover')) {
+                            item.style.removeProperty('--glow-color-1');
+                            item.style.removeProperty('--glow-color-2');
+                            item.style.removeProperty('--glow-color-3');
+                            item.style.removeProperty('--glow-color-4');
+                            item.style.removeProperty('--glow-color-5');
+                        }
+                    }, 400); // Coincide con la duración de la transición de opacidad de ::after
                 });
             });
         });
