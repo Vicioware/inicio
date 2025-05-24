@@ -13,11 +13,13 @@
         }
 
         @keyframes lavaLampEffect {
-            0% { background-position: 0% 0%; }
-            25% { background-position: 100% 0%; }
-            50% { background-position: 100% 100%; }
-            75% { background-position: 0% 100%; }
-            100% { background-position: 0% 0%; }
+            0% { background-position: 0% 0%; }     /* Inicia en la esquina superior izquierda */
+            16% { background-position: 100% 50%; }  /* Se mueve al centro-derecha */
+            32% { background-position: 0% 100%; }  /* Se mueve a la esquina inferior izquierda */
+            48% { background-position: 50% 0%; }   /* Se mueve al centro-superior */
+            64% { background-position: 100% 100%; } /* Se mueve a la esquina inferior derecha */
+            80% { background-position: 0% 50%; }   /* Se mueve al centro-izquierda */
+            100% { background-position: 0% 0%; }   /* Vuelve al inicio para un bucle suave */
         }
 
         body {
