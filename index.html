@@ -388,13 +388,20 @@
                 }
             });
 
+            // Función para limpiar cadenas para la búsqueda (ignorar mayúsculas/minúsculas y caracteres especiales)
+            function sanitizeSearchTerm(term) {
+                return term.toLowerCase().replace(/[^a-z0-9]/g, '');
+            }
+
             // Event listener para la barra de búsqueda
             searchBar.addEventListener('input', (event) => {
-                const searchTerm = event.target.value.toLowerCase().trim();
+                const rawSearchTerm = event.target.value.trim();
+                const sanitizedSearchTerm = sanitizeSearchTerm(rawSearchTerm);
 
                 gameItems.forEach(item => {
-                    const gameTitle = item.querySelector('p').textContent.toLowerCase();
-                    if (gameTitle.includes(searchTerm)) {
+                    const rawGameTitle = item.querySelector('p').textContent;
+                    const sanitizedGameTitle = sanitizeSearchTerm(rawGameTitle);
+                    if (sanitizedGameTitle.includes(sanitizedSearchTerm)) {
                         item.style.display = ''; // Muestra el item si coincide
                     } else {
                         item.style.display = 'none'; // Oculta el item si no coincide
