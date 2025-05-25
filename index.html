@@ -28,9 +28,8 @@
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 50; /* Ensure header is above gallery but below modal */
-            display: flex;
-            justify-content: space-between;
+            z-index: 50; 
+            /* display: flex and justify-content no longer needed if only h1 is inside */
             align-items: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
@@ -39,15 +38,18 @@
             font-size: 1.6em;
         }
         #searchBar {
+            display: block; /* Para poder aplicar márgenes automáticos y centrar */
             padding: 8px 15px;
             border-radius: 20px;
             border: 1px solid #555;
             background-color: #2a2a2a;
             color: #f0f0f0;
             font-size: 0.9em;
-            width: 280px;
+            width: 400px; /* Ancho aumentado */
+            max-width: 90%; /* Para asegurar que no se desborde en pantallas pequeñas */
             font-family: 'Manrope', sans-serif;
             outline: none;
+            margin: 20px auto; /* Centra la barra y añade margen superior/inferior */
         }
         .gallery-container {
             display: flex;
@@ -223,10 +225,7 @@
 </head>
 <body>
 
-    <header>
-        <h1>Vicioware</h1>
-        <input type="search" id="searchBar" placeholder="Buscar juegos...">
-    </header>
+    <input type="search" id="searchBar" placeholder="Buscar juegos...">
 
     <div class="gallery-container">
         <a href="#" data-game-id="halo-ce" class="game-item">
