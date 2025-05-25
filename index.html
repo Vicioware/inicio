@@ -92,29 +92,41 @@
     <style>
         /* Modal Styles */
         .modal {
-            display: none; /* Hidden by default */
+            display: flex; /* Usamos flex para centrar el contenido */
+            align-items: center; /* Centrado vertical */
+            justify-content: center; /* Centrado horizontal */
             position: fixed; /* Stay in place */
             z-index: 100; /* Sit on top */
             left: 0;
             top: 0;
             width: 100%; /* Full width */
             height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
             background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
-            padding-top: 60px; 
+            /* Propiedades para la animación de apertura/cierre */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s; /* visibility cambia después de que la opacidad se desvanece */
+        }
+
+        .modal.is-open {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 0s; /* Asegura que la visibilidad sea inmediata al abrir */
         }
 
         .modal-content {
-            background-color: #2a2a2a;
-            margin: 5% auto;
+            background-color: #1c1c1c;
             padding: 25px;
-            border: 1px solid #555;
+            border: 1px solid #444; /* Borde ligeramente oscurecido */
             width: 90%; 
             max-width: 550px; 
             border-radius: 10px;
             position: relative;
             color: #f0f0f0;
             box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            transform: translateY(-30px) scale(0.95);
+            opacity: 0;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
         }
 
         .close-button {
@@ -130,6 +142,11 @@
             color: #fff;
             text-decoration: none;
             cursor: pointer;
+        }
+
+        .modal.is-open .modal-content {
+            transform: translateY(0) scale(1);
+            opacity: 1;
         }
 
         #modalGameTitle {
@@ -165,6 +182,15 @@
         #modalDownloadLinks a:hover {
             background-color: #4cae4c;
             transform: translateY(-2px);
+        }
+    </style>
+    <style>
+        body.modal-blur-active > .gallery-container { /* Solo afecta al gallery-container */
+            filter: blur(5px);
+            transition: filter 0.3s ease-in-out;
+        }
+        .gallery-container { /* Para asegurar un des-desenfoque suave */
+            transition: filter 0.3s ease-in-out;
         }
     </style>
 </head>
@@ -323,11 +349,13 @@
                     modalDownloadLinksList.appendChild(listItem);
                     console.warn('No se encontraron enlaces de descarga para el juego:', gameId);
                 }
-                modal.style.display = 'block';
+                document.body.classList.add('modal-blur-active'); // Aplicar desenfoque al fondo
+                modal.classList.add('is-open'); // Mostrar y animar modal
             }
 
             function closeModal() {
-                modal.style.display = 'none';
+                document.body.classList.remove('modal-blur-active'); // Quitar desenfoque
++                modal.classList.remove('is-open'); // Ocultar y animar modal
             }
 
             // Event listener para el botón de cierre del modal
