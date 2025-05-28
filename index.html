@@ -574,8 +574,8 @@
             <p>Five Nights at Freddy's 4</p>
         </a>
 
-        <a href="#" data-game-id="fnaf" class="game-item">
-            <img src="portadas/fnaf.png" loading="lazy">
+        <a href="#" data-game-id="fnaf5" class="game-item">
+            <img src="portadas/fnaf5.png" loading="lazy">
             <p>FNAF: Sister Location</p>
         </a>
 
@@ -612,11 +612,6 @@
         <a href="#" data-game-id="resident-evil6" class="game-item">
             <img src="portadas/resident-evil6.png" loading="lazy">
             <p>Resident Evil 6</p>
-        </a>
-
-        <a href="#" data-game-id="fnaf" class="game-item">
-            <img src="portadas/fnaf.png" loading="lazy">
-            <p>Five Nights at Freddy's</p>
         </a>
 
         <a href="#" data-game-id="stray" class="game-item">
@@ -667,7 +662,7 @@
             const modalGameTitle = document.getElementById('modalGameTitle');
             const modalDownloadLinksList = document.getElementById('modalDownloadLinks');
             const closeButton = modal.querySelector('.close-button');
-            const searchBar = document.getElementById('searchBar');
+            const searchBar = document.getElementById('searchBar'); // searchBar ya está aquí
 
             // Data for download links
             const gameDownloadLinksData = {
@@ -689,9 +684,40 @@
                 'barony': [{ text: 'Descargar Barony', url: 'https://example.com/barony-download' }],
                 'dmc-devil-may-cry': [{ text: 'Descargar DmC: Devil May Cry', url: 'https://example.com/dmc-devil-may-cry-download' }],
                 'call-of-duty': [{ text: 'Descargar Call of Duty', url: 'https://example.com/call-of-duty-download' }],
-                'halo-ce': [{ text: 'Descargar', url: 'https://download1085.mediafire.com/b38on3ahx65gKEXkg-4uIuKH2-BSkqfrSs4-7dPp6I_157jal_tRxHrv_lskrq6CFnZ8Va_HPBbBZcw1oAxILiAJxDBmytCvHM_JcLkARTPNN5M_VXGiEfnFlOww8VLsuKkkrfHg0hwYtopNbL75dhM3EyNB6qbMB_cBT348tLmnGg/jftpybq93hfqy26/HCE_2001.rar'}]
+                'halo-ce': [{ text: 'Descargar', url: 'https://www.mediafire.com/file/jftpybq93hfqy26/HCE_2001.rar/file' }]
                 // Asegúrate de que todos los game-id de tus tarjetas estén aquí con sus enlaces
             };
+
+            function updateImageLoadingPriority() {
+                const visibleGameItems = [];
+                // gameItems está disponible en este scope (definido en DOMContentLoaded)
+                gameItems.forEach(item => {
+                    // Usamos getComputedStyle para obtener el estado de display real
+                    const style = window.getComputedStyle(item);
+                    if (style.display !== 'none') {
+                        visibleGameItems.push(item);
+                    }
+                });
+
+                // Paso 1: Asegurar que todas las imágenes tengan loading="lazy" por defecto.
+                // Esto resetea el estado para los items que podrían dejar de ser prioritarios.
+                gameItems.forEach(item => {
+                    const img = item.querySelector('img');
+                    if (img && img.getAttribute('loading') !== 'lazy') {
+                        img.setAttribute('loading', 'lazy');
+                    }
+                });
+
+                // Paso 2: Quitar loading="lazy" de las primeras 30 imágenes visibles.
+                const limit = 30;
+                for (let i = 0; i < visibleGameItems.length && i < limit; i++) {
+                    const item = visibleGameItems[i];
+                    const img = item.querySelector('img');
+                    if (img) {
+                        img.removeAttribute('loading');
+                    }
+                }
+            }
 
             function openModal(gameId, gameName) {
                 modalGameTitle.textContent = gameName; // Actualiza el título del modal
@@ -718,6 +744,9 @@
                 modal.classList.add('is-open'); // Mostrar y animar modal
             }
 
+            // Llamada inicial para establecer la prioridad de carga al cargar la página
+            updateImageLoadingPriority();
+
             function closeModal() {
                 document.body.classList.remove('modal-blur-active'); // Quitar desenfoque
 +                modal.classList.remove('is-open'); // Ocultar y animar modal
@@ -735,7 +764,8 @@
 
             // Event listener para cerrar el modal con la tecla Escape
             window.addEventListener('keydown', (event) => {
-                if (event.key === 'Escape' && modal.style.display === 'block') {
+                // Pequeña mejora: comprobar la clase en lugar del estilo display directamente
+                if (event.key === 'Escape' && modal.classList.contains('is-open')) {
                     closeModal();
                 }
             });
@@ -759,6 +789,8 @@
                         item.style.display = 'none'; // Oculta el item si no coincide
                     }
                 });
+                // Actualizar la prioridad de carga después de filtrar
+                updateImageLoadingPriority();
             });
 
             gameItems.forEach(item => {
