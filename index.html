@@ -87,7 +87,13 @@
             height: auto; /* Mantiene la proporción de la imagen */
             display: block; /* Ayuda a evitar espacios extra y asegura que el border-radius se aplique bien */
             border-top-left-radius: 8px; /* Redondear esquinas superiores de la imagen */
-            border-top-right-radius: 8px; /* Redondear esquinas superiores de la imagen */
+            border-top-right-radius: 8px;
+            /* Estilos para carga progresiva */
+            opacity: 0; /* Inicialmente oculta */
+            transition: opacity 0.4s ease-in-out; /* Transición suave para la aparición */
+            background-color: #2a2a2a; /* Color de fondo placeholder, similar al de la searchBar */
+            /* Ajusta este valor a una altura promedio/mínima esperada de tus portadas para evitar saltos de layout */
+            min-height: 160px; 
         }
         .game-item p {
             margin: 10px 0; /* Margen para el nombre del juego */
@@ -797,16 +803,27 @@
                 const img = item.querySelector('img');
                 let dynamicGlowColors = null; // Para almacenar los colores extraídos para este item
 
-                function extractAndStoreColors() {
-                    // Asegurarse de que la imagen esté completamente cargada y tenga dimensiones
+                // Renombrada y modificada para incluir el cambio de opacidad y la lógica de ColorThief
+                function processLoadedImage() {
+                    // Hacemos la imagen visible
+                    img.style.opacity = '1';
+                    // Opcional: si se usó min-height en CSS y se quiere que la imagen tome su altura natural exacta al cargar.
+                    // Descomentar la siguiente línea si se prefiere este comportamiento.
+                    // img.style.minHeight = 'auto';
+
+                    // Lógica de ColorThief (asegurarse de que la imagen esté realmente cargada y sea válida)
                     if (img.complete && img.naturalWidth > 0 && img.naturalHeight > 0) {
                         try {
-                            const dominantColorArray = colorThief.getColor(img); // Extraer el color dominante [R, G, B]
+                            const dominantColorArray = colorThief.getColor(img); 
                             
                             if (dominantColorArray) {
                                 dynamicGlowColors = {};
                                 const rgbString = `rgb(${dominantColorArray[0]}, ${dominantColorArray[1]}, ${dominantColorArray[2]})`;
                                 dynamicGlowColors['--dominant-glow-color'] = rgbString;
+                                // Si el cursor ya está sobre el elemento cuando la imagen carga, aplicar el glow
+                                if (item.matches(':hover')) {
+                                    item.style.setProperty('--dominant-glow-color', rgbString);
+                                }
                             } else {
                                 console.warn('ColorThief: No se pudo extraer una paleta para:', img.src);
                                 dynamicGlowColors = null;
@@ -816,9 +833,7 @@
                             dynamicGlowColors = null;
                         }
                     } else if (!img.complete) {
-                        // Si la imagen aún no está completa, no hacer nada aquí, el 'load' listener se encargará.
                     } else {
-                        // La imagen está 'complete' pero no tiene dimensiones (ej. imagen rota)
                         console.warn('ColorThief: Imagen cargada pero inválida (sin dimensiones):', img.src);
                         dynamicGlowColors = null;
                     }
@@ -827,30 +842,25 @@
                 // Intentar extraer colores si la imagen ya está cargada
                 // (importante para imágenes cacheadas o ya visibles)
                 if (img.complete && img.naturalWidth > 0) {
-                    extractAndStoreColors();
+                    processLoadedImage();
                 }
                 // Siempre añadir el listener 'load' para imágenes que cargan después (incluyendo lazy-loaded)
-                img.addEventListener('load', extractAndStoreColors);
+                img.addEventListener('load', processLoadedImage);
+
                 img.addEventListener('error', () => {
                     console.error('Error al cargar la imagen:', img.src);
+                    img.style.opacity = '1'; // Hacer visible para mostrar el alt text o el fondo de error
                     dynamicGlowColors = null;
                 });
 
                 item.addEventListener('mouseenter', () => {
-                    if (dynamicGlowColors) {
-                        for (const [variable, color] of Object.entries(dynamicGlowColors)) {
-                            item.style.setProperty(variable, color);
-                        }
+                    if (dynamicGlowColors && dynamicGlowColors['--dominant-glow-color']) {
+                        item.style.setProperty('--dominant-glow-color', dynamicGlowColors['--dominant-glow-color']);
                     }
                 });
 
                 item.addEventListener('mouseleave', () => {
-                    // La transición de opacidad para .game-item::after es de 0.4s (400ms).
-                    // Retrasamos la eliminación de las variables de color para que coincida
-                    // con la duración de la transición, evitando el parpadeo de los colores por defecto.
                     setTimeout(() => {
-                        // Solo eliminar las propiedades si el cursor no ha vuelto a entrar en la tarjeta
-                        // y si se habían establecido colores dinámicos.
                         if (dynamicGlowColors && !item.matches(':hover')) {
                             item.style.removeProperty('--dominant-glow-color');
                         }
