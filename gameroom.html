@@ -165,7 +165,7 @@
 
         /* Estilos para el Modal de Confirmación Personalizado */
         .custom-confirm-modal {
-            display: none; /* Hidden by default, shown with JS */
+            display: flex; /* Usar flex para centrar, la visibilidad se controla con opacity/visibility */
             position: fixed;
             z-index: 105; /* Encima del gameModal (100) */
             left: 0;
@@ -175,6 +175,10 @@
             background-color: rgba(0,0,0,0.5); /* Overlay oscuro semitransparente */
             align-items: center;
             justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+
         }
 
         .custom-confirm-modal-content {
@@ -186,6 +190,15 @@
             width: 90%;
             max-width: 450px;
             text-align: center;
+            transform: translateY(-20px) scale(0.95);
+            opacity: 0; /* Inicialmente invisible para la animación */
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+
+        .custom-confirm-modal.is-visible {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 0s;
         }
 
         .custom-confirm-modal-content p {
@@ -193,6 +206,11 @@
             margin-bottom: 25px;
             font-size: 1em;
             line-height: 1.5;
+        }
+
+        .custom-confirm-modal.is-visible .custom-confirm-modal-content {
+            transform: translateY(0) scale(1);
+            opacity: 1;
         }
 
         .custom-confirm-buttons button {
@@ -237,10 +255,10 @@
     <!-- Custom Confirmation Modal -->
     <div id="customConfirmModal" class="custom-confirm-modal">
         <div class="custom-confirm-modal-content">
-            <p id="customConfirmMessage">Perderás tu progreso si cierras la ventana. Puedes guardar tu partida presionando el ícono 'Save State'.</p>
+            <p id="customConfirmMessage">Perderás tu progreso en cuanto cierras la ventana. Puedes guardar tu partida presionando el ícono 'Save State'.</p>
             <div class="custom-confirm-buttons">
                 <button id="customConfirmCancelButton">Cancelar</button>
-                <button id="customConfirmOkButton">Confirmar Cierre</button>
+                <button id="customConfirmOkButton">Cerrar</button>
             </div>
         </div>
     </div>
@@ -255,6 +273,7 @@
             const gameModalCloseButton = gameModal.querySelector('.game-modal-close-button');
             const gameModalIframe = document.getElementById('gameModalIframe');
             const modalGameTitle = document.getElementById('modalGameTitle');
+            let gameOpenStartTime = null; // Para rastrear cuándo se abrió el modal del juego
 
             // Custom Confirm Modal elements
             const customConfirmModal = document.getElementById('customConfirmModal');
@@ -338,6 +357,7 @@
                 gameModalIframe.src = gameSrc;
                 document.body.classList.add('modal-blur-active');
                 gameModal.classList.add('is-open');
+                gameOpenStartTime = Date.now(); // Registrar el tiempo de apertura
             }
 
             function closeGameModal() {
@@ -346,18 +366,30 @@
                 // Importante: Detener el juego y liberar recursos
                 gameModalIframe.src = 'about:blank'; 
                 modalGameTitle.textContent = 'Nombre del Juego'; // Resetear título
+                gameOpenStartTime = null; // Resetear el tiempo de apertura
             }
 
             function showCustomConfirm() {
-                customConfirmModal.style.display = 'flex';
+                // customConfirmModal.style.display = 'flex'; // Ya no es necesario, display es flex por defecto
+                customConfirmModal.classList.add('is-visible');
             }
 
             function hideCustomConfirm() {
-                customConfirmModal.style.display = 'none';
+                // customConfirmModal.style.display = 'none';
+                customConfirmModal.classList.remove('is-visible');
             }
 
             gameModalCloseButton.addEventListener('click', () => {
-                showCustomConfirm();
+                if (gameOpenStartTime) {
+                    const timeOpenInSeconds = (Date.now() - gameOpenStartTime) / 1000;
+                    if (timeOpenInSeconds > 60) { // Más de 1 minuto (60 segundos)
+                        showCustomConfirm();
+                    } else {
+                        closeGameModal(); // Cerrar directamente si es menos de 1 minuto
+                    }
+                } else {
+                    closeGameModal(); // Si gameOpenStartTime no está definido, cerrar por seguridad
+                }
             });
 
             customConfirmOkButton.addEventListener('click', () => {
