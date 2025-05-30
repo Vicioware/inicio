@@ -178,10 +178,6 @@
         }
 
         #modalDownloadLinks li {
-            /* Reducimos el margen inferior para compensar el aumento de altura del <li>
-               causado por un mayor margin-top en .read-more-container.
-               Si .read-more-container.margin-top aumentó en 8px (de 2px a 10px),
-               reducir esto en una cantidad similar (12px - 8px = 4px) mantendrá un espaciado vertical similar. */
             margin-bottom: -35px; 
         }
 
@@ -233,6 +229,7 @@
             border: 1px solid #333;
             max-height: 0;
             overflow: hidden;
+            white-space: pre-line; /* Para respetar los saltos de línea (\n) en el texto */
             opacity: 0;
             transition: max-height 0.35s ease-out, opacity 0.35s ease-out, padding-top 0.35s ease-out, padding-bottom 0.35s ease-out;
         }
@@ -737,7 +734,7 @@
                 'halo-ce': [{
                     text: 'Descargar',
                     url: 'https://www.mediafire.com/file/jftpybq93hfqy26/HCE_2001.rar/file',
-                    readMoreText: 'Versión clásica de Halo: Combat Evolved para PC (2001). Revive la campaña original y el multijugador que definieron una era. Este archivo RAR contiene el juego completo listo para instalar. Compatible con la mayoría de sistemas Windows.'
+                    readMoreText: '- Versión 1.0.10\n- Español\n- Multijugador funcional'
                 }]
             };
 
@@ -800,10 +797,17 @@
                             readMoreContent.className = 'read-more-content';
                             readMoreContent.textContent = linkInfo.readMoreText;
 
+                            // Guardar el listItem padre para fácil acceso
+                            const parentListItem = listItem;
+
                             readMoreToggle.addEventListener('click', function() {
                                 const isVisible = readMoreContent.classList.toggle('visible');
                                 this.textContent = isVisible ? 'Ocultar detalles' : 'Detalles';
+
+                                // Ajustar el margin-bottom del li padre
+                                parentListItem.style.marginBottom = isVisible ? '15px' : '-35px';
                             });
+
 
                             readMoreContainer.appendChild(readMoreToggle);
                             readMoreContainer.appendChild(readMoreContent);
