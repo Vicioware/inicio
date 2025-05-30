@@ -329,7 +329,7 @@
     </style>
 </head>
 <body>
-    <a href="index.html" class="vicioware-icon-link" title="Vicioware Inicio">
+    <a href="index.html" class="vicioware-icon-link">
         <img src="resources/vicioware_icon.webp">
     </a>
     <a href="gameroom.html" class="gameroom-icon-link" title="Sala de juegos">
@@ -1117,6 +1117,24 @@
 
             // window.addEventListener('load', alignGameroomIcon); // Ya no se necesita
             // window.addEventListener('resize', alignGameroomIcon); // Ya no se necesita
+
+            // Funcionalidad para cambiar el icono de Gameroom a GIF en hover
+            const gameroomIconLink = document.querySelector('.gameroom-icon-link');
+            if (gameroomIconLink) {
+                const gameroomIconImage = gameroomIconLink.querySelector('img');
+                if (gameroomIconImage) {
+                    const originalGameroomSrc = gameroomIconImage.src; // Captura la ruta del PNG actual
+                    const hoverGameroomSrc = 'resources/gameroom.gif'; // Ruta al GIF
+
+                    gameroomIconLink.addEventListener('mouseenter', () => {
+                        gameroomIconImage.src = hoverGameroomSrc;
+                    });
+
+                    gameroomIconLink.addEventListener('mouseleave', () => {
+                        gameroomIconImage.src = originalGameroomSrc;
+                    });
+                }
+            }
 
         });
     </script>
