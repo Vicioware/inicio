@@ -307,7 +307,7 @@
 </head>
 <body>
     <a href="gameroom.html" class="gameroom-icon-link" title="Sala de juegos">
-        <img src="resources/gameroom.png" alt="Sala de Juegos">
+        <img src="resources/gameroom.png">
     </a>
     <input type="search" id="searchBar" placeholder="Buscar juegos...">
 
@@ -960,6 +960,9 @@
 
             // Llamada inicial para establecer la prioridad de carga al cargar la página
             updateImageLoadingPriority();
+            // Llamada inicial para alinear el ícono de Gameroom tan pronto como el DOM esté listo
+            // y los elementos básicos tengan dimensiones.
+            alignGameroomIcon();
 
             function closeModal() {
                 document.body.classList.remove('modal-blur-active'); // Quitar desenfoque
@@ -1112,11 +1115,8 @@
             }
 
             // Event listeners para alinear el ícono de Gameroom
-            window.addEventListener('load', () => {
-                alignGameroomIcon();
-                // Pequeña demora para asegurar que cualquier reflow final haya ocurrido
-                setTimeout(alignGameroomIcon, 100);
-            });
+            // Se llama en 'load' para reajustar si las imágenes causaron un cambio de layout significativo.
+            window.addEventListener('load', alignGameroomIcon);
             window.addEventListener('resize', alignGameroomIcon);
 
         });
