@@ -7,6 +7,7 @@
     <link rel="icon" href="resources/favicon_32x32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="resources/favicon_48x48.png" sizes="48x48" type="image/png">
     <link rel="icon" href="resources/favicon_192x192.png" sizes="192x192" type="image/png">
+    <link rel="preload" href="resources/gameroom.gif" as="image">
     <title>Vicioware</title>
     <style>
         @font-face {
@@ -290,7 +291,7 @@
 
         /* Estilos para el ícono de Gameroom */
         .gameroom-icon-link {
-            position: fixed;
+            position: absolute; /* Cambiado de fixed a absolute */
             top: 15px; /* Movido 5px hacia arriba (25px - 5px) */
             right: 17px; /* Movido 10px hacia la derecha (30px - 10px) */
             z-index: 1000; /* Debajo de la notificación (hangout-notification es 1001) */
@@ -311,7 +312,7 @@
     <style>
         /* Estilos para el ícono de Vicioware */
         .vicioware-icon-link {
-            position: fixed;
+            position: absolute; /* Cambiado de fixed a absolute */
             top: 15px;
             left: 32px; /* Espaciado desde la izquierda */
             z-index: 1002; /* Mismo z-index que el ícono de gameroom para consistencia */
@@ -329,7 +330,7 @@
     </style>
 </head>
 <body>
-    <a href="index.html" class="vicioware-icon-link">
+    <a href="index.html" class="vicioware-icon-link" title="Vicioware Inicio">
         <img src="resources/vicioware_icon.png">
     </a>
     <a href="gameroom.html" class="gameroom-icon-link" title="Sala de juegos">
