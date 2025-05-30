@@ -775,7 +775,7 @@
 
                 if (gameId && gameDownloadLinksData[gameId]) {
                     const links = gameDownloadLinksData[gameId];
-                    links.forEach(linkInfo => {
+                    links.forEach((linkInfo, index) => { // <--- Añadido 'index' aquí
                         
                         const listItem = document.createElement('li');
                         const isLastItemInList = (index === links.length - 1);
