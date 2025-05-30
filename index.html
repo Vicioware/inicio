@@ -288,7 +288,7 @@
         .gameroom-icon-link {
             position: fixed;
             top: 15px;
-            right: 15px;
+            right: 35px;
             z-index: 1002; /* Encima de la notificación si es necesario */
             display: block;
         }
@@ -774,7 +774,7 @@
             const modalGameTitle = document.getElementById('modalGameTitle');
             const modalDownloadLinksList = document.getElementById('modalDownloadLinks');
             const closeButton = modal.querySelector('.close-button');
-            const galleryContainer = document.querySelector('.gallery-container');
+            // const galleryContainer = document.querySelector('.gallery-container'); // No longer needed for icon alignment
             const searchBar = document.getElementById('searchBar'); // searchBar ya está aquí
             const hangoutNotification = document.getElementById('hangoutNotification');
             let hangoutTimer = null; // Para controlar el temporizador de la notificación
@@ -806,39 +806,7 @@
                 }]
             };
 
-            const gameroomIconLink = document.querySelector('.gameroom-icon-link');
-
-            function alignGameroomIcon() {
-                if (!gameroomIconLink || !galleryContainer) {
-                    console.warn('Icono de Gameroom o contenedor de galería no encontrado para alineación.');
-                    return;
-                }
-
-                const visibleGameItems = Array.from(galleryContainer.querySelectorAll('.game-item'))
-                                           .filter(item => window.getComputedStyle(item).display !== 'none');
-
-                if (visibleGameItems.length === 0) {
-                    gameroomIconLink.style.right = '15px'; // Fallback a la posición CSS por defecto
-                    return;
-                }
-
-                const firstItemRect = visibleGameItems[0].getBoundingClientRect();
-                let lastItemInFirstRow = visibleGameItems[0];
-
-                for (let i = 1; i < visibleGameItems.length; i++) {
-                    const currentItemRect = visibleGameItems[i].getBoundingClientRect();
-                    // Comprobar si el item está en la misma fila (con una pequeña tolerancia)
-                    if (Math.abs(currentItemRect.top - firstItemRect.top) < 5) {
-                        lastItemInFirstRow = visibleGameItems[i];
-                    } else {
-                        break; // Se pasó a la siguiente fila
-                    }
-                }
-
-                const lastItemInFirstRowRect = lastItemInFirstRow.getBoundingClientRect();
-                const viewportWidth = document.documentElement.clientWidth;
-                gameroomIconLink.style.right = `${viewportWidth - lastItemInFirstRowRect.right}px`;
-            }
+            // const gameroomIconLink = document.querySelector('.gameroom-icon-link'); // No longer needed
 
             function updateImageLoadingPriority() {
                 const visibleGameItems = [];
@@ -960,9 +928,6 @@
 
             // Llamada inicial para establecer la prioridad de carga al cargar la página
             updateImageLoadingPriority();
-            // Llamada inicial para alinear el ícono de Gameroom tan pronto como el DOM esté listo
-            // y los elementos básicos tengan dimensiones.
-            alignGameroomIcon();
 
             function closeModal() {
                 document.body.classList.remove('modal-blur-active'); // Quitar desenfoque
@@ -1009,7 +974,7 @@
                 });
                 // Actualizar la prioridad de carga después de filtrar
                 updateImageLoadingPriority();
-                alignGameroomIcon(); // Re-alinear el ícono después de filtrar
+                // alignGameroomIcon(); // Ya no se necesita
             });
 
             gameItems.forEach(item => {
@@ -1114,10 +1079,8 @@
                 closeHangoutNotification(); // Cierra la notificación después de redirigir
             }
 
-            // Event listeners para alinear el ícono de Gameroom
-            // Se llama en 'load' para reajustar si las imágenes causaron un cambio de layout significativo.
-            window.addEventListener('load', alignGameroomIcon);
-            window.addEventListener('resize', alignGameroomIcon);
+            // window.addEventListener('load', alignGameroomIcon); // Ya no se necesita
+            // window.addEventListener('resize', alignGameroomIcon); // Ya no se necesita
 
         });
     </script>
