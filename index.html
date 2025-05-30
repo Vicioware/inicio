@@ -805,13 +805,18 @@
                                 this.textContent = isVisible ? 'Ocultar detalles' : 'Detalles';
 
                                 // Ajustar el margin-bottom del li padre
-                                parentListItem.style.marginBottom = isVisible ? '-10px' : '-35px';
+                                // Cuando es visible, -10px. Cuando se oculta, vuelve a -35px (el default de CSS)
+                                parentListItem.style.marginBottom = isVisible ? '-10px' : '-35px'; 
                             });
 
 
                             readMoreContainer.appendChild(readMoreToggle);
                             readMoreContainer.appendChild(readMoreContent);
                             listItem.appendChild(readMoreContainer); // Añadir al final del listItem
+                        }
+                         else {
+                            // Si no hay "Detalles", ajustar el margen inferior del li
+                            listItem.style.marginBottom = '5px';
                         }
                     });
                 } else {
