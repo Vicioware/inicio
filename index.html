@@ -298,14 +298,14 @@
         }
 
         .gameroom-icon-link img {
-            width: 48px; /* Ajusta este tamaño según prefieras */
-            height: 48px; /* Ajusta este tamaño según prefieras */
-            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+            width: 48px; /* Ancho base para el icono */
+            height: 36px; /* Alto calculado para mantener proporción 4:3 (48 * 3/4) */
+            transition: transform 0.3s ease-in-out; /* Transición solo para transform */
         }
 
         .gameroom-icon-link:hover img {
-            transform: scale(1.15) rotate(10deg); /* Agranda y rota ligeramente */
-            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7)); /* Añade un resplandor blanco */
+            transform: scale(1.15); /* Solo agranda al pasar el ratón */
+            /* Se eliminó filter y rotate */
         }
     </style>
     <style>
