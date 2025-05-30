@@ -790,16 +790,11 @@
 
                             const readMoreToggle = document.createElement('span');
                             readMoreToggle.className = 'read-more-toggle';
-                            readMoreToggle.textContent = 'Leer más';
+                            readMoreToggle.textContent = 'Detalles';
 
                             const readMoreContent = document.createElement('div');
                             readMoreContent.className = 'read-more-content';
                             readMoreContent.textContent = linkInfo.readMoreText;
-
-                            readMoreToggle.addEventListener('click', function() {
-                                const isVisible = readMoreContent.classList.toggle('visible');
-                                this.textContent = isVisible ? 'Leer menos' : 'Leer más';
-                            });
 
                             readMoreContainer.appendChild(readMoreToggle);
                             readMoreContainer.appendChild(readMoreContent);
