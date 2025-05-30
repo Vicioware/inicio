@@ -735,9 +735,9 @@
     <!-- Notificación de "Pasar el rato" -->
     <div id="hangoutNotification" class="hangout-notification">
         <span class="close-notif-btn" onclick="closeHangoutNotification()">&times;</span>
-        <p>Tu descarga ha comenzado. ¿Te gustaría pasar el rato en nuestra sección de minijuegos mientras esperas?</p>
+        <p>¿Te gustaría pasar el rato mientras esperas tu descarga?</p>
         <div style="text-align: right;">
-            <button onclick="redirectToMinigames()" style="padding: 8px 12px; background-color: #5ac560; color: white; border: none; border-radius: 4px; cursor: pointer;">¡Sí, vamos!</button>
+            <button onclick="redirectToMinigames()" style="padding: 8px 12px; background-color: #5ac560; color: white; border: none; border-radius: 4px; cursor: pointer;">De acuerdo</button>
         </div>
     </div>
 
@@ -831,12 +831,16 @@
 
                         // Event listener para el clic en el botón de descarga
                         anchor.addEventListener('click', () => {
-                            // Limpiar cualquier temporizador anterior si el usuario hace clic rápidamente en varios enlaces
-                            if (hangoutTimer) clearTimeout(hangoutTimer);
-                            // Ocultar notificación si ya está visible
-                            hangoutNotification.classList.remove('show');
+                            // Comprobar si la notificación ya se mostró en esta sesión
+                            if (!sessionStorage.getItem('hangoutNotificationShown')) {
+                                // Limpiar cualquier temporizador anterior si el usuario hace clic rápidamente en varios enlaces
+                                if (hangoutTimer) clearTimeout(hangoutTimer);
+                                // Ocultar notificación si ya está visible (por si acaso, aunque no debería si se muestra solo una vez)
+                                hangoutNotification.classList.remove('show');
 
-                            hangoutTimer = setTimeout(showHangoutNotification, 10000); // 10 segundos
+                                hangoutTimer = setTimeout(showHangoutNotification, 10000); // 10 segundos
+                                // Marcar que la notificación está programada para mostrarse (o ya se mostró) en esta sesión
+                            }
                         });
 
                         listItem.appendChild(anchor);
@@ -1033,6 +1037,8 @@
             // Funciones para la notificación de "Pasar el rato"
             function showHangoutNotification() {
                 hangoutNotification.classList.add('show');
+                // Marcar que la notificación se ha mostrado en esta sesión
+                sessionStorage.setItem('hangoutNotificationShown', 'true');
             }
 
             // Estas funciones se declaran globalmente para ser accesibles desde el onclick en el HTML
@@ -1043,7 +1049,7 @@
 
             window.redirectToMinigames = function() {
                 // Cambia 'minijuegos.html' por la URL real de tu sección de minijuegos
-                window.open('minijuegos.html', '_blank'); 
+                window.open('gameroom.html', '_blank'); 
                 closeHangoutNotification(); // Cierra la notificación después de redirigir
             }
 
