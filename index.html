@@ -292,8 +292,8 @@
         .gameroom-icon-link {
             position: fixed;
             top: 15px;
-            right: 32px;
-            z-index: 1002; /* Encima de la notificación si es necesario */
+            right: 20px; /* Ajustado para alinearse mejor con la notificación */
+            z-index: 1000; /* Debajo de la notificación (hangout-notification es 1001) */
             display: block;
         }
 
@@ -804,6 +804,7 @@
             const searchBar = document.getElementById('searchBar'); // searchBar ya está aquí
             const hangoutNotification = document.getElementById('hangoutNotification');
             let hangoutTimer = null; // Para controlar el temporizador de la notificación
+            let notificationAutoCloseTimer = null; // Para controlar el autocierre de la notificación
 
             // Data for download links
             const gameDownloadLinksData = {
@@ -1088,17 +1089,26 @@
 
             // Funciones para la notificación de "Pasar el rato"
             function showHangoutNotification() {
+                // Si ya hay un temporizador de autocierre, limpiarlo (por si se llama a show múltiples veces rápidamente)
+                if (notificationAutoCloseTimer) clearTimeout(notificationAutoCloseTimer);
+
                 hangoutNotification.classList.add('show');
                 // Marcar que la notificación se ha mostrado en esta sesión
                 sessionStorage.setItem('hangoutNotificationShown', 'true');
+
+                // Iniciar temporizador para ocultar automáticamente después de 10 segundos
+                notificationAutoCloseTimer = setTimeout(() => {
+                    closeHangoutNotification(); // Reutilizar la función de cierre
+                }, 10000); // 10 segundos para ocultar
             }
 
             // Estas funciones se declaran globalmente para ser accesibles desde el onclick en el HTML
             window.closeHangoutNotification = function() {
                 hangoutNotification.classList.remove('show');
                 if (hangoutTimer) clearTimeout(hangoutTimer); // Detener el temporizador si se cierra manualmente
+                if (notificationAutoCloseTimer) clearTimeout(notificationAutoCloseTimer); // Detener el temporizador de autocierre
             }
-
+            
             window.redirectToMinigames = function() {
                 // Cambia 'minijuegos.html' por la URL real de tu sección de minijuegos
                 window.open('gameroom.html', '_blank'); 
