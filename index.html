@@ -291,20 +291,20 @@
         /* Estilos para el ícono de Gameroom */
         .gameroom-icon-link {
             position: fixed;
-            top: 15px;
-            right: 20px; /* Ajustado para alinearse mejor con la notificación */
+            top: 25px; /* Movido 10px hacia abajo */
+            right: 30px; /* Movido 10px hacia la izquierda */
             z-index: 1000; /* Debajo de la notificación (hangout-notification es 1001) */
             display: block;
         }
 
         .gameroom-icon-link img {
-            width: 48px; /* Ancho base para el icono */
-            height: 36px; /* Alto calculado para mantener proporción 4:3 (48 * 3/4) */
+            width: 58px; /* Ancho base aumentado en 10px */
+            height: 43.5px; /* Alto calculado para mantener proporción 4:3 (58 * 3/4) */
             transition: transform 0.3s ease-in-out; /* Transición solo para transform */
         }
 
         .gameroom-icon-link:hover img {
-            transform: scale(1.15); /* Solo agranda al pasar el ratón */
+            transform: scale(1.15); /* Solo agranda al pasar el ratón, el desplazamiento ya está en la base */
             /* Se eliminó filter y rotate */
         }
     </style>
