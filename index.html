@@ -202,7 +202,7 @@
 
         /* Estilos para "Leer más" */
         .read-more-container {
-            margin-top: 5px; /* Espacio entre el botón y el "Leer más" */
+            margin-top: 2px; /* Espacio entre el botón y el "Leer más" */
             /* text-align: left; es el default para div, así que el span se alineará a la izquierda */
         }
 
@@ -795,6 +795,11 @@
                             const readMoreContent = document.createElement('div');
                             readMoreContent.className = 'read-more-content';
                             readMoreContent.textContent = linkInfo.readMoreText;
+
+                            readMoreToggle.addEventListener('click', function() {
+                                const isVisible = readMoreContent.classList.toggle('visible');
+                                this.textContent = isVisible ? 'Ocultar detalles' : 'Detalles';
+                            });
 
                             readMoreContainer.appendChild(readMoreToggle);
                             readMoreContainer.appendChild(readMoreContent);
