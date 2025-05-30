@@ -162,12 +162,65 @@
         .gallery-container { /* Para asegurar un des-desenfoque suave */
             transition: filter 0.3s ease-in-out;
         }
+
+        /* Estilos para el Modal de Confirmación Personalizado */
+        .custom-confirm-modal {
+            display: none; /* Hidden by default, shown with JS */
+            position: fixed;
+            z-index: 105; /* Encima del gameModal (100) */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5); /* Overlay oscuro semitransparente */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .custom-confirm-modal-content {
+            background-color: #2f2f2f; /* Color de fondo de la notificación de index.html */
+            color: #f0f0f0;           /* Color de texto de la notificación de index.html */
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        .custom-confirm-modal-content p {
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 1em;
+            line-height: 1.5;
+        }
+
+        .custom-confirm-buttons button {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 0 8px;
+            min-width: 120px;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        #customConfirmOkButton { /* Botón para confirmar el cierre */
+            background-color: #5ac560; /* Mismo color que el botón "De acuerdo" de la notificación de index.html */
+            color: white;
+        }
+
+        #customConfirmCancelButton { /* Botón para cancelar */
+            background-color: #777; /* Un gris neutro */
+            color: white;
+        }
     </style>
 </head>
 <body>
     <div class="gallery-container">
         <a href="#" data-game-id="metal-slug" data-game-src="https://www.retrogames.cc/embed/9157-metal-slug-super-vehicle-001.html" class="game-item">
-            <img src="portadas/metal-slug.png" loading="lazy">
+            <img src="portadas/metal-slug.png" loading="lazy" alt="Metal Slug">
             <p>Metal Slug</p>
         </a>
     </div>
@@ -181,6 +234,17 @@
         </div>
     </div>
 
+    <!-- Custom Confirmation Modal -->
+    <div id="customConfirmModal" class="custom-confirm-modal">
+        <div class="custom-confirm-modal-content">
+            <p id="customConfirmMessage">Perderás tu progreso si cierras la ventana. Puedes guardar tu partida presionando el ícono 'Save State'.</p>
+            <div class="custom-confirm-buttons">
+                <button id="customConfirmCancelButton">Cancelar</button>
+                <button id="customConfirmOkButton">Confirmar Cierre</button>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.4.0/color-thief.umd.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -191,6 +255,11 @@
             const gameModalCloseButton = gameModal.querySelector('.game-modal-close-button');
             const gameModalIframe = document.getElementById('gameModalIframe');
             const modalGameTitle = document.getElementById('modalGameTitle');
+
+            // Custom Confirm Modal elements
+            const customConfirmModal = document.getElementById('customConfirmModal');
+            const customConfirmOkButton = document.getElementById('customConfirmOkButton');
+            const customConfirmCancelButton = document.getElementById('customConfirmCancelButton');
 
             gameItems.forEach(item => {
                 const img = item.querySelector('img');
@@ -279,7 +348,24 @@
                 modalGameTitle.textContent = 'Nombre del Juego'; // Resetear título
             }
 
-            gameModalCloseButton.addEventListener('click', closeGameModal);
+            function showCustomConfirm() {
+                customConfirmModal.style.display = 'flex';
+            }
+
+            function hideCustomConfirm() {
+                customConfirmModal.style.display = 'none';
+            }
+
+            gameModalCloseButton.addEventListener('click', () => {
+                showCustomConfirm();
+            });
+
+            customConfirmOkButton.addEventListener('click', () => {
+                closeGameModal();
+                hideCustomConfirm();
+            });
+
+            customConfirmCancelButton.addEventListener('click', hideCustomConfirm);
 
             window.addEventListener('click', (event) => {
                 if (event.target === gameModal) {
