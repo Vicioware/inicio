@@ -283,10 +283,32 @@
             font-size: 1.2em;
             line-height: 1;
         }
+
+        /* Estilos para el ícono de Gameroom */
+        .gameroom-icon-link {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1002; /* Encima de la notificación si es necesario */
+            display: block;
+        }
+
+        .gameroom-icon-link img {
+            width: 48px; /* Ajusta este tamaño según prefieras */
+            height: 48px; /* Ajusta este tamaño según prefieras */
+            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+        }
+
+        .gameroom-icon-link:hover img {
+            transform: scale(1.15) rotate(10deg); /* Agranda y rota ligeramente */
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7)); /* Añade un resplandor blanco */
+        }
     </style>
 </head>
 <body>
-
+    <a href="gameroom.html" target="_blank" class="gameroom-icon-link" title="Ir a la Sala de Juegos">
+        <img src="resources/gameroom.png" alt="Sala de Juegos">
+    </a>
     <input type="search" id="searchBar" placeholder="Buscar juegos...">
 
     <div class="gallery-container">
