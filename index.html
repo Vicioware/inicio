@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="resources/favicon_16x16.png" sizes="16x16" type="image/png">
+    <link rel="icon" href="resources/favicon_32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="resources/favicon_48x48.png" sizes="48x48" type="image/png">
+    <link rel="icon" href="resources/favicon_192x192.png" sizes="192x192" type="image/png">
     <title>Vicioware</title>
     <style>
         @font-face {
@@ -304,8 +308,30 @@
             filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.7)); /* Añade un resplandor blanco */
         }
     </style>
+    <style>
+        /* Estilos para el ícono de Vicioware */
+        .vicioware-icon-link {
+            position: fixed;
+            top: 15px;
+            left: 20px; /* Espaciado desde la izquierda */
+            z-index: 1002; /* Mismo z-index que el ícono de gameroom para consistencia */
+            display: block;
+        }
+        .vicioware-icon-link img {
+            width: 48px; /* Tamaño ajustado para el ícono */
+            height: 48px; /* Tamaño ajustado para el ícono */
+            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+        }
+        .vicioware-icon-link:hover img {
+            transform: scale(1.15); /* Efecto de agrandamiento sutil al pasar el ratón */
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5)); /* Resplandor blanco sutil */
+        }
+    </style>
 </head>
 <body>
+    <a href="index.html" class="vicioware-icon-link" title="Vicioware Inicio">
+        <img src="resources/vicioware_icon.webp">
+    </a>
     <a href="gameroom.html" class="gameroom-icon-link" title="Sala de juegos">
         <img src="resources/gameroom.png">
     </a>
