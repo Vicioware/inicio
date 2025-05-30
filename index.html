@@ -199,6 +199,46 @@
             transform: translateY(0px) scale(1.02); /* Efecto de elevación y agrandamiento suave */
             box-shadow: 0 0 10px 2px rgba(110, 255, 102, 0.644); /* Glow suave del color #2fc427 */
         }
+
+        /* Estilos para "Leer más" */
+        .read-more-container {
+            margin-top: 5px; /* Espacio entre el botón y el "Leer más" */
+            /* text-align: left; es el default para div, así que el span se alineará a la izquierda */
+        }
+
+        .read-more-toggle {
+            color: #a0a0a0; /* Un gris claro */
+            font-size: 0.85em;
+            text-decoration: underline;
+            cursor: pointer;
+            display: inline-block; /* Para que no ocupe todo el ancho y se alinee a la izquierda */
+            padding: 3px 0; /* Pequeño padding vertical */
+        }
+
+        .read-more-toggle:hover {
+            color: #fff; /* Más brillante al pasar el ratón */
+        }
+
+        .read-more-content {
+            margin-top: 8px;
+            padding: 0 10px; /* Padding horizontal, vertical controlado por max-height/transición */
+            background-color: #252525; /* Un poco diferente al fondo del modal */
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #e0e0e0;
+            border: 1px solid #333;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.35s ease-out, opacity 0.35s ease-out, padding-top 0.35s ease-out, padding-bottom 0.35s ease-out;
+        }
+
+        .read-more-content.visible {
+            max-height: 300px; /* Ajustar según el contenido máximo esperado. Puede ser un valor grande como 100vh. */
+            opacity: 1;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
     </style>
     <style>
         body.modal-blur-active > .gallery-container { /* Solo afecta al gallery-container */
@@ -690,8 +730,11 @@
                 'barony': [{ text: 'Descargar Barony', url: 'https://example.com/barony-download' }],
                 'dmc-devil-may-cry': [{ text: 'Descargar DmC: Devil May Cry', url: 'https://example.com/dmc-devil-may-cry-download' }],
                 'call-of-duty': [{ text: 'Descargar Call of Duty', url: 'https://example.com/call-of-duty-download' }],
-                'halo-ce': [{ text: 'Descargar', url: 'https://www.mediafire.com/file/jftpybq93hfqy26/HCE_2001.rar/file' }]
-                // Asegúrate de que todos los game-id de tus tarjetas estén aquí con sus enlaces
+                'halo-ce': [{
+                    text: 'Descargar',
+                    url: 'https://www.mediafire.com/file/jftpybq93hfqy26/HCE_2001.rar/file',
+                    readMoreText: 'Versión clásica de Halo: Combat Evolved para PC (2001). Revive la campaña original y el multijugador que definieron una era. Este archivo RAR contiene el juego completo listo para instalar. Compatible con la mayoría de sistemas Windows.'
+                }]
             };
 
             function updateImageLoadingPriority() {
@@ -739,6 +782,29 @@
                         anchor.target = '_blank'; // Abrir en nueva pestaña
                         listItem.appendChild(anchor);
                         modalDownloadLinksList.appendChild(listItem);
+
+                        // Añadir "Leer más" si existe texto
+                        if (linkInfo.readMoreText) {
+                            const readMoreContainer = document.createElement('div');
+                            readMoreContainer.className = 'read-more-container';
+
+                            const readMoreToggle = document.createElement('span');
+                            readMoreToggle.className = 'read-more-toggle';
+                            readMoreToggle.textContent = 'Leer más';
+
+                            const readMoreContent = document.createElement('div');
+                            readMoreContent.className = 'read-more-content';
+                            readMoreContent.textContent = linkInfo.readMoreText;
+
+                            readMoreToggle.addEventListener('click', function() {
+                                const isVisible = readMoreContent.classList.toggle('visible');
+                                this.textContent = isVisible ? 'Leer menos' : 'Leer más';
+                            });
+
+                            readMoreContainer.appendChild(readMoreToggle);
+                            readMoreContainer.appendChild(readMoreContent);
+                            listItem.appendChild(readMoreContainer); // Añadir al final del listItem
+                        }
                     });
                 } else {
                     const listItem = document.createElement('li');
