@@ -776,7 +776,9 @@
                 if (gameId && gameDownloadLinksData[gameId]) {
                     const links = gameDownloadLinksData[gameId];
                     links.forEach(linkInfo => {
+                        
                         const listItem = document.createElement('li');
+                        const isLastItemInList = (index === links.length - 1);
                         const anchor = document.createElement('a');
                         anchor.href = linkInfo.url;
                         anchor.textContent = linkInfo.text;
@@ -804,19 +806,29 @@
                                 const isVisible = readMoreContent.classList.toggle('visible');
                                 this.textContent = isVisible ? 'Ocultar detalles' : 'Detalles';
 
-                                // Ajustar el margin-bottom del li padre
-                                // Cuando es visible, -10px. Cuando se oculta, vuelve a -35px (el default de CSS)
-                                parentListItem.style.marginBottom = isVisible ? '-10px' : '-35px'; 
+                                // Solo ajustar el margen si es el último item de la lista.
+                                // Si no es el último, el margen ya está fijado en 10px para el espaciado entre botones.
+                                if (isLastItemInList) {
+                                    parentListItem.style.marginBottom = isVisible ? '-10px' : '-35px';
+                                }
                             });
-
 
                             readMoreContainer.appendChild(readMoreToggle);
                             readMoreContainer.appendChild(readMoreContent);
                             listItem.appendChild(readMoreContainer); // Añadir al final del listItem
-                        }
-                         else {
-                            // Si no hay "Detalles", ajustar el margen inferior del li
-                            listItem.style.marginBottom = '2px';
+
+                            // Establecer margen inicial para este li
+                            if (isLastItemInList) {
+                                listItem.style.marginBottom = '-35px'; // Es el último y tiene "Detalles" (ocultos por defecto)
+                            } else {
+                                listItem.style.marginBottom = '10px'; // No es el último, necesita 10px de espacio debajo
+                            }
+                        } else { // No hay "Detalles"
+                            if (isLastItemInList) {
+                                listItem.style.marginBottom = '-5px'; // Es el último y no tiene "Detalles"
+                            } else {
+                                listItem.style.marginBottom = '10px'; // No es el último, necesita 10px de espacio debajo
+                            }
                         }
                     });
                 } else {
