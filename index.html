@@ -249,6 +249,40 @@
         .gallery-container { /* Para asegurar un des-desenfoque suave */
             transition: filter 0.3s ease-in-out;
         }
+
+        /* Estilos para la Notificación de "Pasar el rato" */
+        .hangout-notification {
+            position: fixed;
+            top: 20px;
+            right: -400px; /* Inicialmente fuera de la pantalla */
+            width: 300px;
+            background-color: #2f2f2f;
+            color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1001; /* Encima del modal si es necesario, o ajustar */
+            transition: right 0.5s ease-in-out;
+            font-size: 0.9em;
+        }
+
+        .hangout-notification.show {
+            right: 20px; /* Deslizar hacia adentro */
+        }
+
+        .hangout-notification p {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .hangout-notification .close-notif-btn {
+            float: right;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 10px; /* Espacio si hay otros botones */
+            font-size: 1.2em;
+            line-height: 1;
+        }
     </style>
 </head>
 <body>
@@ -698,6 +732,15 @@
         </div>
     </div>
 
+    <!-- Notificación de "Pasar el rato" -->
+    <div id="hangoutNotification" class="hangout-notification">
+        <span class="close-notif-btn" onclick="closeHangoutNotification()">&times;</span>
+        <p>Tu descarga ha comenzado. ¿Te gustaría pasar el rato en nuestra sección de minijuegos mientras esperas?</p>
+        <div style="text-align: right;">
+            <button onclick="redirectToMinigames()" style="padding: 8px 12px; background-color: #5ac560; color: white; border: none; border-radius: 4px; cursor: pointer;">¡Sí, vamos!</button>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.4.0/color-thief.umd.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -710,6 +753,8 @@
             const modalDownloadLinksList = document.getElementById('modalDownloadLinks');
             const closeButton = modal.querySelector('.close-button');
             const searchBar = document.getElementById('searchBar'); // searchBar ya está aquí
+            const hangoutNotification = document.getElementById('hangoutNotification');
+            let hangoutTimer = null; // Para controlar el temporizador de la notificación
 
             // Data for download links
             const gameDownloadLinksData = {
@@ -783,6 +828,17 @@
                         anchor.href = linkInfo.url;
                         anchor.textContent = linkInfo.text;
                         anchor.target = '_blank'; // Abrir en nueva pestaña
+
+                        // Event listener para el clic en el botón de descarga
+                        anchor.addEventListener('click', () => {
+                            // Limpiar cualquier temporizador anterior si el usuario hace clic rápidamente en varios enlaces
+                            if (hangoutTimer) clearTimeout(hangoutTimer);
+                            // Ocultar notificación si ya está visible
+                            hangoutNotification.classList.remove('show');
+
+                            hangoutTimer = setTimeout(showHangoutNotification, 10000); // 10 segundos
+                        });
+
                         listItem.appendChild(anchor);
                         modalDownloadLinksList.appendChild(listItem);
 
@@ -846,7 +902,8 @@
 
             function closeModal() {
                 document.body.classList.remove('modal-blur-active'); // Quitar desenfoque
-+                modal.classList.remove('is-open'); // Ocultar y animar modal
+                modal.classList.remove('is-open'); // Ocultar y animar modal de descarga
+                // No cerramos la notificación de "pasar el rato" aquí, se maneja por separado
             }
 
             // Event listener para el botón de cierre del modal
@@ -972,6 +1029,24 @@
                     }
                 });
             });
+
+            // Funciones para la notificación de "Pasar el rato"
+            function showHangoutNotification() {
+                hangoutNotification.classList.add('show');
+            }
+
+            // Estas funciones se declaran globalmente para ser accesibles desde el onclick en el HTML
+            window.closeHangoutNotification = function() {
+                hangoutNotification.classList.remove('show');
+                if (hangoutTimer) clearTimeout(hangoutTimer); // Detener el temporizador si se cierra manualmente
+            }
+
+            window.redirectToMinigames = function() {
+                // Cambia 'minijuegos.html' por la URL real de tu sección de minijuegos
+                window.open('minijuegos.html', '_blank'); 
+                closeHangoutNotification(); // Cierra la notificación después de redirigir
+            }
+
         });
     </script>
 </body>
