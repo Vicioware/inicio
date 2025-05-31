@@ -233,6 +233,31 @@
             background-color: #777; /* Un gris neutro */
             color: white;
         }
+
+        /* Estilos para la casilla "No mostrar otra vez" */
+        .dont-show-again-container {
+            margin-top: 20px; /* Espacio encima de la casilla */
+            margin-bottom: -10px; /* Reduce el espacio extra debajo si los botones están cerca */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9em;
+        }
+
+        .dont-show-again-container label {
+            color: #a0a0a0; /* Mismo color que "Detalles" en index.html */
+            cursor: pointer;
+            margin-left: 8px;
+            transition: color 0.2s ease;
+        }
+
+        .dont-show-again-container label:hover {
+            color: #f0f0f0; /* Más brillante al pasar el ratón */
+        }
+
+        #dontShowAgainCheckbox { /* Estilo básico para el checkbox */
+            accent-color: #5ac560; /* Color del check cuando está marcado, similar al botón OK */
+        }
     </style>
 </head>
 <body>
@@ -261,6 +286,10 @@
     <div id="customConfirmModal" class="custom-confirm-modal">
         <div class="custom-confirm-modal-content">
             <p id="customConfirmMessage">Perderás tu progreso en cuanto cierres la ventana. Puedes guardar tu partida presionando el ícono 'Save State'.</p>
+            <div class="dont-show-again-container">
+                <input type="checkbox" id="dontShowAgainCheckbox">
+                <label for="dontShowAgainCheckbox">No mostrar este aviso otra vez</label>
+            </div>
             <div class="custom-confirm-buttons">
                 <button id="customConfirmCancelButton">Cancelar</button>
                 <button id="customConfirmOkButton">Cerrar</button>
@@ -284,6 +313,7 @@
             const customConfirmModal = document.getElementById('customConfirmModal');
             const customConfirmOkButton = document.getElementById('customConfirmOkButton');
             const customConfirmCancelButton = document.getElementById('customConfirmCancelButton');
+            const dontShowAgainCheckbox = document.getElementById('dontShowAgainCheckbox');
 
             gameItems.forEach(item => {
                 const img = item.querySelector('img');
@@ -377,6 +407,7 @@
             function showCustomConfirm() {
                 // customConfirmModal.style.display = 'flex'; // Ya no es necesario, display es flex por defecto
                 customConfirmModal.classList.add('is-visible');
+                dontShowAgainCheckbox.checked = false; // Desmarcar por defecto al mostrar
             }
 
             function hideCustomConfirm() {
@@ -386,11 +417,15 @@
 
             gameModalCloseButton.addEventListener('click', () => {
                 if (gameOpenStartTime) {
-                    const timeOpenInSeconds = (Date.now() - gameOpenStartTime) / 1000;
-                    if (timeOpenInSeconds > 60) { // Más de 1 minuto (60 segundos)
-                        showCustomConfirm();
+                    if (sessionStorage.getItem('hideGameroomCloseWarning') === 'true') {
+                        closeGameModal(); // No mostrar advertencia si el usuario lo pidió
                     } else {
-                        closeGameModal(); // Cerrar directamente si es menos de 1 minuto
+                        const timeOpenInSeconds = (Date.now() - gameOpenStartTime) / 1000;
+                        if (timeOpenInSeconds > 60) { // Más de 1 minuto (60 segundos)
+                            showCustomConfirm();
+                        } else {
+                            closeGameModal(); // Cerrar directamente si es menos de 1 minuto
+                        }
                     }
                 } else {
                     closeGameModal(); // Si gameOpenStartTime no está definido, cerrar por seguridad
@@ -398,6 +433,9 @@
             });
 
             customConfirmOkButton.addEventListener('click', () => {
+                if (dontShowAgainCheckbox.checked) {
+                    sessionStorage.setItem('hideGameroomCloseWarning', 'true');
+                }
                 closeGameModal();
                 hideCustomConfirm();
             });
