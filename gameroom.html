@@ -163,6 +163,66 @@
             transition: filter 0.3s ease-in-out;
         }
 
+        /* Styles for game modal title and info icon */
+        .modal-title-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 0; /* Was inline on h2 */
+            margin-bottom: 15px; /* Was inline on h2 */
+        }
+
+        #modalGameTitleText {
+            margin: 0; /* Remove default h2 margins */
+            font-size: 1.8em; /* Consistent with index.html modal title */
+            color: #f0f0f0;
+        }
+
+        .info-icon-tooltip {
+            position: relative; /* For tooltip positioning */
+            display: inline-block;
+            margin-left: 8px; /* Space between title and icon */
+            color: #a0a0a0;   /* Light grey for the icon */
+            cursor: help;
+            font-size: 1.1rem; /* Slightly larger than default text */
+            line-height: 1;  /* Aligns 'ⓘ' better if it has extra line height */
+        }
+
+        .info-icon-tooltip .tooltip-text {
+            visibility: hidden;
+            background-color: #2f2f2f; /* Dark grey, consistent */
+            color: #f0f0f0;           /* Light text */
+            text-align: center;
+            border-radius: 5px;
+            padding: 8px 10px;
+            position: absolute;
+            z-index: 10; /* Above other modal elements if needed */
+            bottom: 140%; /* Position above the icon */
+            left: 50%;
+            transform: translateX(-50%); /* Center the tooltip */
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+            font-size: 0.85em; /* Text inside tooltip */
+            line-height: 1.3;
+            width: max-content; /* Adjust to content width */
+            max-width: 200px;   /* Max width to prevent very long tooltips */
+            white-space: normal; /* Allow text to wrap */
+        }
+
+        .info-icon-tooltip .tooltip-text::after { /* Arrow */
+            content: "";
+            position: absolute;
+            top: 100%; left: 50%; margin-left: -5px;
+            border-width: 5px; border-style: solid;
+            border-color: #2f2f2f transparent transparent transparent;
+        }
+
+        .info-icon-tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
         /* Estilos para el Modal de Confirmación Personalizado */
         .custom-confirm-modal {
             display: flex; /* Usar flex para centrar, la visibilidad se controla con opacity/visibility */
@@ -282,7 +342,11 @@
     <div id="gameModal" class="game-modal">
         <div class="game-modal-content">
             <span class="game-modal-close-button">&times;</span>
-            <h2 id="modalGameTitle" style="margin-top: 0; margin-bottom: 15px;"></h2>
+            <div class="modal-title-container">
+                <h2 id="modalGameTitleText"></h2>
+                <span class="info-icon-tooltip">ⓘ<span class="tooltip-text">Si el juego no carga, presiona F5</span>
+                </span>
+            </div>
             <iframe id="gameModalIframe" src="about:blank" frameborder="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" scrolling="no"></iframe>
         </div>
     </div>
@@ -311,7 +375,7 @@
             const gameModal = document.getElementById('gameModal');
             const gameModalCloseButton = gameModal.querySelector('.game-modal-close-button');
             const gameModalIframe = document.getElementById('gameModalIframe');
-            const modalGameTitle = document.getElementById('modalGameTitle');
+            const modalGameTitleTextElement = document.getElementById('modalGameTitleText');
             let gameOpenStartTime = null; // Para rastrear cuándo se abrió el modal del juego
 
             // Custom Confirm Modal elements
@@ -393,7 +457,7 @@
             });
 
             function openGameModal(gameName, gameSrc) {
-                modalGameTitle.textContent = gameName;
+                modalGameTitleTextElement.textContent = gameName;
                 gameModalIframe.src = gameSrc;
                 document.body.classList.add('modal-blur-active');
                 gameModal.classList.add('is-open');
@@ -405,7 +469,7 @@
                 gameModal.classList.remove('is-open');
                 // Importante: Detener el juego y liberar recursos
                 gameModalIframe.src = 'about:blank'; 
-                modalGameTitle.textContent = ''; // Resetear título
+                modalGameTitleTextElement.textContent = ''; // Resetear título
                 gameOpenStartTime = null; // Resetear el tiempo de apertura
             }
 
