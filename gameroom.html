@@ -328,13 +328,13 @@
         /* Estilos para el botón de descarga en el modal del iframe */
         .iframe-download-button {
             position: absolute;
-            top: 22px; /* Alineado verticalmente con el botón de cierre del modal */
-            right: 55px; /* A la izquierda del botón de cierre del modal, con espacio */
+            top: 20px; /* Alineado con el padding superior del modal-content */
+            left: 20px; /* Alineado con el padding izquierdo del modal-content */
             display: flex;
             align-items: center;
             background-color: #888; /* Gris inicial */
-            padding: 8px 10px;
-            border-radius: 18px; /* Bordes redondeados, efecto píldora */
+            padding: 8px; /* Para hacerlo cuadrado (20px icon + 2*8px padding = 36px width) */
+            border-radius: 6px; /* Bordes redondeados para un cuadrado */
             text-decoration: none;
             color: white;
             overflow: hidden; /* Clave para la animación de expansión del texto */
