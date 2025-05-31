@@ -7,7 +7,7 @@
     <link rel="icon" href="resources/favicon_32x32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="resources/favicon_48x48.png" sizes="48x48" type="image/png">
     <link rel="icon" href="resources/favicon_192x192.png" sizes="192x192" type="image/png">
-    <title>VicioRoom</title>
+    <title>Cuarto de Vicio</title>
     <style>
         @font-face {
             font-family: 'Manrope';
@@ -238,7 +238,7 @@
         .dont-show-again-container {
             margin-top: 15px; /* Espacio encima de la casilla, ajustado */
             margin-bottom: 20px; /* Espacio debajo de la casilla, antes de los botones */
-            display: flex;
+            display: none; /* Oculto por defecto, se mostrará con JS */
             align-items: center;
             justify-content: center;
             font-size: 0.9em;
@@ -406,6 +406,17 @@
 
             function showCustomConfirm() {
                 // customConfirmModal.style.display = 'flex'; // Ya no es necesario, display es flex por defecto
+                let warningShownCount = parseInt(sessionStorage.getItem('gameroomWarningShownCount') || '0');
+                warningShownCount++;
+                sessionStorage.setItem('gameroomWarningShownCount', warningShownCount.toString());
+
+                const checkboxContainer = document.querySelector('.dont-show-again-container');
+                if (warningShownCount > 2) { // Mostrar la casilla después de la segunda vez (a partir de la tercera)
+                    checkboxContainer.style.display = 'flex';
+                } else {
+                    checkboxContainer.style.display = 'none';
+                }
+
                 customConfirmModal.classList.add('is-visible');
                 dontShowAgainCheckbox.checked = false; // Desmarcar por defecto al mostrar
             }
