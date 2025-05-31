@@ -184,8 +184,14 @@
             margin-left: 8px; /* Space between title and icon */
             color: #a0a0a0;   /* Light grey for the icon */
             cursor: help;
-            font-size: 1.1rem; /* Slightly larger than default text */
-            line-height: 1;  /* Aligns 'ⓘ' better if it has extra line height */
+            /* font-size y line-height ya no son necesarios para el span, se controlará la img directamente */
+        }
+
+        .info-icon-tooltip img {
+            width: 16px; /* Ajusta según sea necesario */
+            height: 16px; /* Ajusta según sea necesario */
+            vertical-align: middle; /* Ayuda a alinear la imagen con el texto del título */
+            display: inline-block; /* Para que vertical-align funcione bien */
         }
 
         .info-icon-tooltip .tooltip-text {
@@ -336,6 +342,11 @@
             <img src="portadas/metal-slug3.png" loading="lazy">
             <p>Metal Slug 3</p>
         </a>
+
+        <a href="#" data-game-id="metal-slug4" data-game-src="https://www.retrogames.cc/embed/9161-metal-slug-4-ngh-2630.html" class="game-item">
+            <img src="portadas/metal-slug4.png" loading="lazy">
+            <p>Metal Slug 4</p>
+        </a>
     </div>
 
     <!-- Modal del Juego -->
@@ -344,7 +355,8 @@
             <span class="game-modal-close-button">&times;</span>
             <div class="modal-title-container">
                 <h2 id="modalGameTitleText"></h2>
-                <span class="info-icon-tooltip">ⓘ<span class="tooltip-text">Si el juego no carga, presiona F5</span>
+                <span class="info-icon-tooltip">
+                    <img src="resources/info.svg"><span class="tooltip-text">Si el juego no carga, presiona F5</span>
                 </span>
             </div>
             <iframe id="gameModalIframe" src="about:blank" frameborder="no" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" scrolling="no"></iframe>
