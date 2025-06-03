@@ -544,10 +544,13 @@
                         hoverTimer = setTimeout(() => {
                             // Verificar si el cursor sigue sobre el elemento
                             if (item.matches(':hover')) {
-                                img.src = hoverSrc; // Cambia la fuente.
-                                                    // La imagen original permanece visible hasta que la nueva carga.
-                                                    // El evento 'load' y processLoadedImage harán que la nueva imagen aparezca suavemente.
-                                isHoverImageDisplayed = true;
+                                img.style.opacity = '0'; // Inicia el desvanecimiento de la imagen actual
+                                setTimeout(() => {
+                                    // Después de que la imagen actual se desvanezca, cambia la fuente.
+                                    // La nueva imagen se cargará y processLoadedImage la hará aparecer suavemente.
+                                    img.src = hoverSrc;
+                                    isHoverImageDisplayed = true;
+                                }, 400); // Espera a que termine la transición de opacidad (0.4s CSS)
                             }
                         }, 1000); // 1000 ms = 1 segundo
                     }
@@ -562,9 +565,12 @@
 
                     // Restaurar la imagen original si se mostró la de hover
                     if (isHoverImageDisplayed) {
-                        img.src = originalSrc; // Cambia la fuente.
-                                               // La imagen de hover permanece visible hasta que la original carga.
-                        isHoverImageDisplayed = false;
+                        img.style.opacity = '0'; // Inicia el desvanecimiento de la imagen de hover
+                        setTimeout(() => {
+                            // Después de que la imagen de hover se desvanezca, cambia la fuente.
+                            img.src = originalSrc;
+                            isHoverImageDisplayed = false;
+                        }, 400); // Espera a que termine la transición de opacidad
                     }
 
                     // Lógica existente para quitar el resplandor
