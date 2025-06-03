@@ -330,10 +330,10 @@
     </style>
 </head>
 <body>
-    <a href="index.html" class="vicioware-icon-link" title="Vicioware Inicio">
+    <a href="index.html" class="vicioware-icon-link">
         <img src="resources/vicioware_icon.png">
     </a>
-    <a href="gameroom.html" class="gameroom-icon-link" title="Sala de juegos">
+    <a href="gameroom.html" class="gameroom-icon-link">
         <img src="resources/gameroom.png">
     </a>
     <input type="search" id="searchBar" placeholder="Buscar juegos...">
@@ -1007,6 +1007,11 @@
 
             gameItems.forEach(item => {
                 const img = item.querySelector('img');
+                const originalSrc = img.getAttribute('src'); // Guardar src original desde el atributo
+                const hoverSrc = item.dataset.hoverSrc; // Ruta de la imagen para el hover
+                let hoverTimer = null; // Temporizador para el hover
+                let isHoverImageDisplayed = false; // Bandera para saber si la imagen de hover está activa
+
                 let dynamicGlowColors = null; // Para almacenar los colores extraídos para este item
 
                 // Renombrada y modificada para incluir el cambio de opacidad y la lógica de ColorThief
@@ -1063,9 +1068,36 @@
                     if (dynamicGlowColors && dynamicGlowColors['--dominant-glow-color']) {
                         item.style.setProperty('--dominant-glow-color', dynamicGlowColors['--dominant-glow-color']);
                     }
+
+                    // Lógica para cambiar imagen en hover prolongado
+                    if (hoverSrc) {
+                        if (hoverTimer) clearTimeout(hoverTimer); // Limpiar temporizador anterior si existe
+                        hoverTimer = setTimeout(() => {
+                            // Verificar si el cursor sigue sobre el elemento
+                            if (item.matches(':hover')) {
+                                img.src = hoverSrc;
+                                isHoverImageDisplayed = true;
+                                // La función processLoadedImage se ejecutará para la nueva imagen si dispara un evento 'load'
+                            }
+                        }, 1000); // 1000 ms = 1 segundo
+                    }
                 });
 
                 item.addEventListener('mouseleave', () => {
+                    // Limpiar el temporizador si el cursor se retira antes de que se complete
+                    if (hoverTimer) {
+                        clearTimeout(hoverTimer);
+                        hoverTimer = null;
+                    }
+
+                    // Restaurar la imagen original si se mostró la de hover
+                    if (isHoverImageDisplayed) {
+                        img.src = originalSrc;
+                        isHoverImageDisplayed = false;
+                        // La función processLoadedImage se ejecutará para la imagen original al recargarse
+                    }
+
+                    // Lógica existente para quitar el resplandor
                     setTimeout(() => {
                         if (dynamicGlowColors && !item.matches(':hover')) {
                             item.style.removeProperty('--dominant-glow-color');

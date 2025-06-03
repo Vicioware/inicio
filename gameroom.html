@@ -7,7 +7,7 @@
     <link rel="icon" href="resources/favicon_32x32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="resources/favicon_48x48.png" sizes="48x48" type="image/png">
     <link rel="icon" href="resources/favicon_192x192.png" sizes="192x192" type="image/png">
-    <title>Cuarto de Vicio</title>
+    <title>GameRoom</title>
     <style>
         @font-face {
             font-family: 'Manrope';
@@ -392,11 +392,11 @@
     </style>
 </head>
 <body>
-    <a href="index.html" class="vicioware-icon-link" title="Vicioware Inicio">
+    <a href="index.html" class="vicioware-icon-link">
         <img src="resources/vicioware_icon.png">
     </a>
     <div class="gallery-container">
-        <a href="#" data-game-id="metal-slug" data-game-src="https://www.retrogames.cc/embed/9157-metal-slug-super-vehicle-001.html" class="game-item">
+        <a href="#" data-game-id="metal-slug" data-game-src="https://www.retrogames.cc/embed/9157-metal-slug-super-vehicle-001.html" data-hover-src="gameshots/metal-slug.png" class="game-item">
             <img src="portadas/metal-slug.png" loading="lazy">
             <p>Metal Slug</p>
         </a>
@@ -427,8 +427,13 @@
         </a>
 
         <a href="#" data-game-id="metal-slug4plus" data-game-src="https://www.retrogames.cc/embed/9163-metal-slug-4-plus-bootleg-bootleg.html" class="game-item">
-            <img src="portadas/metal-slug4-plus.png" loading="lazy">
+            <img src="portadas/metal-slug4plus.png" loading="lazy">
             <p>Metal Slug 4 Plus (bootleg)</p>
+        </a>
+
+        <a href="#" data-game-id="metal-slug6-bootleg3" data-game-src="https://www.retrogames.cc/embed/9169-metal-slug-6-metal-slug-3-bootleg-bootleg.html" class="game-item">
+            <img src="portadas/metal-slug6-bootleg3.png" loading="lazy">
+            <p>Metal Slug 6 (MS 3 bootleg)</p>
         </a>
     </div>
 
@@ -436,8 +441,8 @@
     <div id="gameModal" class="game-modal">
         <div class="game-modal-content">
             <span class="game-modal-close-button">&times;</span>
-            <a href="#" class="iframe-download-button" title="Descargar Juego">
-                <img src="resources/download.svg" alt="Descargar">
+            <a href="#" class="iframe-download-button">
+                <img src="resources/download.svg">
                 <span class="download-text">Descargar</span>
             </a>
             <div class="modal-title-container">
@@ -485,6 +490,11 @@
 
             gameItems.forEach(item => {
                 const img = item.querySelector('img');
+                const originalSrc = img.getAttribute('src'); // Guardar src original desde el atributo
+                const hoverSrc = item.dataset.hoverSrc; // Ruta de la imagen para el hover
+                let hoverTimer = null; // Temporizador para el hover
+                let isHoverImageDisplayed = false; // Bandera para saber si la imagen de hover está activa
+
                 let dynamicGlowColors = null;
 
                 function processLoadedImage() {
@@ -527,9 +537,36 @@
                     if (dynamicGlowColors && dynamicGlowColors['--dominant-glow-color']) {
                         item.style.setProperty('--dominant-glow-color', dynamicGlowColors['--dominant-glow-color']);
                     }
+
+                    // Lógica para cambiar imagen en hover prolongado
+                    if (hoverSrc) {
+                        if (hoverTimer) clearTimeout(hoverTimer); // Limpiar temporizador anterior si existe
+                        hoverTimer = setTimeout(() => {
+                            // Verificar si el cursor sigue sobre el elemento
+                            if (item.matches(':hover')) {
+                                img.src = hoverSrc;
+                                isHoverImageDisplayed = true;
+                                // La función processLoadedImage se ejecutará para la nueva imagen si dispara un evento 'load'
+                            }
+                        }, 1000); // 1000 ms = 1 segundo
+                    }
                 });
 
                 item.addEventListener('mouseleave', () => {
+                    // Limpiar el temporizador si el cursor se retira antes de que se complete
+                    if (hoverTimer) {
+                        clearTimeout(hoverTimer);
+                        hoverTimer = null;
+                    }
+
+                    // Restaurar la imagen original si se mostró la de hover
+                    if (isHoverImageDisplayed) {
+                        img.src = originalSrc;
+                        isHoverImageDisplayed = false;
+                        // La función processLoadedImage se ejecutará para la imagen original al recargarse
+                    }
+
+                    // Lógica existente para quitar el resplandor
                     setTimeout(() => {
                         if (dynamicGlowColors && !item.matches(':hover')) {
                             item.style.removeProperty('--dominant-glow-color');
