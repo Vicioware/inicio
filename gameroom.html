@@ -544,9 +544,18 @@
                         hoverTimer = setTimeout(() => {
                             // Verificar si el cursor sigue sobre el elemento
                             if (item.matches(':hover')) {
-                                img.src = hoverSrc;
-                                isHoverImageDisplayed = true;
-                                // La función processLoadedImage se ejecutará para la nueva imagen si dispara un evento 'load'
+                                img.style.opacity = '0'; // Inicia el desvanecimiento de la imagen actual
+                                setTimeout(() => {
+                                    // Re-verificar si el cursor sigue sobre el elemento,
+                                    // ya que el usuario pudo haberse movido durante el desvanecimiento.
+                                    if (item.matches(':hover')) {
+                                        img.src = hoverSrc; // Cambia la fuente; el evento 'load' se encargará del fade-in
+                                        isHoverImageDisplayed = true;
+                                    } else {
+                                        // Si el cursor ya no está, la imagen original (que se estaba desvaneciendo) vuelve a ser opaca.
+                                        img.style.opacity = '1';
+                                    }
+                                }, 400); // Espera a que termine la transición de opacidad (0.4s CSS)
                             }
                         }, 1000); // 1000 ms = 1 segundo
                     }
@@ -561,9 +570,11 @@
 
                     // Restaurar la imagen original si se mostró la de hover
                     if (isHoverImageDisplayed) {
-                        img.src = originalSrc;
-                        isHoverImageDisplayed = false;
-                        // La función processLoadedImage se ejecutará para la imagen original al recargarse
+                        img.style.opacity = '0'; // Inicia el desvanecimiento de la imagen de hover
+                        setTimeout(() => {
+                            img.src = originalSrc; // Cambia la fuente; el evento 'load' se encargará del fade-in
+                            isHoverImageDisplayed = false;
+                        }, 400); // Espera a que termine la transición de opacidad
                     }
 
                     // Lógica existente para quitar el resplandor
