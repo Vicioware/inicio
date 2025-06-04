@@ -71,19 +71,18 @@
         .game-item:hover::before {
             opacity: 1;
         }
-        /* Estilos base para ambas imágenes dentro de game-item */
-        .game-item-cover-img, .game-item-hover-img {
+        .game-item img {
             width: 100%;
             height: auto;
             display: block;
             border-top-left-radius: 8px;
+            position: relative; /* Needed for z-index */
+            z-index: 0; /* Ensure it's above the hover image */
             border-top-right-radius: 8px;
             opacity: 0;
             transition: opacity 0.4s ease-in-out;
-            object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
-            position: absolute; /* Posicionamiento absoluto para superponer */
-            top: 0;
-            left: 0;
+            background-color: #2a2a2a; /* Color de fondo placeholder, como en index.html */
+            min-height: 160px; /* Para placeholder, como en index.html */
         }
 
         .game-item {
@@ -92,11 +91,24 @@
             border-radius: 8px;
             text-align: center;
             width: 120px;
-            overflow: hidden; /* Ocultar partes de las imágenes que puedan salirse */
+            overflow: visible; /* Permitir que el resplandor se muestre, como en index.html */
             text-decoration: none;
             transition: transform 0.2s ease-in-out;
             min-height: 160px;
             z-index: 1;
+        }
+
+        .game-item-hover-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto; /* Or match original img height */
+            display: block;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            z-index: -1; /* Ensure it's behind the original img */
+            opacity: 1; /* It should be visible when the original fades */
         }
         .game-item p {
             margin: 10px 0;
@@ -104,11 +116,6 @@
             color: #fff;
             text-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
             padding: 0 5px;
-        }
-
-        .game-item-cover-img {
-            z-index: 2; /* La portada está encima */
-            /* La opacidad inicial se establecerá en JS al cargar */
         }
 
         /* Estilos para el Modal del Juego */
@@ -126,11 +133,6 @@
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
-        }
-        
-        .game-item-hover-img {
-            z-index: 1; /* La imagen de hover está detrás */
-            opacity: 0; /* Inicialmente oculta */
         }
 
         .game-modal.is-open {
@@ -514,47 +516,9 @@
             const customConfirmCancelButton = document.getElementById('customConfirmCancelButton');
             const dontShowAgainCheckbox = document.getElementById('dontShowAgainCheckbox');
 
-            // Función refactorizada para procesar la carga de imágenes (portada y hover)
-            // isCoverImage: true si es la imagen de portada, false si es la de hover
-            function setupImageProcessing(imgElement, gameItem, isCoverImage) {
-                function process() {
-                    imgElement.style.opacity = '1';
-
-                    if (isCoverImage && imgElement.complete && imgElement.naturalWidth > 0) {
-                        try {
-                            const dominantColorArray = colorThiefInstance.getColor(imgElement);
-                            if (dominantColorArray) {
-                                const rgbString = `rgb(${dominantColorArray[0]}, ${dominantColorArray[1]}, ${dominantColorArray[2]})`; // Corregido: usar dominantColorArray
-                                gameItem.dataset.dominantColor = rgbString; // Guardar para uso en hover
-                                if (gameItem.matches(':hover')) {
-                                    item.style.setProperty('--dominant-glow-color', rgbString);
-                                }
-                            }
-                        } catch (error) {
-                            console.error('ColorThief error para la imagen:', imgElement.src, error);
-                            gameItem.dataset.dominantColor = ''; // Resetear en caso de error
-                        }
-                    }
-                }
-
-                if (imgElement.complete && imgElement.naturalWidth > 0) {
-                    process();
-                }
-                // Solo añadir listener 'load' si la imagen no está completa para evitar duplicados
-                if (!imgElement.complete) {
-                    imgElement.addEventListener('load', process);
-                }
-                imgElement.addEventListener('error', () => {
-                    console.error('Error al cargar la imagen:', imgElement.src);
-                    imgElement.style.opacity = '1'; // Hacer visible para mostrar el alt text o el fondo de error
-                    if (isCoverImage) gameItem.dataset.dominantColor = ''; // Resetear
-                });
-            }
-
             gameItems.forEach(item => {
                 const img = item.querySelector('img');
-                img.classList.add('game-item-cover-img'); // Marcar la imagen original como portada
-
+                const originalSrc = img.getAttribute('src');
                 const hoverSrc = item.dataset.hoverSrc;
                 let hoverTimer = null; // Temporizador para el hover
                 let hoverImgElement = null;
