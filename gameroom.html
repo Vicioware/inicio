@@ -71,7 +71,8 @@
         .game-item:hover::before {
             opacity: 1;
         }
-        .game-item img {
+        /* Estilos base para ambas imágenes dentro de game-item */
+        .game-item-cover-img, .game-item-hover-img {
             width: 100%;
             height: auto;
             display: block;
@@ -79,7 +80,23 @@
             border-top-right-radius: 8px;
             opacity: 0;
             transition: opacity 0.4s ease-in-out;
+            object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+            position: absolute; /* Posicionamiento absoluto para superponer */
+            top: 0;
+            left: 0;
+        }
+
+        .game-item {
+            position: relative; /* Necesario para el posicionamiento absoluto de las imágenes */
+            background: linear-gradient(to bottom, #1a1a1a, #111111 40%, #0a0a0a);
+            border-radius: 8px;
+            text-align: center;
+            width: 120px;
+            overflow: hidden; /* Ocultar partes de las imágenes que puedan salirse */
+            text-decoration: none;
+            transition: transform 0.2s ease-in-out;
             min-height: 160px;
+            z-index: 1;
         }
         .game-item p {
             margin: 10px 0;
@@ -87,6 +104,11 @@
             color: #fff;
             text-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
             padding: 0 5px;
+        }
+
+        .game-item-cover-img {
+            z-index: 2; /* La portada está encima */
+            /* La opacidad inicial se establecerá en JS al cargar */
         }
 
         /* Estilos para el Modal del Juego */
@@ -104,6 +126,11 @@
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+        }
+        
+        .game-item-hover-img {
+            z-index: 1; /* La imagen de hover está detrás */
+            opacity: 0; /* Inicialmente oculta */
         }
 
         .game-modal.is-open {
@@ -488,7 +515,8 @@
             const dontShowAgainCheckbox = document.getElementById('dontShowAgainCheckbox');
 
             // Función refactorizada para procesar la carga de imágenes (portada y hover)
-            function setupImageProcessing(imgElement, gameItem, isCoverImage, colorThiefInstance) {
+            // isCoverImage: true si es la imagen de portada, false si es la de hover
+            function setupImageProcessing(imgElement, gameItem, isCoverImage) {
                 function process() {
                     imgElement.style.opacity = '1';
 
@@ -496,7 +524,7 @@
                         try {
                             const dominantColorArray = colorThiefInstance.getColor(imgElement);
                             if (dominantColorArray) {
-                                const rgbString = `rgb(${dominantColorArray[0]}, ${dominantColorArray[1]}, ${dominantColorArray[2]})`;
+                                const rgbString = `rgb(${dominantColorArray[0]}, ${dominantColorArray[1]}, ${dominantColorArray[2]})`; // Corregido: usar dominantColorArray
                                 gameItem.dataset.dominantColor = rgbString; // Guardar para uso en hover
                                 if (gameItem.matches(':hover')) {
                                     item.style.setProperty('--dominant-glow-color', rgbString);
@@ -512,7 +540,10 @@
                 if (imgElement.complete && imgElement.naturalWidth > 0) {
                     process();
                 }
-                imgElement.addEventListener('load', process);
+                // Solo añadir listener 'load' si la imagen no está completa para evitar duplicados
+                if (!imgElement.complete) {
+                    imgElement.addEventListener('load', process);
+                }
                 imgElement.addEventListener('error', () => {
                     console.error('Error al cargar la imagen:', imgElement.src);
                     imgElement.style.opacity = '1'; // Hacer visible para mostrar el alt text o el fondo de error
@@ -529,7 +560,7 @@
                 let hoverImgElement = null;
 
                 // Procesar la imagen de portada
-                setupImageProcessing(img, item, true, colorThief);
+                setupImageProcessing(img, item, true);
 
                 if (hoverSrc) {
                     hoverImgElement = document.createElement('img');
@@ -537,9 +568,6 @@
                     hoverImgElement.src = hoverSrc;
                     hoverImgElement.loading = 'lazy';
                     item.insertBefore(hoverImgElement, img); // Insertar la imagen de hover ANTES de la de portada
-
-                    // Procesar la imagen de hover
-                    setupImageProcessing(hoverImgElement, item, false, colorThief);
                 }
 
                 item.addEventListener('mouseenter', () => {
@@ -560,10 +588,6 @@
 
                 item.addEventListener('mouseleave', () => {
                     if (hoverImgElement) { // Solo si hay imagen de hover
-                        if (hoverTimer) {
-                            clearTimeout(hoverTimer);
-                            hoverTimer = null;
-                        }
                         // Restaurar la portada instantáneamente
                         img.classList.add('no-transition');
                         img.style.opacity = '1';
@@ -571,6 +595,10 @@
                         requestAnimationFrame(() => {
                             img.classList.remove('no-transition');
                         });
+                        // Limpiar el temporizador si el cursor se retira antes de que se complete
+                        if (hoverTimer) {
+                            clearTimeout(hoverTimer);
+                        }
                     }
                     // Lógica existente para quitar el resplandor
                     setTimeout(() => {
