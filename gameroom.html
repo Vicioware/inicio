@@ -487,103 +487,95 @@
             const customConfirmCancelButton = document.getElementById('customConfirmCancelButton');
             const dontShowAgainCheckbox = document.getElementById('dontShowAgainCheckbox');
 
-            gameItems.forEach(item => {
-                const img = item.querySelector('img');
-                const originalSrc = img.getAttribute('src'); // Guardar src original desde el atributo
-                const hoverSrc = item.dataset.hoverSrc; // Ruta de la imagen para el hover
-                let hoverTimer = null; // Temporizador para el hover
-                let isHoverImageDisplayed = false; // Bandera para saber si la imagen de hover está activa
+            // Función refactorizada para procesar la carga de imágenes (portada y hover)
+            function setupImageProcessing(imgElement, gameItem, isCoverImage, colorThiefInstance) {
+                function process() {
+                    imgElement.style.opacity = '1';
 
-                let dynamicGlowColors = null;
-
-                function processLoadedImage() {
-                    img.style.opacity = '1';
-                    if (img.complete && img.naturalWidth > 0 && img.naturalHeight > 0) {
+                    if (isCoverImage && imgElement.complete && imgElement.naturalWidth > 0) {
                         try {
-                            const dominantColorArray = colorThief.getColor(img);
+                            const dominantColorArray = colorThiefInstance.getColor(imgElement);
                             if (dominantColorArray) {
-                                dynamicGlowColors = {};
                                 const rgbString = `rgb(${dominantColorArray[0]}, ${dominantColorArray[1]}, ${dominantColorArray[2]})`;
-                                dynamicGlowColors['--dominant-glow-color'] = rgbString;
-                                if (item.matches(':hover')) {
+                                gameItem.dataset.dominantColor = rgbString; // Guardar para uso en hover
+                                if (gameItem.matches(':hover')) {
                                     item.style.setProperty('--dominant-glow-color', rgbString);
                                 }
-                            } else {
-                                dynamicGlowColors = null;
                             }
                         } catch (error) {
-                            console.error('ColorThief error para la imagen:', img.src, error);
-                            dynamicGlowColors = null;
+                            console.error('ColorThief error para la imagen:', imgElement.src, error);
+                            gameItem.dataset.dominantColor = ''; // Resetear en caso de error
                         }
-                    } else if (!img.complete) {
-                        // La imagen aún no está completamente cargada, el evento 'load' se encargará.
-                    } else {
-                         dynamicGlowColors = null;
                     }
                 }
 
-                if (img.complete && img.naturalWidth > 0) {
-                    processLoadedImage();
+                if (imgElement.complete && imgElement.naturalWidth > 0) {
+                    process();
                 }
-                img.addEventListener('load', processLoadedImage);
-
-                img.addEventListener('error', () => {
-                    img.style.opacity = '1'; 
-                    dynamicGlowColors = null;
+                imgElement.addEventListener('load', process);
+                imgElement.addEventListener('error', () => {
+                    console.error('Error al cargar la imagen:', imgElement.src);
+                    imgElement.style.opacity = '1'; // Hacer visible para mostrar el alt text o el fondo de error
+                    if (isCoverImage) gameItem.dataset.dominantColor = ''; // Resetear
                 });
+            }
+
+            gameItems.forEach(item => {
+                const img = item.querySelector('img');
+                img.classList.add('game-item-cover-img'); // Marcar la imagen original como portada
+
+                const hoverSrc = item.dataset.hoverSrc;
+                let hoverTimer = null; // Temporizador para el hover
+                let hoverImgElement = null;
+
+                // Procesar la imagen de portada
+                setupImageProcessing(img, item, true, colorThief);
+
+                if (hoverSrc) {
+                    hoverImgElement = document.createElement('img');
+                    hoverImgElement.className = 'game-item-hover-img';
+                    hoverImgElement.src = hoverSrc;
+                    hoverImgElement.loading = 'lazy';
+                    item.insertBefore(hoverImgElement, img); // Insertar la imagen de hover ANTES de la de portada
+
+                    // Procesar la imagen de hover
+                    setupImageProcessing(hoverImgElement, item, false, colorThief);
+                }
 
                 item.addEventListener('mouseenter', () => {
-                    if (dynamicGlowColors && dynamicGlowColors['--dominant-glow-color']) {
-                        item.style.setProperty('--dominant-glow-color', dynamicGlowColors['--dominant-glow-color']);
+                    const dominantColor = item.dataset.dominantColor;
+                    if (dominantColor) {
+                        item.style.setProperty('--dominant-glow-color', dominantColor);
                     }
 
-                    // Lógica para cambiar imagen en hover prolongado
-                    if (hoverSrc) {
+                    if (hoverImgElement) { // Solo si hay imagen de hover
                         if (hoverTimer) clearTimeout(hoverTimer); // Limpiar temporizador anterior si existe
                         hoverTimer = setTimeout(() => {
-                            if (item.matches(':hover') && !isHoverImageDisplayed) {
-                                img.style.transition = 'opacity 0.4s ease-in-out'; // Asegurar que la transición esté activa
-                                img.style.opacity = '0'; // Inicia el desvanecimiento de la imagen actual
-
-                                function onFadeOutComplete() {
-                                    // img.removeEventListener('transitionend', onFadeOutComplete); // No es necesario con {once: true}
-                                    if (item.matches(':hover')) { // Re-verificar si el cursor sigue sobre el elemento
-                                        img.src = hoverSrc; // Cambia la fuente; 'load' -> processLoadedImage se encarga del fade-in
-                                        isHoverImageDisplayed = true;
-                                    } else {
-                                        // El cursor se retiró durante el desvanecimiento, restaurar opacidad de la imagen original
-                                        img.style.opacity = '1';
-                                    }
-                                }
-                                // Usar {once: true} para que el listener se elimine automáticamente después de ejecutarse
-                                img.addEventListener('transitionend', onFadeOutComplete, { once: true });
+                            if (item.matches(':hover')) {
+                                img.style.opacity = '0'; // Desvanecer la portada para revelar la de hover
                             }
                         }, 1000); // 1000 ms = 1 segundo
                     }
                 });
 
                 item.addEventListener('mouseleave', () => {
-                    if (hoverTimer) {
-                        clearTimeout(hoverTimer);
-                        hoverTimer = null;
-                    }
-
-                    // Restaurar la imagen original si se mostró la de hover
-                    if (isHoverImageDisplayed) {
-                        img.style.transition = 'opacity 0.4s ease-in-out'; // Asegurar transición
-                        img.style.opacity = '0'; // Inicia el desvanecimiento de la imagen de hover
-
-                        function onFadeOutComplete() {
-                            // img.removeEventListener('transitionend', onFadeOutComplete);
-                            img.src = originalSrc;
-                            isHoverImageDisplayed = false;
+                    if (hoverImgElement) { // Solo si hay imagen de hover
+                        if (hoverTimer) {
+                            clearTimeout(hoverTimer);
+                            hoverTimer = null;
                         }
-                        img.addEventListener('transitionend', onFadeOutComplete, { once: true });
+                        // Restaurar la portada instantáneamente
+                        img.classList.add('no-transition');
+                        img.style.opacity = '1';
+                        void img.offsetHeight; // Forzar reflujo
+                        requestAnimationFrame(() => {
+                            img.classList.remove('no-transition');
+                        });
                     }
-
                     // Lógica existente para quitar el resplandor
                     setTimeout(() => {
-                        if (dynamicGlowColors && !item.matches(':hover')) {
+                        const dominantColor = item.dataset.dominantColor;
+                        if (dominantColor && !item.matches(':hover')) {
                             item.style.removeProperty('--dominant-glow-color');
                         }
                     }, 400); 
