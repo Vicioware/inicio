@@ -79,7 +79,6 @@
             border-top-right-radius: 8px;
             opacity: 0;
             transition: opacity 0.4s ease-in-out;
-            background-color: #2a2a2a;
             min-height: 160px;
         }
         .game-item p {
@@ -542,22 +541,28 @@
                     if (hoverSrc) {
                         if (hoverTimer) clearTimeout(hoverTimer); // Limpiar temporizador anterior si existe
                         hoverTimer = setTimeout(() => {
-                            // Verificar si el cursor sigue sobre el elemento
-                            if (item.matches(':hover')) {
+                            if (item.matches(':hover') && !isHoverImageDisplayed) {
+                                img.style.transition = 'opacity 0.4s ease-in-out'; // Asegurar que la transición esté activa
                                 img.style.opacity = '0'; // Inicia el desvanecimiento de la imagen actual
-                                setTimeout(() => {
-                                    // Después de que la imagen actual se desvanezca, cambia la fuente.
-                                    // La nueva imagen se cargará y processLoadedImage la hará aparecer suavemente.
-                                    img.src = hoverSrc;
-                                    isHoverImageDisplayed = true;
-                                }, 400); // Espera a que termine la transición de opacidad (0.4s CSS)
+
+                                function onFadeOutComplete() {
+                                    // img.removeEventListener('transitionend', onFadeOutComplete); // No es necesario con {once: true}
+                                    if (item.matches(':hover')) { // Re-verificar si el cursor sigue sobre el elemento
+                                        img.src = hoverSrc; // Cambia la fuente; 'load' -> processLoadedImage se encarga del fade-in
+                                        isHoverImageDisplayed = true;
+                                    } else {
+                                        // El cursor se retiró durante el desvanecimiento, restaurar opacidad de la imagen original
+                                        img.style.opacity = '1';
+                                    }
+                                }
+                                // Usar {once: true} para que el listener se elimine automáticamente después de ejecutarse
+                                img.addEventListener('transitionend', onFadeOutComplete, { once: true });
                             }
                         }, 1000); // 1000 ms = 1 segundo
                     }
                 });
 
                 item.addEventListener('mouseleave', () => {
-                    // Limpiar el temporizador si el cursor se retira antes de que se complete
                     if (hoverTimer) {
                         clearTimeout(hoverTimer);
                         hoverTimer = null;
@@ -565,12 +570,15 @@
 
                     // Restaurar la imagen original si se mostró la de hover
                     if (isHoverImageDisplayed) {
+                        img.style.transition = 'opacity 0.4s ease-in-out'; // Asegurar transición
                         img.style.opacity = '0'; // Inicia el desvanecimiento de la imagen de hover
-                        setTimeout(() => {
-                            // Después de que la imagen de hover se desvanezca, cambia la fuente.
+
+                        function onFadeOutComplete() {
+                            // img.removeEventListener('transitionend', onFadeOutComplete);
                             img.src = originalSrc;
                             isHoverImageDisplayed = false;
-                        }, 400); // Espera a que termine la transición de opacidad
+                        }
+                        img.addEventListener('transitionend', onFadeOutComplete, { once: true });
                     }
 
                     // Lógica existente para quitar el resplandor
