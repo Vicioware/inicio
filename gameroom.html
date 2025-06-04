@@ -27,8 +27,8 @@
         .gallery-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            padding: 20px; /* Espacio alrededor de la galería */
+            justify-content: center; /* Alinea los items al centro */
+            padding: 10px; /* Margen leve alrededor del contenedor, igual que index.html */
             gap: 10px;
         }
         .game-item {
@@ -74,41 +74,21 @@
         .game-item img {
             width: 100%;
             height: auto;
-            display: block;
+            display: block; /* Ayuda a evitar espacios extra y asegura que el border-radius se aplique bien */
             border-top-left-radius: 8px;
-            position: relative; /* Needed for z-index */
-            z-index: 0; /* Ensure it's above the hover image */
             border-top-right-radius: 8px;
-            opacity: 0;
+            opacity: 0; /* Inicialmente oculta */
             transition: opacity 0.4s ease-in-out;
-            background-color: #2a2a2a; /* Color de fondo placeholder, como en index.html */
-            min-height: 160px; /* Para placeholder, como en index.html */
+            background-color: #2a2a2a; /* Color de fondo placeholder */
+            min-height: 160px; /* Ajusta este valor a una altura promedio/mínima esperada */
         }
 
-        .game-item {
-            position: relative; /* Necesario para el posicionamiento absoluto de las imágenes */
-            background: linear-gradient(to bottom, #1a1a1a, #111111 40%, #0a0a0a);
-            border-radius: 8px;
-            text-align: center;
-            width: 120px;
-            overflow: visible; /* Permitir que el resplandor se muestre, como en index.html */
-            text-decoration: none;
-            transition: transform 0.2s ease-in-out;
-            min-height: 160px;
-            z-index: 1;
-        }
-
-        .game-item-hover-img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: auto; /* Or match original img height */
-            display: block;
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
-            z-index: -1; /* Ensure it's behind the original img */
-            opacity: 1; /* It should be visible when the original fades */
+        /* Estilo para la barra de búsqueda, copiado de index.html */
+        #searchBar {
+            display: block; padding: 8px 15px; border-radius: 20px; border: 1px solid #555;
+            background-color: #2a2a2a; color: #f0f0f0; font-size: 0.9em; width: 400px;
+            max-width: 90%; font-family: 'Manrope', sans-serif; outline: none;
+            margin: 25px auto 20px;
         }
         .game-item p {
             margin: 10px 0;
@@ -143,7 +123,7 @@
 
         .game-modal-content {
             background-color: #1c1c1c;
-            padding: 20px;
+            padding: 25px; /* Igual que index.html */
             border: 1px solid #444;
             width: 90%;
             max-width: 840px; /* Ancho para acomodar un iframe de 800px + padding */
@@ -196,8 +176,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 0; /* Was inline on h2 */
-            margin-bottom: 15px; /* Was inline on h2 */
+            margin-top: 0;
+            margin-bottom: 20px; /* Igual que #modalGameTitle en index.html */
+            border-bottom: 1px solid #444; /* Igual que #modalGameTitle en index.html */
+            padding-bottom: 0.5em; /* Igual que #modalGameTitle en index.html */
         }
 
         #modalGameTitleText {
@@ -423,8 +405,11 @@
     <a href="index.html" class="vicioware-icon-link">
         <img src="resources/vicioware_icon.png">
     </a>
+    <!-- Barra de búsqueda añadida -->
+    <input type="search" id="searchBar" placeholder="Buscar juegos...">
+
     <div class="gallery-container">
-        <a href="#" data-game-id="metal-slug" data-game-src="https://www.retrogames.cc/embed/9157-metal-slug-super-vehicle-001.html" data-hover-src="gameshots/metal-slug.png" class="game-item">
+        <a href="#" data-game-id="metal-slug" data-game-src="https://www.retrogames.cc/embed/9157-metal-slug-super-vehicle-001.html" class="game-item">
             <img src="portadas/metal-slug.png" loading="lazy">
             <p>Metal Slug</p>
         </a>
@@ -509,6 +494,7 @@
             const gameModalIframe = document.getElementById('gameModalIframe');
             const modalGameTitleTextElement = document.getElementById('modalGameTitleText');
             let gameOpenStartTime = null; // Para rastrear cuándo se abrió el modal del juego
+            const searchBar = document.getElementById('searchBar');
 
             // Custom Confirm Modal elements
             const customConfirmModal = document.getElementById('customConfirmModal');
@@ -516,65 +502,102 @@
             const customConfirmCancelButton = document.getElementById('customConfirmCancelButton');
             const dontShowAgainCheckbox = document.getElementById('dontShowAgainCheckbox');
 
+            function updateImageLoadingPriority() {
+                const visibleGameItems = [];
+                gameItems.forEach(item => {
+                    const style = window.getComputedStyle(item);
+                    if (style.display !== 'none') {
+                        visibleGameItems.push(item);
+                    }
+                });
+
+                gameItems.forEach(item => {
+                    const img = item.querySelector('img');
+                    if (img && img.getAttribute('loading') !== 'lazy') {
+                        img.setAttribute('loading', 'lazy');
+                    }
+                });
+
+                const limit = 30; // Cargar con prioridad las primeras 30 visibles
+                for (let i = 0; i < visibleGameItems.length && i < limit; i++) {
+                    const item = visibleGameItems[i];
+                    const img = item.querySelector('img');
+                    if (img) {
+                        img.removeAttribute('loading');
+                    }
+                }
+            }
+
             gameItems.forEach(item => {
                 const img = item.querySelector('img');
                 const originalSrc = img.getAttribute('src');
-                const hoverSrc = item.dataset.hoverSrc;
+                const hoverSrc = item.dataset.hoverSrc; // Asumimos que podría existir data-hover-src
                 let hoverTimer = null; // Temporizador para el hover
-                let hoverImgElement = null;
+                let isHoverImageDisplayed = false;
 
-                // Procesar la imagen de portada
-                setupImageProcessing(img, item, true);
-
-                if (hoverSrc) {
-                    hoverImgElement = document.createElement('img');
-                    hoverImgElement.className = 'game-item-hover-img';
-                    hoverImgElement.src = hoverSrc;
-                    hoverImgElement.loading = 'lazy';
-                    item.insertBefore(hoverImgElement, img); // Insertar la imagen de hover ANTES de la de portada
+                function processLoadedImage() {
+                    img.style.opacity = '1';
+                    if (img.complete && img.naturalWidth > 0 && img.naturalHeight > 0) {
+                        try {
+                            const dominantColorArray = colorThief.getColor(img);
+                            if (dominantColorArray) {
+                                const rgbString = `rgb(${dominantColorArray[0]}, ${dominantColorArray[1]}, ${dominantColorArray[2]})`;
+                                item.dataset.dominantColor = rgbString; // Guardar para usar en hover
+                                if (item.matches(':hover')) {
+                                    item.style.setProperty('--dominant-glow-color', rgbString);
+                                }
+                            }
+                        } catch (error) {
+                            console.error('ColorThief error para la imagen:', img.src, error);
+                        }
+                    } else if (!img.complete) {
+                        // La imagen aún no ha terminado de cargar, el listener 'load' se encargará.
+                    } else {
+                        console.warn('ColorThief: Imagen cargada pero inválida (sin dimensiones):', img.src);
+                    }
                 }
 
+                if (img.complete && img.naturalWidth > 0) {
+                    processLoadedImage();
+                }
+                img.addEventListener('load', processLoadedImage);
+                img.addEventListener('error', () => {
+                    console.error('Error al cargar la imagen:', img.src);
+                    img.style.opacity = '1'; // Hacer visible para mostrar el alt text o el fondo de error
+                });
+
                 item.addEventListener('mouseenter', () => {
-                    const dominantColor = item.dataset.dominantColor;
-                    if (dominantColor) {
-                        item.style.setProperty('--dominant-glow-color', dominantColor);
+                    if (item.dataset.dominantColor) {
+                        item.style.setProperty('--dominant-glow-color', item.dataset.dominantColor);
                     }
 
-                    if (hoverImgElement) { // Solo si hay imagen de hover
-                        if (hoverTimer) clearTimeout(hoverTimer); // Limpiar temporizador anterior si existe
+                    if (hoverSrc) { // Solo si hay data-hover-src
+                        if (hoverTimer) clearTimeout(hoverTimer);
                         hoverTimer = setTimeout(() => {
                             if (item.matches(':hover')) {
-                                img.style.opacity = '0'; // Desvanecer la portada para revelar la de hover
+                                img.src = hoverSrc;
+                                isHoverImageDisplayed = true;
                             }
-                        }, 1000); // 1000 ms = 1 segundo
+                        }, 1000); // 1 segundo
                     }
                 });
 
                 item.addEventListener('mouseleave', () => {
-                    if (hoverImgElement) { // Solo si hay imagen de hover
-                        // Restaurar la portada instantáneamente
-                        img.classList.add('no-transition');
-                        img.style.opacity = '1';
-                        void img.offsetHeight; // Forzar reflujo
-                        requestAnimationFrame(() => {
-                            img.classList.remove('no-transition');
-                        });
-                        // Limpiar el temporizador si el cursor se retira antes de que se complete
-                        if (hoverTimer) {
-                            clearTimeout(hoverTimer);
-                        }
+                    if (hoverTimer) {
+                        clearTimeout(hoverTimer);
+                        hoverTimer = null;
                     }
-                    // Lógica existente para quitar el resplandor
+                    if (isHoverImageDisplayed) {
+                        img.src = originalSrc;
+                        isHoverImageDisplayed = false;
+                    }
                     setTimeout(() => {
-                        const dominantColor = item.dataset.dominantColor;
-                        if (dominantColor && !item.matches(':hover')) {
+                        if (item.dataset.dominantColor && !item.matches(':hover')) {
                             item.style.removeProperty('--dominant-glow-color');
                         }
-                    }, 400); 
+                    }, 400); // Coincide con la transición de opacidad de ::after
                 });
 
-                // Aquí podrías añadir lógica de clic si estos items deben abrir un modal o un juego específico
-                // Por ahora, el href="#" no hace nada.
                 item.addEventListener('click', (event) => {
                     event.preventDefault();
                     const gameId = item.dataset.gameId;
@@ -585,10 +608,33 @@
                         openGameModal(gameName, gameSrc);
                     } else {
                         console.warn(`No se encontró 'data-game-src' para el juego: ${gameId}`);
-                        // Opcionalmente, podrías mostrar un mensaje al usuario
-                        // alert(`El juego '${gameName}' no está disponible para jugar directamente aquí.`);
                     }
                 });
+            });
+
+            // Llamada inicial para la carga de imágenes
+            updateImageLoadingPriority();
+
+            // Función para limpiar cadenas para la búsqueda (ignorar mayúsculas/minúsculas y caracteres especiales)
+            function sanitizeSearchTerm(term) {
+                return term.toLowerCase().replace(/[^a-z0-9]/g, '');
+            }
+
+            // Event listener para la barra de búsqueda
+            searchBar.addEventListener('input', (event) => {
+                const rawSearchTerm = event.target.value.trim();
+                const sanitizedSearchTerm = sanitizeSearchTerm(rawSearchTerm);
+
+                gameItems.forEach(item => {
+                    const rawGameTitle = item.querySelector('p').textContent;
+                    const sanitizedGameTitle = sanitizeSearchTerm(rawGameTitle);
+                    if (sanitizedGameTitle.includes(sanitizedSearchTerm)) {
+                        item.style.display = ''; // Muestra el item si coincide
+                    } else {
+                        item.style.display = 'none'; // Oculta el item si no coincide
+                    }
+                });
+                updateImageLoadingPriority(); // Actualizar prioridad después de filtrar
             });
 
             function openGameModal(gameName, gameSrc) {
@@ -602,20 +648,18 @@
             function closeGameModal() {
                 document.body.classList.remove('modal-blur-active');
                 gameModal.classList.remove('is-open');
-                // Importante: Detener el juego y liberar recursos
                 gameModalIframe.src = 'about:blank'; 
-                modalGameTitleTextElement.textContent = ''; // Resetear título
-                gameOpenStartTime = null; // Resetear el tiempo de apertura
+                modalGameTitleTextElement.textContent = '';
+                gameOpenStartTime = null;
             }
 
             function showCustomConfirm() {
-                // customConfirmModal.style.display = 'flex'; // Ya no es necesario, display es flex por defecto
                 let warningShownCount = parseInt(sessionStorage.getItem('gameroomWarningShownCount') || '0');
                 warningShownCount++;
                 sessionStorage.setItem('gameroomWarningShownCount', warningShownCount.toString());
 
                 const checkboxContainer = document.querySelector('.dont-show-again-container');
-                if (warningShownCount > 2) { // Mostrar la casilla después de la segunda vez (a partir de la tercera)
+                if (warningShownCount > 2) {
                     checkboxContainer.style.display = 'flex';
                 } else {
                     checkboxContainer.style.display = 'none';
@@ -626,7 +670,6 @@
             }
 
             function hideCustomConfirm() {
-                // customConfirmModal.style.display = 'none';
                 customConfirmModal.classList.remove('is-visible');
             }
 
