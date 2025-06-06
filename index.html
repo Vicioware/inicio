@@ -923,8 +923,7 @@
                                 // Si no es el último, el margen ya está fijado en 10px para el espaciado entre botones.
                                 if (isLastItemInList) {
                                     parentListItem.style.marginBottom = isVisible ? '-10px' : '-35px';
-                                    parentListItem.style.marginBottom = isVisible ? '-14px' : '-39px';                                }
-                            });
+                                    parentListItem.style.marginBottom = isVisible ? '-18px' : '-43px';                                }                            });
 
                             readMoreContainer.appendChild(readMoreToggle);
                             readMoreContainer.appendChild(readMoreContent);
@@ -932,7 +931,7 @@
 
                             // Establecer margen inicial para este li
                             if (isLastItemInList) {
-                                listItem.style.marginBottom = '-39px'; // Es el último y tiene "Detalles" (ocultos por defecto)
+                                listItem.style.marginBottom = '-43px'; // Es el último y tiene "Detalles" (ocultos por defecto)
                             } else {
                                 listItem.style.marginBottom = '10px'; // No es el último, necesita 10px de espacio debajo
                             }
