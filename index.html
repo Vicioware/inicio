@@ -332,7 +332,7 @@
         .plataformas-link {
             position: absolute;
             top: 28px;
-            left: 90px; /* Justo a la derecha del ícono (32px + 48px + 10px de espacio extra) */
+            left: 120px; /* Justo a la derecha del ícono (32px + 48px + 10px de espacio extra) */
             z-index: 1002;
             color: #f0f0f0;
             font-family: 'Manrope', sans-serif;
@@ -341,11 +341,13 @@
             padding: 6px 16px;
             border-radius: 6px;
             background: none;
-            transition: background 0.2s, color 0.2s;
+            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out, color 0.2s;
         }
         .plataformas-link:hover {
-            background: #252525;
-            color: #5ac560;
+            /* Efecto igual al logo: agrandamiento y resplandor blanco */
+            transform: scale(1.15);
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+            color: #f0f0f0;
         }
     </style>
 </head>
@@ -942,9 +944,9 @@
 
                                 // Solo ajustar el margen si es el último item de la lista.
                                 // Si no es el último, el margen ya está fijado en 10px para el espaciado entre botones.
-                                if (isLastItemInList) {
-                                    parentListItem.style.marginBottom = isVisible ? '-10px' : '-35px';
-                                    parentListItem.style.marginBottom = isVisible ? '-18px' : '-43px';                                }                            });
+                                if (isVisible) {
+                                    parentListItem.style.marginBottom = '-10px';
+                                    parentListItem.style.marginBottom = '-18px';                                }                            });
 
                             readMoreContainer.appendChild(readMoreToggle);
                             readMoreContainer.appendChild(readMoreContent);
