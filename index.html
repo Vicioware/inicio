@@ -16,6 +16,12 @@
             font-weight: 400; /* 'Regular' suele corresponder a un peso de 400. Si es 'Light', usa 300 y el archivo correcto. */
             font-style: normal;
         }
+        @font-face {
+            font-family: 'Manrope Light';
+            src: url('fonts/Manrope-Light.ttf') format('truetype');
+            font-weight: 300;
+            font-style: normal;
+        }
 
         body {
             font-family: 'Manrope', sans-serif; /* Usamos Manrope, con sans-serif como fallback */
@@ -335,7 +341,7 @@
             left: 120px; /* Justo a la derecha del ícono (32px + 48px + 10px de espacio extra) */
             z-index: 1002;
             color: #dadada;
-            font-family: 'Manrope', sans-serif;
+            font-family: 'Manrope Light', 'Manrope', sans-serif;
             font-size: 1.1em;
             text-decoration: none;
             padding: 6px 16px;
