@@ -75,9 +75,9 @@
             z-index: -2; /* Detrás del resplandor blanco y del contenido de .game-item */
             inset: -6px; /* Ligeramente más grande que la tarjeta para el efecto glow */
             /* Ahora un solo color, el predominante de la imagen, con un fallback */
-            background: var(--dominant-glow-color, rgba(200, 200, 200, 0.2)); /* Fallback: gris claro semitransparente */
+            background: var(--dominant-glow-color, rgba(200, 200, 200, 0.04)); /* Reducido alpha de 0.2 a 0.04 (80% menos) */
             /* Ya no se necesita animación ni background-size para un solo color */
-            filter: blur(12px); /* Desenfoque para el efecto de resplandor */
+            filter: blur(6px); /* Reducido el blur a la mitad */
             border-radius: 14px; /* (radio original de la tarjeta + valor de inset) */
             transition: opacity 0.4s ease-in-out;
         }
@@ -324,7 +324,7 @@
         /* Estilos para el ícono de Vicioware */
         .vicioware-icon-link {
             position: absolute; /* Cambiado de fixed a absolute */
-            top: 27px; /* Bajado 3px (antes 15px) */
+            top: 25px; /* Bajado 3px (antes 15px) */
             left: 32px; /* Espaciado desde la izquierda */
             z-index: 1002; /* Mismo z-index que el ícono de gameroom para consistencia */
             display: block;
