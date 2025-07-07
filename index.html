@@ -66,37 +66,16 @@
             transition: transform 0.2s ease-in-out; /* Mantenemos la transición de hover */
             z-index: 1; /* Asegurar que la tarjeta esté por encima de otros elementos si es necesario */
         }
-        .game-item::before, .game-item::after { /* Estilos comunes para ambos pseudo-elementos de resplandor */
-            content: '';
-            position: absolute;
-            opacity: 0;
+        .game-item::after { 
+            /* Eliminar completamente este pseudo-elemento ya que era para el resplandor de color */
+            display: none;
         }
-        .game-item::after { /* Pseudo-elemento para el efecto de resplandor de colores (lava lamp) */
-            z-index: -2; /* Detrás del resplandor blanco y del contenido de .game-item */
-            inset: -6px; /* Ligeramente más grande que la tarjeta para el efecto glow */
-            /* Ahora un solo color, el predominante de la imagen, con un fallback */
-            background: var(--dominant-glow-color, rgba(200, 200, 200, 0.04)); /* Reducido alpha de 0.2 a 0.04 (80% menos) */
-            /* Ya no se necesita animación ni background-size para un solo color */
-            filter: blur(6px); /* Reducido el blur a la mitad */
-            border-radius: 14px; /* (radio original de la tarjeta + valor de inset) */
-            transition: opacity 0.4s ease-in-out;
-        }
-        .game-item::before { /* Pseudo-elemento para el resplandor blanco de contorno */
-            z-index: -1; /* Encima del resplandor de colores, detrás del contenido de .game-item */
-            inset: 0; /* Coincide con el tamaño de la tarjeta */
-            border-radius: 8px; /* Mismo borde que la tarjeta */
-            /* Sombra blanca para el contorno, mucho menos intensa */
-            box-shadow: 0 0 2px 0.2px rgba(255, 255, 255, 0.07); /* 80% menos intensidad y blur */
-            transition: opacity 0.3s ease-in-out;
+        .game-item::before { 
+            /* Eliminar completamente este pseudo-elemento ya que era para el resplandor blanco */
+            display: none;
         }
         .game-item:hover {
             transform: scale(1.05); /* Efecto de zoom al pasar el ratón */
-        }
-        .game-item:hover::after {
-            opacity: 0.7; /* Mostrar el resplandor en hover, ajusta la opacidad según prefieras */
-        }
-        .game-item:hover::before {
-            opacity: 1; /* Mostrar el resplandor blanco. La intensidad se controla con la opacidad de la box-shadow */
         }
         .game-item img {
             width: 100%; /* La imagen ocupa todo el ancho del contenedor */
@@ -824,11 +803,9 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.4.0/color-thief.umd.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const gameItems = document.querySelectorAll('.game-item');
-            const colorThief = new ColorThief();
 
             // Modal elements
             const modal = document.getElementById('downloadModal');
@@ -1040,77 +1017,36 @@
 
             gameItems.forEach(item => {
                 const img = item.querySelector('img');
-                const originalSrc = img.getAttribute('src'); // Guardar src original desde el atributo
-                const hoverSrc = item.dataset.hoverSrc; // Ruta de la imagen para el hover
-                let hoverTimer = null; // Temporizador para el hover
-                let isHoverImageDisplayed = false; // Bandera para saber si la imagen de hover está activa
+                const originalSrc = img.getAttribute('src');
+                const hoverSrc = item.dataset.hoverSrc;
+                let hoverTimer = null;
+                let isHoverImageDisplayed = false;
 
-                let dynamicGlowColors = null; // Para almacenar los colores extraídos para este item
+                // Eliminar dynamicGlowColors ya que no se necesita
+                // let dynamicGlowColors = null;
 
-                // Renombrada y modificada para incluir el cambio de opacidad y la lógica de ColorThief
                 function processLoadedImage() {
-                    // Hacemos la imagen visible
                     img.style.opacity = '1';
-                    // Opcional: si se usó min-height en CSS y se quiere que la imagen tome su altura natural exacta al cargar.
-                    // Descomentar la siguiente línea si se prefiere este comportamiento.
-                    // img.style.minHeight = 'auto';
-
-                    // Lógica de ColorThief (asegurarse de que la imagen esté realmente cargada y sea válida)
-                    if (img.complete && img.naturalWidth > 0 && img.naturalHeight > 0) {
-                        try {
-                            const dominantColorArray = colorThief.getColor(img); 
-                            
-                            if (dominantColorArray) {
-                                dynamicGlowColors = {};
-                                const rgbString = `rgb(${dominantColorArray[0]}, ${dominantColorArray[1]}, ${dominantColorArray[2]})`;
-                                dynamicGlowColors['--dominant-glow-color'] = rgbString;
-                                // Si el cursor ya está sobre el elemento cuando la imagen carga, aplicar el glow
-                                if (item.matches(':hover')) {
-                                    item.style.setProperty('--dominant-glow-color', rgbString);
-                                }
-                            } else {
-                                console.warn('ColorThief: No se pudo extraer una paleta para:', img.src);
-                                dynamicGlowColors = null;
-                            }
-                        } catch (error) {
-                            console.error('ColorThief error para la imagen:', img.src, error);
-                            dynamicGlowColors = null;
-                        }
-                    } else if (!img.complete) {
-                    } else {
-                        console.warn('ColorThief: Imagen cargada pero inválida (sin dimensiones):', img.src);
-                        dynamicGlowColors = null;
-                    }
+                    // Eliminar toda la lógica de ColorThief
                 }
 
-                // Intentar extraer colores si la imagen ya está cargada
-                // (importante para imágenes cacheadas o ya visibles)
                 if (img.complete && img.naturalWidth > 0) {
                     processLoadedImage();
                 }
-                // Siempre añadir el listener 'load' para imágenes que cargan después (incluyendo lazy-loaded)
                 img.addEventListener('load', processLoadedImage);
 
                 img.addEventListener('error', () => {
                     console.error('Error al cargar la imagen:', img.src);
-                    img.style.opacity = '1'; // Hacer visible para mostrar el alt text o el fondo de error
-                    dynamicGlowColors = null;
+                    img.style.opacity = '1';
                 });
 
                 item.addEventListener('mouseenter', () => {
-                    if (dynamicGlowColors && dynamicGlowColors['--dominant-glow-color']) {
-                        item.style.setProperty('--dominant-glow-color', dynamicGlowColors['--dominant-glow-color']);
-                    }
-
-                    // Lógica para cambiar imagen en hover prolongado
+                    // Eliminar la lógica de resplandor
                     if (hoverSrc) {
-                        if (hoverTimer) clearTimeout(hoverTimer); // Limpiar temporizador anterior si existe
+                        if (hoverTimer) clearTimeout(hoverTimer);
                         hoverTimer = setTimeout(() => {
-                            // Verificar si el cursor sigue sobre el elemento
                             if (item.matches(':hover')) {
-                                img.src = hoverSrc; // Cambia la fuente.
-                                                    // La imagen original permanece visible hasta que la nueva carga.
-                                                    // El evento 'load' y processLoadedImage harán que la nueva imagen aparezca suavemente.
+                                img.src = hoverSrc;
                                 isHoverImageDisplayed = true;
                             }
                         }, 1000); // 1000 ms = 1 segundo
@@ -1118,21 +1054,85 @@
                 });
 
                 item.addEventListener('mouseleave', () => {
-                    // Limpiar el temporizador si el cursor se retira antes de que se complete
                     if (hoverTimer) {
                         clearTimeout(hoverTimer);
                         hoverTimer = null;
                     }
 
-                    // Restaurar la imagen original si se mostró la de hover
                     if (isHoverImageDisplayed) {
-                        img.src = originalSrc; // Cambia la fuente.
-                                               // La imagen de hover permanece visible hasta que la original carga.
+                        img.src = originalSrc;
                         isHoverImageDisplayed = false;
                     }
+                });
 
-                    // Lógica existente para quitar el resplandor
-                    setTimeout(() => {
+                // Event listener para abrir el modal al hacer clic en la tarjeta
+                item.addEventListener('click', (event) => {
+                    event.preventDefault(); // Previene la acción por defecto del enlace (navegar a #)
+                    
+                    const gameId = item.dataset.gameId;
+                    const gameName = item.querySelector('p').textContent;
+
+                    if (gameId) {
+                        openModal(gameId, gameName);
+                    } else {
+                        console.error('Atributo data-game-id no encontrado en el item:', item);
+                    }
+                });
+            });
+
+            // Funciones para la notificación de "Pasar el rato"
+            function showHangoutNotification() {
+                // Si ya hay un temporizador de autocierre, limpiarlo (por si se llama a show múltiples veces rápidamente)
+                if (notificationAutoCloseTimer) clearTimeout(notificationAutoCloseTimer);
+
+                hangoutNotification.classList.add('show');
+                // Marcar que la notificación se ha mostrado en esta sesión
+                sessionStorage.setItem('hangoutNotificationShown', 'true');
+
+                // Iniciar temporizador para ocultar automáticamente después de 10 segundos
+                notificationAutoCloseTimer = setTimeout(() => {
+                    closeHangoutNotification(); // Reutilizar la función de cierre
+                }, 10000); // 10 segundos para ocultar
+            }
+
+            // Estas funciones se declaran globalmente para ser accesibles desde el onclick en el HTML
+            window.closeHangoutNotification = function() {
+                hangoutNotification.classList.remove('show');
+                if (hangoutTimer) clearTimeout(hangoutTimer); // Detener el temporizador si se cierra manualmente
+                if (notificationAutoCloseTimer) clearTimeout(notificationAutoCloseTimer); // Detener el temporizador de autocierre
+            }
+            
+            window.redirectToMinigames = function() {
+                // Cambia 'minijuegos.html' por la URL real de tu sección de minijuegos
+                window.open('gameroom.html', '_blank'); 
+                closeHangoutNotification(); // Cierra la notificación después de redirigir
+            }
+
+            // window.addEventListener('load', alignGameroomIcon); // Ya no se necesita
+            // window.addEventListener('resize', alignGameroomIcon); // Ya no se necesita
+
+            // Funcionalidad para cambiar el icono de Gameroom a GIF en hover
+            const gameroomIconLink = document.querySelector('.gameroom-icon-link');
+            if (gameroomIconLink) {
+                const gameroomIconImage = gameroomIconLink.querySelector('img');
+                if (gameroomIconImage) {
+                    const originalGameroomSrc = gameroomIconImage.src; // Captura la ruta del PNG actual
+                    const hoverGameroomSrc = 'resources/gameroom.gif'; // Ruta al GIF
+
+                    gameroomIconLink.addEventListener('mouseenter', () => {
+                        gameroomIconImage.src = hoverGameroomSrc;
+                    });
+
+                    gameroomIconLink.addEventListener('mouseleave', () => {
+                        gameroomIconImage.src = originalGameroomSrc;
+                    });
+                }
+            }
+
+        });
+    </script>
+</body>
+</html>
                         if (dynamicGlowColors && !item.matches(':hover')) {
                             item.style.removeProperty('--dominant-glow-color');
                         }
