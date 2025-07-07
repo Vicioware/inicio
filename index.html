@@ -39,15 +39,20 @@
             font-size: 0.9em;
             width: 400px; /* Ancho aumentado */
             max-width: 90%; /* Para asegurar que no se desborde en pantallas pequeñas */
-            font-family: 'Manrope', sans-serif;
+            font-family: 'Manrope Light', 'Manrope', sans-serif;
             outline: none;
-            margin: 25px auto 20px; /* Centra la barra, margen superior 23px, inferior 20px */
+            margin: 30px auto 20px; /* Aumentado margen superior de 25px a 30px */
+        }
+        #searchBar::placeholder {
+            font-family: 'Manrope Light', 'Manrope', sans-serif;
+            font-weight: 300;
+            color: #bdbdbd;
         }
         .gallery-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center; /* Alinea los items al centro */
-            padding: 10px; /* Margen leve alrededor del contenedor */
+            padding: 15px 10px 10px 10px; /* 5px extra arriba */
             gap: 10px; /* Espacio leve entre los elementos */
         }
         .game-item {
@@ -81,7 +86,7 @@
             inset: 0; /* Coincide con el tamaño de la tarjeta */
             border-radius: 8px; /* Mismo borde que la tarjeta */
             /* Sombra blanca para el contorno, menos intensa que el resplandor de colores */
-            box-shadow: 0 0 7px 2px rgba(255, 255, 255, 0.35); 
+            box-shadow: 0 0 4px 1px rgba(255, 255, 255, 0.22); /* Menor intensidad y blur */
             transition: opacity 0.3s ease-in-out;
         }
         .game-item:hover {
@@ -319,7 +324,7 @@
         /* Estilos para el ícono de Vicioware */
         .vicioware-icon-link {
             position: absolute; /* Cambiado de fixed a absolute */
-            top: 15px;
+            top: 18px; /* Bajado 3px (antes 15px) */
             left: 32px; /* Espaciado desde la izquierda */
             z-index: 1002; /* Mismo z-index que el ícono de gameroom para consistencia */
             display: block;
