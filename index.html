@@ -327,12 +327,33 @@
             transform: scale(1.15); /* Efecto de agrandamiento sutil al pasar el ratón */
             filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5)); /* Resplandor blanco sutil */
         }
+
+        /* Estilos para el enlace Plataformas */
+        .plataformas-link {
+            position: absolute;
+            top: 28px;
+            left: 90px; /* Justo a la derecha del ícono (32px + 48px + 10px de espacio extra) */
+            z-index: 1002;
+            color: #f0f0f0;
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.1em;
+            text-decoration: none;
+            padding: 6px 16px;
+            border-radius: 6px;
+            background: none;
+            transition: background 0.2s, color 0.2s;
+        }
+        .plataformas-link:hover {
+            background: #252525;
+            color: #5ac560;
+        }
     </style>
 </head>
 <body>
     <a href="index.html" class="vicioware-icon-link">
         <img src="resources/vicioware_icon.png">
     </a>
+    <a href="plataformas.html" class="plataformas-link">Plataformas</a>
     <a href="gameroom.html" class="gameroom-icon-link">
         <img src="resources/gameroom.png">
     </a>
