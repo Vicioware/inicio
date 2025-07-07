@@ -21,90 +21,19 @@
             font-weight: 300;
             font-style: normal;
         }
-
         body {
             font-family: 'Manrope', sans-serif;
             margin: 0;
             background-color: #1c1c1c;
             color: #f0f0f0;
+            /* padding: 20px; Ya no es necesario con la galería centrada */
+            /* box-sizing: border-box; */
         }
-        /* --- Zona superior igual que index.html --- */
-        .vicioware-icon-link {
-            position: absolute;
-            top: 25px;
-            left: 32px;
-            z-index: 1002;
-            display: block;
-        }
-        .vicioware-icon-link img {
-            width: 48px;
-            height: 48px;
-            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
-        }
-        .vicioware-icon-link:hover img {
-            transform: scale(1.15);
-            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
-        }
-        .plataformas-link {
-            position: absolute;
-            top: 30px;
-            left: 120px;
-            z-index: 1002;
-            color: #dadada;
-            font-family: 'Manrope Light', 'Manrope', sans-serif;
-            font-size: 1.1em;
-            text-decoration: none;
-            padding: 6px 16px;
-            border-radius: 6px;
-            background: none;
-            transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out, color 0.2s;
-        }
-        .plataformas-link:hover {
-            transform: scale(1.045);
-            text-shadow: 0 0 8px rgba(255,255,255,0.7);
-            color: #f0f0f0;
-        }
-        .gameroom-icon-link {
-            position: absolute;
-            top: 20px;
-            right: 17px;
-            z-index: 1000;
-            display: block;
-        }
-        .gameroom-icon-link img {
-            width: 78px;
-            height: 58.5px;
-            transition: transform 0.3s ease-in-out;
-        }
-        .gameroom-icon-link:hover img {
-            transform: scale(1.15);
-        }
-        #searchBar {
-            display: block;
-            padding: 8px 15px;
-            border-radius: 20px;
-            border: 1px solid #555;
-            background-color: #2a2a2a;
-            color: #f0f0f0;
-            font-size: 0.9em;
-            width: 400px;
-            max-width: 90%;
-            font-family: 'Manrope Light', 'Manrope', sans-serif;
-            outline: none;
-            margin: 30px auto 20px;
-        }
-        #searchBar::placeholder {
-            font-family: 'Manrope Light', 'Manrope', sans-serif;
-            font-weight: 300;
-            color: #bdbdbd;
-        }
-        /* --- Fin zona superior igual que index.html --- */
-
         .gallery-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            padding: 15px 10px 10px 10px;
+            justify-content: center; /* Alinea los items al centro */
+            padding: 10px; /* Margen leve alrededor del contenedor, igual que index.html */
             gap: 10px;
         }
         .game-item {
@@ -119,9 +48,11 @@
             z-index: 1;
         }
         .game-item::after {
+            /* Eliminar glow de color predominante */
             display: none;
         }
         .game-item::before {
+            /* Eliminar glow blanco */
             display: none;
         }
         .game-item:hover {
@@ -130,28 +61,33 @@
         .game-item img {
             width: 100%;
             height: auto;
-            display: block;
+            display: block; /* Ayuda a evitar espacios extra y asegura que el border-radius se aplique bien */
             border-top-left-radius: 8px;
             border-top-right-radius: 8px;
-            opacity: 0;
+            opacity: 0; /* Inicialmente oculta */
             transition: opacity 0.4s ease-in-out;
-            background-color: #2a2a2a;
-            min-height: 160px;
-        }
-        .game-item p {
-            margin: 10px 0;
-            font-size: 0.9em;
-            color: #fff;
-            text-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
-            padding: 0 5px;
+            background-color: #2a2a2a; /* Color de fondo placeholder */
+            min-height: 160px; /* Ajusta este valor a una altura promedio/mínima esperada */
         }
 
-        /* Estilo para la barra de búsqueda, copiado de index.html */
         #searchBar {
-            display: block; padding: 8px 15px; border-radius: 20px; border: 1px solid #555;
-            background-color: #2a2a2a; color: #f0f0f0; font-size: 0.9em; width: 400px;
-            max-width: 90%; font-family: 'Manrope', sans-serif; outline: none;
-            margin: 25px auto 20px;
+            display: block; /* Para poder aplicar márgenes automáticos y centrar */
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid #555;
+            background-color: #2a2a2a;
+            color: #f0f0f0;
+            font-size: 0.9em;
+            width: 400px; /* Ancho aumentado */
+            max-width: 90%; /* Para asegurar que no se desborde en pantallas pequeñas */
+            font-family: 'Manrope Light', 'Manrope', sans-serif;
+            outline: none;
+            margin: 30px auto 20px; /* Aumentado margen superior de 25px a 30px */
+        }
+        #searchBar::placeholder {
+            font-family: 'Manrope Light', 'Manrope', sans-serif;
+            font-weight: 300;
+            color: #bdbdbd;
         }
         .game-item p {
             margin: 10px 0;
@@ -448,7 +384,7 @@
         /* Estilos para el ícono de Vicioware (copiados de index.html) */
         .vicioware-icon-link {
             position: absolute;
-            top: 15px;
+            top: 25px;
             left: 32px; /* Espaciado desde la izquierda */
             z-index: 1002; /* Encima de la mayoría de los elementos, consistente con index.html */
             display: block;
@@ -465,11 +401,11 @@
         /* Estilos para el enlace Plataformas */
         .plataformas-link {
             position: absolute;
-            top: 28px;
+            top: 30px;
             left: 120px;
             z-index: 1002;
             color: #dadada;
-            font-family: 'Manrope', sans-serif;
+            font-family: 'Manrope Light', 'Manrope', sans-serif;
             font-size: 1.1em;
             text-decoration: none;
             padding: 6px 16px;
@@ -489,9 +425,7 @@
         <img src="resources/vicioware_icon.png">
     </a>
     <a href="plataformas.html" class="plataformas-link">Plataformas</a>
-    <a href="gameroom.html" class="gameroom-icon-link">
-        <img src="resources/gameroom.png">
-    </a>
+    <!-- Barra de búsqueda añadida -->
     <input type="search" id="searchBar" placeholder="Buscar juegos...">
 
     <div class="gallery-container">
@@ -772,22 +706,6 @@
                     closeGameModal();
                 }
             });
-
-            // Funcionalidad para cambiar el icono de Gameroom a GIF en hover (igual que index.html)
-            const gameroomIconLink = document.querySelector('.gameroom-icon-link');
-            if (gameroomIconLink) {
-                const gameroomIconImage = gameroomIconLink.querySelector('img');
-                if (gameroomIconImage) {
-                    const originalGameroomSrc = gameroomIconImage.src;
-                    const hoverGameroomSrc = 'resources/gameroom.gif';
-                    gameroomIconLink.addEventListener('mouseenter', () => {
-                        gameroomIconImage.src = hoverGameroomSrc;
-                    });
-                    gameroomIconLink.addEventListener('mouseleave', () => {
-                        gameroomIconImage.src = originalGameroomSrc;
-                    });
-                }
-            }
         });
     </script>
 </body>
