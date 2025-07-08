@@ -81,7 +81,7 @@ body {
     margin: 0;
     display: block;
     pointer-events: auto;
-    transform: translateX(-7px); /* <- Desplaza 2px a la izquierda */
+    transform: translateX(-8px); /* <- Desplaza 2px a la izquierda */
 }
 #searchBar:focus {
     border-color: #5ac560;
