@@ -264,29 +264,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
-        // --- Filtro de búsqueda ---
-        const searchBar = document.getElementById('searchBar');
-        if (searchBar) {
-            searchBar.addEventListener('input', (event) => {
-                const rawSearchTerm = event.target.value.trim();
-                const sanitizedSearchTerm = sanitizeSearchTerm(rawSearchTerm);
-                document.querySelectorAll('.game-item').forEach(item => {
-                    const rawGameTitle = item.querySelector('p').textContent;
-                    const sanitizedGameTitle = sanitizeSearchTerm(rawGameTitle);
-                    if (sanitizedGameTitle.includes(sanitizedSearchTerm)) {
-                        item.style.display = '';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-                updateImageLoadingPriority();
-            });
-        }
         updateImageLoadingPriority();
     }
     window.initGallery = initGallery;
 
-    // --- CARGA DINÁMICA DE LA GALERÍA ---
+    // --- CARGA DINÁMICA DE LA GALERÍA Y FILTRO ---
     fetch('gallery-index.html')
         .then(response => response.text())
         .then(html => {
@@ -297,6 +279,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelector('.gallery-container').innerHTML = gallery.innerHTML;
             }
             window.initGallery();
+
+            // Filtro de búsqueda (debe ejecutarse después de cargar la galería)
+            const searchBar = document.getElementById('searchBar');
+            if (searchBar) {
+                searchBar.addEventListener('input', (event) => {
+                    const rawSearchTerm = event.target.value.trim();
+                    const sanitizedSearchTerm = sanitizeSearchTerm(rawSearchTerm);
+                    document.querySelectorAll('.game-item').forEach(item => {
+                        const rawGameTitle = item.querySelector('p').textContent;
+                        const sanitizedGameTitle = sanitizeSearchTerm(rawGameTitle);
+                        if (sanitizedGameTitle.includes(sanitizedSearchTerm)) {
+                            item.style.display = '';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                    updateImageLoadingPriority();
+                });
+            }
         });
 
     // Funciones para la notificación de "Pasar el rato"
