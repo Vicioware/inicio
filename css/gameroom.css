@@ -80,8 +80,8 @@ body {
     transition: border-color 0.2s, box-shadow 0.2s;
     margin: 0;
     display: block;
-    margin-left: -4px;
-    pointer-events: auto; /* El input sigue siendo interactivo */
+    pointer-events: auto;
+    transform: translateX(-2px); /* <- Desplaza 2px a la izquierda */
 }
 #searchBar:focus {
     border-color: #5ac560;
