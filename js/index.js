@@ -211,70 +211,93 @@ document.addEventListener('DOMContentLoaded', () => {
         // alignGameroomIcon(); // Ya no se necesita
     });
 
-    gameItems.forEach(item => {
-        const img = item.querySelector('img');
-        const originalSrc = img.getAttribute('src');
-        const hoverSrc = item.dataset.hoverSrc;
-        let hoverTimer = null;
-        let isHoverImageDisplayed = false;
+    // --- INICIALIZACIÓN DE GALERÍA DINÁMICA Y EVENTOS ---
+    function initGallery() {
+        const gameItems = document.querySelectorAll('.game-item');
+        // --- Eventos de tarjetas ---
+        gameItems.forEach(item => {
+            const img = item.querySelector('img');
+            const originalSrc = img.getAttribute('src');
+            const hoverSrc = item.dataset.hoverSrc;
+            let hoverTimer = null;
+            let isHoverImageDisplayed = false;
 
-        // Eliminar dynamicGlowColors ya que no se necesita
-        // let dynamicGlowColors = null;
+            function processLoadedImage() {
+                img.style.opacity = '1';
+            }
+            if (img.complete && img.naturalWidth > 0) {
+                processLoadedImage();
+            }
+            img.addEventListener('load', processLoadedImage);
+            img.addEventListener('error', () => {
+                img.style.opacity = '1';
+            });
 
-        function processLoadedImage() {
-            img.style.opacity = '1';
-            // Eliminar toda la lógica de ColorThief
-        }
-
-        if (img.complete && img.naturalWidth > 0) {
-            processLoadedImage();
-        }
-        img.addEventListener('load', processLoadedImage);
-
-        img.addEventListener('error', () => {
-            console.error('Error al cargar la imagen:', img.src);
-            img.style.opacity = '1';
+            item.addEventListener('mouseenter', () => {
+                if (hoverSrc) {
+                    if (hoverTimer) clearTimeout(hoverTimer);
+                    hoverTimer = setTimeout(() => {
+                        if (item.matches(':hover')) {
+                            img.src = hoverSrc;
+                            isHoverImageDisplayed = true;
+                        }
+                    }, 1000);
+                }
+            });
+            item.addEventListener('mouseleave', () => {
+                if (hoverTimer) {
+                    clearTimeout(hoverTimer);
+                    hoverTimer = null;
+                }
+                if (isHoverImageDisplayed) {
+                    img.src = originalSrc;
+                    isHoverImageDisplayed = false;
+                }
+            });
+            // Modal al hacer clic
+            item.addEventListener('click', (event) => {
+                event.preventDefault();
+                const gameId = item.dataset.gameId;
+                const gameName = item.querySelector('p').textContent;
+                if (gameId) {
+                    openModal(gameId, gameName);
+                }
+            });
         });
-
-        item.addEventListener('mouseenter', () => {
-            // Eliminar la lógica de resplandor
-            if (hoverSrc) {
-                if (hoverTimer) clearTimeout(hoverTimer);
-                hoverTimer = setTimeout(() => {
-                    if (item.matches(':hover')) {
-                        img.src = hoverSrc;
-                        isHoverImageDisplayed = true;
+        // --- Filtro de búsqueda ---
+        const searchBar = document.getElementById('searchBar');
+        if (searchBar) {
+            searchBar.addEventListener('input', (event) => {
+                const rawSearchTerm = event.target.value.trim();
+                const sanitizedSearchTerm = sanitizeSearchTerm(rawSearchTerm);
+                document.querySelectorAll('.game-item').forEach(item => {
+                    const rawGameTitle = item.querySelector('p').textContent;
+                    const sanitizedGameTitle = sanitizeSearchTerm(rawGameTitle);
+                    if (sanitizedGameTitle.includes(sanitizedSearchTerm)) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
                     }
-                }, 1000); // 1000 ms = 1 segundo
+                });
+                updateImageLoadingPriority();
+            });
+        }
+        updateImageLoadingPriority();
+    }
+    window.initGallery = initGallery;
+
+    // --- CARGA DINÁMICA DE LA GALERÍA ---
+    fetch('gallery-index.html')
+        .then(response => response.text())
+        .then(html => {
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
+            const gallery = tempDiv.querySelector('.gallery-container');
+            if (gallery) {
+                document.querySelector('.gallery-container').innerHTML = gallery.innerHTML;
             }
+            window.initGallery();
         });
-
-        item.addEventListener('mouseleave', () => {
-            if (hoverTimer) {
-                clearTimeout(hoverTimer);
-                hoverTimer = null;
-            }
-
-            if (isHoverImageDisplayed) {
-                img.src = originalSrc;
-                isHoverImageDisplayed = false;
-            }
-        });
-
-        // Event listener para abrir el modal al hacer clic en la tarjeta
-        item.addEventListener('click', (event) => {
-            event.preventDefault(); // Previene la acción por defecto del enlace (navegar a #)
-            
-            const gameId = item.dataset.gameId;
-            const gameName = item.querySelector('p').textContent;
-
-            if (gameId) {
-                openModal(gameId, gameName);
-            } else {
-                console.error('Atributo data-game-id no encontrado en el item:', item);
-            }
-        });
-    });
 
     // Funciones para la notificación de "Pasar el rato"
     function showHangoutNotification() {
