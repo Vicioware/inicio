@@ -79,7 +79,7 @@ body {
     transition: border-color 0.2s, box-shadow 0.2s;
     margin: 0;
     display: block;
-    margin-left: -2px;
+    margin-left: -4px;
 }
 #searchBar:focus {
     border-color: #5ac560;
