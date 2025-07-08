@@ -11,6 +11,7 @@
     font-style: normal;
 }
 body {
+    position: relative;
     font-family: 'Manrope', sans-serif;
     margin: 0;
     background-color: #1c1c1c;
@@ -66,7 +67,11 @@ body {
     max-width: 90%;
     font-family: 'Manrope Light', 'Manrope', sans-serif;
     outline: none;
-    margin: 30px auto 20px;
+    position: absolute;
+    left: 120px;
+    top: 30px;
+    z-index: 1003;
+    margin: 0;
 }
 #searchBar::placeholder {
     font-family: 'Manrope Light', 'Manrope', sans-serif;
