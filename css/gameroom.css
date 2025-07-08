@@ -63,6 +63,7 @@ body {
     margin-top: 28px;
     margin-bottom: 10px;
     z-index: 1003;
+    pointer-events: none; /* Permite que los elementos detrás sean clickeables */
 }
 #searchBar {
     padding: 10px 22px;
@@ -80,6 +81,7 @@ body {
     margin: 0;
     display: block;
     margin-left: -4px;
+    pointer-events: auto; /* El input sigue siendo interactivo */
 }
 #searchBar:focus {
     border-color: #5ac560;

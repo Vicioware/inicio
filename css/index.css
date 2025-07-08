@@ -27,6 +27,7 @@ body {
     margin-top: 28px;
     margin-bottom: 10px;
     z-index: 1003;
+    pointer-events: none; /* Permite que los elementos detrás sean clickeables */
 }
 
 #searchBar {
@@ -44,6 +45,7 @@ body {
     transition: border-color 0.2s, box-shadow 0.2s;
     margin: 0;
     display: block;
+    pointer-events: auto; /* El input sigue siendo interactivo */
 }
 
 #searchBar:focus {
