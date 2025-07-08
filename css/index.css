@@ -1,0 +1,287 @@
+@font-face {
+    font-family: 'Manrope';
+    src: url('../fonts/Manrope-SemiBold.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Manrope Light';
+    src: url('../fonts/Manrope-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Manrope', sans-serif;
+    margin: 0;
+    background-color: #1c1c1c;
+    color: #f0f0f0;
+}
+#searchBar {
+    display: block;
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: 1px solid #555;
+    background-color: #2a2a2a;
+    color: #f0f0f0;
+    font-size: 0.9em;
+    width: 400px;
+    max-width: 90%;
+    font-family: 'Manrope Light', 'Manrope', sans-serif;
+    outline: none;
+    margin: 30px auto 20px;
+}
+#searchBar::placeholder {
+    font-family: 'Manrope Light', 'Manrope', sans-serif;
+    font-weight: 300;
+    color: #bdbdbd;
+}
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 15px 10px 10px 10px;
+    gap: 10px;
+}
+.game-item {
+    position: relative;
+    background: linear-gradient(to bottom, #1a1a1a, #111111 40%, #0a0a0a);
+    border-radius: 8px;
+    text-align: center;
+    width: 120px;
+    overflow: visible;
+    text-decoration: none;
+    transition: transform 0.2s ease-in-out;
+    z-index: 1;
+}
+.game-item::after {
+    display: none;
+}
+.game-item::before {
+    display: none;
+}
+.game-item:hover {
+    transform: scale(1.05);
+}
+.game-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    background-color: #2a2a2a;
+    min-height: 160px;
+}
+.game-item p {
+    margin: 10px 0;
+    font-size: 0.9em;
+    color: #fff;
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
+    padding: 0 5px;
+}
+/* Modal Styles */
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+}
+.modal.is-open {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+}
+.modal-content {
+    background-color: #1c1c1c;
+    padding: 25px;
+    border: 1px solid #444;
+    width: 90%;
+    max-width: 550px;
+    border-radius: 10px;
+    position: relative;
+    color: #f0f0f0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    transform: translateY(-30px) scale(0.95);
+    opacity: 0;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 1;
+}
+.close-button:hover,
+.close-button:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal.is-open .modal-content {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+#modalGameTitle {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    border-bottom: 1px solid #444;
+    padding-bottom: 0.5em;
+}
+#modalDownloadLinks {
+    list-style: none;
+    padding: 0;
+}
+#modalDownloadLinks li {
+    margin-bottom: -35px;
+}
+#modalDownloadLinks a {
+    display: block;
+    background-color: #5ac560;
+    color: white;
+    padding: 12px 18px;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    text-align: center;
+    font-size: 1em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+#modalDownloadLinks a:hover {
+    background-color: #5ac560;
+    transform: translateY(0px) scale(1.02);
+    box-shadow: 0 0 10px 2px rgba(110, 255, 102, 0.644);
+}
+.read-more-container {
+    margin-top: 10px;
+}
+.read-more-toggle {
+    color: #a0a0a0;
+    font-size: 0.85em;
+    text-decoration: underline;
+    cursor: pointer;
+    display: inline-block;
+    padding: 3px 0;
+}
+.read-more-toggle:hover {
+    color: #fff;
+}
+.read-more-content {
+    margin-top: 8px;
+    padding: 0 10px;
+    background-color: #252525;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: #e0e0e0;
+    border: 1px solid #333;
+    max-height: 0;
+    overflow: hidden;
+    white-space: pre-line;
+    opacity: 0;
+    transition: max-height 0.35s ease-out, opacity 0.35s ease-out, padding-top 0.35s ease-out, padding-bottom 0.35s ease-out;
+}
+.read-more-content.visible {
+    max-height: 300px;
+    opacity: 1;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+body.modal-blur-active > .gallery-container {
+    filter: blur(5px);
+    transition: filter 0.3s ease-in-out;
+}
+.gallery-container {
+    transition: filter 0.3s ease-in-out;
+}
+.hangout-notification {
+    position: fixed;
+    top: 20px;
+    right: -400px;
+    width: 300px;
+    background-color: #2f2f2f;
+    color: #f0f0f0;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 1001;
+    transition: right 0.5s ease-in-out;
+    font-size: 0.9em;
+}
+.hangout-notification.show {
+    right: 20px;
+}
+.hangout-notification p {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+.hangout-notification .close-notif-btn {
+    float: right;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 1.2em;
+    line-height: 1;
+}
+.gameroom-icon-link {
+    position: absolute;
+    top: 20px;
+    right: 17px;
+    z-index: 1000;
+    display: block;
+}
+.gameroom-icon-link img {
+    width: 78px;
+    height: 58.5px;
+    transition: transform 0.3s ease-in-out;
+}
+.gameroom-icon-link:hover img {
+    transform: scale(1.15);
+}
+.vicioware-icon-link {
+    position: absolute;
+    top: 25px;
+    left: 32px;
+    z-index: 1002;
+    display: block;
+}
+.vicioware-icon-link img {
+    width: 48px;
+    height: 48px;
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+.vicioware-icon-link:hover img {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+}
+.plataformas-link {
+    position: absolute;
+    top: 30px;
+    left: 120px;
+    z-index: 1002;
+    color: #dadada;
+    font-family: 'Manrope Light', 'Manrope', sans-serif;
+    font-size: 1.1em;
+    text-decoration: none;
+    padding: 6px 16px;
+    border-radius: 6px;
+    background: none;
+    transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out, color 0.2s;
+}
+.plataformas-link:hover {
+    transform: scale(1.045);
+    text-shadow: 0 0 8px rgba(255,255,255,0.7);
+    color: #f0f0f0;
+}
