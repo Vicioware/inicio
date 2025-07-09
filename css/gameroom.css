@@ -110,7 +110,7 @@ header.site-header {
     display: block;
     pointer-events: auto; /* El input sigue siendo interactivo */
     position: relative;
-    left: -5px;
+    left: -7px;
 }
 
 #searchBar:focus {
