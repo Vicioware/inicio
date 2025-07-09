@@ -443,3 +443,8 @@ body.modal-blur-active > .gallery-container {
     transform: scale(1.15);
     filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
 }
+
+.gameroom-icon-placeholder {
+    width: 78px; /* Same width as the gameroom icon in index.html */
+    height: 58.5px; /* Same height as the gameroom icon in index.html */
+}
