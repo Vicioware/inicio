@@ -10,50 +10,14 @@
     font-weight: 300;
     font-style: normal;
 }
+
 body {
     font-family: 'Manrope', sans-serif;
     margin: 0;
     background-color: #1c1c1c;
     color: #f0f0f0;
 }
-.gallery-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 10px;
-    gap: 10px;
-}
-.game-item {
-    position: relative;
-    background: linear-gradient(to bottom, #1a1a1a, #111111 40%, #0a0a0a);
-    border-radius: 8px;
-    text-align: center;
-    width: 120px;
-    overflow: visible;
-    text-decoration: none;
-    transition: transform 0.2s ease-in-out;
-    z-index: 1;
-}
-.game-item::after {
-    display: none;
-}
-.game-item::before {
-    display: none;
-}
-.game-item:hover {
-    transform: scale(1.05);
-}
-.game-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    opacity: 0;
-    transition: opacity 0.4s ease-in-out;
-    background-color: #2a2a2a;
-    min-height: 160px;
-}
+/* Barra de búsqueda centrada en la parte superior */
 .searchbar-container {
     width: 100%;
     display: flex;
@@ -63,7 +27,7 @@ body {
     margin-top: 28px;
     margin-bottom: 10px;
     z-index: 1003;
-    pointer-events: none; /* Permite que los elementos detrás sean clickeables */
+    pointer-events: none;
 }
 #searchBar {
     padding: 10px 22px;
@@ -81,7 +45,8 @@ body {
     margin: 0;
     display: block;
     pointer-events: auto;
-    transform: translateX(-10px);
+    /* Ajuste fino para gameroom */
+    transform: translateX(-2px);
 }
 #searchBar:focus {
     border-color: #5ac560;
@@ -92,6 +57,43 @@ body {
     font-weight: 300;
     color: #bdbdbd;
 }
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 15px 10px 10px 10px;
+    gap: 10px;
+    transition: filter 0.3s ease-in-out;
+}
+.game-item {
+    position: relative;
+    background: linear-gradient(to bottom, #1a1a1a, #111111 40%, #0a0a0a);
+    border-radius: 8px;
+    text-align: center;
+    width: 120px;
+    overflow: visible;
+    text-decoration: none;
+    transition: transform 0.2s ease-in-out;
+    z-index: 1;
+}
+.game-item::after,
+.game-item::before {
+    display: none;
+}
+.game-item:hover {
+    transform: scale(1.05);
+}
+.game-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    background-color: #2a2a2a;
+    min-height: 160px;
+}
 .game-item p {
     margin: 10px 0;
     font-size: 0.9em;
@@ -99,7 +101,7 @@ body {
     text-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
     padding: 0 5px;
 }
-/* Modal del Juego */
+/* --- MODAL DE JUEGO (exclusivo gameroom) --- */
 .game-modal {
     display: flex;
     align-items: center;
@@ -164,7 +166,7 @@ body.modal-blur-active > .gallery-container {
 .gallery-container {
     transition: filter 0.3s ease-in-out;
 }
-/* Modal title and info icon */
+/* --- TÍTULO Y TOOLTIP DEL MODAL --- */
 .modal-title-container {
     display: flex;
     align-items: center;
@@ -224,7 +226,7 @@ body.modal-blur-active > .gallery-container {
     visibility: visible;
     opacity: 1;
 }
-/* Modal de Confirmación Personalizado */
+/* --- MODAL DE CONFIRMACIÓN PERSONALIZADO --- */
 .custom-confirm-modal {
     display: flex;
     position: fixed;
@@ -306,6 +308,7 @@ body.modal-blur-active > .gallery-container {
 #dontShowAgainCheckbox {
     accent-color: #5ac560;
 }
+/* --- BOTÓN DE DESCARGA EN IFRAME --- */
 .iframe-download-button {
     position: absolute;
     top: 20px;
@@ -346,6 +349,7 @@ body.modal-blur-active > .gallery-container {
     max-width: 100px;
     opacity: 1;
 }
+/* --- ENLACES Y HEADER --- */
 .vicioware-icon-link {
     position: absolute;
     top: 25px;
