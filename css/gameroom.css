@@ -109,6 +109,8 @@ header.site-header {
     margin: 0;
     display: block;
     pointer-events: auto; /* El input sigue siendo interactivo */
+    position: relative;
+    left: -5px;
 }
 
 #searchBar:focus {
