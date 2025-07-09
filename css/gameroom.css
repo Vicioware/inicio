@@ -108,7 +108,7 @@ header.site-header {
     transition: border-color 0.2s, box-shadow 0.2s;
     margin: 0;
     display: block;
-    text-indent: 1px; /* Shifts user input back to the right */
+    text-indent: 2px; /* Shifts user input back to the right */
     pointer-events: auto; /* El input sigue siendo interactivo */
     position: relative;
     left: -7px;
