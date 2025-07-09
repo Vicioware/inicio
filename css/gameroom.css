@@ -450,3 +450,55 @@ body.modal-blur-active > .gallery-container {
     width: 78px;
     height: 58.5px;
 }
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    header.site-header {
+        flex-direction: column;
+        padding: 16px;
+        min-height: auto;
+    }
+
+    .header-left, .header-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .header-center {
+        width: 100%;
+        order: 2; /* Move search bar below icons */
+        padding: 16px 0 0 0;
+    }
+
+    .header-left {
+        order: 1;
+    }
+
+    .header-right {
+        order: 1;
+        flex-grow: 1; /* Allow it to take space */
+        justify-content: flex-end;
+    }
+
+    .plataformas-link {
+        display: none; /* Hide on small screens for simplicity */
+    }
+
+    #searchBar {
+        width: 100%;
+    }
+
+    .game-item {
+        width: calc(50% - 10px); /* 2 columns on mobile */
+    }
+
+    .game-modal-content {
+        width: 95%;
+        height: 80vh; /* Adjust modal height for mobile */
+        padding: 10px;
+    }
+
+    #modalGameTitleText {
+        font-size: 1.2em;
+    }
+}
