@@ -41,11 +41,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     isHoverImageDisplayed = false;
                 }
             });
-            item.addEventListener('click', (event) => {
-                event.preventDefault(); // Prevenir la navegación del enlace
 
-                const gameSrc = item.dataset.gameSrc;
-                const gameTitle = item.querySelector('p').textContent;
+        });
+    }
+    window.initGallery = initGallery;
+
+    // --- DELEGACIÓN DE EVENTOS PARA CLICS EN JUEGOS ---
+    const galleryContainer = document.querySelector('.gallery-container');
+    if (galleryContainer) {
+        galleryContainer.addEventListener('click', (event) => {
+            const gameItem = event.target.closest('.game-item');
+            if (gameItem) {
+                event.preventDefault();
+
+                const gameSrc = gameItem.dataset.gameSrc;
+                const gameTitle = gameItem.querySelector('p').textContent;
                 const modal = document.getElementById('gameModal');
                 const iframe = document.getElementById('gameModalIframe');
                 const modalTitle = document.getElementById('modalGameTitleText');
@@ -55,10 +65,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     iframe.src = gameSrc;
                     modal.style.display = 'block';
                 }
-            });
+            }
         });
     }
-    window.initGallery = initGallery;
 
     // --- CARGA DINÁMICA DE LA GALERÍA Y FILTRO ---
     fetch('gallery-gameroom.html')
