@@ -24,8 +24,9 @@ header.site-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 32px 0 32px;
-    min-height: 80px;
+    padding: 0 18px 0 18px;
+    min-height: 58px;
+    max-height: 70px;
     position: relative;
     z-index: 1100;
     box-sizing: border-box;
@@ -33,18 +34,19 @@ header.site-header {
 .header-left {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 18px;
 }
 .header-center {
     flex: 1 1 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    min-width: 0;
 }
 .header-right {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 18px;
 }
 .vicioware-icon-link {
     position: static;
@@ -67,9 +69,9 @@ header.site-header {
     z-index: auto;
     color: #dadada;
     font-family: 'Manrope Light', 'Manrope', sans-serif;
-    font-size: 1.1em;
+    font-size: 1em;
     text-decoration: none;
-    padding: 6px 16px;
+    padding: 4px 10px;
     border-radius: 6px;
     background: none;
     transition: transform 0.3s, text-shadow 0.3s, color 0.2s;
@@ -82,7 +84,7 @@ header.site-header {
 /* Barra de búsqueda centrada en la parte superior */
 .searchbar-container {
     width: 100%;
-    max-width: 500px;
+    max-width: 350px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -92,13 +94,13 @@ header.site-header {
     pointer-events: none;
 }
 #searchBar {
-    padding: 10px 22px;
+    padding: 8px 16px;
     border-radius: 20px;
     border: 1px solid #555;
     background-color: #2a2a2a;
     color: #f0f0f0;
-    font-size: 1em;
-    width: 400px;
+    font-size: 0.98em;
+    width: 250px;
     max-width: 90vw;
     font-family: 'Manrope Light', 'Manrope', sans-serif;
     outline: none;
