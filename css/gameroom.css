@@ -52,15 +52,6 @@ header.site-header {
     left: unset;
     z-index: auto;
     display: block;
-    height: 40px;
-    width: auto;
-}
-
-.vicioware-icon-link img {
-    height: 100%;
-    width: auto;
-    max-height: 40px;
-    object-fit: contain;
 }
 .gameroom-icon-link {
     position: static;
@@ -98,8 +89,9 @@ header.site-header {
     position: relative;
     margin: 0;
     z-index: 1003;
-    pointer-events: none;
+    pointer-events: none; /* Permite que los elementos detrás sean clickeables */
 }
+
 #searchBar {
     padding: 10px 22px;
     border-radius: 20px;
@@ -115,13 +107,14 @@ header.site-header {
     transition: border-color 0.2s, box-shadow 0.2s;
     margin: 0;
     display: block;
-    pointer-events: auto;
-    transform: none;
+    pointer-events: auto; /* El input sigue siendo interactivo */
 }
+
 #searchBar:focus {
     border-color: #5ac560;
     box-shadow: 0 0 0 2px #5ac56033;
 }
+
 #searchBar::placeholder {
     font-family: 'Manrope Light', 'Manrope', sans-serif;
     font-weight: 300;
