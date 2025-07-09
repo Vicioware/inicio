@@ -52,6 +52,15 @@ header.site-header {
     left: unset;
     z-index: auto;
     display: block;
+    height: 40px;
+    width: auto;
+}
+
+.vicioware-icon-link img {
+    height: 100%;
+    width: auto;
+    max-height: 40px;
+    object-fit: contain;
 }
 .gameroom-icon-link {
     position: static;
