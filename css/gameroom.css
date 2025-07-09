@@ -16,6 +16,7 @@ body {
     margin: 0;
     background-color: #1c1c1c;
     color: #f0f0f0;
+    overflow-y: scroll; /* Always show scrollbar to match index.html layout */
 }
 /* HEADER GENERAL */
 header.site-header {
@@ -40,7 +41,7 @@ header.site-header {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 506.97px; /* Match computed width from index.html */
+
 }
 .header-right {
     display: flex;
@@ -94,7 +95,7 @@ header.site-header {
 }
 
 #searchBar {
-    padding: 10px 22px 10px 21px;
+    padding: 10px 22px;
     border-radius: 20px;
     border: 1px solid #555;
     background-color: #2a2a2a;
@@ -108,10 +109,7 @@ header.site-header {
     transition: border-color 0.2s, box-shadow 0.2s;
     margin: 0;
     display: block;
-    text-indent: 2px; /* Shifts user input back to the right */
     pointer-events: auto; /* El input sigue siendo interactivo */
-    position: relative;
-    left: -7px;
 }
 
 #searchBar:focus {
@@ -450,7 +448,5 @@ body.modal-blur-active > .gallery-container {
 
 .gameroom-icon-placeholder {
     width: 78px;
-    height: 63.5px; /* Match computed height from index.html */
-    display: flex;        /* Replicate container behavior */
-    align-items: center;  /* Replicate container behavior */
+    height: 58.5px;
 }
