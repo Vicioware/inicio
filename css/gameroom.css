@@ -17,15 +17,77 @@ body {
     background-color: #1c1c1c;
     color: #f0f0f0;
 }
+/* HEADER GENERAL */
+header.site-header {
+    width: 100%;
+    background: #2c2c2c;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px 0 32px;
+    min-height: 80px;
+    position: relative;
+    z-index: 1100;
+    box-sizing: border-box;
+}
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+.header-center {
+    flex: 1 1 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+.vicioware-icon-link {
+    position: static;
+    top: unset;
+    left: unset;
+    z-index: auto;
+    display: block;
+}
+.gameroom-icon-link {
+    position: static;
+    top: unset;
+    right: unset;
+    z-index: auto;
+    display: block;
+}
+.plataformas-link {
+    position: static;
+    top: unset;
+    left: unset;
+    z-index: auto;
+    color: #dadada;
+    font-family: 'Manrope Light', 'Manrope', sans-serif;
+    font-size: 1.1em;
+    text-decoration: none;
+    padding: 6px 16px;
+    border-radius: 6px;
+    background: none;
+    transition: transform 0.3s, text-shadow 0.3s, color 0.2s;
+}
+.plataformas-link:hover {
+    transform: scale(1.045);
+    text-shadow: 0 0 8px rgba(255,255,255,0.7);
+    color: #f0f0f0;
+}
 /* Barra de búsqueda centrada en la parte superior */
 .searchbar-container {
     width: 100%;
+    max-width: 500px;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     position: relative;
-    margin-top: 28px;
-    margin-bottom: 10px;
+    margin: 0;
     z-index: 1003;
     pointer-events: none;
 }
@@ -45,8 +107,7 @@ body {
     margin: 0;
     display: block;
     pointer-events: auto;
-    /* Ajuste fino para gameroom */
-    transform: translateX(-2px);
+    transform: none;
 }
 #searchBar:focus {
     border-color: #5ac560;
@@ -348,40 +409,4 @@ body.modal-blur-active > .gallery-container {
     margin-left: 8px;
     max-width: 100px;
     opacity: 1;
-}
-/* --- ENLACES Y HEADER --- */
-.vicioware-icon-link {
-    position: absolute;
-    top: 25px;
-    left: 32px;
-    z-index: 1002;
-    display: block;
-}
-.vicioware-icon-link img {
-    width: 48px;
-    height: 48px;
-    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
-}
-.vicioware-icon-link:hover img {
-    transform: scale(1.15);
-    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
-}
-.plataformas-link {
-    position: absolute;
-    top: 30px;
-    left: 120px;
-    z-index: 1002;
-    color: #dadada;
-    font-family: 'Manrope Light', 'Manrope', sans-serif;
-    font-size: 1.1em;
-    text-decoration: none;
-    padding: 6px 16px;
-    border-radius: 6px;
-    background: none;
-    transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out, color 0.2s;
-}
-.plataformas-link:hover {
-    transform: scale(1.045);
-    text-shadow: 0 0 8px rgba(255,255,255,0.7);
-    color: #f0f0f0;
 }

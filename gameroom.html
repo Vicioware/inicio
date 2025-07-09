@@ -11,14 +11,24 @@
     <link rel="stylesheet" href="css/gameroom.css">
 </head>
 <body>
-    <a href="index.html" class="vicioware-icon-link">
-        <img src="resources/vicioware_icon.png">
-    </a>
-    <a href="plataformas.html" class="plataformas-link">Plataformas</a>
-    <!-- Barra de búsqueda añadida -->
-    <div class="searchbar-container">
-        <input type="search" id="searchBar" placeholder="Buscar juegos...">
-    </div>
+    <header class="site-header">
+        <div class="header-left">
+            <a href="index.html" class="vicioware-icon-link">
+                <img src="resources/vicioware_icon.png">
+            </a>
+            <a href="plataformas.html" class="plataformas-link">Plataformas</a>
+        </div>
+        <div class="header-center">
+            <div class="searchbar-container">
+                <input type="search" id="searchBar" placeholder="Buscar juegos...">
+            </div>
+        </div>
+        <div class="header-right">
+            <a href="gameroom.html" class="gameroom-icon-link">
+                <img src="resources/gameroom.png">
+            </a>
+        </div>
+    </header>
 
     <div class="gallery-container"></div>
     <!-- La galería se cargará dinámicamente desde gallery-gameroom.html -->
