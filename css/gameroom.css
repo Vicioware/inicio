@@ -24,7 +24,7 @@ header.site-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 32px 0 32px;
+    padding: 0 32px;
     min-height: 80px;
     position: relative;
     z-index: 1100;
@@ -40,6 +40,7 @@ header.site-header {
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 506.97px; /* Match computed width from index.html */
 }
 .header-right {
     display: flex;
@@ -447,4 +448,6 @@ body.modal-blur-active > .gallery-container {
 .gameroom-icon-placeholder {
     width: 78px;
     height: 63.5px; /* Match computed height from index.html */
+    display: flex;        /* Replicate container behavior */
+    align-items: center;  /* Replicate container behavior */
 }
