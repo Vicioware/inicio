@@ -41,9 +41,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     isHoverImageDisplayed = false;
                 }
             });
-            // Aquí puedes agregar lógica para abrir el modal de juego si lo necesitas
-            // Por ejemplo:
-            // item.addEventListener('click', () => { ... });
+            item.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevenir la navegación del enlace
+
+                const gameSrc = item.dataset.gameSrc;
+                const gameTitle = item.querySelector('p').textContent;
+                const modal = document.getElementById('gameModal');
+                const iframe = document.getElementById('gameModalIframe');
+                const modalTitle = document.getElementById('modalGameTitleText');
+
+                if (modal && iframe && modalTitle) {
+                    modalTitle.textContent = gameTitle;
+                    iframe.src = gameSrc;
+                    modal.style.display = 'block';
+                }
+            });
         });
     }
     window.initGallery = initGallery;
@@ -77,5 +89,23 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-    // Aquí puedes agregar más lógica específica de GameRoom si lo necesitas
+    // --- LÓGICA DEL MODAL ---
+    const modal = document.getElementById('gameModal');
+    const closeButton = document.querySelector('.game-modal-close-button');
+    const iframe = document.getElementById('gameModalIframe');
+
+    if (closeButton && modal && iframe) {
+        closeButton.addEventListener('click', () => {
+            modal.style.display = 'none';
+            iframe.src = 'about:blank'; // Detener la ejecución del juego
+        });
+    }
+
+    // Cierra el modal si se hace clic fuera de su contenido
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+            iframe.src = 'about:blank'; // Detener la ejecución del juego
+        }
+    });
 });
