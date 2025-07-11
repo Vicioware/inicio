@@ -628,6 +628,7 @@ header.site-header {
 .read-more-container {
     margin-top: 15px;
     position: relative;
+    margin-bottom: 15px;
 }
 
 .read-more-toggle {
@@ -695,6 +696,7 @@ header.site-header {
     opacity: 1;
     padding: 15px 18px;
     transform: translateY(0);
+    margin-bottom: 0;
 }
 body.modal-blur-active > .gallery-container {
     filter: blur(5px);

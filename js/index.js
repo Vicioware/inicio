@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         // Ajustar el margen del elemento de la lista para mejorar el espaciado
                         if (isLastItemInList) {
                             if (isVisible) {
-                                parentListItem.style.marginBottom = '5px';
+                                parentListItem.style.marginBottom = '15px';
                             } else {
                                 parentListItem.style.marginBottom = '-15px';
                             }
@@ -267,13 +267,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Establecer margen inicial para este li
                     if (isLastItemInList) {
-                        listItem.style.marginBottom = '-25px'; // Es el último y tiene "Detalles" (ocultos por defecto)
+                        listItem.style.marginBottom = '-15px'; // Es el último y tiene "Detalles" (ocultos por defecto)
                     } else {
                         listItem.style.marginBottom = '15px'; // No es el último, necesita espacio debajo
                     }
                 } else { // No hay "Detalles"
                     if (isLastItemInList) {
-                        listItem.style.marginBottom = '-10px'; // Es el último y no tiene "Detalles"
+                        listItem.style.marginBottom = '15px'; // Es el último y no tiene "Detalles"
                     } else {
                         listItem.style.marginBottom = '15px'; // No es el último, necesita espacio debajo
                     }
