@@ -746,7 +746,7 @@ header.site-header {
 .details-close-button:hover {
     color: rgba(255, 255, 255, 0.8);
 }
-body.modal-blur-active > *:not(#backpackModal):not(#downloadModal) {
+body.modal-blur-active > *:not(#backpackModal):not(#downloadModal):not(#detailsModal) {
     filter: blur(5px);
     transition: filter 0.3s ease-in-out;
 }
