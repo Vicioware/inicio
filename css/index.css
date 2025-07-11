@@ -63,7 +63,7 @@ header.site-header {
 }
 
 .gameroom-icon-link:hover {
-    transform: scale(1.1);
+    transform: scale(0.66);
 }
 
 .backpack-icon-link {
@@ -796,7 +796,7 @@ body.modal-blur-active > .gallery-container {
     transition: transform 0.2s ease, filter 0.2s ease;
 }
 .gameroom-icon-link:hover img {
-    transform: scale(1.1);
+    transform: scale(0.66);
     filter: brightness(1.1);
 }
 
