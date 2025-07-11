@@ -418,7 +418,7 @@ header.site-header {
     padding: 2px;
     max-height: 60vh; /* Altura máxima para evitar que ocupe toda la pantalla */
     margin-bottom: 10px; /* Reducido el margen inferior */
-    text-align: center; /* Centra el texto del contenido */
+    text-align: left; /* Alinea el texto a la izquierda */
 }
 
 .details-close-button {
