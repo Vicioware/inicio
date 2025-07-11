@@ -598,7 +598,6 @@ header.site-header {
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     position: relative;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(90, 197, 96, 0.3);
 }
 
 #modalDownloadLinks a::before {
@@ -615,7 +614,6 @@ header.site-header {
 #modalDownloadLinks a:hover {
     background: linear-gradient(135deg, #4a9c4a, #5ac560);
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(90, 197, 96, 0.4);
 }
 
 #modalDownloadLinks a:hover::before {
@@ -644,7 +642,6 @@ header.site-header {
     transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
     font-weight: 500;
     letter-spacing: 0.3px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -674,30 +671,68 @@ header.site-header {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-.read-more-content {
-    margin-top: 12px;
-    background: linear-gradient(145deg, rgba(30, 30, 30, 0.8), rgba(40, 40, 40, 0.8));
-    border-radius: 12px;
+/* Estilos para el modal de detalles */
+#detailsModal {
+    display: none;
+    position: fixed;
+    z-index: 1001; /* Por encima del modal principal */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#detailsModal.is-open {
+    display: block;
+    opacity: 1;
+}
+
+.details-modal-content {
+    background: linear-gradient(145deg, #232323, #1a1a1a);
+    margin: 15% auto;
+    padding: 20px 25px;
+    border: none;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 16px;
+    position: relative;
+    color: #f0f0f0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);
+    transform: translateY(-40px) scale(0.95);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease;
+}
+
+#detailsModal.is-open .details-modal-content {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+.details-content {
     font-size: 0.95em;
     line-height: 1.5;
     color: rgba(255, 255, 255, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    max-height: 0;
-    overflow: hidden;
     white-space: pre-line;
-    opacity: 0;
-    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-    transform: translateY(-10px);
-    backdrop-filter: blur(2px);
+    margin-bottom: 15px;
 }
 
-.read-more-content.visible {
-    max-height: 300px;
-    opacity: 1;
-    padding: 15px 18px 7px 18px; /* Ajustado el padding inferior para mantener consistencia */
-    transform: translateY(0);
-    margin-bottom: 0; /* Aseguramos que no haya margen inferior adicional */
+.details-close-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.details-close-button:hover {
+    color: rgba(255, 255, 255, 0.8);
 }
 body.modal-blur-active > .gallery-container {
     filter: blur(5px);

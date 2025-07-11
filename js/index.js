@@ -11,6 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const hangoutNotification = document.getElementById('hangoutNotification');
     let hangoutTimer = null; // Para controlar el temporizador de la notificación
     let notificationAutoCloseTimer = null; // Para controlar el autocierre de la notificación
+    
+    // Elementos del modal de detalles
+    const detailsModal = document.getElementById('detailsModal');
+    const detailsContent = document.getElementById('detailsContent');
+    const detailsCloseButton = detailsModal.querySelector('.details-close-button');
 
     // Elementos de la mochila
     const backpackIconLink = document.getElementById('backpackIcon');
@@ -239,28 +244,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     readMoreToggle.className = 'read-more-toggle';
                     readMoreToggle.textContent = 'Detalles';
 
-                    const readMoreContent = document.createElement('div');
-                    readMoreContent.className = 'read-more-content';
-                    readMoreContent.textContent = linkInfo.readMoreText;
+                    // Guardar el texto de detalles para usarlo en el modal
+                    const detailsText = linkInfo.readMoreText;
 
-                    // Guardar el listItem padre para fácil acceso
-                    const parentListItem = listItem;
-
+                    // Evento para abrir el modal de detalles
                     readMoreToggle.addEventListener('click', function() {
-                        const isVisible = readMoreContent.classList.toggle('visible');
-                        this.classList.toggle('active');
-                        this.textContent = isVisible ? 'Ocultar detalles' : 'Detalles';
+                        // Establecer el contenido del modal
+                        detailsContent.textContent = detailsText;
                         
-                        // No necesitamos ajustar el margen del elemento de la lista
-                        // El margen se maneja ahora a través de CSS para mantener consistencia
+                        // Mostrar el modal
+                        detailsModal.classList.add('is-open');
                     });
 
                     readMoreContainer.appendChild(readMoreToggle);
-                    readMoreContainer.appendChild(readMoreContent);
                     listItem.appendChild(readMoreContainer); // Añadir al final del listItem
-
-                    // No necesitamos establecer márgenes específicos en JavaScript
-                    // Los márgenes se manejan ahora a través de CSS para mantener consistencia
                 } else { // No hay "Detalles"
                     // No necesitamos establecer márgenes específicos en JavaScript
                     // Los márgenes se manejan ahora a través de CSS para mantener consistencia
@@ -294,12 +291,30 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }
     });
+    
+    // Cerrar el modal de detalles al hacer clic en la X
+    detailsCloseButton.addEventListener('click', () => {
+        detailsModal.classList.remove('is-open');
+    });
+    
+    // Cerrar el modal de detalles al hacer clic fuera del contenido
+    detailsModal.addEventListener('click', (e) => {
+        if (e.target === detailsModal) {
+            detailsModal.classList.remove('is-open');
+        }
+    });
 
-    // Event listener para cerrar el modal con la tecla Escape
+    // Event listener para cerrar los modales con la tecla Escape
     window.addEventListener('keydown', (event) => {
-        // Pequeña mejora: comprobar la clase en lugar del estilo display directamente
-        if (event.key === 'Escape' && modal.classList.contains('is-open')) {
-            closeModal();
+        if (event.key === 'Escape') {
+            // Cerrar el modal principal si está abierto
+            if (modal.classList.contains('is-open')) {
+                closeModal();
+            }
+            // Cerrar el modal de detalles si está abierto
+            if (detailsModal.classList.contains('is-open')) {
+                detailsModal.classList.remove('is-open');
+            }
         }
     });
 
