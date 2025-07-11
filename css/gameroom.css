@@ -749,8 +749,8 @@ body.modal-blur-active > .gallery-container {
     display: block;
 }
 .gameroom-icon-link img {
-    width: 78px;
-    height: 58.5px;
+    width: 32px;
+    height: 32px;
     transition: transform 0.3s ease-in-out;
 }
 .gameroom-icon-link:hover img {

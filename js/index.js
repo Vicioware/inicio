@@ -496,8 +496,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (gameroomIconLink) {
         const gameroomIconImage = gameroomIconLink.querySelector('img');
         if (gameroomIconImage) {
-            const originalGameroomSrc = gameroomIconImage.src; // Captura la ruta del PNG actual
-            const hoverGameroomSrc = 'resources/gameroom.gif'; // Ruta al GIF
+            const originalGameroomSrc = gameroomIconImage.src; // Captura la ruta del SVG actual
+            const hoverGameroomSrc = 'resources/gameroom.svg'; // Ruta al SVG
 
             gameroomIconLink.addEventListener('mouseenter', () => {
                 gameroomIconImage.src = hoverGameroomSrc;
