@@ -45,7 +45,7 @@ header.site-header {
 .header-right {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 28px;
 }
 
 .backpack-icon-disabled {
