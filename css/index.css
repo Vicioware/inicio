@@ -628,7 +628,7 @@ header.site-header {
 }
 .read-more-container {
     margin-top: 15px;
-    margin-bottom: 3px; /* Reducido 4px para mantener consistencia */
+    margin-bottom: 7px; /* Ajustado para mantener consistencia con el margen del botón */
     position: relative;
 }
 
@@ -695,7 +695,7 @@ header.site-header {
 .read-more-content.visible {
     max-height: 300px;
     opacity: 1;
-    padding: 15px 18px 3px 18px; /* Reducido 4px el padding inferior */
+    padding: 15px 18px 7px 18px; /* Ajustado el padding inferior para mantener consistencia */
     transform: translateY(0);
     margin-bottom: 0; /* Aseguramos que no haya margen inferior adicional */
 }
