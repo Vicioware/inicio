@@ -321,10 +321,13 @@ body.modal-blur-active {
     background-size: 18px 18px;
     background-repeat: no-repeat;
     background-position: center;
+    opacity: 0;
+    transform: scale(0.8);
 }
 
 .game-item:hover .add-to-backpack-btn {
     opacity: 1;
+    transform: scale(1);
 }
 
 .add-to-backpack-btn:hover {
