@@ -74,12 +74,14 @@
     <!-- Modal de la Mochila -->
     <div id="backpackModal" class="modal">
         <div class="modal-content">
-            <span class="close-button" id="backpackCloseBtn">&times;</span>
+            <span class="close-button" id="backpackCloseButton">&times;</span>
             <h2>Mi Mochila</h2>
-            <div id="backpackItems"></div>
-            <div id="backpackActions" class="backpack-actions" style="display: none;">
-                <button id="downloadAllBtn" class="download-all-btn">Descargar Todos</button>
-                <button id="clearBackpackBtn" class="clear-backpack-btn">Vaciar Mochila</button>
+            <div id="backpackItems">
+                <p id="emptyBackpackMessage">Tu mochila está vacía. Agrega algunos juegos desde la página principal.</p>
+            </div>
+            <div class="backpack-actions" id="backpackActions" style="display: none;">
+                <button id="downloadAllButton" class="download-all-btn">Descargar Todos</button>
+                <button id="clearBackpackButton" class="clear-backpack-btn">Vaciar Mochila</button>
             </div>
         </div>
     </div>

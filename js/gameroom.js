@@ -3,11 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const backpackIconLink = document.getElementById('backpackIcon');
     const backpackCounter = document.getElementById('backpackCounter');
     const backpackModal = document.getElementById('backpackModal');
-    const backpackCloseBtn = document.getElementById('backpackCloseBtn');
+    const backpackCloseBtn = document.getElementById('backpackCloseButton');
     const backpackItems = document.getElementById('backpackItems');
+    const emptyBackpackMessage = document.getElementById('emptyBackpackMessage');
     const backpackActions = document.getElementById('backpackActions');
-    const downloadAllBtn = document.getElementById('downloadAllBtn');
-    const clearBackpackBtn = document.getElementById('clearBackpackBtn');
+    const downloadAllBtn = document.getElementById('downloadAllButton');
+    const clearBackpackBtn = document.getElementById('clearBackpackButton');
 
     // Array para almacenar los juegos en la mochila
     let backpack = JSON.parse(localStorage.getItem('gameBackpack')) || [];
@@ -46,9 +47,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!backpackItems) return;
         
         if (backpack.length === 0) {
-            backpackItems.innerHTML = '<p style="text-align: center; color: #888; margin: 20px 0;">Tu mochila está vacía. Agrega algunos juegos desde la página principal.</p>';
+            if (emptyBackpackMessage) emptyBackpackMessage.style.display = 'block';
             if (backpackActions) backpackActions.style.display = 'none';
+            backpackItems.innerHTML = '<p id="emptyBackpackMessage">Tu mochila está vacía. Agrega algunos juegos desde la página principal.</p>';
         } else {
+            if (emptyBackpackMessage) emptyBackpackMessage.style.display = 'none';
+            if (backpackActions) backpackActions.style.display = 'flex';
             backpackItems.innerHTML = backpack.map(item => `
                 <div class="backpack-item">
                     <div class="backpack-item-info">
