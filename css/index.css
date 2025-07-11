@@ -678,7 +678,7 @@ header.site-header {
 #detailsModal {
     display: none;
     position: fixed;
-    z-index: 1001; /* Por encima del modal principal */
+    z-index: 1300; /* Por encima del modal principal */
     left: 0;
     top: 0;
     width: 100%;
