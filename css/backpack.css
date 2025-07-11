@@ -330,8 +330,17 @@ body.modal-blur-active {
     transform: scale(1);
 }
 
+.game-item:hover .add-to-backpack-btn.added {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
 .add-to-backpack-btn:hover {
     background-color: #4a9c4a;
+}
+
+.add-to-backpack-btn.added:hover {
+    background: rgba(180, 40, 55, 0.9);
 }
 
 .add-to-backpack-btn.added {
@@ -340,8 +349,9 @@ body.modal-blur-active {
     background-size: 18px 18px;
     background-repeat: no-repeat;
     background-position: center;
-    transform: scale(1.1);
-    opacity: 1;
+    opacity: 0;
+    transform: scale(0.8);
+}
 }
 
 .add-to-backpack-btn.added:hover {
