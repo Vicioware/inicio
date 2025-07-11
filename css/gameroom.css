@@ -94,7 +94,7 @@ header.site-header {
     background-color: rgba(0,0,0,0.85);
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+    transition: opacity 0.4s cubic-bezier(0.19, 1, 0.22, 1), visibility 0s linear 0.4s;
     backdrop-filter: blur(5px);
 }
 
@@ -105,32 +105,42 @@ header.site-header {
 }
 
 .modal-content {
-    background-color: #1c1c1c;
-    padding: 25px;
-    border: 1px solid #444;
+    background: linear-gradient(145deg, #232323, #1a1a1a);
+    padding: 30px 30px 22px 30px;
+    border: none;
     width: 90%;
     max-width: 550px;
     border-radius: 10px;
     position: relative;
     color: #f0f0f0;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    transform: translateY(-30px) scale(0.95);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);
+    transform: translateY(-40px) scale(0.95);
     opacity: 0;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease;
 }
 
 .close-button {
-    color: #aaa;
-    float: right;
-    font-size: 30px;
-    font-weight: bold;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: rgba(255,255,255,0.6);
+    font-size: 28px;
+    font-weight: normal;
     line-height: 1;
+    background: rgba(255,255,255,0.1);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
 }
 
 .close-button:hover,
 .close-button:focus {
     color: #fff;
-    text-decoration: none;
+    background: rgba(255,255,255,0.2);
     cursor: pointer;
 }
 
