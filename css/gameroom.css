@@ -86,15 +86,16 @@ header.site-header {
     align-items: center;
     justify-content: center;
     position: fixed;
-    z-index: 100;
+    z-index: 1200;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0,0,0,0.85);
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+    backdrop-filter: blur(5px);
 }
 
 .modal.is-open {
@@ -476,7 +477,7 @@ header.site-header {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     overflow: hidden;
 }
-body.modal-blur-active > .gallery-container {
+body.modal-blur-active > *:not(#backpackModal) {
     filter: blur(5px);
     transition: filter 0.3s ease-in-out;
 }
