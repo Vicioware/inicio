@@ -1,4 +1,137 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Elementos de la mochila
+    const backpackIconLink = document.getElementById('backpackIcon');
+    const backpackCounter = document.getElementById('backpackCounter');
+    const backpackModal = document.getElementById('backpackModal');
+    const backpackCloseBtn = document.getElementById('backpackCloseButton');
+    const backpackItems = document.getElementById('backpackItems');
+    const emptyBackpackMessage = document.getElementById('emptyBackpackMessage');
+    const backpackActions = document.getElementById('backpackActions');
+    const downloadAllBtn = document.getElementById('downloadAllButton');
+    const clearBackpackBtn = document.getElementById('clearBackpackButton');
+
+    // Array para almacenar los juegos en la mochila
+    let backpack = JSON.parse(localStorage.getItem('gameBackpack')) || [];
+
+    // Funciones de la mochila
+    function updateBackpackCounter() {
+        if (backpackCounter) {
+            backpackCounter.textContent = backpack.length;
+            if (backpack.length > 0) {
+                backpackCounter.style.display = 'flex';
+            } else {
+                backpackCounter.style.display = 'none';
+            }
+        }
+    }
+
+    function saveBackpack() {
+        localStorage.setItem('gameBackpack', JSON.stringify(backpack));
+    }
+
+    function removeFromBackpack(gameId) {
+        backpack = backpack.filter(item => item.id !== gameId);
+        saveBackpack();
+        updateBackpackCounter();
+        renderBackpackItems();
+    }
+
+    function clearBackpack() {
+        backpack = [];
+        saveBackpack();
+        updateBackpackCounter();
+        renderBackpackItems();
+    }
+
+    function renderBackpackItems() {
+        if (!backpackItems) return;
+        
+        if (backpack.length === 0) {
+            if (emptyBackpackMessage) emptyBackpackMessage.style.display = 'block';
+            if (backpackActions) backpackActions.style.display = 'none';
+            backpackItems.innerHTML = '<p id="emptyBackpackMessage">Tu mochila está vacía. Agrega algunos juegos desde la página principal.</p>';
+        } else {
+            if (emptyBackpackMessage) emptyBackpackMessage.style.display = 'none';
+            if (backpackActions) backpackActions.style.display = 'flex';
+            backpackItems.innerHTML = backpack.map(item => `
+                <div class="backpack-item">
+                    <div class="backpack-item-info">
+                        <img src="${item.image}" alt="${item.name}">
+                        <span class="backpack-item-name">${item.name}</span>
+                    </div>
+                    <button class="remove-item-btn" data-game-id="${item.id}">Quitar</button>
+                </div>
+            `).join('');
+
+            // Agregar event listeners a los botones de quitar
+            document.querySelectorAll('.remove-item-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const gameId = e.target.dataset.gameId;
+                    removeFromBackpack(gameId);
+                });
+            });
+        }
+    }
+
+    function openBackpackModal() {
+        if (!backpackModal) return;
+        renderBackpackItems();
+        backpackModal.classList.add('is-open');
+        document.body.classList.add('modal-blur-active');
+    }
+
+    function closeBackpackModal() {
+        if (!backpackModal) return;
+        backpackModal.classList.remove('is-open');
+        document.body.classList.remove('modal-blur-active');
+    }
+
+    function downloadAllGames() {
+        // Redirigir a la página principal para descargar
+        alert('Serás redirigido a la página principal para descargar los juegos.');
+        window.location.href = 'index.html';
+    }
+
+    // Event listeners para la mochila
+    if (backpackIconLink) {
+        backpackIconLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            openBackpackModal();
+        });
+    }
+
+    if (backpackCloseBtn) {
+        backpackCloseBtn.addEventListener('click', closeBackpackModal);
+    }
+
+    if (downloadAllBtn) {
+        downloadAllBtn.addEventListener('click', () => {
+            if (backpack.length > 0) {
+                downloadAllGames();
+            }
+        });
+    }
+
+    if (clearBackpackBtn) {
+        clearBackpackBtn.addEventListener('click', () => {
+            if (confirm('¿Estás seguro de que quieres vaciar tu mochila?')) {
+                clearBackpack();
+            }
+        });
+    }
+
+    // Cerrar modal al hacer clic fuera de él
+    if (backpackModal) {
+        backpackModal.addEventListener('click', (e) => {
+            if (e.target === backpackModal) {
+                closeBackpackModal();
+            }
+        });
+    }
+
+    // Inicializar contador de la mochila
+    updateBackpackCounter();
+
     // --- INICIALIZACIÓN DE GALERÍA DINÁMICA Y EVENTOS ---
     function initGallery() {
         const gameItems = document.querySelectorAll('.game-item');

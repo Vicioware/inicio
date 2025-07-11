@@ -24,10 +24,10 @@
             </div>
         </div>
         <div class="header-right">
-            <div class="backpack-icon-disabled">
-                <img src="resources/backpack.svg">
-                <span class="backpack-counter-disabled">0</span>
-            </div>
+            <a href="#" class="backpack-icon-link" id="backpackIcon">
+                <img src="resources/backpack.svg" alt="Mochila">
+                <span class="backpack-counter" id="backpackCounter">0</span>
+            </a>
             <div class="gameroom-icon-placeholder"></div>
         </div>
     </header>
@@ -64,6 +64,20 @@
             <div class="custom-confirm-buttons">
                 <button id="customConfirmCancelButton">Cancelar</button>
                 <button id="customConfirmOkButton">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de la Mochila -->
+    <div id="backpackModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="backpackCloseButton">&times;</span>
+            <h2>Mi Mochila</h2>
+            <div id="backpackItems"></div>
+            <p id="emptyBackpackMessage" style="display: none;">Tu mochila está vacía. Agrega algunos juegos desde la página principal.</p>
+            <div id="backpackActions" class="backpack-actions">
+                <button id="downloadAllButton" class="download-all-btn">Descargar Todos</button>
+                <button id="clearBackpackButton" class="clear-backpack-btn">Vaciar Mochila</button>
             </div>
         </div>
     </div>

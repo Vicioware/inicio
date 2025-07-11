@@ -80,6 +80,131 @@ header.site-header {
     padding: 0;
     box-sizing: border-box;
 }
+
+/* Estilos para la mochila funcional en gameroom */
+.backpack-icon-link {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-right: 15px;
+    margin-left: 3px;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.backpack-icon-link:hover {
+    transform: scale(1.1);
+}
+
+.backpack-icon-link img {
+    width: 24px;
+    height: 24px;
+    transition: filter 0.3s ease;
+}
+
+.backpack-icon-link:hover img {
+    filter: brightness(1.2);
+}
+
+.backpack-counter {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #ff6b6b;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    animation: pulse 0.3s ease;
+}
+
+/* Estilos del modal de mochila */
+.backpack-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #444;
+}
+
+.backpack-item-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.backpack-item-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+}
+
+.backpack-item-name {
+    font-weight: 500;
+    color: #f0f0f0;
+}
+
+.remove-item-btn {
+    background: #ff4757;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background 0.3s ease;
+}
+
+.remove-item-btn:hover {
+    background: #ff3742;
+}
+
+.backpack-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.download-all-btn, .clear-backpack-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.download-all-btn {
+    background: #2ed573;
+    color: white;
+}
+
+.download-all-btn:hover {
+    background: #26d467;
+    transform: translateY(-2px);
+}
+
+.clear-backpack-btn {
+    background: #ff4757;
+    color: white;
+}
+
+.clear-backpack-btn:hover {
+    background: #ff3742;
+    transform: translateY(-2px);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
 .vicioware-icon-link {
     position: static;
     top: unset;

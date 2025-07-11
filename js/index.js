@@ -13,15 +13,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let notificationAutoCloseTimer = null; // Para controlar el autocierre de la notificación
 
     // Elementos de la mochila
-    const backpackIcon = document.getElementById('backpackIcon');
+    const backpackIconLink = document.getElementById('backpackIcon');
     const backpackCounter = document.getElementById('backpackCounter');
     const backpackModal = document.getElementById('backpackModal');
-    const backpackCloseButton = document.getElementById('backpackCloseButton');
+    const backpackCloseBtn = document.getElementById('backpackCloseButton');
     const backpackItems = document.getElementById('backpackItems');
     const emptyBackpackMessage = document.getElementById('emptyBackpackMessage');
     const backpackActions = document.getElementById('backpackActions');
-    const downloadAllButton = document.getElementById('downloadAllButton');
-    const clearBackpackButton = document.getElementById('clearBackpackButton');
+    const downloadAllBtn = document.getElementById('downloadAllButton');
+    const clearBackpackBtn = document.getElementById('clearBackpackButton');
 
     // Array para almacenar los juegos en la mochila
     let backpack = JSON.parse(localStorage.getItem('gameBackpack')) || [];

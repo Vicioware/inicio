@@ -64,6 +64,7 @@ header.site-header {
 .backpack-icon-link {
     position: relative;
     display: block;
+    margin-left: 3px;
     transition: transform 0.2s ease;
 }
 
