@@ -248,13 +248,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     readMoreToggle.addEventListener('click', function() {
                         const isVisible = readMoreContent.classList.toggle('visible');
+                        this.classList.toggle('active');
                         this.textContent = isVisible ? 'Ocultar detalles' : 'Detalles';
-
-                        // Solo ajustar el margen si es el último item de la lista.
-                        // Si no es el último, el margen ya está fijado en 10px para el espaciado entre botones.
-                        if (isVisible) {
-                            parentListItem.style.marginBottom = '-10px';
-                            parentListItem.style.marginBottom = '-18px';
+                        
+                        // Ajustar el margen del elemento de la lista para mejorar el espaciado
+                        if (isLastItemInList) {
+                            if (isVisible) {
+                                parentListItem.style.marginBottom = '5px';
+                            } else {
+                                parentListItem.style.marginBottom = '-15px';
+                            }
                         }
                     });
 
@@ -264,15 +267,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Establecer margen inicial para este li
                     if (isLastItemInList) {
-                        listItem.style.marginBottom = '-43px'; // Es el último y tiene "Detalles" (ocultos por defecto)
+                        listItem.style.marginBottom = '-25px'; // Es el último y tiene "Detalles" (ocultos por defecto)
                     } else {
-                        listItem.style.marginBottom = '10px'; // No es el último, necesita 10px de espacio debajo
+                        listItem.style.marginBottom = '15px'; // No es el último, necesita espacio debajo
                     }
                 } else { // No hay "Detalles"
                     if (isLastItemInList) {
-                        listItem.style.marginBottom = '-15px'; // Es el último y no tiene "Detalles"
+                        listItem.style.marginBottom = '-10px'; // Es el último y no tiene "Detalles"
                     } else {
-                        listItem.style.marginBottom = '10px'; // No es el último, necesita 10px de espacio debajo
+                        listItem.style.marginBottom = '15px'; // No es el último, necesita espacio debajo
                     }
                 }
             });
