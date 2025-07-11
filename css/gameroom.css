@@ -162,40 +162,6 @@ header.site-header {
     filter: brightness(1.1);
 }
 
-/* Estilos para los botones de agregar a la mochila */
-.add-to-backpack-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #5ac560;
-    color: white;
-    border: none;
-    padding: 6px 8px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px;
-    opacity: 0;
-    transition: opacity 0.2s, background-color 0.2s;
-    z-index: 10;
-}
-
-.game-item:hover .add-to-backpack-btn {
-    opacity: 1;
-}
-
-.add-to-backpack-btn:hover {
-    background-color: #4a9c4a;
-}
-
-.add-to-backpack-btn.added {
-    background-color: #28a745;
-    opacity: 1;
-}
-
-.add-to-backpack-btn.added:hover {
-    background-color: #218838;
-}
-
 .backpack-counter {
     position: absolute;
     top: -8px;

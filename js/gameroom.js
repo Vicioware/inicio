@@ -23,46 +23,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-    
-    function addToBackpack(gameId, gameName, gameImage) {
-        if (!backpack.find(item => item.id === gameId)) {
-            backpack.push({
-                id: gameId,
-                name: gameName,
-                image: gameImage
-            });
-            saveBackpack();
-            updateBackpackCounter();
-            updateBackpackButtons();
-            return true;
-        }
-        return false;
-    }
 
     function saveBackpack() {
         localStorage.setItem('gameBackpack', JSON.stringify(backpack));
-    }
-    
-    function updateBackpackButtons() {
-        document.querySelectorAll('.add-to-backpack-btn').forEach(btn => {
-            const gameId = btn.dataset.gameId;
-            if (backpack.find(item => item.id === gameId)) {
-                btn.textContent = '✓';
-                btn.classList.add('added');
-                btn.title = 'Ya está en la mochila';
-            } else {
-                btn.textContent = '+';
-                btn.classList.remove('added');
-                btn.title = 'Agregar a la mochila';
-            }
-        });
     }
 
     function removeFromBackpack(gameId) {
         backpack = backpack.filter(item => item.id !== gameId);
         saveBackpack();
         updateBackpackCounter();
-        updateBackpackButtons();
         renderBackpackItems();
     }
 
@@ -70,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
         backpack = [];
         saveBackpack();
         updateBackpackCounter();
-        updateBackpackButtons();
         renderBackpackItems();
     }
 
@@ -242,37 +210,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelector('.gallery-container').innerHTML = gallery.innerHTML;
             }
             window.initGallery();
-            
-            // Agregar botones de mochila a cada juego
-            document.querySelectorAll('.game-item').forEach(item => {
-                const gameId = item.dataset.gameId;
-                const gameName = item.querySelector('p').textContent;
-                const gameImage = item.querySelector('img').getAttribute('src');
-                
-                // Crear botón de agregar a mochila
-                const addToBackpackBtn = document.createElement('button');
-                addToBackpackBtn.className = 'add-to-backpack-btn';
-                addToBackpackBtn.dataset.gameId = gameId;
-                addToBackpackBtn.textContent = '+';
-                addToBackpackBtn.title = 'Agregar a la mochila';
-                
-                // Agregar evento al botón
-                addToBackpackBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    if (addToBackpack(gameId, gameName, gameImage)) {
-                        addToBackpackBtn.textContent = '✓';
-                        addToBackpackBtn.classList.add('added');
-                        addToBackpackBtn.title = 'Ya está en la mochila';
-                    }
-                });
-                
-                // Agregar botón al item
-                item.appendChild(addToBackpackBtn);
-            });
-            
-            // Actualizar estado de los botones según la mochila
-            updateBackpackButtons();
 
             // Filtro de búsqueda (debe ejecutarse después de cargar la galería)
             const searchBar = document.getElementById('searchBar');
