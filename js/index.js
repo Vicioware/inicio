@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { text: 'Descargar Cuphead (Principal)', url: 'https://example.com/cuphead-main' },
             { text: 'Descargar Cuphead (Alternativo)', url: 'https://example.com/cuphead-alt' }
         ],
-		'vampire-survivors': [{ text: 'Descargar Vampire Survivors', url: 'https://www.mediafire.com/file/w7r10dc1rb85n4r/Vampi6reSurv1ivors-1.13.109-elamigos.rar/file' }], readMoreText: '- Versión 1.113.109\n- Español\n- Todos los DLC'
+		'vampire-survivors': [{ text: 'Descargar Vampire Survivors', url: 'https://www.mediafire.com/file/w7r10dc1rb85n4r/Vampi6reSurv1ivors-1.13.109-elamigos.rar/file' }], readMoreText: '- Versión 1.113.109\n- Español\n- Todos los DLC' }],
         'unmetal': [{ text: 'Descargar Unmetal', url: 'https://example.com/unmetal-download' }],
         'portal': [{ text: 'Descargar Portal', url: 'https://example.com/portal-download' }],
         'portal2': [{ text: 'Descargar Portal 2', url: 'https://example.com/portal2-download' }],
