@@ -60,6 +60,78 @@ header.site-header {
     z-index: auto;
     display: block;
 }
+
+.backpack-icon-link {
+    position: relative;
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.backpack-icon-link:hover {
+    transform: scale(1.1);
+}
+
+.backpack-icon-link img {
+    width: 32px;
+    height: 32px;
+    filter: brightness(0.9);
+    transition: filter 0.2s ease;
+}
+
+.backpack-icon-link:hover img {
+    filter: brightness(1.1);
+}
+
+.backpack-counter {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #5ac560;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    min-width: 20px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.backpack-icon-disabled {
+    position: relative;
+    display: block;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.backpack-icon-disabled img {
+    width: 32px;
+    height: 32px;
+    filter: brightness(0.6);
+}
+
+.backpack-counter-disabled {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #666;
+    color: #ccc;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    min-width: 20px;
+    padding: 0;
+    box-sizing: border-box;
+}
 .plataformas-link {
     position: static;
     top: unset;
@@ -228,6 +300,135 @@ header.site-header {
 #modalDownloadLinks {
     list-style: none;
     padding: 0;
+}
+
+/* Estilos específicos para el modal de la mochila */
+#backpackItems {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.backpack-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    border: 1px solid #444;
+}
+
+.backpack-item-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.backpack-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.backpack-item-name {
+    font-size: 1em;
+    color: #f0f0f0;
+}
+
+.remove-item-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.2s;
+}
+
+.remove-item-btn:hover {
+    background-color: #c82333;
+}
+
+.backpack-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.download-all-btn {
+    background-color: #5ac560;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.download-all-btn:hover {
+    background-color: #4a9c4a;
+}
+
+.clear-backpack-btn {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.clear-backpack-btn:hover {
+    background-color: #5a6268;
+}
+
+#emptyBackpackMessage {
+    text-align: center;
+    color: #aaa;
+    font-style: italic;
+    margin: 40px 0;
+}
+
+.add-to-backpack-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #5ac560;
+    color: white;
+    border: none;
+    padding: 6px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.2s, background-color 0.2s;
+    z-index: 10;
+}
+
+.game-item:hover .add-to-backpack-btn {
+    opacity: 1;
+}
+
+.add-to-backpack-btn:hover {
+    background-color: #4a9c4a;
+}
+
+.add-to-backpack-btn.added {
+    background-color: #28a745;
+    opacity: 1;
+}
+
+.add-to-backpack-btn.added:hover {
+    background-color: #218838;
 }
 #modalDownloadLinks li {
     margin-bottom: -35px;
