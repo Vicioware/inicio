@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const backpackModal = document.getElementById('backpackModal');
     const backpackCloseBtn = document.getElementById('backpackCloseButton');
     const backpackItems = document.getElementById('backpackItems');
-    const emptyBackpackMessage = document.getElementById('emptyBackpackMessage');
     const backpackActions = document.getElementById('backpackActions');
     const downloadAllBtn = document.getElementById('downloadAllButton');
     const clearBackpackBtn = document.getElementById('clearBackpackButton');
@@ -47,12 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!backpackItems) return;
         
         if (backpack.length === 0) {
-            if (emptyBackpackMessage) emptyBackpackMessage.style.display = 'block';
+            backpackItems.innerHTML = '<p style="text-align: center; color: #888; margin: 20px 0;">Tu mochila está vacía. Agrega algunos juegos desde la página principal.</p>';
             if (backpackActions) backpackActions.style.display = 'none';
-            backpackItems.innerHTML = '<p id="emptyBackpackMessage">Tu mochila está vacía. Agrega algunos juegos desde la página principal.</p>';
         } else {
-            if (emptyBackpackMessage) emptyBackpackMessage.style.display = 'none';
-            if (backpackActions) backpackActions.style.display = 'flex';
             backpackItems.innerHTML = backpack.map(item => `
                 <div class="backpack-item">
                     <div class="backpack-item-info">
@@ -62,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button class="remove-item-btn" data-game-id="${item.id}">Quitar</button>
                 </div>
             `).join('');
+            if (backpackActions) backpackActions.style.display = 'flex';
 
             // Agregar event listeners a los botones de quitar
             document.querySelectorAll('.remove-item-btn').forEach(btn => {

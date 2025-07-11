@@ -81,6 +81,64 @@ header.site-header {
     box-sizing: border-box;
 }
 
+/* Estilos básicos del modal */
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+}
+
+.modal.is-open {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+}
+
+.modal-content {
+    background-color: #1c1c1c;
+    padding: 25px;
+    border: 1px solid #444;
+    width: 90%;
+    max-width: 550px;
+    border-radius: 10px;
+    position: relative;
+    color: #f0f0f0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    transform: translateY(-30px) scale(0.95);
+    opacity: 0;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal.is-open .modal-content {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
 /* Estilos para la mochila funcional en gameroom */
 .backpack-icon-link {
     display: flex;
