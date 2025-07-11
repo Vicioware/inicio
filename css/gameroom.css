@@ -292,6 +292,12 @@ header.site-header {
 .gameroom-icon-link:hover {
     transform: scale(1.1);
 }
+
+/* Ocultar el ícono de gameroom en la página gameroom.html */
+.gameroom-page .gameroom-icon-link {
+    opacity: 0;
+    pointer-events: none;
+}
 .plataformas-link {
     position: static;
     top: unset;
@@ -767,10 +773,10 @@ body.modal-blur-active > .gallery-container {
     width: 32px;
     height: 32px;
     filter: brightness(0.9);
-    transition: transform 0.3s ease-in-out, filter 0.2s ease;
+    transition: transform 0.2s ease, filter 0.2s ease;
 }
 .gameroom-icon-link:hover img {
-    transform: scale(1.15);
+    transform: scale(1.1);
     filter: brightness(1.1);
 }
 
