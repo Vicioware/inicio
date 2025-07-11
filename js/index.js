@@ -251,29 +251,19 @@ document.addEventListener('DOMContentLoaded', () => {
                         this.classList.toggle('active');
                         this.textContent = isVisible ? 'Ocultar detalles' : 'Detalles';
                         
-                        // Ajustar el margen del elemento de la lista para mejorar el espaciado
-                        if (isLastItemInList) {
-                            // Mantenemos el mismo margen independientemente del estado de expansión
-                            parentListItem.style.marginBottom = '7px';
-                        }
+                        // No necesitamos ajustar el margen del elemento de la lista
+                        // El margen se maneja ahora a través de CSS para mantener consistencia
                     });
 
                     readMoreContainer.appendChild(readMoreToggle);
                     readMoreContainer.appendChild(readMoreContent);
                     listItem.appendChild(readMoreContainer); // Añadir al final del listItem
 
-                    // Establecer margen inicial para este li
-                    if (isLastItemInList) {
-                        listItem.style.marginBottom = '7px'; // Es el último y tiene "Detalles" (ocultos por defecto)
-                    } else {
-                        listItem.style.marginBottom = '7px'; // No es el último, necesita espacio debajo
-                    }
+                    // No necesitamos establecer márgenes específicos en JavaScript
+                    // Los márgenes se manejan ahora a través de CSS para mantener consistencia
                 } else { // No hay "Detalles"
-                    if (isLastItemInList) {
-                        listItem.style.marginBottom = '7px'; // Es el último y no tiene "Detalles"
-                    } else {
-                        listItem.style.marginBottom = '7px'; // No es el último, necesita espacio debajo
-                    }
+                    // No necesitamos establecer márgenes específicos en JavaScript
+                    // Los márgenes se manejan ahora a través de CSS para mantener consistencia
                 }
             });
         } else {
