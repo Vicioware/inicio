@@ -695,9 +695,10 @@ header.site-header {
     margin: 15% auto;
     padding: 20px 25px;
     border: none;
-    width: 44%; /* Reducido en un 45% del 80% original */
-    aspect-ratio: 1/1; /* Hace que la ventana sea cuadrada */
-    max-width: 275px; /* Reducido proporcionalmente */
+    width: auto; /* Cambiado de 44% a auto para adaptarse al contenido */
+    min-width: 200px; /* Ancho mínimo para mantener legibilidad */
+    max-width: 400px; /* Ancho máximo para pantallas grandes */
+    height: auto; /* Altura automática según el contenido */
     border-radius: 16px;
     position: relative;
     color: #f0f0f0;
@@ -706,6 +707,7 @@ header.site-header {
     opacity: 0;
     transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease;
     overflow-y: auto; /* Permite desplazamiento si el contenido es demasiado grande */
+    display: inline-block; /* Permite que el contenedor se ajuste al contenido */
 }
 
 #detailsModal.is-open .details-modal-content {
@@ -718,6 +720,8 @@ header.site-header {
     line-height: 1.5;
     color: rgba(255, 255, 255, 0.85);
     white-space: pre-line;
+    padding: 5px;
+    max-height: 60vh; /* Altura máxima para evitar que ocupe toda la pantalla */
     margin-bottom: 15px;
 }
 
@@ -846,5 +850,18 @@ body.modal-blur-active > .gallery-container {
     .modal-content {
         width: 95%;
         padding: 15px;
+    }
+    
+    .details-modal-content {
+        width: 85%;
+        min-width: 250px;
+        max-width: 320px;
+        margin: 30% auto;
+        padding: 15px 20px;
+    }
+    
+    .details-content {
+        font-size: 0.9em;
+        max-height: 50vh;
     }
 }
