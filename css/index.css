@@ -683,6 +683,7 @@ header.site-header {
     backdrop-filter: blur(3px);
     opacity: 0;
     transition: opacity 0.3s ease;
+    text-align: center; /* Centra el contenido inline-block */
 }
 
 #detailsModal.is-open {
@@ -692,7 +693,7 @@ header.site-header {
 
 .details-modal-content {
     background: linear-gradient(145deg, #232323, #1a1a1a);
-    margin: 15% auto;
+    margin: 50vh auto 0;
     padding: 20px 25px;
     border: none;
     width: auto; /* Cambiado de 44% a auto para adaptarse al contenido */
@@ -703,11 +704,12 @@ header.site-header {
     position: relative;
     color: #f0f0f0;
     box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);
-    transform: translateY(-40px) scale(0.95);
+    transform: translateY(-50%) scale(0.95); /* Centrado vertical */
     opacity: 0;
     transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease;
     overflow-y: auto; /* Permite desplazamiento si el contenido es demasiado grande */
     display: inline-block; /* Permite que el contenedor se ajuste al contenido */
+    text-align: left; /* Restablece el alineamiento del texto dentro del modal */
 }
 
 #detailsModal.is-open .details-modal-content {
@@ -723,6 +725,7 @@ header.site-header {
     padding: 5px;
     max-height: 60vh; /* Altura máxima para evitar que ocupe toda la pantalla */
     margin-bottom: 15px;
+    text-align: center; /* Centra el texto del contenido */
 }
 
 .details-close-button {
@@ -856,12 +859,13 @@ body.modal-blur-active > .gallery-container {
         width: 85%;
         min-width: 250px;
         max-width: 320px;
-        margin: 30% auto;
+        margin: 50vh auto 0;
         padding: 15px 20px;
     }
     
     .details-content {
         font-size: 0.9em;
         max-height: 50vh;
+        text-align: center;
     }
 }
