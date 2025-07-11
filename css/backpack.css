@@ -301,18 +301,26 @@ body.modal-blur-active {
 
 .add-to-backpack-btn {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #5ac560;
+    top: 8px;
+    right: 8px;
+    background: rgba(90, 197, 96, 0.9);
     color: white;
     border: none;
-    padding: 6px 8px;
     border-radius: 4px;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
-    font-size: 12px;
-    opacity: 0;
-    transition: opacity 0.2s, background-color 0.2s;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: 10;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    background-image: url('../resources/add_to_backpack.svg');
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .game-item:hover .add-to-backpack-btn {
@@ -324,7 +332,12 @@ body.modal-blur-active {
 }
 
 .add-to-backpack-btn.added {
-    background-color: #28a745;
+    background: rgba(220, 53, 69, 0.9);
+    background-image: url('../resources/delete_from_backpack.svg');
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: scale(1.1);
     opacity: 1;
 }
 
