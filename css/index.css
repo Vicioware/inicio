@@ -684,9 +684,6 @@ header.site-header {
     opacity: 0;
     transition: opacity 0.3s ease;
     text-align: center; /* Centra el contenido inline-block */
-    display: flex; /* Usar flexbox para centrado */
-    justify-content: center; /* Centrado horizontal */
-    align-items: center; /* Centrado vertical */
 }
 
 #detailsModal.is-open {
@@ -696,8 +693,8 @@ header.site-header {
 
 .details-modal-content {
     background: linear-gradient(145deg, #232323, #1a1a1a);
-    margin: 0 auto; /* Elimina el margen superior y usa auto para centrar horizontalmente */
-    padding: 25px 30px; /* Aumenta el padding para reducir el espacio en blanco */
+    margin: 45vh auto 0; /* Ajustado para mejor centrado vertical */
+    padding: 15px 20px; /* Reducido el padding para disminuir el espacio en blanco */
     border: none;
     width: auto; /* Cambiado de 44% a auto para adaptarse al contenido */
     min-width: 200px; /* Ancho mínimo para mantener legibilidad */
@@ -707,15 +704,16 @@ header.site-header {
     position: relative;
     color: #f0f0f0;
     box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);
-    transform: scale(0.95); /* Elimina translateY ya que usamos flexbox para centrar */
+    transform: translateY(-55%) scale(0.95); /* Ajustado para mejor centrado vertical */
     opacity: 0;
     transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease;
     overflow-y: auto; /* Permite desplazamiento si el contenido es demasiado grande */
+    display: inline-block; /* Permite que el contenedor se ajuste al contenido */
     text-align: left; /* Restablece el alineamiento del texto dentro del modal */
 }
 
 #detailsModal.is-open .details-modal-content {
-    transform: scale(1);
+    transform: translateY(-5%) scale(1); /* Ajustado para mantener el centrado vertical */
     opacity: 1;
 }
 
@@ -724,17 +722,17 @@ header.site-header {
     line-height: 1.5;
     color: rgba(255, 255, 255, 0.85);
     white-space: pre-line;
-    padding: 10px 5px; /* Aumenta el padding vertical */
+    padding: 2px;
     max-height: 60vh; /* Altura máxima para evitar que ocupe toda la pantalla */
-    margin-bottom: 10px;
+    margin-bottom: 10px; /* Reducido el margen inferior */
     text-align: center; /* Centra el texto del contenido */
 }
 
 .details-close-button {
     position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 24px;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
     color: rgba(255, 255, 255, 0.5);
     cursor: pointer;
     transition: color 0.3s ease;
@@ -861,13 +859,15 @@ body.modal-blur-active > .gallery-container {
         width: 85%;
         min-width: 250px;
         max-width: 320px;
-        margin: 50vh auto 0;
-        padding: 15px 20px;
+        margin: 45vh auto 0; /* Ajustado para coincidir con el cambio en escritorio */
+        padding: 12px 15px; /* Reducido el padding en móviles */
     }
     
     .details-content {
         font-size: 0.9em;
         max-height: 50vh;
+        padding: 0; /* Eliminar padding en móviles */
+        margin-bottom: 5px; /* Reducir margen inferior en móviles */
         text-align: center;
     }
 }
