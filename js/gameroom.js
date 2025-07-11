@@ -247,4 +247,22 @@ document.addEventListener('DOMContentLoaded', () => {
             iframe.src = 'about:blank'; // Detener la ejecución del juego
         }
     });
+
+    // Funcionalidad para cambiar el icono de Gameroom a SVG en hover
+    const gameroomIconLink = document.querySelector('.gameroom-icon-link');
+    if (gameroomIconLink) {
+        const gameroomIconImage = gameroomIconLink.querySelector('img');
+        if (gameroomIconImage) {
+            const originalGameroomSrc = gameroomIconImage.src; // Captura la ruta del SVG actual
+            const hoverGameroomSrc = 'resources/gameroom.svg'; // Ruta al SVG
+
+            gameroomIconLink.addEventListener('mouseenter', () => {
+                gameroomIconImage.src = hoverGameroomSrc;
+            });
+
+            gameroomIconLink.addEventListener('mouseleave', () => {
+                gameroomIconImage.src = originalGameroomSrc;
+            });
+        }
+    }
 });
