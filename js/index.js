@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { text: 'Descargar Cuphead (Principal)', url: 'https://example.com/cuphead-main' },
             { text: 'Descargar Cuphead (Alternativo)', url: 'https://example.com/cuphead-alt' }
         ],
-		'vampire-survivors': [{ text: 'Descargar Vampire Survivors', url: 'https://www.mediafire.com/file/w7r10dc1rb85n4r/Vampi6reSurv1ivors-1.13.109-elamigos.rar/file' }], readMoreText: '- Versión 1.113.109\n- Español\n- Todos los DLC' }],
+        'vampire-survivors': [{ text: 'Descargar Vampire Survivors', url: 'https://www.mediafire.com/file/w7r10dc1rb85n4r/Vampi6reSurv1ivors-1.13.109-elamigos.rar/file', readMoreText: '- Versión 1.113.109\n- Español\n- Todos los DLC' }],
         'unmetal': [{ text: 'Descargar Unmetal', url: 'https://example.com/unmetal-download' }],
         'portal': [{ text: 'Descargar Portal', url: 'https://example.com/portal-download' }],
         'portal2': [{ text: 'Descargar Portal 2', url: 'https://example.com/portal2-download' }],
@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'brotato': [{ text: 'Descargar Brotato', url: 'https://example.com/brotato-download' }],
         'assassinscreed': [{ text: 'Descargar Assassin\'s Creed', url: 'https://example.com/assassinscreed-download' }],
         'tomb-raider': [{ text: 'Descargar Tomb Raider (2013)', url: 'https://example.com/tomb-raider-download' }],
-        'vampire-survivors': [{ text: 'Descargar Vampire Survivors', url: 'https://example.com/vampire-survivors-download' }],
         'horizon-chase-turbo': [{ text: 'Descargar Horizon Chase Turbo', url: 'https://example.com/horizon-chase-turbo-download' }],
         'barony': [{ text: 'Descargar Barony', url: 'https://example.com/barony-download' }],
         'dmc-devil-may-cry': [{ text: 'Descargar DmC: Devil May Cry', url: 'https://example.com/dmc-devil-may-cry-download' }],
