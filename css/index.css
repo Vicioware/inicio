@@ -262,7 +262,7 @@ header.site-header {
 }
 .modal-content {
     background: linear-gradient(145deg, #232323, #1a1a1a);
-    padding: 30px 30px 10px 30px;
+    padding: 30px 30px 22px 30px; /* Aumentado el padding inferior para compensar */
     border: none;
     width: 90%;
     max-width: 550px;
@@ -330,6 +330,7 @@ header.site-header {
     list-style: none;
     padding: 0;
     margin-top: 15px;
+    margin-bottom: 0; /* Aseguramos que no haya margen inferior adicional */
 }
 
 /* Estilos específicos para el modal de la mochila - Rediseño */
@@ -575,7 +576,7 @@ header.site-header {
     background-color: #218838;
 }
 #modalDownloadLinks li {
-    margin-bottom: -5px;
+    margin-bottom: 7px; /* Aumentado en 12px desde -5px */
     position: relative;
     transition: margin-bottom 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
@@ -627,6 +628,7 @@ header.site-header {
 }
 .read-more-container {
     margin-top: 15px;
+    margin-bottom: 0; /* Aseguramos que no haya margen inferior adicional */
     position: relative;
 }
 
@@ -695,6 +697,7 @@ header.site-header {
     opacity: 1;
     padding: 15px 18px;
     transform: translateY(0);
+    margin-bottom: 0; /* Aseguramos que no haya margen inferior adicional */
 }
 body.modal-blur-active > .gallery-container {
     filter: blur(5px);
