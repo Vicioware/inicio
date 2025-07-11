@@ -262,7 +262,7 @@ header.site-header {
 }
 .modal-content {
     background: linear-gradient(145deg, #232323, #1a1a1a);
-    padding: 30px;
+    padding: 30px 30px 10px 30px;
     border: none;
     width: 90%;
     max-width: 550px;
@@ -305,7 +305,7 @@ header.site-header {
 #modalGameTitle {
     text-align: center;
     margin-top: 10px;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     font-size: 2em;
     font-weight: 600;
     color: #ffffff;
@@ -329,7 +329,7 @@ header.site-header {
 #modalDownloadLinks {
     list-style: none;
     padding: 0;
-    margin-top: 25px;
+    margin-top: 15px;
 }
 
 /* Estilos específicos para el modal de la mochila - Rediseño */
@@ -575,7 +575,7 @@ header.site-header {
     background-color: #218838;
 }
 #modalDownloadLinks li {
-    margin-bottom: 15px;
+    margin-bottom: -5px;
     position: relative;
     transition: margin-bottom 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
@@ -628,7 +628,6 @@ header.site-header {
 .read-more-container {
     margin-top: 15px;
     position: relative;
-    margin-bottom: 15px;
 }
 
 .read-more-toggle {
@@ -696,7 +695,6 @@ header.site-header {
     opacity: 1;
     padding: 15px 18px;
     transform: translateY(0);
-    margin-bottom: 0;
 }
 body.modal-blur-active > .gallery-container {
     filter: blur(5px);
