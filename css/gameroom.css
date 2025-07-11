@@ -387,57 +387,73 @@ header.site-header {
     align-items: center;
     justify-content: center;
     position: fixed;
-    z-index: 100;
-    left: 0;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
 }
+
 .game-modal.is-open {
     opacity: 1;
     visibility: visible;
-    transition-delay: 0s;
 }
+
 .game-modal-content {
-    background-color: #1c1c1c;
-    padding: 25px;
-    border: 1px solid #444;
-    width: 90%;
-    max-width: 840px;
-    border-radius: 10px;
-    position: relative;
-    color: #f0f0f0;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    transform: translateY(-30px) scale(0.95);
-    opacity: 0;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-}
-.game-modal.is-open .game-modal-content {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-}
-.game-modal-close-button {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    line-height: 1;
-}
-.game-modal-close-button:hover,
-.game-modal-close-button:focus {
+    background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
     color: #fff;
-    text-decoration: none;
+    padding: 30px;
+    border-radius: 16px;
+    max-width: 90%;
+    max-height: 90%;
+    overflow: auto;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.3);
+    transform: scale(0.9);
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.game-modal.is-open .game-modal-content {
+    transform: scale(1);
+}
+
+.game-modal-close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    font-size: 24px;
     cursor: pointer;
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.game-modal-close-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
 }
 #gameModalIframe {
     width: 100%;
     height: 450px;
     border: none;
-    margin-top: 10px;
+    margin-top: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
 }
 body.modal-blur-active > .gallery-container {
     filter: blur(5px);
@@ -452,14 +468,30 @@ body.modal-blur-active > .gallery-container {
     align-items: center;
     justify-content: center;
     margin-top: 0;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #444;
-    padding-bottom: 0.5em;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 15px;
 }
+
+.modal-title-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.5), rgba(255,255,255,0));
+    border-radius: 3px;
+}
+
 #modalGameTitleText {
     margin: 0;
-    font-size: 1.8em;
-    color: #f0f0f0;
+    font-size: 2em;
+    font-weight: 600;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.5px;
 }
 .info-icon-tooltip {
     position: relative;
@@ -509,82 +541,131 @@ body.modal-blur-active > .gallery-container {
 /* --- MODAL DE CONFIRMACIÓN PERSONALIZADO --- */
 .custom-confirm-modal {
     display: flex;
-    position: fixed;
-    z-index: 105;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
     align-items: center;
     justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(5px);
+    z-index: 1001;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
 }
-.custom-confirm-modal-content {
-    background-color: #2f2f2f;
-    color: #f0f0f0;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-    width: 90%;
-    max-width: 450px;
-    text-align: center;
-    transform: translateY(-20px) scale(0.95);
-    opacity: 0;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-}
+
 .custom-confirm-modal.is-visible {
     opacity: 1;
     visibility: visible;
-    transition-delay: 0s;
 }
-.custom-confirm-modal-content p {
-    margin-top: 0;
-    margin-bottom: 15px;
-    font-size: 1em;
-    line-height: 1.5;
+
+.custom-confirm-modal-content {
+    background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+    color: #fff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    transform: scale(0.9);
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    opacity: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 .custom-confirm-modal.is-visible .custom-confirm-modal-content {
-    transform: translateY(0) scale(1);
+    transform: scale(1);
     opacity: 1;
 }
+
+.custom-confirm-modal-content p {
+    margin-bottom: 25px;
+    font-size: 1.1em;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
 .custom-confirm-buttons button {
-    padding: 10px 18px;
+    padding: 12px 24px;
     border: none;
-    border-radius: 5px;
+    border-radius: 12px;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 600;
     margin: 0 8px;
-    min-width: 120px;
-    transition: background-color 0.2s ease, transform 0.1s ease;
+    min-width: 100px;
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
+
+.custom-confirm-buttons button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.7s;
+}
+
+.custom-confirm-buttons button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.custom-confirm-buttons button:hover::before {
+    left: 100%;
+}
+
+.custom-confirm-buttons button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
 #customConfirmOkButton {
-    background-color: #5ac560;
+    background: linear-gradient(135deg, #28a745, #218838);
     color: white;
 }
+
+#customConfirmOkButton:hover {
+    background: linear-gradient(135deg, #218838, #28a745);
+}
+
 #customConfirmCancelButton {
-    background-color: #777;
+    background: linear-gradient(135deg, #6c757d, #495057);
     color: white;
 }
+
+#customConfirmCancelButton:hover {
+    background: linear-gradient(135deg, #495057, #6c757d);
+}
+
 .dont-show-again-container {
-    margin-top: 15px;
+    margin-top: 20px;
     margin-bottom: 20px;
     display: none;
     align-items: center;
     justify-content: center;
-    font-size: 0.9em;
+    font-size: 0.95em;
 }
+
 .dont-show-again-container label {
-    color: #a0a0a0;
-    cursor: pointer;
+    color: rgba(255, 255, 255, 0.7);
     margin-left: 8px;
-    transition: color 0.2s ease;
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
+
 .dont-show-again-container label:hover {
-    color: #f0f0f0;
+    color: rgba(255, 255, 255, 0.9);
 }
+
 #dontShowAgainCheckbox {
     accent-color: #5ac560;
 }
@@ -595,39 +676,70 @@ body.modal-blur-active > .gallery-container {
     left: 20px;
     display: flex;
     align-items: center;
-    background-color: #888;
-    padding: 8px;
-    border-radius: 6px;
+    background: linear-gradient(135deg, #6c757d, #495057);
+    padding: 10px 12px;
+    border-radius: 12px;
     text-decoration: none;
     color: white;
     overflow: hidden;
-    transition: background-color 0.3s ease-in-out;
-    height: 36px;
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    height: 42px;
     box-sizing: border-box;
     z-index: 5;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+.iframe-download-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.7s;
+}
+
 .iframe-download-button img {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     display: block;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
 }
+
 .iframe-download-button .download-text {
-    font-size: 0.9em;
-    font-weight: bold;
+    font-size: 0.95em;
+    font-weight: 600;
     margin-left: 0;
     max-width: 0;
     opacity: 0;
     white-space: nowrap;
     overflow: hidden;
-    transition: max-width 0.3s ease-in-out 0.05s, opacity 0.2s ease-in-out 0.1s, margin-left 0.3s ease-in-out 0.05s;
+    transition: max-width 0.3s cubic-bezier(0.19, 1, 0.22, 1) 0.05s, opacity 0.2s ease-in-out 0.1s, margin-left 0.3s cubic-bezier(0.19, 1, 0.22, 1) 0.05s;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.5px;
 }
+
 .iframe-download-button:hover {
-    background-color: #5ac560;
+    background: linear-gradient(135deg, #5ac560, #4a9c4a);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
+
+.iframe-download-button:hover::before {
+    left: 100%;
+}
+
 .iframe-download-button:hover .download-text {
-    margin-left: 8px;
-    max-width: 100px;
+    margin-left: 10px;
+    max-width: 120px;
     opacity: 1;
+}
+
+.iframe-download-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 .gameroom-icon-link {
     position: static;
