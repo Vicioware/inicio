@@ -684,6 +684,9 @@ header.site-header {
     opacity: 0;
     transition: opacity 0.3s ease;
     text-align: center; /* Centra el contenido inline-block */
+    display: flex; /* Usar flexbox para centrado */
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
 }
 
 #detailsModal.is-open {
@@ -693,8 +696,8 @@ header.site-header {
 
 .details-modal-content {
     background: linear-gradient(145deg, #232323, #1a1a1a);
-    margin: 50vh auto 0;
-    padding: 20px 25px;
+    margin: 0 auto; /* Elimina el margen superior y usa auto para centrar horizontalmente */
+    padding: 25px 30px; /* Aumenta el padding para reducir el espacio en blanco */
     border: none;
     width: auto; /* Cambiado de 44% a auto para adaptarse al contenido */
     min-width: 200px; /* Ancho mínimo para mantener legibilidad */
@@ -704,16 +707,15 @@ header.site-header {
     position: relative;
     color: #f0f0f0;
     box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);
-    transform: translateY(-50%) scale(0.95); /* Centrado vertical */
+    transform: scale(0.95); /* Elimina translateY ya que usamos flexbox para centrar */
     opacity: 0;
     transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease;
     overflow-y: auto; /* Permite desplazamiento si el contenido es demasiado grande */
-    display: inline-block; /* Permite que el contenedor se ajuste al contenido */
     text-align: left; /* Restablece el alineamiento del texto dentro del modal */
 }
 
 #detailsModal.is-open .details-modal-content {
-    transform: translateY(0) scale(1);
+    transform: scale(1);
     opacity: 1;
 }
 
@@ -722,9 +724,9 @@ header.site-header {
     line-height: 1.5;
     color: rgba(255, 255, 255, 0.85);
     white-space: pre-line;
-    padding: 5px;
+    padding: 10px 5px; /* Aumenta el padding vertical */
     max-height: 60vh; /* Altura máxima para evitar que ocupe toda la pantalla */
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     text-align: center; /* Centra el texto del contenido */
 }
 
