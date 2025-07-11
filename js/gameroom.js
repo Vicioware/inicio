@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (modal && iframe && modalTitle) {
                     modalTitle.textContent = gameTitle;
                     iframe.src = gameSrc;
-                    modal.style.display = 'block';
+                    modal.classList.add('is-open');
                 }
             }
         });
@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (closeButton && modal && iframe) {
         closeButton.addEventListener('click', () => {
-            modal.style.display = 'none';
+            modal.classList.remove('is-open');
             iframe.src = 'about:blank'; // Detener la ejecución del juego
         });
     }
@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cierra el modal si se hace clic fuera de su contenido
     window.addEventListener('click', (event) => {
         if (event.target === modal) {
-            modal.style.display = 'none';
+            modal.classList.remove('is-open');
             iframe.src = 'about:blank'; // Detener la ejecución del juego
         }
     });
