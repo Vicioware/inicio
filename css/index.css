@@ -59,6 +59,11 @@ header.site-header {
     right: unset;
     z-index: auto;
     display: block;
+    transition: transform 0.2s ease;
+}
+
+.gameroom-icon-link:hover {
+    transform: scale(1.1);
 }
 
 .backpack-icon-link {
@@ -787,11 +792,27 @@ body.modal-blur-active > .gallery-container {
 .gameroom-icon-link img {
     width: 32px;
     height: 32px;
-    transition: transform 0.3s ease-in-out;
+    filter: brightness(0.9);
+    transition: transform 0.3s ease-in-out, filter 0.2s ease;
 }
 .gameroom-icon-link:hover img {
     transform: scale(1.15);
+    filter: brightness(1.1);
 }
+
+.gameroom-icon-disabled {
+    position: relative;
+    display: block;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.gameroom-icon-disabled img {
+    width: 32px;
+    height: 32px;
+    filter: brightness(0.6);
+}
+
 .vicioware-icon-link {
     position: static;
     top: unset;
