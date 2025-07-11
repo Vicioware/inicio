@@ -1,3 +1,18 @@
+/* Declaraciones de fuentes */
+@font-face {
+    font-family: 'Manrope';
+    src: url('../fonts/Manrope-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Manrope Light';
+    src: url('../fonts/Manrope-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
 /* Estilos para el ícono de la mochila */
 .backpack-icon-link {
     position: relative;
@@ -73,6 +88,11 @@
 }
 
 /* Estilos específicos para el modal de la mochila */
+/* Prevenir scroll de la página de fondo cuando el modal esté abierto */
+body.modal-blur-active {
+    overflow: hidden;
+}
+
 #backpackItems {
     max-height: 400px;
     overflow-y: auto;
@@ -108,12 +128,6 @@
     border-radius: 12px;
     border: none;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.backpack-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
 
 .backpack-item-info {
@@ -146,6 +160,7 @@
     cursor: pointer;
     font-size: 13px;
     font-weight: 500;
+    font-family: 'Manrope Light', sans-serif;
     transition: all 0.3s ease;
     box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
     position: relative;
@@ -194,6 +209,7 @@
     cursor: pointer;
     font-size: 15px;
     font-weight: 600;
+    font-family: 'Manrope', sans-serif;
     letter-spacing: 0.5px;
     transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
     box-shadow: 0 4px 15px rgba(90, 197, 96, 0.3);
@@ -236,6 +252,7 @@
     cursor: pointer;
     font-size: 15px;
     font-weight: 600;
+    font-family: 'Manrope', sans-serif;
     letter-spacing: 0.5px;
     transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
     box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
