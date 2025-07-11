@@ -25,7 +25,7 @@ header.site-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 32px;
+    padding: 0 32px 0 32px;
     min-height: 80px;
     position: relative;
     z-index: 1100;
@@ -41,7 +41,6 @@ header.site-header {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 .header-right {
     display: flex;
@@ -141,13 +140,10 @@ header.site-header {
 
 /* Estilos para la mochila funcional en gameroom */
 .backpack-icon-link {
-    display: flex;
-    align-items: center;
     position: relative;
-    margin-right: 15px;
+    display: block;
     margin-left: 5px;
-    text-decoration: none;
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease;
 }
 
 .backpack-icon-link:hover {
@@ -157,28 +153,31 @@ header.site-header {
 .backpack-icon-link img {
     width: 32px;
     height: 32px;
-    transition: filter 0.3s ease;
+    filter: brightness(0.9);
+    transition: filter 0.2s ease;
 }
 
 .backpack-icon-link:hover img {
-    filter: brightness(1.2);
+    filter: brightness(1.1);
 }
 
 .backpack-counter {
     position: absolute;
     top: -8px;
     right: -8px;
-    background: #ff6b6b;
+    background-color: #5ac560;
     color: white;
     border-radius: 50%;
     width: 20px;
     height: 20px;
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     font-size: 12px;
     font-weight: bold;
-    animation: pulse 0.3s ease;
+    min-width: 20px;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 /* Estilos del modal de mochila */
@@ -263,6 +262,7 @@ header.site-header {
     50% { transform: scale(1.1); }
     100% { transform: scale(1); }
 }
+
 .vicioware-icon-link {
     position: static;
     top: unset;
@@ -270,6 +270,16 @@ header.site-header {
     z-index: auto;
     display: block;
 }
+.vicioware-icon-link img {
+    width: 48px;
+    height: 48px;
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+.vicioware-icon-link:hover img {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+}
+
 .gameroom-icon-link {
     position: static;
     top: unset;
