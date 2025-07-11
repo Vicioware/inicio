@@ -266,10 +266,10 @@ header.site-header {
     border: none;
     width: 90%;
     max-width: 550px;
-    border-radius: 16px;
+    border-radius: 14px; /* Reducido en 2px */
     position: relative;
     color: #f0f0f0;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1); /* Reducida la distancia de la sombra */
     transform: translateY(-40px) scale(0.95);
     opacity: 0;
     transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease;
@@ -700,10 +700,10 @@ header.site-header {
     min-width: 200px; /* Ancho mínimo para mantener legibilidad */
     max-width: 400px; /* Ancho máximo para pantallas grandes */
     height: auto; /* Altura automática según el contenido */
-    border-radius: 16px;
+    border-radius: 14px; /* Reducido en 2px */
     position: relative;
     color: #f0f0f0;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1); /* Reducida la distancia de la sombra */
     transform: translateY(-55%) scale(0.95); /* Ajustado para mejor centrado vertical */
     opacity: 0;
     transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease;

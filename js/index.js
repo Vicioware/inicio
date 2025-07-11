@@ -307,13 +307,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Event listener para cerrar los modales con la tecla Escape
     window.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') {
-            // Cerrar el modal principal si está abierto
-            if (modal.classList.contains('is-open')) {
-                closeModal();
-            }
-            // Cerrar el modal de detalles si está abierto
+            // Primero cerrar el modal de detalles si está abierto
             if (detailsModal.classList.contains('is-open')) {
                 detailsModal.classList.remove('is-open');
+                // Prevenir que se cierre también el modal principal
+                event.stopPropagation();
+                return;
+            }
+            // Si el modal de detalles no está abierto, cerrar el modal principal
+            if (modal.classList.contains('is-open')) {
+                closeModal();
             }
         }
     });
