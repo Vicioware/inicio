@@ -145,7 +145,7 @@ header.site-header {
     align-items: center;
     position: relative;
     margin-right: 15px;
-    margin-left: 3px;
+    margin-left: 5px;
     text-decoration: none;
     transition: transform 0.3s ease;
 }
@@ -155,8 +155,8 @@ header.site-header {
 }
 
 .backpack-icon-link img {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     transition: filter 0.3s ease;
 }
 

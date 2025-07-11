@@ -3,11 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const backpackIconLink = document.getElementById('backpackIcon');
     const backpackCounter = document.getElementById('backpackCounter');
     const backpackModal = document.getElementById('backpackModal');
-    const backpackCloseBtn = document.getElementById('backpackCloseButton');
+    const backpackCloseBtn = document.getElementById('backpackCloseBtn');
     const backpackItems = document.getElementById('backpackItems');
     const backpackActions = document.getElementById('backpackActions');
-    const downloadAllBtn = document.getElementById('downloadAllButton');
-    const clearBackpackBtn = document.getElementById('clearBackpackButton');
+    const downloadAllBtn = document.getElementById('downloadAllBtn');
+    const clearBackpackBtn = document.getElementById('clearBackpackBtn');
 
     // Array para almacenar los juegos en la mochila
     let backpack = JSON.parse(localStorage.getItem('gameBackpack')) || [];
