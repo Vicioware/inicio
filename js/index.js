@@ -112,11 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.add-to-backpack-btn').forEach(btn => {
             const gameId = btn.dataset.gameId;
             if (backpack.find(item => item.id === gameId)) {
-                btn.textContent = '✓';
+                btn.textContent = '';
                 btn.classList.add('added');
                 btn.title = 'Quitar de la mochila';
             } else {
-                btn.textContent = '+';
+                btn.textContent = '';
                 btn.classList.remove('added');
                 btn.title = 'Agregar a la mochila';
             }
@@ -233,10 +233,10 @@ document.addEventListener('DOMContentLoaded', () => {
         modalBackpackBtn.dataset.gameId = gameId;
         
         if (isInBackpack) {
-            modalBackpackBtn.textContent = 'Quitar de la mochila';
+            modalBackpackBtn.textContent = '';
             modalBackpackBtn.classList.add('added');
         } else {
-            modalBackpackBtn.textContent = 'Agregar a la mochila';
+            modalBackpackBtn.textContent = '';
             modalBackpackBtn.classList.remove('added');
         }
         
@@ -252,10 +252,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Actualizar el estado del botón
             const isNowInBackpack = backpack.find(item => item.id === gameId);
             if (isNowInBackpack) {
-                newModalBackpackBtn.textContent = 'Quitar de la mochila';
+                newModalBackpackBtn.textContent = '';
                 newModalBackpackBtn.classList.add('added');
             } else {
-                newModalBackpackBtn.textContent = 'Agregar a la mochila';
+                newModalBackpackBtn.textContent = '';
                 newModalBackpackBtn.classList.remove('added');
             }
         });
