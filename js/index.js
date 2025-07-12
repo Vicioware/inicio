@@ -111,14 +111,17 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateBackpackButtons() {
         document.querySelectorAll('.add-to-backpack-btn').forEach(btn => {
             const gameId = btn.dataset.gameId;
+            const gameItem = btn.closest('.game-item');
             if (backpack.find(item => item.id === gameId)) {
                 btn.textContent = '';
                 btn.classList.add('added');
                 btn.title = 'Quitar de la mochila';
+                if (gameItem) gameItem.classList.add('in-backpack');
             } else {
                 btn.textContent = '';
                 btn.classList.remove('added');
                 btn.title = 'Agregar a la mochila';
+                if (gameItem) gameItem.classList.remove('in-backpack');
             }
         });
         

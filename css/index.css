@@ -145,6 +145,11 @@ header.site-header {
     transition: transform 0.2s ease-in-out;
     z-index: 1;
 }
+
+.game-item.in-backpack {
+    box-shadow: 0 0 8px rgba(90, 197, 96, 0.4), 0 0 16px rgba(90, 197, 96, 0.2);
+    border: 1px solid rgba(90, 197, 96, 0.3);
+}
 .game-item::after {
     display: none;
 }
