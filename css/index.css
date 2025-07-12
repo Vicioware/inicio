@@ -142,12 +142,8 @@ header.site-header {
     width: 120px;
     overflow: visible;
     text-decoration: none;
-    transition: transform 0.2s ease-in-out, box-shadow 0.3s ease;
+    transition: transform 0.2s ease-in-out;
     z-index: 1;
-}
-
-.game-item:has(.add-to-backpack-btn.added) {
-    box-shadow: 0 0 15px rgba(40, 167, 69, 0.4), 0 0 30px rgba(40, 167, 69, 0.2);
 }
 .game-item::after {
     display: none;
