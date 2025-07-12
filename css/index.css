@@ -379,6 +379,76 @@ header.site-header {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
+/* Estilos para el botón de mochila en el modal */
+#modalBackpackBtn {
+    display: none; /* Ocultar el botón original */
+}
+
+#modalBackpackBtnCloned {
+    position: static;
+    width: auto;
+    height: auto;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-size: 0.9em;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    opacity: 1;
+    transform: none;
+    backdrop-filter: none;
+    box-shadow: none;
+    background-image: none;
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+#modalBackpackBtnCloned:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+#modalBackpackBtnCloned:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+#modalBackpackBtnCloned:not(.added)::before {
+    content: '+ Agregar a la mochila';
+}
+
+#modalBackpackBtnCloned.added::before {
+    content: '− Quitar de la mochila';
+}
+
+#modalBackpackBtnCloned.added {
+    background: rgba(220, 53, 69, 0.15);
+    color: rgba(220, 53, 69, 0.9);
+    border-color: rgba(220, 53, 69, 0.2);
+}
+
+#modalBackpackBtnCloned.added:hover {
+    background: rgba(220, 53, 69, 0.25);
+    color: #dc3545;
+}
+
+/* Contenedor para alinear botones */
+.modal-buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 15px;
+    margin-bottom: 4px;
+}
+
 /* Estilos para el modal de detalles */
 #detailsModal {
     display: none;

@@ -115,9 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (clearBackpackBtn) {
         clearBackpackBtn.addEventListener('click', () => {
-            if (confirm('¿Estás seguro de que quieres vaciar tu mochila?')) {
-                clearBackpack();
-            }
+            clearBackpack();
         });
     }
 
