@@ -385,28 +385,19 @@ header.site-header {
 }
 
 #modalBackpackBtnCloned {
-    position: static;
-    width: auto;
-    height: auto;
-    background: rgba(255, 255, 255, 0.08);
     color: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    padding: 6px 12px;
     font-size: 0.9em;
-    font-weight: 500;
-    letter-spacing: 0.3px;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    margin-left: 10px;
-    opacity: 1;
-    transform: none;
-    backdrop-filter: none;
-    box-shadow: none;
-    background-image: none;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
     transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-left: 10px;
 }
 
 #modalBackpackBtnCloned:hover {
@@ -444,7 +435,7 @@ header.site-header {
 .modal-buttons-container {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     margin-top: 15px;
     margin-bottom: 4px;
 }
