@@ -331,7 +331,7 @@ body.modal-blur-active {
 
 .game-item:hover .add-to-backpack-btn.added {
     opacity: 1;
-    transform: scale(1.1);
+    transform: scale(1);
 }
 
 .add-to-backpack-btn:not(.added):hover {
