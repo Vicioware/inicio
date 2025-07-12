@@ -161,7 +161,7 @@ body.modal-blur-active {
     font-size: 13px;
     font-weight: 500;
     font-family: 'Manrope Light', sans-serif;
-    transition: all 0.3s ease;
+
     box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
     position: relative;
     overflow: hidden;
@@ -310,7 +310,6 @@ body.modal-blur-active {
     width: 30px;
     height: 30px;
     cursor: pointer;
-    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -351,7 +350,6 @@ body.modal-blur-active {
     background-position: center;
     opacity: 0;
     transform: scale(0.8);
-}
 }
 
 .add-to-backpack-btn.added:hover {
