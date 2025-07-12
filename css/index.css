@@ -388,7 +388,7 @@ header.site-header {
     color: rgba(255, 255, 255, 0.7);
     font-size: 0.9em;
     cursor: pointer;
-    display: inline-flex;
+    display: inline-flex !important; /* Forzar visualización */
     align-items: center;
     padding: 6px 12px;
     background: rgba(255, 255, 255, 0.08);

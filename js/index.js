@@ -324,31 +324,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 
                 // Agregar el botón de mochila en todos los elementos
-                buttonsContainer.appendChild(newModalBackpackBtn.cloneNode(true));
+                const backpackBtnClone = newModalBackpackBtn.cloneNode(true);
+                backpackBtnClone.id = 'modalBackpackBtnCloned';
+                backpackBtnClone.style.display = 'inline-flex'; // Asegurar que sea visible
+                backpackBtnClone.dataset.gameId = gameId;
+                buttonsContainer.appendChild(backpackBtnClone);
+                
                 // Actualizar el event listener del botón clonado
-                const clonedBtn = buttonsContainer.querySelector('#modalBackpackBtn');
-                if (clonedBtn) {
-                    clonedBtn.id = 'modalBackpackBtnCloned';
-                    clonedBtn.dataset.gameId = gameId;
-                    clonedBtn.addEventListener('click', () => {
-                        const gameImage = document.querySelector(`[data-game-id="${gameId}"] img`)?.getAttribute('src') || '';
-                        addToBackpack(gameId, gameName, gameImage);
-                        
-                        // Actualizar ambos botones
-                        const isNowInBackpack = backpack.find(item => item.id === gameId);
-                        [newModalBackpackBtn, clonedBtn].forEach(btn => {
-                            if (isNowInBackpack) {
-                                btn.classList.add('added');
-                            } else {
-                                btn.classList.remove('added');
-                            }
-                        });
+                backpackBtnClone.addEventListener('click', () => {
+                    const gameImage = document.querySelector(`[data-game-id="${gameId}"] img`)?.getAttribute('src') || '';
+                    addToBackpack(gameId, gameName, gameImage);
+                    
+                    // Actualizar ambos botones
+                    const isNowInBackpack = backpack.find(item => item.id === gameId);
+                    [newModalBackpackBtn, backpackBtnClone].forEach(btn => {
+                        if (isNowInBackpack) {
+                            btn.classList.add('added');
+                        } else {
+                            btn.classList.remove('added');
+                        }
                     });
-                }
+                });
                 
                 // Si no hay detalles, agregar el contenedor directamente al listItem
                 if (!linkInfo.readMoreText) {
-                    listItem.appendChild(buttonsContainer);
+                    // Asegurarse de que el contenedor tenga el mismo estilo que cuando hay detalles
+                    const readMoreContainer = document.createElement('div');
+                    readMoreContainer.className = 'read-more-container';
+                    readMoreContainer.appendChild(buttonsContainer);
+                    listItem.appendChild(readMoreContainer);
                 }
             });
         } else {
