@@ -293,13 +293,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 listItem.appendChild(anchor);
                 modalDownloadLinksList.appendChild(listItem);
 
+                // Crear contenedor de botones para cada elemento
+                const buttonsContainer = document.createElement('div');
+                buttonsContainer.className = 'modal-buttons-container';
+                
                 // Añadir "Leer más" si existe texto
                 if (linkInfo.readMoreText) {
                     const readMoreContainer = document.createElement('div');
                     readMoreContainer.className = 'read-more-container';
-
-                    const buttonsContainer = document.createElement('div');
-                    buttonsContainer.className = 'modal-buttons-container';
 
                     const readMoreToggle = document.createElement('span');
                     readMoreToggle.className = 'read-more-toggle';
@@ -318,64 +319,36 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
 
                     buttonsContainer.appendChild(readMoreToggle);
-                    
-                    // Solo agregar el botón de mochila en el último elemento
-                    if (isLastItemInList) {
-                        buttonsContainer.appendChild(newModalBackpackBtn.cloneNode(true));
-                        // Actualizar el event listener del botón clonado
-                        const clonedBtn = buttonsContainer.querySelector('#modalBackpackBtn');
-                        if (clonedBtn) {
-                            clonedBtn.id = 'modalBackpackBtnCloned';
-                            clonedBtn.dataset.gameId = gameId;
-                            clonedBtn.addEventListener('click', () => {
-                                const gameImage = document.querySelector(`[data-game-id="${gameId}"] img`)?.getAttribute('src') || '';
-                                addToBackpack(gameId, gameName, gameImage);
-                                
-                                // Actualizar ambos botones
-                                const isNowInBackpack = backpack.find(item => item.id === gameId);
-                                [newModalBackpackBtn, clonedBtn].forEach(btn => {
-                                    if (isNowInBackpack) {
-                                        btn.classList.add('added');
-                                    } else {
-                                        btn.classList.remove('added');
-                                    }
-                                });
-                            });
-                        }
-                    }
-
                     readMoreContainer.appendChild(buttonsContainer);
                     listItem.appendChild(readMoreContainer);
-                } else {
-                    // Si no hay detalles pero es el último elemento, agregar solo el botón de mochila
-                    if (isLastItemInList) {
-                        const buttonsContainer = document.createElement('div');
-                        buttonsContainer.className = 'modal-buttons-container';
-                        buttonsContainer.appendChild(newModalBackpackBtn.cloneNode(true));
+                }
+                
+                // Agregar el botón de mochila en todos los elementos
+                buttonsContainer.appendChild(newModalBackpackBtn.cloneNode(true));
+                // Actualizar el event listener del botón clonado
+                const clonedBtn = buttonsContainer.querySelector('#modalBackpackBtn');
+                if (clonedBtn) {
+                    clonedBtn.id = 'modalBackpackBtnCloned';
+                    clonedBtn.dataset.gameId = gameId;
+                    clonedBtn.addEventListener('click', () => {
+                        const gameImage = document.querySelector(`[data-game-id="${gameId}"] img`)?.getAttribute('src') || '';
+                        addToBackpack(gameId, gameName, gameImage);
                         
-                        // Actualizar el event listener del botón clonado
-                        const clonedBtn = buttonsContainer.querySelector('#modalBackpackBtn');
-                        if (clonedBtn) {
-                            clonedBtn.id = 'modalBackpackBtnCloned';
-                            clonedBtn.dataset.gameId = gameId;
-                            clonedBtn.addEventListener('click', () => {
-                                const gameImage = document.querySelector(`[data-game-id="${gameId}"] img`)?.getAttribute('src') || '';
-                                addToBackpack(gameId, gameName, gameImage);
-                                
-                                // Actualizar ambos botones
-                                const isNowInBackpack = backpack.find(item => item.id === gameId);
-                                [newModalBackpackBtn, clonedBtn].forEach(btn => {
-                                    if (isNowInBackpack) {
-                                        btn.classList.add('added');
-                                    } else {
-                                        btn.classList.remove('added');
-                                    }
-                                });
-                            });
-                        }
-                        
-                        listItem.appendChild(buttonsContainer);
-                    }
+                        // Actualizar ambos botones
+                        const isNowInBackpack = backpack.find(item => item.id === gameId);
+                        [newModalBackpackBtn, clonedBtn].forEach(btn => {
+                            if (isNowInBackpack) {
+                                btn.classList.add('added');
+                            } else {
+                                btn.classList.remove('added');
+                            }
+                        });
+                    });
+                }
+                
+                // Si no hay detalles, agregar el contenedor directamente al listItem
+                if (!linkInfo.readMoreText) {
+                    listItem.appendChild(buttonsContainer);
                 }
             });
         } else {
