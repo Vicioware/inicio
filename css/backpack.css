@@ -338,10 +338,6 @@ body.modal-blur-active {
     background-color: #4a9c4a;
 }
 
-.add-to-backpack-btn.added:hover {
-    background: rgba(180, 40, 55, 0.9);
-}
-
 .add-to-backpack-btn.added {
     background: rgba(220, 53, 69, 0.9);
     background-image: url('../resources/delete_from_backpack.svg');
@@ -353,5 +349,6 @@ body.modal-blur-active {
 }
 
 .add-to-backpack-btn.added:hover {
-    background-color: #218838;
+    background: rgba(180, 40, 55, 0.9);
+    opacity: 1;
 }
