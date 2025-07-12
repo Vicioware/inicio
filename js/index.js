@@ -323,11 +323,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     listItem.appendChild(readMoreContainer);
                 }
                 
-                // Agregar el botón de mochila en todos los elementos
-                const backpackBtnClone = newModalBackpackBtn.cloneNode(true);
+                // Crear un nuevo botón de mochila en lugar de clonar el existente
+                const backpackBtnClone = document.createElement('button');
                 backpackBtnClone.id = 'modalBackpackBtnCloned';
-                backpackBtnClone.style.display = 'inline-flex'; // Asegurar que sea visible
                 backpackBtnClone.dataset.gameId = gameId;
+                
+                // Aplicar la clase 'added' si el juego está en la mochila
+                if (backpack.find(item => item.id === gameId)) {
+                    backpackBtnClone.classList.add('added');
+                }
+                
+                // Asegurarse de que el botón sea visible y tenga el estilo correcto
+                backpackBtnClone.style.display = 'inline-flex';
+                
+                // Agregar el botón al contenedor
                 buttonsContainer.appendChild(backpackBtnClone);
                 
                 // Actualizar el event listener del botón clonado
@@ -337,13 +346,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     // Actualizar ambos botones
                     const isNowInBackpack = backpack.find(item => item.id === gameId);
-                    [newModalBackpackBtn, backpackBtnClone].forEach(btn => {
-                        if (isNowInBackpack) {
-                            btn.classList.add('added');
-                        } else {
-                            btn.classList.remove('added');
-                        }
-                    });
+                    
+                    // Actualizar el botón original
+                    if (isNowInBackpack) {
+                        newModalBackpackBtn.classList.add('added');
+                    } else {
+                        newModalBackpackBtn.classList.remove('added');
+                    }
+                    
+                    // Actualizar el botón clonado
+                    if (isNowInBackpack) {
+                        backpackBtnClone.classList.add('added');
+                    } else {
+                        backpackBtnClone.classList.remove('added');
+                    }
                 });
                 
                 // Si no hay detalles, agregar el contenedor directamente al listItem

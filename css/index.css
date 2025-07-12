@@ -391,18 +391,25 @@ header.site-header {
     display: inline-flex !important; /* Forzar visualización */
     align-items: center;
     padding: 6px 12px;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
+    background: rgba(90, 197, 96, 0.2);
+    border-radius: 4px;
     transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
     font-weight: 500;
     letter-spacing: 0.3px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    margin-left: 10px;
+    border: 1px solid rgba(90, 197, 96, 0.3);
+    margin: 0; /* Eliminar margen izquierdo */
+    position: static !important;
+    opacity: 1 !important;
+    transform: scale(1) !important;
+    top: auto !important;
+    right: auto !important;
+    width: auto !important;
+    height: auto !important;
 }
 
 #modalBackpackBtnCloned:hover {
     color: #fff;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(90, 197, 96, 0.4);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
@@ -414,10 +421,20 @@ header.site-header {
 
 #modalBackpackBtnCloned:not(.added)::before {
     content: '+ Agregar a la mochila';
+    background-image: url('../resources/add_to_backpack.svg');
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 22px;
 }
 
 #modalBackpackBtnCloned.added::before {
     content: '− Quitar de la mochila';
+    background-image: url('../resources/delete_from_backpack.svg');
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 22px;
 }
 
 #modalBackpackBtnCloned.added {
@@ -438,6 +455,10 @@ header.site-header {
     justify-content: flex-start;
     margin-top: 15px;
     margin-bottom: 4px;
+    gap: 10px;
+    width: 100%;
+    position: relative;
+    flex-wrap: wrap;
 }
 
 /* Estilos para el modal de detalles */
