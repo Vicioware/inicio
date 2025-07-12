@@ -127,11 +127,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (modalBackpackBtn && modalBackpackBtn.dataset.gameId) {
             const gameId = modalBackpackBtn.dataset.gameId;
             if (backpack.find(item => item.id === gameId)) {
-                modalBackpackBtn.textContent = 'Quitar de la mochila';
+                modalBackpackBtn.textContent = '';
                 modalBackpackBtn.classList.add('added');
+                modalBackpackBtn.title = 'Quitar de la mochila';
             } else {
-                modalBackpackBtn.textContent = 'Agregar a la mochila';
+                modalBackpackBtn.textContent = '';
                 modalBackpackBtn.classList.remove('added');
+                modalBackpackBtn.title = 'Agregar a la mochila';
             }
         }
     }
