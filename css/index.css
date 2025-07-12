@@ -148,6 +148,19 @@ header.site-header {
 
 .game-item.in-backpack {
     box-shadow: 0 0 8px rgba(90, 197, 96, 0.4), 0 0 16px rgba(90, 197, 96, 0.2), inset 0 0 0 1px rgba(90, 197, 96, 0.3);
+    transition: box-shadow 0.25s ease-out;
+}
+
+.game-item {
+    position: relative;
+    background: linear-gradient(to bottom, #1a1a1a, #111111 40%, #0a0a0a);
+    border-radius: 8px;
+    text-align: center;
+    width: 120px;
+    overflow: visible;
+    text-decoration: none;
+    transition: transform 0.2s ease-in-out, box-shadow 0.25s ease-out;
+    z-index: 1;
 }
 .game-item::after {
     display: none;
