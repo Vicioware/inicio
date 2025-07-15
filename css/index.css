@@ -421,20 +421,10 @@ header.site-header {
 
 #modalBackpackBtnCloned:not(.added)::before {
     content: 'Agregar a la mochila';
-    background-image: url('../resources/add_to_backpack.svg');
-    background-size: 16px 16px;
-    background-repeat: no-repeat;
-    background-position: left center;
-    padding-left: 22px;
 }
 
 #modalBackpackBtnCloned.added::before {
     content: 'Quitar de la mochila';
-    background-image: url('../resources/delete_from_backpack.svg');
-    background-size: 16px 16px;
-    background-repeat: no-repeat;
-    background-position: left center;
-    padding-left: 22px;
 }
 
 #modalBackpackBtnCloned.added {
