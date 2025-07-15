@@ -328,9 +328,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 backpackBtnClone.id = 'modalBackpackBtnCloned';
                 backpackBtnClone.dataset.gameId = gameId;
                 
-                // Aplicar la clase 'added' si el juego está en la mochila
+                // Aplicar la clase 'added' y texto si el juego está en la mochila
                 if (backpack.find(item => item.id === gameId)) {
                     backpackBtnClone.classList.add('added');
+                    backpackBtnClone.textContent = 'Quitar de la mochila';
+                } else {
+                    backpackBtnClone.textContent = 'Agregar a la mochila';
                 }
                 
                 // Asegurarse de que el botón sea visible y tenga el estilo correcto
@@ -357,8 +360,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Actualizar el botón clonado
                     if (isNowInBackpack) {
                         backpackBtnClone.classList.add('added');
+                        backpackBtnClone.textContent = 'Quitar de la mochila';
                     } else {
                         backpackBtnClone.classList.remove('added');
+                        backpackBtnClone.textContent = 'Agregar a la mochila';
                     }
                 });
                 

@@ -419,13 +419,7 @@ header.site-header {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-#modalBackpackBtnCloned:not(.added)::before {
-    content: 'Agregar a la mochila';
-}
-
-#modalBackpackBtnCloned.added::before {
-    content: 'Quitar de la mochila';
-}
+/* Texto se maneja directamente en JavaScript, no con ::before */
 
 #modalBackpackBtnCloned.added {
     background: rgba(220, 53, 69, 0.08);
