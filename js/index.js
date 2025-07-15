@@ -268,10 +268,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         detailsModal.classList.add('is-open');
                     });
                     
-                    // Crear un clon del botón de detalles
+                    // Crear un clon del botón de detalles con texto diferente
                     const readMoreToggleClone = document.createElement('span');
                     readMoreToggleClone.className = 'read-more-toggle';
-                    readMoreToggleClone.textContent = 'Detalles';
+                    readMoreToggleClone.textContent = 'Agregar a la mochila';
                     
                     // Agregar el mismo evento al clon
                     readMoreToggleClone.addEventListener('click', function() {
