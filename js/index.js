@@ -124,21 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (gameItem) gameItem.classList.remove('in-backpack');
             }
         });
-        
-        // Actualizar también el botón del modal si existe
-        const modalBackpackBtn = document.getElementById('modalBackpackBtn');
-        if (modalBackpackBtn && modalBackpackBtn.dataset.gameId) {
-            const gameId = modalBackpackBtn.dataset.gameId;
-            if (backpack.find(item => item.id === gameId)) {
-                modalBackpackBtn.textContent = '';
-                modalBackpackBtn.classList.add('added');
-                modalBackpackBtn.title = 'Quitar de la mochila';
-            } else {
-                modalBackpackBtn.textContent = '';
-                modalBackpackBtn.classList.remove('added');
-                modalBackpackBtn.title = 'Agregar a la mochila';
-            }
-        }
     }
 
     function renderBackpackItems() {
@@ -229,41 +214,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function openModal(gameId, gameName) {
         modalGameTitle.textContent = gameName; // Actualiza el título del modal
         modalDownloadLinksList.innerHTML = ''; // Limpia enlaces anteriores
-        
-        // Configurar el botón de mochila en el modal
-        const modalBackpackBtn = document.getElementById('modalBackpackBtn');
-        const isInBackpack = backpack.find(item => item.id === gameId);
-        
-        // Establecer el gameId en el botón
-        modalBackpackBtn.dataset.gameId = gameId;
-        
-        if (isInBackpack) {
-            modalBackpackBtn.textContent = '';
-            modalBackpackBtn.classList.add('added');
-        } else {
-            modalBackpackBtn.textContent = '';
-            modalBackpackBtn.classList.remove('added');
-        }
-        
-        // Remover event listeners anteriores
-        modalBackpackBtn.replaceWith(modalBackpackBtn.cloneNode(true));
-        const newModalBackpackBtn = document.getElementById('modalBackpackBtn');
-        newModalBackpackBtn.dataset.gameId = gameId;
-        
-        newModalBackpackBtn.addEventListener('click', () => {
-            const gameImage = document.querySelector(`[data-game-id="${gameId}"] img`)?.getAttribute('src') || '';
-            addToBackpack(gameId, gameName, gameImage);
-            
-            // Actualizar el estado del botón
-            const isNowInBackpack = backpack.find(item => item.id === gameId);
-            if (isNowInBackpack) {
-                newModalBackpackBtn.textContent = '';
-                newModalBackpackBtn.classList.add('added');
-            } else {
-                newModalBackpackBtn.textContent = '';
-                newModalBackpackBtn.classList.remove('added');
-            }
-        });
 
         if (gameId && gameDownloadLinksData[gameId]) {
             const links = gameDownloadLinksData[gameId];
@@ -323,49 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     listItem.appendChild(readMoreContainer);
                 }
                 
-                // Crear un nuevo botón de mochila en lugar de clonar el existente
-                const backpackBtnClone = document.createElement('button');
-                backpackBtnClone.id = 'modalBackpackBtnCloned';
-                backpackBtnClone.dataset.gameId = gameId;
-                
-                // Aplicar la clase 'added' y texto si el juego está en la mochila
-                if (backpack.find(item => item.id === gameId)) {
-                    backpackBtnClone.classList.add('added');
-                    backpackBtnClone.textContent = 'Quitar de la mochila';
-                } else {
-                    backpackBtnClone.textContent = 'Agregar a la mochila';
-                }
-                
-                // Asegurarse de que el botón sea visible y tenga el estilo correcto
-                backpackBtnClone.style.display = 'inline-flex';
-                
-                // Agregar el botón al contenedor
-                buttonsContainer.appendChild(backpackBtnClone);
-                
-                // Actualizar el event listener del botón clonado
-                backpackBtnClone.addEventListener('click', () => {
-                    const gameImage = document.querySelector(`[data-game-id="${gameId}"] img`)?.getAttribute('src') || '';
-                    addToBackpack(gameId, gameName, gameImage);
-                    
-                    // Actualizar ambos botones
-                    const isNowInBackpack = backpack.find(item => item.id === gameId);
-                    
-                    // Actualizar el botón original
-                    if (isNowInBackpack) {
-                        newModalBackpackBtn.classList.add('added');
-                    } else {
-                        newModalBackpackBtn.classList.remove('added');
-                    }
-                    
-                    // Actualizar el botón clonado
-                    if (isNowInBackpack) {
-                        backpackBtnClone.classList.add('added');
-                        backpackBtnClone.textContent = 'Quitar de la mochila';
-                    } else {
-                        backpackBtnClone.classList.remove('added');
-                        backpackBtnClone.textContent = 'Agregar a la mochila';
-                    }
-                });
+                // El botón de agregar a la mochila ha sido eliminado
                 
                 // Si no hay detalles, agregar el contenedor directamente al listItem
                 if (!linkInfo.readMoreText) {
