@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     // Crear un clon del botón de detalles
                     const readMoreToggleClone = document.createElement('span');
-                    readMoreToggleClone.className = 'read-more-toggle read-more-toggle-clone';
+                    readMoreToggleClone.className = 'read-more-toggle';
                     readMoreToggleClone.textContent = 'Detalles';
                     
                     // Agregar el mismo evento al clon

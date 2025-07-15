@@ -380,7 +380,6 @@ header.site-header {
 }
 
 /* Los estilos para el botón de mochila en el modal han sido eliminados */
-}
 
 /* Contenedor para alinear botones */
 .modal-buttons-container {
@@ -395,18 +394,8 @@ header.site-header {
     flex-wrap: wrap;
 }
 
-/* Estilo para el botón clonado de detalles */
-.read-more-toggle-clone {
-    background: rgba(90, 197, 96, 0.15);
-    color: rgba(90, 197, 96, 0.9);
-    border-color: rgba(90, 197, 96, 0.3);
-}
+/* El botón clonado de detalles hereda los estilos del original */
 
-.read-more-toggle-clone:hover {
-    background: rgba(90, 197, 96, 0.25);
-    color: rgba(90, 197, 96, 1);
-    border-color: rgba(90, 197, 96, 0.4);
-}
 
 /* Estilos para el modal de detalles */
 #detailsModal {
