@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const gameItems = document.querySelectorAll('.game-item');
+    
+    // Variable para almacenar el ID del juego actual
+    let currentGameId = null;
 
     // Modal elements
     const modal = document.getElementById('downloadModal');
@@ -212,6 +215,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function openModal(gameId, gameName) {
+        // Variable global para acceder al gameId desde otros contextos
+        currentGameId = gameId;
         modalGameTitle.textContent = gameName; // Actualiza el título del modal
         modalDownloadLinksList.innerHTML = ''; // Limpia enlaces anteriores
 
@@ -272,14 +277,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     const readMoreToggleClone = document.createElement('span');
                     readMoreToggleClone.className = 'read-more-toggle';
                     readMoreToggleClone.textContent = 'Agregar a la mochila';
+                    readMoreToggleClone.dataset.gameId = gameId;
                     
-                    // Agregar el mismo evento al clon
+                    // Verificar si el juego ya está en la mochila para actualizar el texto del botón
+                    if (backpack.find(item => item.id === gameId)) {
+                        readMoreToggleClone.textContent = 'Eliminar de la mochila';
+                    }
+                    
+                    // Agregar evento para añadir/quitar de la mochila
                     readMoreToggleClone.addEventListener('click', function() {
-                        // Establecer el contenido del modal
-                        detailsContent.textContent = detailsText;
+                        // Obtener el nombre del juego del título del modal
+                        const gameName = modalGameTitle.textContent;
+                        const gameImage = document.querySelector(`.game-item[data-game-id="${gameId}"] img`)?.src || '';
+                        const isInBackpack = addToBackpack(gameId, gameName, gameImage);
                         
-                        // Mostrar el modal
-                        detailsModal.classList.add('is-open');
+                        // Actualizar el texto del botón según la acción realizada
+                        this.textContent = isInBackpack ? 'Eliminar de la mochila' : 'Agregar a la mochila';
                     });
 
                     buttonsContainer.appendChild(readMoreToggle);
