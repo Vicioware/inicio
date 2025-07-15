@@ -308,6 +308,30 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Asegurarse de que el contenedor tenga el mismo estilo que cuando hay detalles
                     const readMoreContainer = document.createElement('div');
                     readMoreContainer.className = 'read-more-container';
+                    
+                    // Crear el botón "Agregar a la mochila" cuando no hay botón de detalles
+                    const backpackButton = document.createElement('span');
+                    backpackButton.className = 'read-more-toggle';
+                    backpackButton.textContent = 'Agregar a la mochila';
+                    backpackButton.dataset.gameId = gameId;
+                    
+                    // Verificar si el juego ya está en la mochila para actualizar el texto del botón
+                    if (backpack.find(item => item.id === gameId)) {
+                        backpackButton.textContent = 'Eliminar de la mochila';
+                    }
+                    
+                    // Agregar evento para añadir/quitar de la mochila
+                    backpackButton.addEventListener('click', function() {
+                        // Obtener el nombre del juego del título del modal
+                        const gameName = modalGameTitle.textContent;
+                        const gameImage = document.querySelector(`.game-item[data-game-id="${gameId}"] img`)?.src || '';
+                        const isInBackpack = addToBackpack(gameId, gameName, gameImage);
+                        
+                        // Actualizar el texto del botón según la acción realizada
+                        this.textContent = isInBackpack ? 'Eliminar de la mochila' : 'Agregar a la mochila';
+                    });
+                    
+                    buttonsContainer.appendChild(backpackButton);
                     readMoreContainer.appendChild(buttonsContainer);
                     listItem.appendChild(readMoreContainer);
                 }
