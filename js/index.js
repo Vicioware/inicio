@@ -267,8 +267,23 @@ document.addEventListener('DOMContentLoaded', () => {
                         // Mostrar el modal
                         detailsModal.classList.add('is-open');
                     });
+                    
+                    // Crear un clon del botón de detalles
+                    const readMoreToggleClone = document.createElement('span');
+                    readMoreToggleClone.className = 'read-more-toggle read-more-toggle-clone';
+                    readMoreToggleClone.textContent = 'Detalles';
+                    
+                    // Agregar el mismo evento al clon
+                    readMoreToggleClone.addEventListener('click', function() {
+                        // Establecer el contenido del modal
+                        detailsContent.textContent = detailsText;
+                        
+                        // Mostrar el modal
+                        detailsModal.classList.add('is-open');
+                    });
 
                     buttonsContainer.appendChild(readMoreToggle);
+                    buttonsContainer.appendChild(readMoreToggleClone);
                     readMoreContainer.appendChild(buttonsContainer);
                     listItem.appendChild(readMoreContainer);
                 }
