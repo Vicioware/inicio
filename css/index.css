@@ -400,7 +400,6 @@ header.site-header {
     margin: 0; /* Eliminar margen izquierdo */
     position: static !important;
     opacity: 1 !important;
-    transform: scale(1) !important;
     top: auto !important;
     right: auto !important;
     width: auto !important;
