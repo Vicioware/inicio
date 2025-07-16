@@ -41,8 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
             { text: 'Descargar Cuphead (Principal)', url: 'https://example.com/cuphead-main' },
             { text: 'Descargar Cuphead (Alternativo)', url: 'https://example.com/cuphead-alt' }
         ],
-        'gta-vc': [{ text: 'Descargar GTA Vice City', url: 'https://www.mediafire.com/file/negikbx0esjy4zb/GTAVC.iso/file', readMoreText: '- Archivos originales, juego completo, no virus ni estupideces.\n- Español' }],
-        'vampire-survivors': [{ text: 'Descargar Vampire Survivors', url: 'https://www.mediafire.com/file/w7r10dc1rb85n4r/Vampi6reSurv1ivors-1.13.109-elamigos.rar/file', readMoreText: '- Versión 1.113.109\n- Español\n- Todos los DLC' }],
+		'gta3': [{ text: 'Descargar GTA III', url: 'https://www.mediafire.com/file/zdvttk6hzyv1ola/GTA-III.rar/file', readMoreText: '- Archivos originales, juego completo\n- Si el juego no inicia, ejecutarlo en modo de compatibilidad con Windows Service Pack 2' }],
+		'kf1': [{ text: 'Descargar Killing Floor', url: 'https://www.mediafire.com/file/zffmwemajvs09dq/KF1.rar/file' }],
+		'blur': [{ text: 'Descargar Blur', url: 'https://www.mediafire.com/file/gg1jyyp0grgf8fk/BLR.iso/file' }],
+        'gta-vc': [{ text: 'Descargar GTA Vice City', url: 'https://www.mediafire.com/file/negikbx0esjy4zb/GTAVC.iso/file', readMoreText: '- Archivos originales, juego completo, no virus ni estupideces.' }],
+        'vampire-survivors': [{ text: 'Descargar Vampire Survivors', url: 'https://www.mediafire.com/file/w7r10dc1rb85n4r/Vampi6reSurv1ivors-1.13.109-elamigos.rar/file', readMoreText: '- Versión 1.113.109\n- Todos los DLC' }],
         'unmetal': [{ text: 'Descargar Unmetal', url: 'https://example.com/unmetal-download' }],
         'portal': [{ text: 'Descargar Portal', url: 'https://example.com/portal-download' }],
         'portal2': [{ text: 'Descargar Portal 2', url: 'https://example.com/portal2-download' }],
@@ -58,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'halo-ce': [{
             text: 'Descargar',
             url: 'https://www.mediafire.com/file/jftpybq93hfqy26/HCE_2001.rar/file',
-            readMoreText: '- Versión 1.0.10\n- Español\n- Multijugador funcional'
+            readMoreText: '- Versión 1.0.10\n- Multijugador funcional'
         }]
     };
 
