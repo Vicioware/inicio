@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Data for download links
     const gameDownloadLinksData = {
-        'gta-sa': [ { text: 'Descargar GTA: San Andreas', url: 'https://example.com/gta-sa-link' } ],
+        'gta-sa': [ { text: 'Descargar GTA San Andreas', url: 'https://www.mediafire.com/file/cu77pvw068jlvxy/GTASA.iso/file' } ],
         'cuphead': [
             { text: 'Descargar Cuphead (Principal)', url: 'https://example.com/cuphead-main' },
             { text: 'Descargar Cuphead (Alternativo)', url: 'https://example.com/cuphead-alt' }
