@@ -37,19 +37,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Data for download links
     const gameDownloadLinksData = {
         'gta-sa': [ { text: 'Descargar GTA San Andreas', url: 'https://www.mediafire.com/file/cu77pvw068jlvxy/GTASA.iso/file' }],
-        'cuphead': [ { text: 'Descargar Cuphead', url: 'https://www.mediafire.com/file/ydnqygbmtr8xrni/CDE.iso/file', readMoreText: '-Deluxe Edition.' }],
+        'cuphead': [ { text: 'Descargar Cuphead', url: 'https://www.mediafire.com/file/ydnqygbmtr8xrni/CDE.iso/file', readMoreText: '-Versión Deluxe Edition' }],
 		'gta3': [{ text: 'Descargar GTA III', url: 'https://www.mediafire.com/file/zdvttk6hzyv1ola/GTA-III.rar/file', readMoreText: '- Archivos originales, juego completo\n- Si el juego no inicia, ejecutarlo en modo de compatibilidad con Windows Service Pack 2' }],
 		'kf1': [{ text: 'Descargar Killing Floor', url: 'https://www.mediafire.com/file/zffmwemajvs09dq/KF1.rar/file' }],
 		'blur': [{ text: 'Descargar Blur', url: 'https://www.mediafire.com/file/gg1jyyp0grgf8fk/BLR.iso/file' }],
         'gta-vc': [{ text: 'Descargar GTA Vice City', url: 'https://www.mediafire.com/file/negikbx0esjy4zb/GTAVC.iso/file', readMoreText: '- Archivos originales, juego completo.' }],
         'vampire-survivors': [{ text: 'Descargar Vampire Survivors', url: 'https://www.mediafire.com/file/w7r10dc1rb85n4r/Vampi6reSurv1ivors-1.13.109-elamigos.rar/file', readMoreText: '- Versión 1.113.109\n- Todos los DLC' }],
-        'unmetal': [{ text: 'Descargar Unmetal', url: 'https://www.mediafire.com/file/7rw1oidswulksof/UCP.rar/file', readMoreText: '-Creator Pack incluído.' }],
-        'portal': [{ text: 'Descargar Portal', url: 'https://example.com/portal-download' }],
+        'unmetal': [{ text: 'Descargar Unmetal', url: 'https://www.mediafire.com/file/7rw1oidswulksof/UCP.rar/file', readMoreText: '-Creator Pack incluído' }],
+        'portal': [{ text: 'Descargar Portal', url: 'https://www.mediafire.com/file/keszhjrcvsx5jra/PPC.iso/file' }],
         'portal2': [
             { text: 'Descargar Portal 2', url: 'https://www.mediafire.com/file/srerms85g91g4zw/P2PC.iso/file' },
             { text: 'Descargar FIX ONLINE', url: 'https://mega.nz/file/IJcxgYTB#QSuKFAd5K0VyQqbQaKpgus8UBiDA_PeqXUK_2O_kJY4' }
         ],
-        'REPO': [{ text: 'Descargar R.E.P.O', url: 'https://example.com/repo-download' }],
+        'hl-counter-strike16': [{ text: 'Descargar Counter Strike 1.6', url: 'https://www.mediafire.com/file/8g8eh2v1xja2pju/CS16.rar/file' }, readMoreText: '- Versión NO STEAM' }],
+        'REPO': [
+			{ text: 'Descargar R.E.P.O', url: 'https://www.mediafire.com/file/lcb75sjs3daatgv'},
+			{ text: 'Descargar traducción al español', url: 'https://www.mediafire.com/file/lcb75sjs3daatgv', readMoreText: '- Fix online incluído' }],
         'dbfz': [{ text: 'Descargar Dragon Ball FighterZ', url: 'https://example.com/dbfz-download' }],
         'brotato': [{ text: 'Descargar Brotato', url: 'https://example.com/brotato-download' }],
         'assassinscreed': [{ text: 'Descargar Assassin\'s Creed', url: 'https://example.com/assassinscreed-download' }],
