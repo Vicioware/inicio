@@ -55,8 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			{ text: 'Descargar traducción al español', url: 'https://www.mediafire.com/file/cl385wv3mzw7def/TRADUCCi%25C3%2593N_R.E.P.O_SPA.rar/file', readMoreText: '- Fix online incluído' }],
         'dbfz': [
             { text: 'Descargar Dragon Ball FighterZ', url: 'https://www.mediafire.com/file/6b8kehvf141zxbm/678950.rar/file' },
-            { text: 'Descargar Asistente DBFZ', url: 'https://www.mediafire.com/file/o2e5z2mewe4h8mr/DBFZ_Assistant.rar/file', readMoreText: '- Versión 1.31\n- Descargar el asistente solo si quieres:\n    · actualizar a los personajes a la versión 1.38\n  · optimización\n  · solucionar errores de ejecución' }],
-        'brotato': [{ text: 'Descargar Brotato', url: 'https://example.com/brotato-download' }],
+            { text: 'Descargar Asistente DBFZ', url: 'https://www.mediafire.com/file/o2e5z2mewe4h8mr/DBFZ_Assistant.rar/file', readMoreText: '- Versión 1.31\n- Descargar el asistente solo si quieres:\n· actualizar a los personajes a la versión 1.38\n· optimización\n· solucionar errores de ejecución' }],
+        'brotato': [{ text: 'Descargar Brotato', url: 'https://www.mediafire.com/file/5okoinvbimse0h4' }],
         'assassinscreed': [{ text: 'Descargar Assassin\'s Creed', url: 'https://example.com/assassinscreed-download' }],
         'tomb-raider': [{ text: 'Descargar Tomb Raider (2013)', url: 'https://example.com/tomb-raider-download' }],
         'horizon-chase-turbo': [{ text: 'Descargar Horizon Chase Turbo', url: 'https://example.com/horizon-chase-turbo-download' }],
@@ -67,7 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
             text: 'Descargar',
             url: 'https://www.mediafire.com/file/jftpybq93hfqy26/HCE_2001.rar/file',
             readMoreText: '- Versión 1.0.10\n- Multijugador funcional'
-        }]
+        }],
+        'fnaf': [{ text: 'Descargar FNAF', url: 'https://www.mediafire.com/file/k5pj0giyyfdwihe/Five_Nights_at_Freddys_Edicion_Ultra.exe/file', readMoreText: '- Voces y textos en español' }]
     };
 
     // Funciones de la mochila
