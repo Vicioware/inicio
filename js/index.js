@@ -52,7 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'hl-counter-strike16': [{ text: 'Descargar Counter Strike 1.6', url: 'https://www.mediafire.com/file/8g8eh2v1xja2pju/CS16.rar/file' }, readMoreText: '- Versión NO STEAM' }],
         'REPO': [
 			{ text: 'Descargar R.E.P.O', url: 'https://www.mediafire.com/file/lcb75sjs3daatgv'},
-			{ text: 'Descargar traducción al español', url: 'https://www.mediafire.com/file/lcb75sjs3daatgv', readMoreText: '- Fix online incluído' }],
+			{ text: 'Descargar traducción al español', url: 'https://www.mediafire.com/file/cl385wv3mzw7def/TRADUCCi%25C3%2593N_R.E.P.O_SPA.rar/file'},
+			{ readMoreText: '- Fix online incluído' }],
         'dbfz': [{ text: 'Descargar Dragon Ball FighterZ', url: 'https://example.com/dbfz-download' }],
         'brotato': [{ text: 'Descargar Brotato', url: 'https://example.com/brotato-download' }],
         'assassinscreed': [{ text: 'Descargar Assassin\'s Creed', url: 'https://example.com/assassinscreed-download' }],
