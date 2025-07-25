@@ -226,6 +226,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (gameId && gameDownloadLinksData[gameId]) {
             const links = gameDownloadLinksData[gameId];
+            let hasAnyDetails = links.some(linkInfo => linkInfo.readMoreText);
+            
             links.forEach((linkInfo, index) => {
                 
                 const listItem = document.createElement('li');
@@ -275,45 +277,70 @@ document.addEventListener('DOMContentLoaded', () => {
                         detailsModal.classList.add('is-open');
                     });
 
+                    // Crear el botón "Agregar a la mochila" junto al botón de detalles
+                    const backpackButton = document.createElement('span');
+                    backpackButton.className = 'read-more-toggle';
+                    backpackButton.textContent = 'Agregar a la mochila';
+                    backpackButton.dataset.gameId = gameId;
+                    
+                    // Verificar si el juego ya está en la mochila para actualizar el texto del botón
+                    if (backpack.find(item => item.id === gameId)) {
+                        backpackButton.textContent = 'Eliminar de la mochila';
+                    }
+                    
+                    // Agregar evento para añadir/quitar de la mochila
+                    backpackButton.addEventListener('click', function() {
+                        // Obtener el nombre del juego del título del modal
+                        const gameName = modalGameTitle.textContent;
+                        const gameImage = document.querySelector(`.game-item[data-game-id="${gameId}"] img`)?.src || '';
+                        const isInBackpack = addToBackpack(gameId, gameName, gameImage);
+                        
+                        // Actualizar el texto del botón según la acción realizada
+                        this.textContent = isInBackpack ? 'Eliminar de la mochila' : 'Agregar a la mochila';
+                    });
+
                     buttonsContainer.appendChild(readMoreToggle);
+                    buttonsContainer.appendChild(backpackButton);
                     readMoreContainer.appendChild(buttonsContainer);
                     listItem.appendChild(readMoreContainer);
                 }
             });
             
-            // Crear el botón "Agregar a la mochila" una sola vez al final
-            const backpackListItem = document.createElement('li');
-            const readMoreContainer = document.createElement('div');
-            readMoreContainer.className = 'read-more-container';
-            
-            const buttonsContainer = document.createElement('div');
-            buttonsContainer.className = 'modal-buttons-container';
-            
-            const backpackButton = document.createElement('span');
-            backpackButton.className = 'read-more-toggle';
-            backpackButton.textContent = 'Agregar a la mochila';
-            backpackButton.dataset.gameId = gameId;
-            
-            // Verificar si el juego ya está en la mochila para actualizar el texto del botón
-            if (backpack.find(item => item.id === gameId)) {
-                backpackButton.textContent = 'Eliminar de la mochila';
-            }
-            
-            // Agregar evento para añadir/quitar de la mochila
-            backpackButton.addEventListener('click', function() {
-                // Obtener el nombre del juego del título del modal
-                const gameName = modalGameTitle.textContent;
-                const gameImage = document.querySelector(`.game-item[data-game-id="${gameId}"] img`)?.src || '';
-                const isInBackpack = addToBackpack(gameId, gameName, gameImage);
+            // Solo crear el botón "Agregar a la mochila" al final si ningún enlace tiene detalles
+            if (!hasAnyDetails) {
+                const backpackListItem = document.createElement('li');
+                const readMoreContainer = document.createElement('div');
+                readMoreContainer.className = 'read-more-container';
                 
-                // Actualizar el texto del botón según la acción realizada
-                this.textContent = isInBackpack ? 'Eliminar de la mochila' : 'Agregar a la mochila';
-            });
-            
-            buttonsContainer.appendChild(backpackButton);
-            readMoreContainer.appendChild(buttonsContainer);
-            backpackListItem.appendChild(readMoreContainer);
-            modalDownloadLinksList.appendChild(backpackListItem);
+                const buttonsContainer = document.createElement('div');
+                buttonsContainer.className = 'modal-buttons-container';
+                
+                const backpackButton = document.createElement('span');
+                backpackButton.className = 'read-more-toggle';
+                backpackButton.textContent = 'Agregar a la mochila';
+                backpackButton.dataset.gameId = gameId;
+                
+                // Verificar si el juego ya está en la mochila para actualizar el texto del botón
+                if (backpack.find(item => item.id === gameId)) {
+                    backpackButton.textContent = 'Eliminar de la mochila';
+                }
+                
+                // Agregar evento para añadir/quitar de la mochila
+                backpackButton.addEventListener('click', function() {
+                    // Obtener el nombre del juego del título del modal
+                    const gameName = modalGameTitle.textContent;
+                    const gameImage = document.querySelector(`.game-item[data-game-id="${gameId}"] img`)?.src || '';
+                    const isInBackpack = addToBackpack(gameId, gameName, gameImage);
+                    
+                    // Actualizar el texto del botón según la acción realizada
+                    this.textContent = isInBackpack ? 'Eliminar de la mochila' : 'Agregar a la mochila';
+                });
+                
+                buttonsContainer.appendChild(backpackButton);
+                readMoreContainer.appendChild(buttonsContainer);
+                backpackListItem.appendChild(readMoreContainer);
+                modalDownloadLinksList.appendChild(backpackListItem);
+            }
         } else {
             const listItem = document.createElement('li');
             listItem.textContent = 'No hay enlaces de descarga disponibles para este juego.';
