@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
             readMoreText: '- Versión 1.0.10\n- Multijugador funcional'
         }],
         'fnaf': [
-            { text: 'Descargar FNAF (original)', url: 'https://www.mediafire.com/file/v51zvfnrng5r78h/FNAF.rar/file' },
+            { text: 'Descargar FNAF (original)', url: 'https://www.mediafire.com/file/qa1jza71rr1uj9k/FNAF.exe/file' },
             { text: 'Descargar FNAF (español)', url: 'https://www.mediafire.com/file/k5pj0giyyfdwihe/Five_Nights_at_Freddys_Edicion_Ultra.exe/file' }]
     };
 
