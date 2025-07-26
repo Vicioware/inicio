@@ -36,8 +36,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Data for download links
     const gameDownloadLinksData = {
-        'gta-sa': [ { text: 'Descargar GTA San Andreas', url: 'https://www.mediafire.com/file/cu77pvw068jlvxy/GTASA.iso/file' }],
-        'cuphead': [ { text: 'Descargar Cuphead', url: 'https://www.mediafire.com/file/ydnqygbmtr8xrni/CDE.iso/file', readMoreText: '-Versión Deluxe Edition' }],
+        'gta-sa': [{ 
+            text: 'Descargar GTA San Andreas', 
+            parts: [
+                { text: 'PARTE 1', url: 'https://example.com/gta-sa-part1' },
+                { text: 'PARTE 2', url: 'https://example.com/gta-sa-part2' },
+                { text: 'PARTE 3', url: 'https://example.com/gta-sa-part3' }
+            ],
+            readMoreText: '- Juego completo dividido en 3 partes\n- Descargar todas las partes y extraer la primera' 
+        }],
+        'cuphead': [ { text: 'Descargar Cuphead', url: 'https://www.mediafire.com/file/z6qrhatejixijzs/CDE.rar/file', readMoreText: '- Incluye DLC' }],
 		'gta3': [{ text: 'Descargar GTA III', url: 'https://www.mediafire.com/file/zdvttk6hzyv1ola/GTA-III.rar/file', readMoreText: '- Archivos originales, juego completo\n- Si el juego no inicia, ejecutarlo en modo de compatibilidad con Windows Service Pack 2' }],
 		'kf1': [{ text: 'Descargar Killing Floor', url: 'https://www.mediafire.com/file/zffmwemajvs09dq/KF1.rar/file' }],
 		'blur': [{ text: 'Descargar Blur', url: 'https://www.mediafire.com/file/gg1jyyp0grgf8fk/BLR.iso/file' }],
@@ -56,11 +64,12 @@ document.addEventListener('DOMContentLoaded', () => {
         'dbfz': [
             { text: 'Descargar Dragon Ball FighterZ', url: 'https://www.mediafire.com/file/6b8kehvf141zxbm/678950.rar/file' },
             { text: 'Descargar Asistente DBFZ', url: 'https://www.mediafire.com/file/o2e5z2mewe4h8mr/DBFZ_Assistant.rar/file', readMoreText: '- Versión 1.31\n- Descargar el asistente solo si quieres:\n· actualizar a los personajes a la versión 1.38\n· optimización\n· solucionar errores de ejecución' }],
+        'horizon-chase-turbo': [{ text: 'Descargar Horizon Chase Turbo', url: 'https://www.mediafire.com/file/b7g6sh0gj0biort/HCT2018.Www.GamezFull.com.rar/file' }],
         'brotato': [{ text: 'Descargar Brotato', url: 'https://www.mediafire.com/file/5okoinvbimse0h4' }],
         'assassinscreed': [{ text: 'Descargar Assassin\'s Creed', url: 'https://example.com/assassinscreed-download' }],
         'tomb-raider': [{ text: 'Descargar Tomb Raider (2013)', url: 'https://example.com/tomb-raider-download' }],
         'horizon-chase-turbo': [{ text: 'Descargar Horizon Chase Turbo', url: 'https://example.com/horizon-chase-turbo-download' }],
-        'barony': [{ text: 'Descargar Barony', url: 'https://example.com/barony-download' }],
+        'barony': [{ text: 'Descargar Barony', url: 'https://www.mediafire.com/file/zbdaq9intal95mf/BPC.rar/file', readMoreText: '- Versión 4.3.1' }],
         'dmc-devil-may-cry': [{ text: 'Descargar DmC: Devil May Cry', url: 'https://example.com/dmc-devil-may-cry-download' }],
         'call-of-duty': [{ text: 'Descargar Call of Duty', url: 'https://example.com/call-of-duty-download' }],
         'halo-ce': [{
@@ -81,8 +90,10 @@ document.addEventListener('DOMContentLoaded', () => {
             { text: 'Descargar FNAF 4 (original)', url: 'https://www.mediafire.com/file/ddd6icjvzwotp77/FNAF4.exe/file' },
             { text: 'Descargar FNAF 4 (español)', url: 'https://www.mediafire.com/file/c0fam74mtl87hft/Five_Nights_at_Freddy%25C2%25B4s_4.exe/file' }],
         'fnaf4-hw': [
-            { text: 'Descargar FNAF 4 Halloween Edition (original)', url: 'https://www.mediafire.com/file/k9uy7if04x7hjhr/FNAF4-HWE.exe/file' },
-            { text: 'Descargar FNAF 4 Halloween Edition (español)', url: 'https://www.mediafire.com/file/hmmszewyab5t7fb/Five_Nights_at_Freddy%25C2%25B4s_4_Halloween_Edition.exe/file' }]
+            { text: 'Descargar FNAF 4: Halloween Edition (original)', url: 'https://www.mediafire.com/file/k9uy7if04x7hjhr/FNAF4-HWE.exe/file' },
+            { text: 'Descargar FNAF 4: Halloween Edition (español)', url: 'https://www.mediafire.com/file/hmmszewyab5t7fb/Five_Nights_at_Freddy%25C2%25B4s_4_Halloween_Edition.exe/file' }],
+        'fnaf5': [
+            { text: 'Descargar FNAF 5: Sister Location', url: 'https://www.mediafire.com/file/ye20nk6wxgbk8ch/FNAF5.exe/file' }],
     };
 
     // Funciones de la mochila
@@ -251,26 +262,83 @@ document.addEventListener('DOMContentLoaded', () => {
             links.forEach((linkInfo, index) => {
                 
                 const listItem = document.createElement('li');
-                const anchor = document.createElement('a');
-                anchor.href = linkInfo.url;
-                anchor.textContent = linkInfo.text;
-                anchor.target = '_blank'; // Abrir en nueva pestaña
+                
+                // Verificar si el enlace tiene partes (descarga por partes)
+                if (linkInfo.parts && linkInfo.parts.length > 0) {
+                    // Crear botón con menú desplegable
+                    const dropdownContainer = document.createElement('div');
+                    dropdownContainer.className = 'dropdown-container';
+                    
+                    const dropdownButton = document.createElement('button');
+                    dropdownButton.className = 'dropdown-download-button';
+                    dropdownButton.textContent = linkInfo.text;
+                    
+                    // Añadir icono de flecha
+                    const arrowIcon = document.createElement('img');
+                    arrowIcon.src = 'resources/down_arrow.svg';
+                    arrowIcon.className = 'dropdown-arrow';
+                    arrowIcon.alt = 'Expandir';
+                    dropdownButton.appendChild(arrowIcon);
+                    
+                    // Crear menú desplegable
+                    const dropdownMenu = document.createElement('div');
+                    dropdownMenu.className = 'dropdown-menu';
+                    
+                    // Añadir opciones de partes al menú
+                    linkInfo.parts.forEach(part => {
+                        const partOption = document.createElement('a');
+                        partOption.href = part.url;
+                        partOption.textContent = part.text;
+                        partOption.target = '_blank';
+                        partOption.className = 'dropdown-option';
+                        
+                        // Event listener para cada parte
+                        partOption.addEventListener('click', () => {
+                            if (!sessionStorage.getItem('hangoutNotificationShown')) {
+                                if (hangoutTimer) clearTimeout(hangoutTimer);
+                                hangoutNotification.classList.remove('show');
+                                hangoutTimer = setTimeout(showHangoutNotification, 10000);
+                            }
+                        });
+                        
+                        dropdownMenu.appendChild(partOption);
+                    });
+                    
+                    // Toggle del menú desplegable
+                    dropdownButton.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        dropdownContainer.classList.toggle('active');
+                        
+                        // Cerrar otros menús desplegables abiertos
+                        document.querySelectorAll('.dropdown-container.active').forEach(container => {
+                            if (container !== dropdownContainer) {
+                                container.classList.remove('active');
+                            }
+                        });
+                    });
+                    
+                    dropdownContainer.appendChild(dropdownButton);
+                    dropdownContainer.appendChild(dropdownMenu);
+                    listItem.appendChild(dropdownContainer);
+                } else {
+                    // Crear enlace normal
+                    const anchor = document.createElement('a');
+                    anchor.href = linkInfo.url;
+                    anchor.textContent = linkInfo.text;
+                    anchor.target = '_blank';
 
-                // Event listener para el clic en el botón de descarga
-                anchor.addEventListener('click', () => {
-                    // Comprobar si la notificación ya se mostró en esta sesión
-                    if (!sessionStorage.getItem('hangoutNotificationShown')) {
-                        // Limpiar cualquier temporizador anterior si el usuario hace clic rápidamente en varios enlaces
-                        if (hangoutTimer) clearTimeout(hangoutTimer);
-                        // Ocultar notificación si ya está visible (por si acaso, aunque no debería si se muestra solo una vez)
-                        hangoutNotification.classList.remove('show');
+                    // Event listener para el clic en el botón de descarga
+                    anchor.addEventListener('click', () => {
+                        if (!sessionStorage.getItem('hangoutNotificationShown')) {
+                            if (hangoutTimer) clearTimeout(hangoutTimer);
+                            hangoutNotification.classList.remove('show');
+                            hangoutTimer = setTimeout(showHangoutNotification, 10000);
+                        }
+                    });
 
-                        hangoutTimer = setTimeout(showHangoutNotification, 10000); // 10 segundos
-                        // Marcar que la notificación está programada para mostrarse (o ya se mostró) en esta sesión
-                    }
-                });
-
-                listItem.appendChild(anchor);
+                    listItem.appendChild(anchor);
+                }
+                
                 modalDownloadLinksList.appendChild(listItem);
 
                 // Añadir "Leer más" si existe texto
@@ -387,6 +455,13 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('click', (event) => {
         if (event.target === modal) {
             closeModal();
+        }
+        
+        // Cerrar menús desplegables al hacer clic fuera
+        if (!event.target.closest('.dropdown-container')) {
+            document.querySelectorAll('.dropdown-container.active').forEach(container => {
+                container.classList.remove('active');
+            });
         }
     });
     
