@@ -29,19 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Array para rastrear partes descargadas
     let downloadedParts = JSON.parse(localStorage.getItem('downloadedParts')) || {};
 
-    // Elementos de la mochila
-    const backpackIconLink = document.getElementById('backpackIcon');
-    const backpackCounter = document.getElementById('backpackCounter');
-    const backpackModal = document.getElementById('backpackModal');
-    const backpackCloseBtn = document.getElementById('backpackCloseButton');
-    const backpackItems = document.getElementById('backpackItems');
-    const emptyBackpackMessage = document.getElementById('emptyBackpackMessage');
-    const backpackActions = document.getElementById('backpackActions');
-    const downloadAllBtn = document.getElementById('downloadAllButton');
-    const clearBackpackBtn = document.getElementById('clearBackpackButton');
 
-    // Array para almacenar los juegos en la mochila
-    let backpack = JSON.parse(localStorage.getItem('gameBackpack')) || [];
 
     // Funciones para el modal de partes
     function openPartsModal(parts, gameId) {
@@ -208,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { text: 'Descargar Life is Strange: Before the Storm', url: 'https://www.mediafire.com/file/skhjs6ailng2kya/L1f3_1s_Str4ng3_B3f8r3_th3_St8rm_%25281ncl._F4r3w3ll_3p1s8d3%2529.rar/file' }],
         'life-is-strange-before-the-storm-r': [
             { 
-                text: 'Descargar Life is Strange: Before the Storm (REMASTERIZADO)', 
+                text: 'Descargar Life is Strange: Before the Storm (REMASTER)', 
                 parts: [
                     { text: 'Parte 1', url: 'https://www.mediafire.com/file/q08m7zqfrrj8xl0/LISR2022PG.GamezFull.com.part01.rar/file' },
                     { text: 'Parte 2', url: 'https://www.mediafire.com/file/6gwf56fvycwi7es/LISR2022PG.GamezFull.com.part02.rar/file' },
@@ -234,125 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { text: 'Descargar Garry\'s Mod', url: 'https://www.mediafire.com/file/53ubzb9a32lcu9u/Garrys_Mod_v1.5.80.0.rar/file', readMoreText: '- Actualizable\n- Página para descargar addons: https://kajar9.wixsite.com/cscheater2/downloads' }]
     };
 
-    // Funciones de la mochila
-    function updateBackpackCounter() {
-        backpackCounter.textContent = backpack.length;
-        if (backpack.length > 0) {
-            backpackCounter.style.display = 'flex';
-        } else {
-            backpackCounter.style.display = 'none';
-        }
-    }
 
-    function saveBackpack() {
-        localStorage.setItem('gameBackpack', JSON.stringify(backpack));
-    }
-
-    function addToBackpack(gameId, gameName, gameImage) {
-        const existingItem = backpack.find(item => item.id === gameId);
-        if (!existingItem) {
-            // Agregar a la mochila
-            backpack.push({
-                id: gameId,
-                name: gameName,
-                image: gameImage
-            });
-            saveBackpack();
-            updateBackpackCounter();
-            updateBackpackButtons();
-            return true;
-        } else {
-            // Quitar de la mochila (toggle)
-            removeFromBackpack(gameId);
-            return false;
-        }
-    }
-
-    function removeFromBackpack(gameId) {
-        backpack = backpack.filter(item => item.id !== gameId);
-        saveBackpack();
-        updateBackpackCounter();
-        updateBackpackButtons();
-        renderBackpackItems();
-    }
-
-    function clearBackpack() {
-        backpack = [];
-        saveBackpack();
-        updateBackpackCounter();
-        updateBackpackButtons();
-        renderBackpackItems();
-    }
-
-    function updateBackpackButtons() {
-        document.querySelectorAll('.add-to-backpack-btn').forEach(btn => {
-            const gameId = btn.dataset.gameId;
-            const gameItem = btn.closest('.game-item');
-            if (backpack.find(item => item.id === gameId)) {
-                btn.textContent = '';
-                btn.classList.add('added');
-                btn.title = 'Quitar de la mochila';
-                if (gameItem) gameItem.classList.add('in-backpack');
-            } else {
-                btn.textContent = '';
-                btn.classList.remove('added');
-                btn.title = 'Agregar a la mochila';
-                if (gameItem) gameItem.classList.remove('in-backpack');
-            }
-        });
-    }
-
-    function renderBackpackItems() {
-        if (backpack.length === 0) {
-            emptyBackpackMessage.style.display = 'block';
-            backpackActions.style.display = 'none';
-            backpackItems.innerHTML = '<p id="emptyBackpackMessage">Tu mochila está vacía. Agrega algunos juegos desde la página principal.</p>';
-        } else {
-            emptyBackpackMessage.style.display = 'none';
-            backpackActions.style.display = 'flex';
-            backpackItems.innerHTML = backpack.map(item => `
-                <div class="backpack-item">
-                    <div class="backpack-item-info">
-                        <img src="${item.image}" alt="${item.name}">
-                        <span class="backpack-item-name">${item.name}</span>
-                    </div>
-                    <button class="remove-item-btn" data-game-id="${item.id}">Quitar</button>
-                </div>
-            `).join('');
-
-            // Agregar event listeners a los botones de quitar
-            document.querySelectorAll('.remove-item-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const gameId = e.target.dataset.gameId;
-                    removeFromBackpack(gameId);
-                });
-            });
-        }
-    }
-
-    function openBackpackModal() {
-        renderBackpackItems();
-        backpackModal.classList.add('is-open');
-        document.body.classList.add('modal-blur-active');
-    }
-
-    function closeBackpackModal() {
-        backpackModal.classList.remove('is-open');
-        document.body.classList.remove('modal-blur-active');
-    }
-
-    function downloadAllGames() {
-        backpack.forEach(item => {
-            const gameLinks = gameDownloadLinksData[item.id];
-            if (gameLinks && gameLinks.length > 0) {
-                // Abrir el primer enlace de descarga de cada juego
-                window.open(gameLinks[0].url, '_blank', 'noopener');
-            }
-        });
-        
-        // Mostrar notificación de descarga múltiple
-        alert(`Iniciando descarga de ${backpack.length} juegos. Revisa las pestañas de tu navegador.`);
-    }
 
     // const gameroomIconLink = document.querySelector('.gameroom-icon-link'); // No longer needed
 
@@ -570,70 +440,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         detailsModal.classList.add('is-open');
                     });
 
-                    // Crear el botón "Agregar a la mochila" junto al botón de detalles
-                    const backpackButton = document.createElement('span');
-                    backpackButton.className = 'read-more-toggle';
-                    backpackButton.textContent = 'Agregar a la mochila';
-                    backpackButton.dataset.gameId = gameId;
-                    
-                    // Verificar si el juego ya está en la mochila para actualizar el texto del botón
-                    if (backpack.find(item => item.id === gameId)) {
-                        backpackButton.textContent = 'Eliminar de la mochila';
-                    }
-                    
-                    // Agregar evento para añadir/quitar de la mochila
-                    backpackButton.addEventListener('click', function() {
-                        // Obtener el nombre del juego del título del modal
-                        const gameName = modalGameTitle.textContent;
-                        const gameImage = document.querySelector(`.game-item[data-game-id="${gameId}"] img`)?.src || '';
-                        const isInBackpack = addToBackpack(gameId, gameName, gameImage);
-                        
-                        // Actualizar el texto del botón según la acción realizada
-                        this.textContent = isInBackpack ? 'Eliminar de la mochila' : 'Agregar a la mochila';
-                    });
-
                     buttonsContainer.appendChild(readMoreToggle);
-                    buttonsContainer.appendChild(backpackButton);
                     readMoreContainer.appendChild(buttonsContainer);
                     listItem.appendChild(readMoreContainer);
                 }
             });
             
-            // Solo crear el botón "Agregar a la mochila" al final si ningún enlace tiene detalles
-            if (!hasAnyDetails) {
-                const backpackListItem = document.createElement('li');
-                const readMoreContainer = document.createElement('div');
-                readMoreContainer.className = 'read-more-container';
-                
-                const buttonsContainer = document.createElement('div');
-                buttonsContainer.className = 'modal-buttons-container';
-                
-                const backpackButton = document.createElement('span');
-                backpackButton.className = 'read-more-toggle';
-                backpackButton.textContent = 'Agregar a la mochila';
-                backpackButton.dataset.gameId = gameId;
-                
-                // Verificar si el juego ya está en la mochila para actualizar el texto del botón
-                if (backpack.find(item => item.id === gameId)) {
-                    backpackButton.textContent = 'Eliminar de la mochila';
-                }
-                
-                // Agregar evento para añadir/quitar de la mochila
-                backpackButton.addEventListener('click', function() {
-                    // Obtener el nombre del juego del título del modal
-                    const gameName = modalGameTitle.textContent;
-                    const gameImage = document.querySelector(`.game-item[data-game-id="${gameId}"] img`)?.src || '';
-                    const isInBackpack = addToBackpack(gameId, gameName, gameImage);
-                    
-                    // Actualizar el texto del botón según la acción realizada
-                    this.textContent = isInBackpack ? 'Eliminar de la mochila' : 'Agregar a la mochila';
-                });
-                
-                buttonsContainer.appendChild(backpackButton);
-                readMoreContainer.appendChild(buttonsContainer);
-                backpackListItem.appendChild(readMoreContainer);
-                modalDownloadLinksList.appendChild(backpackListItem);
-            }
+            // Código de botón de mochila eliminado
         } else {
             const listItem = document.createElement('li');
             listItem.textContent = 'No hay enlaces de descarga disponibles para este juego.';
@@ -756,27 +569,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 img.setAttribute('loading', 'lazy');
             }
 
-            // Agregar botón de mochila si no existe
-            if (!item.querySelector('.add-to-backpack-btn')) {
-                const backpackBtn = document.createElement('button');
-                backpackBtn.className = 'add-to-backpack-btn';
-                backpackBtn.textContent = '+';
-                backpackBtn.title = 'Agregar a la mochila';
-                backpackBtn.dataset.gameId = item.dataset.gameId;
-                
-                backpackBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    const gameId = item.dataset.gameId;
-                    const gameName = item.querySelector('p').textContent;
-                    const gameImage = img.getAttribute('src');
-                    
-                    addToBackpack(gameId, gameName, gameImage);
-                });
-                
-                item.appendChild(backpackBtn);
-            }
+            // Código de botón de mochila eliminado
 
             // Optimización de carga de imágenes
             function processLoadedImage() {
@@ -990,43 +783,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Event listeners para la mochila
-    if (backpackIconLink) {
-        backpackIconLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            openBackpackModal();
-        });
-    }
-
-    if (backpackCloseBtn) {
-        backpackCloseBtn.addEventListener('click', closeBackpackModal);
-    }
-
-    if (downloadAllBtn) {
-        downloadAllBtn.addEventListener('click', () => {
-            if (backpack.length > 0) {
-                downloadAllGames();
-            }
-        });
-    }
-
-    if (clearBackpackBtn) {
-        clearBackpackBtn.addEventListener('click', () => {
-            clearBackpack();
-        });
-    }
-
-    // Cerrar modal al hacer clic fuera de él
-    if (backpackModal) {
-        backpackModal.addEventListener('click', (e) => {
-            if (e.target === backpackModal) {
-                closeBackpackModal();
-            }
-        });
-    }
-
-    // Inicializar contador de la mochila
-    updateBackpackCounter();
+    // Event listeners para la mochila eliminados
 
     // Fetch duplicado eliminado - ya se carga arriba
 

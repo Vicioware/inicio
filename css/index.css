@@ -151,10 +151,7 @@ header.site-header {
     z-index: 1;
 }
 
-.game-item.in-backpack {
-    box-shadow: 0 0 8px rgba(90, 197, 96, 0.4), 0 0 16px rgba(90, 197, 96, 0.2), inset 0 0 0 1px rgba(90, 197, 96, 0.3);
-    transition: box-shadow 0.25s ease-out;
-}
+/* Estilos de mochila eliminados */
 
 .game-item {
     position: relative;
@@ -650,7 +647,7 @@ header.site-header {
     /* Carga prioritaria del SVG */
     will-change: transform;
 }
-body.modal-blur-active > *:not(#backpackModal):not(#downloadModal):not(#detailsModal):not(#partsModal):not(#hangoutNotification) {
+body.modal-blur-active > *:not(#downloadModal):not(#detailsModal):not(#partsModal):not(#hangoutNotification) {
     filter: blur(5px);
     transition: filter 0.3s ease-in-out;
 }
