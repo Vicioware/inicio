@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let backpack = JSON.parse(localStorage.getItem('gameBackpack')) || [];
 
     // Funciones para el modal de partes
-    function openPartsModal(gameTitle, parts, gameId) {
+    function openPartsModal(parts, gameId) {
         partsModalTitle.textContent = `Seleccionar parte`;
         partsContainer.innerHTML = '';
         
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { text: 'Descargar Portal 2', url: 'https://www.mediafire.com/file/srerms85g91g4zw/P2PC.iso/file' },
             { text: 'Descargar FIX ONLINE', url: 'https://mega.nz/file/IJcxgYTB#QSuKFAd5K0VyQqbQaKpgus8UBiDA_PeqXUK_2O_kJY4' }
         ],
-        'hl-counter-strike16': [{ text: 'Descargar Counter Strike 1.6', url: 'https://www.mediafire.com/file/8g8eh2v1xja2pju/CS16.rar/file', readMoreText: '- Versión NO STEAM' }],
+        'cs16': [{ text: 'Descargar Counter Strike 1.6', url: 'https://www.mediafire.com/file/8g8eh2v1xja2pju/CS16.rar/file', readMoreText: '- Versión NO STEAM' }],
         'REPO': [
 			{ text: 'Descargar R.E.P.O', url: 'https://www.mediafire.com/file/lcb75sjs3daatgv' },
 			{ text: 'Descargar traducción al español', url: 'https://www.mediafire.com/file/cl385wv3mzw7def/TRADUCCi%25C3%2593N_R.E.P.O_SPA.rar/file', readMoreText: '- Fix online incluído' }],
@@ -113,11 +113,9 @@ document.addEventListener('DOMContentLoaded', () => {
         'horizon-chase-turbo': [{ text: 'Descargar Horizon Chase Turbo', url: 'https://www.mediafire.com/file/b7g6sh0gj0biort/HCT2018.Www.GamezFull.com.rar/file' }],
         'brotato': [{ text: 'Descargar Brotato', url: 'https://www.mediafire.com/file/5okoinvbimse0h4' }],
         'assassinscreed': [{ text: 'Descargar Assassin\'s Creed', url: 'https://example.com/assassinscreed-download' }],
-        'tomb-raider': [{ text: 'Descargar Tomb Raider (2013)', url: 'https://example.com/tomb-raider-download' }],
-        'horizon-chase-turbo': [{ text: 'Descargar Horizon Chase Turbo', url: 'https://example.com/horizon-chase-turbo-download' }],
         'barony': [{ text: 'Descargar Barony', url: 'https://www.mediafire.com/file/zbdaq9intal95mf/BPC.rar/file', readMoreText: '- Versión 4.3.1' }],
-        'dmc-devil-may-cry': [{ text: 'Descargar DmC: Devil May Cry', url: 'https://example.com/dmc-devil-may-cry-download' }],
-        'call-of-duty': [{ text: 'Descargar Call of Duty', url: 'https://example.com/call-of-duty-download' }],
+        'dmc-devil-may-cry': [{ text: 'Descargar DmC: Devil May Cry', url: 'https://rapidshare.co/en/d/QIkPCb4cBC3xXE' }],
+        'call-of-duty': [{ text: 'Descargar Call of Duty', url: 'https://www.mediafire.com/file/kfvfuduqbzlhor2/COD.rar/file', readMoreText: '- Inlcuye DLC' }],
         'halo-ce': [{
             text: 'Descargar',
             url: 'https://www.mediafire.com/file/jftpybq93hfqy26/HCE_2001.rar/file',
@@ -153,6 +151,61 @@ document.addEventListener('DOMContentLoaded', () => {
                 ]
             }
         ],
+        'a-way-out': [
+            {
+                text: 'Descargar A Way Out',
+                parts: [
+                    { text: 'Parte 1', url: 'https://drive.usercontent.google.com/download?id=1nmenx7r2xLLADHH5FApeALxOzdilx7ob&export=download&authuser=0' },
+                    { text: 'Parte 2', url: 'https://drive.usercontent.google.com/download?id=13A_rsijBPnrA67en07g43XTTFuCZvXRr&export=download&authuser=0' },
+                    { text: 'Parte 3', url: 'https://drive.usercontent.google.com/download?id=19HniO96v74pxp2KMGArqibBPMShh1HBx&export=download&authuser=0' },
+                    { text: 'Parte 4', url: 'https://drive.usercontent.google.com/download?id=1F2dwf_41MBso52GozK4nqvE9QR5Ltr2G&export=download&authuser=0' },
+                    { text: 'Parte 5', url: 'https://drive.usercontent.google.com/download?id=1IxMM28k4aI7fTMapXVsUYzbhB87USPib&export=download&authuser=0' }
+                ]
+            }
+        ],
+        'age-of-empires': [
+            { text: 'Descargar Age of Empires', url: 'https://www.mediafire.com/file/07q3ddrnk95c436/AOEGE.iso/file', readMoreText: '- Gold Edition' }],
+        'dead-space': [
+            {
+                text: 'Descargar Dead Space',
+                parts: [
+                    { text: 'Parte 1', url: 'https://rapidshare.co/en/d/yo8qFSaU3ICHXR' },
+                    { text: 'Parte 2', url: 'https://rapidshare.co/en/d/BmwqHhDb1IGqDq' },
+                    { text: 'Parte 3', url: 'https://rapidshare.co/en/d/mV6eSdjw1Li9qF' },
+                    { text: 'Parte 4', url: 'https://rapidshare.co/en/d/pv7v3WHN74JHIu' }
+                ]
+            }
+        ],
+        'dead-space2': [
+            {
+                text: 'Descargar Dead Space 2',
+                parts: [
+                    { text: 'Parte 1', url: 'https://rapidshare.co/en/d/UeXMFiyuv1TmtQ' },
+                    { text: 'Parte 2', url: 'https://rapidshare.co/en/d/d0sauQDTj60K7x' },
+                    { text: 'Parte 3', url: 'https://rapidshare.co/en/d/I8Hn85I7H8QtFK' }
+                ]
+            }
+        ],
+        'dead-space3': [
+            { 
+                text: 'Descargar Dead Space 3', 
+                parts: [
+                    { text: 'Parte 1', url: 'https://rapidshare.co/en/d/rb85h9EyANiqSI' },
+                    { text: 'Parte 2', url: 'https://rapidshare.co/en/d/fQjBweUPQS506q' },
+                    { text: 'Parte 3', url: 'https://rapidshare.co/en/d/sRdLy4NKcTfQIP' },
+                    { text: 'Parte 4', url: 'https://rapidshare.co/en/d/wcw67QeXI5gU5j' },
+                    { text: 'Parte 5', url: 'https://rapidshare.co/en/d/x0JLK54NwTWNGg' },
+                    { text: 'Parte 6', url: 'https://rapidshare.co/en/d/fO28odU9HPTiTv' },
+                    { text: 'Parte 7', url: 'https://rapidshare.co/en/d/b2gxytlfBi2zEk' }
+                ]
+            }
+        ],
+        'life-is-strange': [
+            { text: 'Descargar Life is Strange', url: 'https://www.mediafire.com/file/0ccchy21bd51r51/L1f3_1s_Str4ng3.rar/file' }],
+        'life-is-strange-before-the-storm': [
+            { text: 'Descargar Life is Strange: Before the Storm', url: 'https://www.mediafire.com/file/skhjs6ailng2kya/L1f3_1s_Str4ng3_B3f8r3_th3_St8rm_%25281ncl._F4r3w3ll_3p1s8d3%2529.rar/file' }],
+        'garrys-mod': [
+            { text: 'Descargar Garry\'s Mod', url: 'https://www.mediafire.com/file/53ubzb9a32lcu9u/Garrys_Mod_v1.5.80.0.rar/file', readMoreText: '- Actualizable\n- Página para descargar addons: https://kajar9.wixsite.com/cscheater2/downloads' }]
     };
 
     // Funciones de la mochila
