@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Funciones para el modal de partes
     function openPartsModal(gameTitle, parts, gameId) {
-        partsModalTitle.textContent = `${gameTitle} - Seleccionar Parte`;
+        partsModalTitle.textContent = `Seleccionar parte`;
         partsContainer.innerHTML = '';
         
         parts.forEach((part, index) => {
