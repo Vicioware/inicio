@@ -143,7 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'juego-ejemplo': [
             { 
                 text: 'Descargar Juego Ejemplo', 
-                hasParts: true,
                 parts: [
                     { text: 'Parte 1', url: 'https://example.com/parte1' },
                     { text: 'Parte 2', url: 'https://example.com/parte2' },
@@ -424,7 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const listItem = document.createElement('li');
                 
                 // Verificar si el enlace tiene partes
-                if (linkInfo.hasParts && linkInfo.parts) {
+                if (linkInfo.parts && linkInfo.parts.length > 0) {
                     // Crear botón especial para juegos con partes
                     const partsButton = document.createElement('button');
                     partsButton.textContent = linkInfo.text;
