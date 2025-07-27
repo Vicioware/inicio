@@ -206,6 +206,30 @@ document.addEventListener('DOMContentLoaded', () => {
             { text: 'Descargar Life is Strange', url: 'https://www.mediafire.com/file/0ccchy21bd51r51/L1f3_1s_Str4ng3.rar/file' }],
         'life-is-strange-before-the-storm': [
             { text: 'Descargar Life is Strange: Before the Storm', url: 'https://www.mediafire.com/file/skhjs6ailng2kya/L1f3_1s_Str4ng3_B3f8r3_th3_St8rm_%25281ncl._F4r3w3ll_3p1s8d3%2529.rar/file' }],
+        'life-is-strange-before-the-storm-r': [
+            { 
+                text: 'Descargar Life is Strange: Before the Storm (REMASTERIZADO)', 
+                parts: [
+                    { text: 'Parte 1', url: 'https://www.mediafire.com/file/q08m7zqfrrj8xl0/LISR2022PG.GamezFull.com.part01.rar/file' },
+                    { text: 'Parte 2', url: 'https://www.mediafire.com/file/6gwf56fvycwi7es/LISR2022PG.GamezFull.com.part02.rar/file' },
+                    { text: 'Parte 3', url: 'https://www.mediafire.com/file/e6zl1n35re0fzvn/LISR2022PG.GamezFull.com.part03.rar/file' },
+                    { text: 'Parte 4', url: 'https://www.mediafire.com/file/zzsigk13vzcheq7/LISR2022PG.GamezFull.com.part04.rar/file' },
+                    { text: 'Parte 5', url: 'https://www.mediafire.com/file/3hp4m91r3bnjqxn/LISR2022PG.GamezFull.com.part05.rar/file' },
+                    { text: 'Parte 6', url: 'https://www.mediafire.com/file/omxk66qeefqid46/LISR2022PG.GamezFull.com.part06.rar/file' },
+                    { text: 'Parte 7', url: 'https://www.mediafire.com/file/ooc8tz325kic4n5/LISR2022PG.GamezFull.com.part07.rar/file' },
+                    { text: 'Parte 8', url: 'https://www.mediafire.com/file/6idblgdr3xlhkfy/LISR2022PG.GamezFull.com.part08.rar/file' },
+                    { text: 'Parte 9', url: 'https://www.mediafire.com/file/zf0xvja4m8587cy/LISR2022PG.GamezFull.com.part09.rar/file' },
+                    { text: 'Parte 10', url: 'https://www.mediafire.com/file/ovfmgsqfwuwjp69/LISR2022PG.GamezFull.com.part10.rar/file' },
+                    { text: 'Parte 11', url: 'https://www.mediafire.com/file/m7apb8qe6grcl5j/LISR2022PG.GamezFull.com.part11.rar/file' },
+                    { text: 'Parte 12', url: 'https://www.mediafire.com/file/509o3n4mr0rw4cs/LISR2022PG.GamezFull.com.part12.rar/file' },
+                    { text: 'Parte 13', url: 'https://www.mediafire.com/file/pic8i7asaaypp4j/LISR2022PG.GamezFull.com.part13.rar/file' },
+                    { text: 'Parte 14', url: 'https://www.mediafire.com/file/ojvj03518eoqvfx/LISR2022PG.GamezFull.com.part14.rar/file' },
+                    { text: 'Parte 15', url: 'https://www.mediafire.com/file/vrg2w89n6eka8vl/LISR2022PG.GamezFull.com.part15.rar/file' },
+                    { text: 'Parte 16', url: 'https://www.mediafire.com/file/v6yyfnmaxe1s1ri/LISR2022PG.GamezFull.com.part16.rar/file' }
+                ]
+            },
+            { text: 'Descargar actualización 07.02.2022', url: 'https://www.mediafire.com/file/3gthu6ukt6ztcqx/Update+07.02.2022.rar/file' }
+        ],
         'garrys-mod': [
             { text: 'Descargar Garry\'s Mod', url: 'https://www.mediafire.com/file/53ubzb9a32lcu9u/Garrys_Mod_v1.5.80.0.rar/file', readMoreText: '- Actualizable\n- Página para descargar addons: https://kajar9.wixsite.com/cscheater2/downloads' }]
     };
