@@ -11,9 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeButton = modal.querySelector('.close-button');
     // const galleryContainer = document.querySelector('.gallery-container'); // No longer needed for icon alignment
     const searchBar = document.getElementById('searchBar'); // searchBar ya está aquí
-    const hangoutNotification = document.getElementById('hangoutNotification');
-    let hangoutTimer = null; // Para controlar el temporizador de la notificación
-    let notificationAutoCloseTimer = null; // Para controlar el autocierre de la notificación
+
     
     // Elementos del modal de detalles
     const detailsModal = document.getElementById('detailsModal');
@@ -58,12 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Abrir enlace de descarga
                 window.open(part.url, '_blank', 'noopener');
                 
-                // Mostrar notificación si no se ha mostrado
-                if (!sessionStorage.getItem('hangoutNotificationShown')) {
-                    if (hangoutTimer) clearTimeout(hangoutTimer);
-                    hangoutNotification.classList.remove('show');
-                    hangoutTimer = setTimeout(showHangoutNotification, 10000);
-                }
+
             });
             
             partsContainer.appendChild(partButton);
@@ -223,10 +216,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'garrys-mod': [
             { text: 'Descargar Garry\'s Mod', url: 'https://www.mediafire.com/file/53ubzb9a32lcu9u/Garrys_Mod_v1.5.80.0.rar/file', readMoreText: '- Actualizable\n- Página para descargar addons: https://kajar9.wixsite.com/cscheater2/downloads' }]
     };
-
-
-
-    // const gameroomIconLink = document.querySelector('.gameroom-icon-link'); // No longer needed
 
     // Optimizaciones avanzadas para carga de imágenes
     const imageCache = new Map();
@@ -401,19 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Solo agregar event listener para enlaces normales
                 const anchor = listItem.querySelector('a');
                 if (anchor) {
-                    // Event listener para el clic en el botón de descarga
-                    anchor.addEventListener('click', () => {
-                        // Comprobar si la notificación ya se mostró en esta sesión
-                        if (!sessionStorage.getItem('hangoutNotificationShown')) {
-                            // Limpiar cualquier temporizador anterior si el usuario hace clic rápidamente en varios enlaces
-                            if (hangoutTimer) clearTimeout(hangoutTimer);
-                            // Ocultar notificación si ya está visible (por si acaso, aunque no debería si se muestra solo una vez)
-                            hangoutNotification.classList.remove('show');
 
-                            hangoutTimer = setTimeout(showHangoutNotification, 10000); // 10 segundos
-                            // Marcar que la notificación está programada para mostrarse (o ya se mostró) en esta sesión
-                        }
-                    });
                 }
 
                 modalDownloadLinksList.appendChild(listItem);
@@ -465,7 +442,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function closeModal() {
         document.body.classList.remove('modal-blur-active'); // Quitar desenfoque
         modal.classList.remove('is-open'); // Ocultar y animar modal de descarga
-        // No cerramos la notificación de "pasar el rato" aquí, se maneja por separado
     }
 
     // Event listener para el botón de cierre del modal
@@ -541,7 +517,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         // Actualizar la prioridad de carga después de filtrar
         updateImageLoadingPriority();
-        // alignGameroomIcon(); // Ya no se necesita
+        
     });
 
     // --- INICIALIZACIÓN DE GALERÍA DINÁMICA Y EVENTOS ---
@@ -713,33 +689,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error cargando la galería:', error);
         });
 
-    // Funciones para la notificación de "Pasar el rato"
-    function showHangoutNotification() {
-        // Si ya hay un temporizador de autocierre, limpiarlo (por si se llama a show múltiples veces rápidamente)
-        if (notificationAutoCloseTimer) clearTimeout(notificationAutoCloseTimer);
 
-        hangoutNotification.classList.add('show');
-        // Marcar que la notificación se ha mostrado en esta sesión
-        sessionStorage.setItem('hangoutNotificationShown', 'true');
-
-        // Iniciar temporizador para ocultar automáticamente después de 10 segundos
-        notificationAutoCloseTimer = setTimeout(() => {
-            closeHangoutNotification(); // Reutilizar la función de cierre
-        }, 10000); // 10 segundos para ocultar
-    }
-
-    // Estas funciones se declaran globalmente para ser accesibles desde el onclick en el HTML
-    window.closeHangoutNotification = function() {
-        hangoutNotification.classList.remove('show');
-        if (hangoutTimer) clearTimeout(hangoutTimer); // Detener el temporizador si se cierra manualmente
-        if (notificationAutoCloseTimer) clearTimeout(notificationAutoCloseTimer); // Detener el temporizador de autocierre
-    }
-    
-    window.redirectToMinigames = function() {
-        // Cambia 'minijuegos.html' por la URL real de tu sección de minijuegos
-        window.open('gameroom.html', '_blank', 'noopener'); 
-        closeHangoutNotification(); // Cierra la notificación después de redirigir
-    }
 
     // Optimización de memoria y limpieza de recursos (ya no necesaria con LRU)
     function cleanupResources() {
@@ -764,26 +714,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Intersection Observer ya es eficiente automáticamente en background
     // No es necesario pausarlo manualmente
 
-    // window.addEventListener('load', alignGameroomIcon); // Ya no se necesita
-    // window.addEventListener('resize', alignGameroomIcon); // Ya no se necesita
-
-    // Funcionalidad para cambiar el icono de Gameroom a GIF en hover
-    const gameroomIconLink = document.querySelector('.gameroom-icon-link');
-    if (gameroomIconLink) {
-        const gameroomIconImage = gameroomIconLink.querySelector('img');
-        if (gameroomIconImage) {
-            const originalGameroomSrc = gameroomIconImage.src; // Captura la ruta del SVG actual
-            const hoverGameroomSrc = 'resources/gameroom.svg'; // Ruta al SVG
-
-            gameroomIconLink.addEventListener('mouseenter', () => {
-                gameroomIconImage.src = hoverGameroomSrc;
-            });
-
-            gameroomIconLink.addEventListener('mouseleave', () => {
-                gameroomIconImage.src = originalGameroomSrc;
-            });
-        }
-    }
+    
 
     // Event listeners para la mochila eliminados
 

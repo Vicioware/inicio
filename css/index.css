@@ -64,18 +64,7 @@ header.site-header {
     z-index: auto;
     display: block;
 }
-.gameroom-icon-link {
-    position: static;
-    top: unset;
-    right: unset;
-    z-index: auto;
-    display: block;
-    transition: transform 0.2s ease;
-}
 
-.gameroom-icon-link:hover {
-    transform: scale(1.05);
-}
 
 
 .plataformas-link {
@@ -654,78 +643,15 @@ header.site-header {
     /* Carga prioritaria del SVG */
     will-change: transform;
 }
-body.modal-blur-active > *:not(#downloadModal):not(#detailsModal):not(#partsModal):not(#hangoutNotification) {
+body.modal-blur-active > *:not(#downloadModal):not(#detailsModal):not(#partsModal) {
     filter: blur(5px);
     transition: filter 0.3s ease-in-out;
 }
 .gallery-container {
     transition: filter 0.3s ease-in-out;
 }
-.hangout-notification {
-    position: fixed;
-    top: 20px;
-    right: -400px;
-    width: 300px;
-    background-color: #2f2f2f;
-    color: #f0f0f0;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    z-index: 9999;
-    transition: right 0.5s ease-in-out;
-    font-size: 0.9em;
-}
-.hangout-notification.show {
-    right: 20px;
-}
-.hangout-notification p {
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-.hangout-notification .close-notif-btn {
-    float: right;
-    cursor: pointer;
-    font-weight: bold;
-    margin-left: 10px;
-    font-size: 1.2em;
-    line-height: 1;
-}
-.gameroom-icon-link {
-    position: static;
-    top: unset;
-    right: unset;
-    z-index: auto;
-    display: block;
-}
-.gameroom-icon-link img {
-    width: 32px;
-    height: 32px;
-    filter: brightness(0.9);
-    transition: transform 0.2s ease, filter 0.2s ease;
-}
-.gameroom-icon-link:hover img {
-    transform: scale(1.05);
-    filter: brightness(1.1);
-}
 
-/* Ocultar el ícono de gameroom en la página gameroom.html */
-.gameroom-page .gameroom-icon-link {
-    opacity: 0;
-    pointer-events: none;
-}
 
-.gameroom-icon-disabled {
-    position: relative;
-    display: block;
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.gameroom-icon-disabled img {
-    width: 32px;
-    height: 32px;
-    filter: brightness(0.6);
-}
 
 .vicioware-icon-link {
     position: static;
