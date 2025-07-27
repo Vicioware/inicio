@@ -276,35 +276,99 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // const gameroomIconLink = document.querySelector('.gameroom-icon-link'); // No longer needed
 
+    // Optimizaciones avanzadas para carga de imágenes
+    const imageCache = new Map();
+    const intersectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                loadImageOptimized(img);
+                intersectionObserver.unobserve(img);
+            }
+        });
+    }, {
+        rootMargin: '50px',
+        threshold: 0.1
+    });
+
+    function loadImageOptimized(img) {
+        const src = img.dataset.src || img.src;
+        if (imageCache.has(src)) {
+            img.src = src;
+            img.style.opacity = '1';
+            return;
+        }
+
+        // Crear imagen WebP con fallback
+        const webpSrc = src.replace(/\.(png|jpg|jpeg)$/i, '.webp');
+        const testImg = new Image();
+        
+        testImg.onload = () => {
+            imageCache.set(src, webpSrc);
+            img.src = webpSrc;
+            img.style.opacity = '1';
+        };
+        
+        testImg.onerror = () => {
+            imageCache.set(src, src);
+            img.src = src;
+            img.style.opacity = '1';
+        };
+        
+        testImg.src = webpSrc;
+    }
+
     function updateImageLoadingPriority() {
         const visibleGameItems = [];
-        // gameItems está disponible en este scope (definido en DOMContentLoaded)
         gameItems.forEach(item => {
-            // Usamos getComputedStyle para obtener el estado de display real
             const style = window.getComputedStyle(item);
             if (style.display !== 'none') {
                 visibleGameItems.push(item);
             }
         });
 
-        // Paso 1: Asegurar que todas las imágenes tengan loading="lazy" por defecto.
-        // Esto resetea el estado para los items que podrían dejar de ser prioritarios.
-        gameItems.forEach(item => {
+        // Configurar lazy loading inteligente
+        gameItems.forEach((item, index) => {
             const img = item.querySelector('img');
-            if (img && img.getAttribute('loading') !== 'lazy') {
+            if (!img) return;
+
+            const isVisible = visibleGameItems.includes(item);
+            const isInViewport = index < 12; // Primeras 12 imágenes (3 filas típicas)
+            
+            if (isVisible && isInViewport) {
+                // Carga inmediata para imágenes críticas
+                img.removeAttribute('loading');
+                if (img.dataset.src) {
+                    loadImageOptimized(img);
+                }
+            } else if (isVisible) {
+                // Lazy loading para imágenes visibles pero no críticas
                 img.setAttribute('loading', 'lazy');
+                if (!img.dataset.observed) {
+                    intersectionObserver.observe(img);
+                    img.dataset.observed = 'true';
+                }
+            } else {
+                // Lazy loading para imágenes ocultas
+                img.setAttribute('loading', 'lazy');
+                intersectionObserver.unobserve(img);
+                img.dataset.observed = 'false';
             }
         });
 
-        // Paso 2: Quitar loading="lazy" de las primeras 30 imágenes visibles.
-        const limit = 30;
-        for (let i = 0; i < visibleGameItems.length && i < limit; i++) {
-            const item = visibleGameItems[i];
-            const img = item.querySelector('img');
-            if (img) {
-                img.removeAttribute('loading');
+        // Preload de las siguientes 6 imágenes críticas
+        const criticalImages = visibleGameItems.slice(0, 18);
+        criticalImages.forEach((item, index) => {
+            if (index >= 12) {
+                const img = item.querySelector('img');
+                if (img && !imageCache.has(img.src)) {
+                    const link = document.createElement('link');
+                    link.rel = 'prefetch';
+                    link.href = img.src;
+                    document.head.appendChild(link);
+                }
             }
-        }
+        });
     }
 
     function openModal(gameId, gameName) {
@@ -566,6 +630,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- INICIALIZACIÓN DE GALERÍA DINÁMICA Y EVENTOS ---
     function initGallery() {
         const gameItems = document.querySelectorAll('.game-item');
+        const hoverImageCache = new Map();
+        
         // --- Eventos de tarjetas ---
         gameItems.forEach(item => {
             const img = item.querySelector('img');
@@ -596,28 +662,46 @@ document.addEventListener('DOMContentLoaded', () => {
                 item.appendChild(backpackBtn);
             }
 
+            // Optimización de carga de imágenes
             function processLoadedImage() {
                 img.style.opacity = '1';
+                img.style.willChange = 'auto'; // Liberar recursos después de la carga
             }
+            
             if (img.complete && img.naturalWidth > 0) {
                 processLoadedImage();
+            } else {
+                img.addEventListener('load', processLoadedImage, { once: true });
+                img.addEventListener('error', () => {
+                    img.style.opacity = '1';
+                    img.style.willChange = 'auto';
+                }, { once: true });
             }
-            img.addEventListener('load', processLoadedImage);
-            img.addEventListener('error', () => {
-                img.style.opacity = '1';
-            });
+
+            // Precargar imagen hover de forma inteligente
+            if (hoverSrc && !hoverImageCache.has(hoverSrc)) {
+                const preloadHover = () => {
+                    const hoverImg = new Image();
+                    hoverImg.onload = () => hoverImageCache.set(hoverSrc, true);
+                    hoverImg.src = hoverSrc;
+                };
+                
+                // Precargar después de un delay para no interferir con la carga inicial
+                setTimeout(preloadHover, 2000);
+            }
 
             item.addEventListener('mouseenter', () => {
                 if (hoverSrc) {
                     if (hoverTimer) clearTimeout(hoverTimer);
                     hoverTimer = setTimeout(() => {
-                        if (item.matches(':hover')) {
+                        if (item.matches(':hover') && hoverImageCache.has(hoverSrc)) {
                             img.src = hoverSrc;
                             isHoverImageDisplayed = true;
                         }
-                    }, 1000);
+                    }, 800); // Reducido de 1000ms a 800ms
                 }
             });
+            
             item.addEventListener('mouseleave', () => {
                 if (hoverTimer) {
                     clearTimeout(hoverTimer);
@@ -628,6 +712,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     isHoverImageDisplayed = false;
                 }
             });
+            
             // Modal al hacer clic
             item.addEventListener('click', (event) => {
                 event.preventDefault();
@@ -638,9 +723,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+        
         updateImageLoadingPriority();
     }
     window.initGallery = initGallery;
+
+    // Optimización de viewport y recursos
+    function optimizeViewport() {
+        // Configurar viewport meta para mejor rendimiento
+        const viewport = document.querySelector('meta[name="viewport"]');
+        if (viewport) {
+            viewport.content = 'width=device-width, initial-scale=1, viewport-fit=cover';
+        }
+        
+        // Configurar hints de recursos
+        const resourceHints = [
+            { rel: 'dns-prefetch', href: '//fonts.googleapis.com' },
+            { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }
+        ];
+        
+        resourceHints.forEach(hint => {
+            const link = document.createElement('link');
+            Object.assign(link, hint);
+            document.head.appendChild(link);
+        });
+    }
 
     // --- CARGA DINÁMICA DE LA GALERÍA Y FILTRO ---
     fetch('gallery-index.html')
@@ -652,26 +759,36 @@ document.addEventListener('DOMContentLoaded', () => {
             if (gallery) {
                 document.querySelector('.gallery-container').innerHTML = gallery.innerHTML;
             }
+            
+            // Optimizar viewport antes de inicializar
+            optimizeViewport();
             window.initGallery();
 
-            // Filtro de búsqueda (debe ejecutarse después de cargar la galería)
+            // Filtro de búsqueda optimizado con debounce
             const searchBar = document.getElementById('searchBar');
             if (searchBar) {
+                let searchTimeout;
                 searchBar.addEventListener('input', (event) => {
-                    const rawSearchTerm = event.target.value.trim();
-                    const sanitizedSearchTerm = sanitizeSearchTerm(rawSearchTerm);
-                    document.querySelectorAll('.game-item').forEach(item => {
-                        const rawGameTitle = item.querySelector('p').textContent;
-                        const sanitizedGameTitle = sanitizeSearchTerm(rawGameTitle);
-                        if (sanitizedGameTitle.includes(sanitizedSearchTerm)) {
-                            item.style.display = '';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-                    updateImageLoadingPriority();
+                    clearTimeout(searchTimeout);
+                    searchTimeout = setTimeout(() => {
+                        const rawSearchTerm = event.target.value.trim();
+                        const sanitizedSearchTerm = sanitizeSearchTerm(rawSearchTerm);
+                        
+                        // Usar requestAnimationFrame para mejor rendimiento
+                        requestAnimationFrame(() => {
+                            document.querySelectorAll('.game-item').forEach(item => {
+                                const rawGameTitle = item.querySelector('p').textContent;
+                                const sanitizedGameTitle = sanitizeSearchTerm(rawGameTitle);
+                                item.style.display = sanitizedGameTitle.includes(sanitizedSearchTerm) ? '' : 'none';
+                            });
+                            updateImageLoadingPriority();
+                        });
+                    }, 150); // Debounce de 150ms
                 });
             }
+        })
+        .catch(error => {
+            console.error('Error cargando la galería:', error);
         });
 
     // Funciones para la notificación de "Pasar el rato"
@@ -701,6 +818,30 @@ document.addEventListener('DOMContentLoaded', () => {
         window.open('gameroom.html', '_blank'); 
         closeHangoutNotification(); // Cierra la notificación después de redirigir
     }
+
+    // Optimización de memoria y limpieza de recursos
+    function cleanupResources() {
+        // Limpiar cache de imágenes si excede el límite
+        if (imageCache.size > 100) {
+            const entries = Array.from(imageCache.entries());
+            const toDelete = entries.slice(0, 50);
+            toDelete.forEach(([key]) => imageCache.delete(key));
+        }
+    }
+
+    // Limpiar recursos periódicamente
+    setInterval(cleanupResources, 300000); // Cada 5 minutos
+
+    // Optimizar cuando la página no está visible
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            // Pausar observadores cuando la página no es visible
+            intersectionObserver.disconnect();
+        } else {
+            // Reactivar cuando vuelve a ser visible
+            updateImageLoadingPriority();
+        }
+    });
 
     // window.addEventListener('load', alignGameroomIcon); // Ya no se necesita
     // window.addEventListener('resize', alignGameroomIcon); // Ya no se necesita

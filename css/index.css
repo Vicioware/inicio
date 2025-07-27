@@ -178,9 +178,13 @@ header.site-header {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     opacity: 0;
-    transition: opacity 0.4s ease-in-out;
+    transition: opacity 0.3s ease-out;
     background-color: #2a2a2a;
     min-height: 160px;
+    object-fit: cover;
+    will-change: opacity;
+    content-visibility: auto;
+    contain: layout style paint;
 }
 .game-item p {
     margin: 10px 0;
