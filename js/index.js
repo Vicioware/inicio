@@ -20,6 +20,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const detailsContent = document.getElementById('detailsContent');
     const detailsCloseButton = detailsModal.querySelector('.details-close-button');
 
+    // Elementos del modal de partes
+    const partsModal = document.getElementById('partsModal');
+    const partsModalTitle = document.getElementById('partsModalTitle');
+    const partsContainer = document.getElementById('partsContainer');
+    const partsCloseButton = partsModal.querySelector('.parts-close-button');
+
+    // Array para rastrear partes descargadas
+    let downloadedParts = JSON.parse(localStorage.getItem('downloadedParts')) || {};
+
     // Elementos de la mochila
     const backpackIconLink = document.getElementById('backpackIcon');
     const backpackCounter = document.getElementById('backpackCounter');
@@ -34,17 +43,54 @@ document.addEventListener('DOMContentLoaded', () => {
     // Array para almacenar los juegos en la mochila
     let backpack = JSON.parse(localStorage.getItem('gameBackpack')) || [];
 
+    // Funciones para el modal de partes
+    function openPartsModal(gameTitle, parts, gameId) {
+        partsModalTitle.textContent = `${gameTitle} - Seleccionar Parte`;
+        partsContainer.innerHTML = '';
+        
+        parts.forEach((part, index) => {
+            const partButton = document.createElement('button');
+            partButton.className = 'part-button';
+            partButton.textContent = part.text;
+            
+            // Verificar si esta parte ya fue descargada
+            const partKey = `${gameId}-${index}`;
+            if (downloadedParts[partKey]) {
+                partButton.classList.add('downloaded');
+            }
+            
+            partButton.addEventListener('click', () => {
+                // Marcar como descargada
+                downloadedParts[partKey] = true;
+                localStorage.setItem('downloadedParts', JSON.stringify(downloadedParts));
+                partButton.classList.add('downloaded');
+                
+                // Abrir enlace de descarga
+                window.open(part.url, '_blank');
+                
+                // Mostrar notificación si no se ha mostrado
+                if (!sessionStorage.getItem('hangoutNotificationShown')) {
+                    if (hangoutTimer) clearTimeout(hangoutTimer);
+                    hangoutNotification.classList.remove('show');
+                    hangoutTimer = setTimeout(showHangoutNotification, 10000);
+                }
+            });
+            
+            partsContainer.appendChild(partButton);
+        });
+        
+        partsModal.classList.add('is-open');
+        document.body.classList.add('modal-blur-active');
+    }
+    
+    function closePartsModal() {
+        partsModal.classList.remove('is-open');
+        document.body.classList.remove('modal-blur-active');
+    }
+
     // Data for download links
     const gameDownloadLinksData = {
-        'gta-sa': [{ 
-            text: 'Descargar GTA San Andreas', 
-            parts: [
-                { text: 'PARTE 1', url: 'https://example.com/gta-sa-part1' },
-                { text: 'PARTE 2', url: 'https://example.com/gta-sa-part2' },
-                { text: 'PARTE 3', url: 'https://example.com/gta-sa-part3' }
-            ],
-            readMoreText: '- Juego completo dividido en 3 partes\n- Descargar todas las partes y extraer la primera' 
-        }],
+        'gta-sa': [ { text: 'Descargar GTA San Andreas', url: 'https://www.mediafire.com/file/cu77pvw068jlvxy/GTASA.iso/file' }],
         'cuphead': [ { text: 'Descargar Cuphead', url: 'https://www.mediafire.com/file/z6qrhatejixijzs/CDE.rar/file', readMoreText: '- Incluye DLC' }],
 		'gta3': [{ text: 'Descargar GTA III', url: 'https://www.mediafire.com/file/zdvttk6hzyv1ola/GTA-III.rar/file', readMoreText: '- Archivos originales, juego completo\n- Si el juego no inicia, ejecutarlo en modo de compatibilidad con Windows Service Pack 2' }],
 		'kf1': [{ text: 'Descargar Killing Floor', url: 'https://www.mediafire.com/file/zffmwemajvs09dq/KF1.rar/file' }],
@@ -94,6 +140,18 @@ document.addEventListener('DOMContentLoaded', () => {
             { text: 'Descargar FNAF 4: Halloween Edition (español)', url: 'https://www.mediafire.com/file/hmmszewyab5t7fb/Five_Nights_at_Freddy%25C2%25B4s_4_Halloween_Edition.exe/file' }],
         'fnaf5': [
             { text: 'Descargar FNAF 5: Sister Location', url: 'https://www.mediafire.com/file/ye20nk6wxgbk8ch/FNAF5.exe/file' }],
+        'juego-ejemplo': [
+            { 
+                text: 'Descargar Juego Ejemplo', 
+                hasParts: true,
+                parts: [
+                    { text: 'Parte 1', url: 'https://example.com/parte1' },
+                    { text: 'Parte 2', url: 'https://example.com/parte2' },
+                    { text: 'Parte 3', url: 'https://example.com/parte3' },
+                    { text: 'Parte 4', url: 'https://example.com/parte4' }
+                ]
+            }
+        ],
     };
 
     // Funciones de la mochila
@@ -263,82 +321,60 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 const listItem = document.createElement('li');
                 
-                // Verificar si el enlace tiene partes (descarga por partes)
-                if (linkInfo.parts && linkInfo.parts.length > 0) {
-                    // Crear botón con menú desplegable
-                    const dropdownContainer = document.createElement('div');
-                    dropdownContainer.className = 'dropdown-container';
+                // Verificar si el enlace tiene partes
+                if (linkInfo.hasParts && linkInfo.parts) {
+                    // Crear botón especial para juegos con partes
+                    const partsButton = document.createElement('button');
+                    partsButton.textContent = linkInfo.text;
+                    partsButton.className = 'download-with-parts';
+                    partsButton.style.cssText = `
+                        background: #5ac560;
+                        color: white;
+                        border: none;
+                        padding: 12px 20px;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        font-size: 1em;
+                        font-family: 'Manrope', sans-serif;
+                        width: 100%;
+                        margin-bottom: 8px;
+                        transition: all 0.3s ease;
+                        box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+                    `;
                     
-                    const dropdownButton = document.createElement('button');
-                    dropdownButton.className = 'dropdown-download-button';
-                    dropdownButton.textContent = linkInfo.text;
-                    
-                    // Añadir icono de flecha
-                    const arrowIcon = document.createElement('img');
-                    arrowIcon.src = 'resources/down_arrow.svg';
-                    arrowIcon.className = 'dropdown-arrow';
-                    arrowIcon.alt = 'Expandir';
-                    dropdownButton.appendChild(arrowIcon);
-                    
-                    // Crear menú desplegable
-                    const dropdownMenu = document.createElement('div');
-                    dropdownMenu.className = 'dropdown-menu';
-                    
-                    // Añadir opciones de partes al menú
-                    linkInfo.parts.forEach(part => {
-                        const partOption = document.createElement('a');
-                        partOption.href = part.url;
-                        partOption.textContent = part.text;
-                        partOption.target = '_blank';
-                        partOption.className = 'dropdown-option';
-                        
-                        // Event listener para cada parte
-                        partOption.addEventListener('click', () => {
-                            if (!sessionStorage.getItem('hangoutNotificationShown')) {
-                                if (hangoutTimer) clearTimeout(hangoutTimer);
-                                hangoutNotification.classList.remove('show');
-                                hangoutTimer = setTimeout(showHangoutNotification, 10000);
-                            }
-                        });
-                        
-                        dropdownMenu.appendChild(partOption);
+                    partsButton.addEventListener('click', () => {
+                        openPartsModal(linkInfo.text, linkInfo.parts, gameId);
                     });
                     
-                    // Toggle del menú desplegable
-                    dropdownButton.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        dropdownContainer.classList.toggle('active');
-                        
-                        // Cerrar otros menús desplegables abiertos
-                        document.querySelectorAll('.dropdown-container.active').forEach(container => {
-                            if (container !== dropdownContainer) {
-                                container.classList.remove('active');
-                            }
-                        });
-                    });
-                    
-                    dropdownContainer.appendChild(dropdownButton);
-                    dropdownContainer.appendChild(dropdownMenu);
-                    listItem.appendChild(dropdownContainer);
+                    listItem.appendChild(partsButton);
                 } else {
                     // Crear enlace normal
                     const anchor = document.createElement('a');
                     anchor.href = linkInfo.url;
                     anchor.textContent = linkInfo.text;
-                    anchor.target = '_blank';
-
-                    // Event listener para el clic en el botón de descarga
-                    anchor.addEventListener('click', () => {
-                        if (!sessionStorage.getItem('hangoutNotificationShown')) {
-                            if (hangoutTimer) clearTimeout(hangoutTimer);
-                            hangoutNotification.classList.remove('show');
-                            hangoutTimer = setTimeout(showHangoutNotification, 10000);
-                        }
-                    });
-
+                    anchor.target = '_blank'; // Abrir en nueva pestaña
+                    
                     listItem.appendChild(anchor);
                 }
                 
+                // Solo agregar event listener para enlaces normales
+                const anchor = listItem.querySelector('a');
+                if (anchor) {
+                    // Event listener para el clic en el botón de descarga
+                    anchor.addEventListener('click', () => {
+                        // Comprobar si la notificación ya se mostró en esta sesión
+                        if (!sessionStorage.getItem('hangoutNotificationShown')) {
+                            // Limpiar cualquier temporizador anterior si el usuario hace clic rápidamente en varios enlaces
+                            if (hangoutTimer) clearTimeout(hangoutTimer);
+                            // Ocultar notificación si ya está visible (por si acaso, aunque no debería si se muestra solo una vez)
+                            hangoutNotification.classList.remove('show');
+
+                            hangoutTimer = setTimeout(showHangoutNotification, 10000); // 10 segundos
+                            // Marcar que la notificación está programada para mostrarse (o ya se mostró) en esta sesión
+                        }
+                    });
+                }
+
                 modalDownloadLinksList.appendChild(listItem);
 
                 // Añadir "Leer más" si existe texto
@@ -456,13 +492,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (event.target === modal) {
             closeModal();
         }
-        
-        // Cerrar menús desplegables al hacer clic fuera
-        if (!event.target.closest('.dropdown-container')) {
-            document.querySelectorAll('.dropdown-container.active').forEach(container => {
-                container.classList.remove('active');
-            });
-        }
     });
     
     // Cerrar el modal de detalles al hacer clic en la X
@@ -477,17 +506,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Event listeners para el modal de partes
+    partsCloseButton.addEventListener('click', closePartsModal);
+    
+    // Cerrar el modal de partes al hacer clic fuera del contenido
+    partsModal.addEventListener('click', (e) => {
+        if (e.target === partsModal) {
+            closePartsModal();
+        }
+    });
+
     // Event listener para cerrar los modales con la tecla Escape
     window.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') {
-            // Primero cerrar el modal de detalles si está abierto
+            // Primero cerrar el modal de partes si está abierto
+            if (partsModal.classList.contains('is-open')) {
+                closePartsModal();
+                event.stopPropagation();
+                return;
+            }
+            // Luego cerrar el modal de detalles si está abierto
             if (detailsModal.classList.contains('is-open')) {
                 detailsModal.classList.remove('is-open');
                 // Prevenir que se cierre también el modal principal
                 event.stopPropagation();
                 return;
             }
-            // Si el modal de detalles no está abierto, cerrar el modal principal
+            // Si ningún modal secundario está abierto, cerrar el modal principal
             if (modal.classList.contains('is-open')) {
                 closeModal();
             }
