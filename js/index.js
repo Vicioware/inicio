@@ -108,6 +108,10 @@ document.addEventListener('DOMContentLoaded', () => {
         'call-of-duty': [{ text: 'Descargar Call of Duty', url: 'https://www.mediafire.com/file/kfvfuduqbzlhor2/COD.rar/file', readMoreText: '- Inlcuye DLC' }],
         'slendytubbies': [{ text: 'Descargar Slendytubbies', url: 'https://www.mediafire.com/file/55vwtdwziv20gg3/STB.zip/file' }],
         'slendytubbies2': [{ text: 'Descargar Slendytubbies 2', url: 'https://www.mediafire.com/file/13z3i2116t00m0g/' }],
+        'slendytubbies3': [
+            { text: 'Descargar Slendytubbies 3 (Multijugador)', url: 'https://www.mediafire.com/file_premium/lqhyvva24iuinxc/Slendytubbies_3_Multiplayer_%2528x64%2529.zip/file' },
+            { text: 'Descargar Slendytubbies 3 (Campaña)', url: 'https://www.mediafire.com/file/249yxzi56wn17r6/Slendytubbies_3_V1_295_%252864bit%2529.zip/file'}
+        ],
         'halo-ce': [{ text: 'Descargar', url: 'https://www.mediafire.com/file/jftpybq93hfqy26/HCE_2001.rar/file', readMoreText: '- Versión 1.0.10\n- Multijugador funcional' }],
         'fnaf': [
             { text: 'Descargar FNAF (original)', url: 'https://www.mediafire.com/file/qa1jza71rr1uj9k/FNAF.exe/file' },
