@@ -45,7 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Funciones para el modal de partes
     function openPartsModal(parts, gameId) {
-        partsModalTitle.textContent = `Seleccionar parte`;
+        // Obtener el nombre del juego desde el título del modal principal
+        const gameName = modalGameTitle.textContent;
+        partsModalTitle.textContent = `Descargar ${gameName} - Seleccionar Parte`;
         partsContainer.innerHTML = '';
         
         parts.forEach((part, index) => {
@@ -486,7 +488,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Los estilos se aplican completamente desde CSS
                     
                     partsButton.addEventListener('click', () => {
-                        openPartsModal(linkInfo.text, linkInfo.parts, gameId);
+                        openPartsModal(linkInfo.parts, gameId);
                     });
                     
                     listItem.appendChild(partsButton);
