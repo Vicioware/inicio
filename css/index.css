@@ -622,7 +622,7 @@ header.site-header {
 .download-with-parts::after {
     content: '';
     position: absolute;
-    right: 5px; /* Movido 3px a la izquierda desde 8px */
+    right: 0px; /* Movido 5px más a la izquierda desde 5px */
     top: 50%;
     transform: translateY(-50%);
     width: 20px;
