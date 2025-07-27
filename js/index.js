@@ -429,20 +429,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const partsButton = document.createElement('button');
                     partsButton.textContent = linkInfo.text;
                     partsButton.className = 'download-with-parts';
-                    partsButton.style.cssText = `
-                        background: #5ac560;
-                        color: white;
-                        border: none;
-                        padding: 12px 20px;
-                        border-radius: 8px;
-                        cursor: pointer;
-                        font-size: 1em;
-                        font-family: 'Manrope', sans-serif;
-                        width: 100%;
-                        margin-bottom: 8px;
-                        transition: all 0.3s ease;
-                        box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-                    `;
+                    // Los estilos se aplican completamente desde CSS
                     
                     partsButton.addEventListener('click', () => {
                         openPartsModal(linkInfo.text, linkInfo.parts, gameId);

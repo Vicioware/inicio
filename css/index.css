@@ -567,16 +567,62 @@ header.site-header {
     background: #4fb556;
 }
 
-/* Botón con icono de partes */
+/* Botón con icono de partes - idéntico al botón de descarga clásico */
 .download-with-parts {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #5ac560, #4a9c4a) !important;
+    color: white !important;
+    padding: 16px 24px !important;
+    text-decoration: none;
+    border-radius: 12px !important;
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1) !important;
+    text-align: center;
+    font-size: 1.1em !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     position: relative;
-    padding-right: 45px !important;
+    overflow: hidden;
+    border: none !important;
+    cursor: pointer;
+    width: 100% !important;
+    margin-bottom: 8px !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+    font-family: 'Manrope', sans-serif !important;
+    padding-right: 50px !important;
+}
+
+.download-with-parts::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.7s;
+}
+
+.download-with-parts:hover {
+    background: linear-gradient(135deg, #4a9c4a, #5ac560) !important;
+    transform: translateY(-3px) !important;
+}
+
+.download-with-parts:hover::before {
+    left: 100%;
+}
+
+.download-with-parts:active {
+    transform: translateY(1px) !important;
+    box-shadow: 0 2px 10px rgba(90, 197, 96, 0.3) !important;
 }
 
 .download-with-parts::after {
     content: '';
     position: absolute;
-    right: 8px;
+    right: 5px; /* Movido 3px a la izquierda desde 8px */
     top: 50%;
     transform: translateY(-50%);
     width: 20px;
@@ -585,7 +631,9 @@ header.site-header {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    opacity: 0.8;
+    opacity: 0.9;
+    /* Carga prioritaria del SVG */
+    will-change: transform;
 }
 body.modal-blur-active > *:not(#backpackModal):not(#downloadModal):not(#detailsModal):not(#partsModal) {
     filter: blur(5px);
