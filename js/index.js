@@ -28,43 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Array para rastrear partes descargadas
     let downloadedParts = JSON.parse(localStorage.getItem('downloadedParts')) || {};
-    
-    // Detectar cuando se limpia la caché y resetear las partes descargadas
-    window.addEventListener('beforeunload', () => {
-        // Verificar si el localStorage está siendo limpiado
-        if (!localStorage.getItem('downloadedParts')) {
-            downloadedParts = {};
-        }
-    });
-    
-    // Función para resetear las partes descargadas
-    function resetDownloadedParts() {
-        downloadedParts = {};
-        localStorage.removeItem('downloadedParts');
-        // Actualizar visualmente todos los botones de partes
-        document.querySelectorAll('.part-button.downloaded').forEach(button => {
-            button.classList.remove('downloaded');
-        });
-    }
-    
-    // Detectar limpieza de caché mediante storage event
-    window.addEventListener('storage', (e) => {
-        if (e.key === 'downloadedParts' && e.newValue === null) {
-            resetDownloadedParts();
-        }
-    });
-    
-    // Verificar periódicamente si el localStorage fue limpiado externamente
-     setInterval(() => {
-          if (!localStorage.getItem('downloadedParts') && Object.keys(downloadedParts).length > 0) {
-              resetDownloadedParts();
-          }
-      }, 1000);
-      
-      // Verificar al cargar la página si hay inconsistencias
-      if (!localStorage.getItem('downloadedParts')) {
-          downloadedParts = {};
-      }
 
     // Elementos de la mochila
     const backpackIconLink = document.getElementById('backpackIcon');
