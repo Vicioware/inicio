@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 partButton.classList.add('downloaded');
                 
                 // Abrir enlace de descarga
-                window.open(part.url, '_blank');
+                window.open(part.url, '_blank', 'noopener');
                 
                 // Mostrar notificación si no se ha mostrado
                 if (!sessionStorage.getItem('hangoutNotificationShown')) {
@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const gameLinks = gameDownloadLinksData[item.id];
             if (gameLinks && gameLinks.length > 0) {
                 // Abrir el primer enlace de descarga de cada juego
-                window.open(gameLinks[0].url, '_blank');
+                window.open(gameLinks[0].url, '_blank', 'noopener');
             }
         });
         
@@ -654,11 +654,8 @@ document.addEventListener('DOMContentLoaded', () => {
         gameItems.forEach(item => {
             const rawGameTitle = item.querySelector('p').textContent;
             const sanitizedGameTitle = sanitizeSearchTerm(rawGameTitle);
-            if (sanitizedGameTitle.includes(sanitizedSearchTerm)) {
-                item.style.display = ''; // Muestra el item si coincide
-            } else {
-                item.style.display = 'none'; // Oculta el item si no coincide
-            }
+            // Usar classList.toggle para evitar reflows
+            item.classList.toggle('hidden', !sanitizedGameTitle.includes(sanitizedSearchTerm));
         });
         // Actualizar la prioridad de carga después de filtrar
         updateImageLoadingPriority();
@@ -672,11 +669,17 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // --- Eventos de tarjetas ---
         gameItems.forEach(item => {
+            // Prevenir event listeners duplicados
+            if (item.dataset.listenersAdded) {
+                return;
+            }
+            item.dataset.listenersAdded = 'true';
+            
             const img = item.querySelector('img');
             const originalSrc = img.getAttribute('src');
             const hoverSrc = item.dataset.hoverSrc;
             let hoverTimer = null;
-            let preloadTimer = null;
+            let preloadController = new AbortController();
             let isHoverImageDisplayed = false;
             let isMouseOverContainer = false;
 
@@ -729,19 +732,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, { once: true });
             }
 
-            // Precarga hover mejorada - solo si el mouse está sobre el contenedor
+            // Precarga hover mejorada con AbortController
             item.addEventListener('mouseenter', () => {
                 isMouseOverContainer = true;
                 
+                // Cancelar precarga anterior
+                preloadController.abort();
+                preloadController = new AbortController();
+                
                 // Precargar imagen hover solo después de 300ms de hover
                 if (hoverSrc && !hoverImageCache.has(hoverSrc)) {
-                    preloadTimer = setTimeout(() => {
-                        if (isMouseOverContainer) {
+                    const timeoutId = setTimeout(() => {
+                        if (isMouseOverContainer && !preloadController.signal.aborted) {
                             const hoverImg = new Image();
                             hoverImg.onload = () => hoverImageCache.set(hoverSrc, true);
                             hoverImg.src = hoverSrc;
                         }
                     }, 300);
+                    
+                    // Cancelar timeout si se aborta
+                    preloadController.signal.addEventListener('abort', () => {
+                        clearTimeout(timeoutId);
+                    });
                 }
                 
                 if (hoverSrc) {
@@ -758,13 +770,12 @@ document.addEventListener('DOMContentLoaded', () => {
             item.addEventListener('mouseleave', () => {
                 isMouseOverContainer = false;
                 
+                // Cancelar precarga y hover
+                preloadController.abort();
+                
                 if (hoverTimer) {
                     clearTimeout(hoverTimer);
                     hoverTimer = null;
-                }
-                if (preloadTimer) {
-                    clearTimeout(preloadTimer);
-                    preloadTimer = null;
                 }
                 if (isHoverImageDisplayed) {
                     img.src = originalSrc;
@@ -801,9 +812,10 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('gallery-index.html')
         .then(response => response.text())
         .then(html => {
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = html;
-            const gallery = tempDiv.querySelector('.gallery-container');
+            // Usar DOMParser para mayor seguridad
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const gallery = doc.querySelector('.gallery-container');
             if (gallery) {
                 document.querySelector('.gallery-container').innerHTML = gallery.innerHTML;
             }
@@ -827,7 +839,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             document.querySelectorAll('.game-item').forEach(item => {
                                 const rawGameTitle = item.querySelector('p').textContent;
                                 const sanitizedGameTitle = sanitizeSearchTerm(rawGameTitle);
-                                item.style.display = sanitizedGameTitle.includes(sanitizedSearchTerm) ? '' : 'none';
+                                item.classList.toggle('hidden', !sanitizedGameTitle.includes(sanitizedSearchTerm));
                             });
                             updateImageLoadingPriority();
                         });
@@ -863,7 +875,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     window.redirectToMinigames = function() {
         // Cambia 'minijuegos.html' por la URL real de tu sección de minijuegos
-        window.open('gameroom.html', '_blank'); 
+        window.open('gameroom.html', '_blank', 'noopener'); 
         closeHangoutNotification(); // Cierra la notificación después de redirigir
     }
 
@@ -878,8 +890,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Limpiar recursos ocasionalmente (menos frecuente con LRU)
-    setInterval(cleanupResources, 600000); // Cada 10 minutos
+    // Limpiar recursos ocasionalmente (menos frecuente con LRU) usando setTimeout recursivo
+    function scheduleCleanup() {
+        setTimeout(() => {
+            cleanupResources();
+            scheduleCleanup(); // Programar la siguiente limpieza
+        }, 600000); // Cada 10 minutos
+    }
+    scheduleCleanup();
 
     // Intersection Observer ya es eficiente automáticamente en background
     // No es necesario pausarlo manualmente
@@ -943,23 +961,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicializar contador de la mochila
     updateBackpackCounter();
 
-    // Cargar la galería de forma dinámica desde gallery-index.html
-    fetch('gallery-index.html')
-        .then(response => response.text())
-        .then(html => {
-            // Extraer solo el contenido de .gallery-container
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = html;
-            const gallery = tempDiv.querySelector('.gallery-container');
-            if (gallery) {
-                document.querySelector('.gallery-container').innerHTML = gallery.innerHTML;
-            }
-            // Re-ejecutar la lógica de inicialización de la galería
-            if (typeof window.initGallery === 'function') {
-                window.initGallery();
-            }
-            // Actualizar botones de mochila después de cargar la galería
-            updateBackpackButtons();
-        });
+    // Fetch duplicado eliminado - ya se carga arriba
 
 });
