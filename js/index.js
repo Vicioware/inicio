@@ -140,14 +140,16 @@ document.addEventListener('DOMContentLoaded', () => {
             { text: 'Descargar FNAF 4: Halloween Edition (español)', url: 'https://www.mediafire.com/file/hmmszewyab5t7fb/Five_Nights_at_Freddy%25C2%25B4s_4_Halloween_Edition.exe/file' }],
         'fnaf5': [
             { text: 'Descargar FNAF 5: Sister Location', url: 'https://www.mediafire.com/file/ye20nk6wxgbk8ch/FNAF5.exe/file' }],
-        'juego-ejemplo': [
+        'tomb-raider': [
             { 
-                text: 'Descargar Juego Ejemplo', 
+                text: 'Descargar Tomb Raider', 
                 parts: [
-                    { text: 'Parte 1', url: 'https://example.com/parte1' },
-                    { text: 'Parte 2', url: 'https://example.com/parte2' },
-                    { text: 'Parte 3', url: 'https://example.com/parte3' },
-                    { text: 'Parte 4', url: 'https://example.com/parte4' }
+                    { text: 'Parte 1', url: 'https://www.mediafire.com/file/418clzp3v4p0d6n/TR2013DEPGv1.01.GamezFull.com.part1.rar/file' },
+                    { text: 'Parte 2', url: 'https://www.mediafire.com/file/whytecgki5rbyfv/TR2013DEPGv1.01.GamezFull.com.part2.rar/file' },
+                    { text: 'Parte 3', url: 'https://www.mediafire.com/file/fq9f3nvr5hc87hv/TR2013DEPGv1.01.GamezFull.com.part3.rar/file' },
+                    { text: 'Parte 4', url: 'https://www.mediafire.com/file/btulng3xrnp5yen/TR2013DEPGv1.01.GamezFull.com.part4.rar/file' },
+                    { text: 'Parte 5', url: 'https://www.mediafire.com/file/p27sw26lhfsi4ia/TR2013DEPGv1.01.GamezFull.com.part5.rar/file' },
+                    { text: 'Parte 6', url: 'https://www.mediafire.com/file/rcuxhlm4mutj34e/TR2013DEPGv1.01.GamezFull.com.part6.rar/file' }
                 ]
             }
         ],

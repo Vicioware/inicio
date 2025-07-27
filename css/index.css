@@ -652,7 +652,7 @@ body.modal-blur-active > *:not(#backpackModal):not(#downloadModal):not(#detailsM
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    z-index: 1001;
+    z-index: 9999;
     transition: right 0.5s ease-in-out;
     font-size: 0.9em;
 }
