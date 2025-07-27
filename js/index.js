@@ -107,11 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'dmc-devil-may-cry': [{ text: 'Descargar DmC: Devil May Cry', url: 'https://rapidshare.co/en/d/QIkPCb4cBC3xXE' }],
         'call-of-duty': [{ text: 'Descargar Call of Duty', url: 'https://www.mediafire.com/file/kfvfuduqbzlhor2/COD.rar/file', readMoreText: '- Inlcuye DLC' }],
         'slendytubbies': [{ text: 'Descargar Slendytubbies', url: 'https://www.mediafire.com/file/55vwtdwziv20gg3/STB.zip/file' }],
-        'halo-ce': [{
-            text: 'Descargar',
-            url: 'https://www.mediafire.com/file/jftpybq93hfqy26/HCE_2001.rar/file',
-            readMoreText: '- Versión 1.0.10\n- Multijugador funcional'
-        }],
+        'slendytubbies2': [{ text: 'Descargar Slendytubbies 2', url: 'https://www.mediafire.com/file/13z3i2116t00m0g/' }],
+        'halo-ce': [{ text: 'Descargar', url: 'https://www.mediafire.com/file/jftpybq93hfqy26/HCE_2001.rar/file', readMoreText: '- Versión 1.0.10\n- Multijugador funcional' }],
         'fnaf': [
             { text: 'Descargar FNAF (original)', url: 'https://www.mediafire.com/file/qa1jza71rr1uj9k/FNAF.exe/file' },
             { text: 'Descargar FNAF (español)', url: 'https://www.mediafire.com/file/k5pj0giyyfdwihe/Five_Nights_at_Freddys_Edicion_Ultra.exe/file' }],
