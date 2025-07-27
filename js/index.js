@@ -278,6 +278,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Optimizaciones avanzadas para carga de imágenes
     const imageCache = new Map();
+    const imageCacheAccess = new Map(); // Para política LRU
+    const MAX_CACHE_SIZE = 50;
+    
     const intersectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -293,29 +296,64 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function loadImageOptimized(img) {
         const src = img.dataset.src || img.src;
+        
+        // Actualizar acceso para política LRU
         if (imageCache.has(src)) {
-            img.src = src;
+            imageCacheAccess.set(src, Date.now());
+            img.src = imageCache.get(src);
             img.style.opacity = '1';
+            img.style.willChange = 'auto';
             return;
         }
+
+        // Agregar atributos nativos para mejor rendimiento
+        img.setAttribute('decoding', 'async');
+        img.setAttribute('loading', 'lazy');
 
         // Crear imagen WebP con fallback
         const webpSrc = src.replace(/\.(png|jpg|jpeg)$/i, '.webp');
         const testImg = new Image();
         
         testImg.onload = () => {
+            manageCacheSize();
             imageCache.set(src, webpSrc);
+            imageCacheAccess.set(src, Date.now());
             img.src = webpSrc;
             img.style.opacity = '1';
+            img.style.willChange = 'auto';
         };
         
         testImg.onerror = () => {
+            manageCacheSize();
             imageCache.set(src, src);
+            imageCacheAccess.set(src, Date.now());
             img.src = src;
             img.style.opacity = '1';
+            img.style.willChange = 'auto';
         };
         
         testImg.src = webpSrc;
+    }
+    
+    // Política LRU para el cache
+    function manageCacheSize() {
+        if (imageCache.size >= MAX_CACHE_SIZE) {
+            // Encontrar la entrada menos recientemente usada
+            let oldestKey = null;
+            let oldestTime = Date.now();
+            
+            for (const [key, time] of imageCacheAccess) {
+                if (time < oldestTime) {
+                    oldestTime = time;
+                    oldestKey = key;
+                }
+            }
+            
+            if (oldestKey) {
+                imageCache.delete(oldestKey);
+                imageCacheAccess.delete(oldestKey);
+            }
+        }
     }
 
     function updateImageLoadingPriority() {
@@ -638,7 +676,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const originalSrc = img.getAttribute('src');
             const hoverSrc = item.dataset.hoverSrc;
             let hoverTimer = null;
+            let preloadTimer = null;
             let isHoverImageDisplayed = false;
+            let isMouseOverContainer = false;
+
+            // Agregar atributos nativos para mejor rendimiento
+            img.setAttribute('decoding', 'async');
+            if (!img.hasAttribute('loading')) {
+                img.setAttribute('loading', 'lazy');
+            }
 
             // Agregar botón de mochila si no existe
             if (!item.querySelector('.add-to-backpack-btn')) {
@@ -665,7 +711,12 @@ document.addEventListener('DOMContentLoaded', () => {
             // Optimización de carga de imágenes
             function processLoadedImage() {
                 img.style.opacity = '1';
-                img.style.willChange = 'auto'; // Liberar recursos después de la carga
+                // Mantener will-change mientras la imagen esté en viewport o en cache activo
+                const rect = img.getBoundingClientRect();
+                const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+                if (!isInViewport && !imageCache.has(img.src)) {
+                    img.style.willChange = 'auto';
+                }
             }
             
             if (img.complete && img.naturalWidth > 0) {
@@ -678,19 +729,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, { once: true });
             }
 
-            // Precargar imagen hover de forma inteligente
-            if (hoverSrc && !hoverImageCache.has(hoverSrc)) {
-                const preloadHover = () => {
-                    const hoverImg = new Image();
-                    hoverImg.onload = () => hoverImageCache.set(hoverSrc, true);
-                    hoverImg.src = hoverSrc;
-                };
-                
-                // Precargar después de un delay para no interferir con la carga inicial
-                setTimeout(preloadHover, 2000);
-            }
-
+            // Precarga hover mejorada - solo si el mouse está sobre el contenedor
             item.addEventListener('mouseenter', () => {
+                isMouseOverContainer = true;
+                
+                // Precargar imagen hover solo después de 300ms de hover
+                if (hoverSrc && !hoverImageCache.has(hoverSrc)) {
+                    preloadTimer = setTimeout(() => {
+                        if (isMouseOverContainer) {
+                            const hoverImg = new Image();
+                            hoverImg.onload = () => hoverImageCache.set(hoverSrc, true);
+                            hoverImg.src = hoverSrc;
+                        }
+                    }, 300);
+                }
+                
                 if (hoverSrc) {
                     if (hoverTimer) clearTimeout(hoverTimer);
                     hoverTimer = setTimeout(() => {
@@ -698,14 +751,20 @@ document.addEventListener('DOMContentLoaded', () => {
                             img.src = hoverSrc;
                             isHoverImageDisplayed = true;
                         }
-                    }, 800); // Reducido de 1000ms a 800ms
+                    }, 800);
                 }
             });
             
             item.addEventListener('mouseleave', () => {
+                isMouseOverContainer = false;
+                
                 if (hoverTimer) {
                     clearTimeout(hoverTimer);
                     hoverTimer = null;
+                }
+                if (preloadTimer) {
+                    clearTimeout(preloadTimer);
+                    preloadTimer = null;
                 }
                 if (isHoverImageDisplayed) {
                     img.src = originalSrc;
@@ -728,25 +787,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     window.initGallery = initGallery;
 
-    // Optimización de viewport y recursos
+    // Optimización de viewport
     function optimizeViewport() {
         // Configurar viewport meta para mejor rendimiento
         const viewport = document.querySelector('meta[name="viewport"]');
         if (viewport) {
             viewport.content = 'width=device-width, initial-scale=1, viewport-fit=cover';
         }
-        
-        // Configurar hints de recursos
-        const resourceHints = [
-            { rel: 'dns-prefetch', href: '//fonts.googleapis.com' },
-            { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }
-        ];
-        
-        resourceHints.forEach(hint => {
-            const link = document.createElement('link');
-            Object.assign(link, hint);
-            document.head.appendChild(link);
-        });
+        // DNS prefetch eliminado - no se usan dominios externos
     }
 
     // --- CARGA DINÁMICA DE LA GALERÍA Y FILTRO ---
@@ -819,29 +867,22 @@ document.addEventListener('DOMContentLoaded', () => {
         closeHangoutNotification(); // Cierra la notificación después de redirigir
     }
 
-    // Optimización de memoria y limpieza de recursos
+    // Optimización de memoria y limpieza de recursos (ya no necesaria con LRU)
     function cleanupResources() {
-        // Limpiar cache de imágenes si excede el límite
-        if (imageCache.size > 100) {
-            const entries = Array.from(imageCache.entries());
-            const toDelete = entries.slice(0, 50);
-            toDelete.forEach(([key]) => imageCache.delete(key));
+        // La política LRU ya maneja el tamaño del cache automáticamente
+        // Solo limpiar entradas de acceso huérfanas si existen
+        for (const key of imageCacheAccess.keys()) {
+            if (!imageCache.has(key)) {
+                imageCacheAccess.delete(key);
+            }
         }
     }
 
-    // Limpiar recursos periódicamente
-    setInterval(cleanupResources, 300000); // Cada 5 minutos
+    // Limpiar recursos ocasionalmente (menos frecuente con LRU)
+    setInterval(cleanupResources, 600000); // Cada 10 minutos
 
-    // Optimizar cuando la página no está visible
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-            // Pausar observadores cuando la página no es visible
-            intersectionObserver.disconnect();
-        } else {
-            // Reactivar cuando vuelve a ser visible
-            updateImageLoadingPriority();
-        }
-    });
+    // Intersection Observer ya es eficiente automáticamente en background
+    // No es necesario pausarlo manualmente
 
     // window.addEventListener('load', alignGameroomIcon); // Ya no se necesita
     // window.addEventListener('resize', alignGameroomIcon); // Ya no se necesita
