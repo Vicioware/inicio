@@ -212,13 +212,21 @@ header.site-header {
     background-color: rgba(0,0,0,0.85);
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.4s cubic-bezier(0.19, 1, 0.22, 1), visibility 0s linear 0.4s;
+    transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1), visibility 0s linear 0.25s;
     backdrop-filter: blur(5px);
+    will-change: opacity, visibility;
 }
 .modal.is-open {
     opacity: 1;
     visibility: visible;
     transition-delay: 0s;
+}
+
+/* Limpiar will-change después de las transiciones para optimizar memoria */
+.modal.is-open .modal-content,
+#detailsModal.is-open .details-modal-content,
+#partsModal.is-open .parts-modal-content {
+    will-change: auto;
 }
 .modal-content {
     background: linear-gradient(145deg, #232323, #1a1a1a);
@@ -230,9 +238,10 @@ header.site-header {
     position: relative;
     color: #f0f0f0;
     box-shadow: 0 8px 20px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1); /* Reducida la distancia de la sombra */
-    transform: translateY(-40px) scale(0.95);
+    transform: translate3d(0, -40px, 0) scale(0.95);
     opacity: 0;
-    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease;
+    transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s ease;
+    will-change: transform, opacity;
 }
 .close-button {
     position: absolute;
@@ -258,7 +267,7 @@ header.site-header {
     cursor: pointer;
 }
 .modal.is-open .modal-content {
-    transform: translateY(0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
     opacity: 1;
 }
 #modalGameTitle {
@@ -326,7 +335,7 @@ header.site-header {
     width: 100%;
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.7s;
+    transition: left 0.4s;
 }
 
 #modalDownloadLinks a:hover {
@@ -441,9 +450,10 @@ header.site-header {
     position: relative;
     color: #f0f0f0;
     box-shadow: 0 8px 20px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1); /* Reducida la distancia de la sombra */
-    transform: translateY(-55%) scale(0.95); /* Ajustado para mejor centrado vertical */
+    transform: translate3d(0, -55%, 0) scale(0.95); /* Ajustado para mejor centrado vertical */
     opacity: 0;
-    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease;
+    transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s ease;
+    will-change: transform, opacity;
     overflow-y: auto; /* Permite desplazamiento si el contenido es demasiado grande */
     display: inline-block; /* Permite que el contenedor se ajuste al contenido */
     text-align: left; /* Restablece el alineamiento del texto dentro del modal */
@@ -451,7 +461,7 @@ header.site-header {
 }
 
 #detailsModal.is-open .details-modal-content {
-    transform: translateY(-5%) scale(1); /* Ajustado para mantener el centrado vertical */
+    transform: translate3d(0, -5%, 0) scale(1); /* Ajustado para mantener el centrado vertical */
     opacity: 1;
 }
 
@@ -497,9 +507,10 @@ header.site-header {
     position: relative;
     color: #f0f0f0;
     box-shadow: 0 8px 20px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);
-    transform: translateY(-55%) scale(0.95);
+    transform: translate3d(0, -55%, 0) scale(0.95);
     opacity: 0;
-    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.5s ease;
+    transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s ease;
+    will-change: transform, opacity;
     overflow-y: auto;
     display: inline-block;
     text-align: center;
@@ -507,7 +518,7 @@ header.site-header {
 }
 
 #partsModal.is-open .parts-modal-content {
-    transform: translateY(-5%) scale(1);
+    transform: translate3d(0, -5%, 0) scale(1);
     opacity: 1;
 }
 
@@ -622,7 +633,7 @@ header.site-header {
 .download-with-parts::after {
     content: '';
     position: absolute;
-    right: 10px; /* Movido 10px a la izquierda desde el borde derecho */
+    right: 15px; /* Movido 10px a la izquierda desde el borde derecho */
     top: 50%;
     transform: translateY(-50%);
     width: 20px;
