@@ -106,7 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
             { text: 'Descargar Slendytubbies 3 (Multijugador)', url: 'https://www.mediafire.com/file_premium/lqhyvva24iuinxc/Slendytubbies_3_Multiplayer_%2528x64%2529.zip/file' },
             { text: 'Descargar Slendytubbies 3 (Campaña)', url: 'https://www.mediafire.com/file/249yxzi56wn17r6/Slendytubbies_3_V1_295_%252864bit%2529.zip/file'}
         ],
-        'halo-ce': [{ text: 'Descargar', url: 'https://www.mediafire.com/file/jftpybq93hfqy26/HCE_2001.rar/file', readMoreText: '- Versión 1.0.10\n- Multijugador funcional' }],
+        'colin-mcrae-rally': [{ text: 'Descargar Colin Mcrae Rally', url: '' }],
+        'halo-ce': [{ text: 'Descargar Halo: Combat Evolved', url: 'https://www.mediafire.com/file/jftpybq93hfqy26/HCE_2001.rar/file', readMoreText: '- Versión 1.0.10\n- Multijugador funcional' }],
         'fnaf': [
             { text: 'Descargar FNAF (original)', url: 'https://www.mediafire.com/file/qa1jza71rr1uj9k/FNAF.exe/file' },
             { text: 'Descargar FNAF (español)', url: 'https://www.mediafire.com/file/k5pj0giyyfdwihe/Five_Nights_at_Freddys_Edicion_Ultra.exe/file' }],
