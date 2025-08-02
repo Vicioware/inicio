@@ -76,7 +76,9 @@ document.addEventListener('DOMContentLoaded', () => {
         'gta-sa': [ { text: 'Descargar GTA San Andreas', url: 'https://www.mediafire.com/file/cu77pvw068jlvxy/GTASA.iso/file' }],
         'cuphead': [ { text: 'Descargar Cuphead', url: 'https://www.mediafire.com/file/z6qrhatejixijzs/CDE.rar/file', readMoreText: '- Incluye DLC' }],
 		'gta3': [{ text: 'Descargar GTA III', url: 'https://www.mediafire.com/file/zdvttk6hzyv1ola/GTA-III.rar/file', readMoreText: '- Archivos originales, juego completo\n- Si el juego no inicia, ejecutarlo en modo de compatibilidad con Windows Service Pack 2' }],
-		'kf1': [{ text: 'Descargar Killing Floor', url: 'https://www.mediafire.com/file/zffmwemajvs09dq/KF1.rar/file' }],
+		'kf1': [
+            { text: 'Descargar Killing Floor', url: 'https://www.mediafire.com/file/zffmwemajvs09dq/KF1.rar/file' },
+            { text: 'Descargar doblaje latino (mod)', url: 'https://drive.usercontent.google.com/download?id=1gMla8WvRv-XT9OIjqMre9gPsihb2QqAk&export=download&authuser=0' }],
 		'blur': [{ text: 'Descargar Blur', url: 'https://www.mediafire.com/file/gg1jyyp0grgf8fk/BLR.iso/file' }],
         'gta-vc': [{ text: 'Descargar GTA Vice City', url: 'https://www.mediafire.com/file/negikbx0esjy4zb/GTAVC.iso/file', readMoreText: '- Archivos originales, juego completo.' }],
         'vampire-survivors': [{ text: 'Descargar Vampire Survivors', url: 'https://www.mediafire.com/file/w7r10dc1rb85n4r/Vampi6reSurv1ivors-1.13.109-elamigos.rar/file', readMoreText: '- Versión 1.113.109\n- Todos los DLC' }],
@@ -94,6 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'dbfz': [
             { text: 'Descargar Dragon Ball FighterZ', url: 'https://www.mediafire.com/file/6b8kehvf141zxbm/678950.rar/file' },
             { text: 'Descargar Asistente DBFZ', url: 'https://www.mediafire.com/file/o2e5z2mewe4h8mr/DBFZ_Assistant.rar/file', readMoreText: '- Versión 1.31\n- Descargar el asistente solo si quieres:\n· actualizar a los personajes a la versión 1.38\n· optimización\n· solucionar errores de ejecución' }],
+        'conan04': [
+            { text: 'Descargar Conan (2004)', url: 'https://www.mediafire.com/file/xqlhnvi8pfggukf/C04.rar/file' }],
         'horizon-chase-turbo': [{ text: 'Descargar Horizon Chase Turbo', url: 'https://www.mediafire.com/file/b7g6sh0gj0biort/HCT2018.Www.GamezFull.com.rar/file' }],
         'brotato': [{ text: 'Descargar Brotato', url: 'https://www.mediafire.com/file/5okoinvbimse0h4' }],
         'assassinscreed': [{ text: 'Descargar Assassin\'s Creed', url: 'https://example.com/assassinscreed-download' }],
@@ -108,7 +112,15 @@ document.addEventListener('DOMContentLoaded', () => {
             { text: 'Descargar Slendytubbies 3 (Multijugador)', url: 'https://www.mediafire.com/file_premium/lqhyvva24iuinxc/Slendytubbies_3_Multiplayer_%2528x64%2529.zip/file' },
             { text: 'Descargar Slendytubbies 3 (Campaña)', url: 'https://www.mediafire.com/file/249yxzi56wn17r6/Slendytubbies_3_V1_295_%252864bit%2529.zip/file'}
         ],
-        'colin-mcrae-rally': [{ text: 'Descargar Colin Mcrae Rally', url: '' }],
+        'colin-mcrae-rally': [{ text: 'Descargar Colin Mcrae Rally (1998)', url: 'https://www.mediafire.com/file/bzhwoocqvzm7epe/CMR.rar/file' }],
+        'colin-mcrae-rally2': [{ text: 'Descargar Colin Mcrae Rally 2.0', url: 'https://www.mediafire.com/file/kd8zvf1wyr9srp6/CMR2.rar/file' }],
+        'colin-mcrae-rally3': [{ text: 'Descargar Colin Mcrae Rally 3', url: 'https://www.mediafire.com/file/nof15apkyr44lql/CMR3.rar/file' }],
+        'colin-mcrae-rally4': [{ text: 'Descargar Colin Mcrae Rally 04', url: 'https://www.mediafire.com/file/75l5fvnxof7xxbi/CMR4.rar/file' }],
+        'conflict-desert-storm': [{ text: 'Descargar Conflict: Desert Storm', url: 'https://www.mediafire.com/file/5x7es3quv6kyk0n/CDS.rar/file' }],
+        'cold-fear': [{ text: 'Descargar Cold Fear', url: 'https://www.mediafire.com/file/yftik1nkpzrvykv/CFPC.rar/file' }],
+        'combat-chess': [{ text: 'Descargar Combat Chess', url: 'https://www.mediafire.com/file/8am66wi60bfouzz/CCPC.rar/file' }],
+        'combat-task-force': [{ text: 'Descargar Combat: Task Force 121', url: 'https://www.mediafire.com/file/i4resaqoost37ev/CTF.rar/file' }],
+        'commandos-sf': [{ text: 'Descargar Commandos: Strike Force', url: 'https://www.mediafire.com/file/h3o7n9boad1hr38/CSF.rar/file' }],
         'raft': [
             { text: 'Descargar Raft', url: 'https://www.mediafire.com/file/ps2j3etzmsl6zqb/Ra6f3t-1.09-elamigos.rar/file' },
             { text: 'Descargar FIX ONLINE', url: 'https://mega.nz/file/amo0yaTZ#rWwRrXVrfDZjiRMUP0DihkxlvzjPYP_SymbgEcmzAoc' }],
