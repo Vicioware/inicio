@@ -121,6 +121,10 @@ document.addEventListener('DOMContentLoaded', () => {
         'combat-chess': [{ text: 'Descargar Combat Chess', url: 'https://www.mediafire.com/file/8am66wi60bfouzz/CCPC.rar/file' }],
         'combat-task-force': [{ text: 'Descargar Combat: Task Force 121', url: 'https://www.mediafire.com/file/i4resaqoost37ev/CTF.rar/file' }],
         'commandos-sf': [{ text: 'Descargar Commandos: Strike Force', url: 'https://www.mediafire.com/file/h3o7n9boad1hr38/CSF.rar/file' }],
+        'sftg': [{ text: 'Descargar Stick Fight: The Game', url: 'https://www.mediafire.com/file/4ob4j8uxu6iauvo/SFtheGv05.06.2019.rar/file' }],
+        'bbt': [
+            { text: 'Descargar BattleBlock Theater', url: 'https://drive.usercontent.google.com/download?id=16ZdlYUXGIYwPEzQHxt49jeuoYPMxKoH_&export=download&authuser=0' },
+            { text: 'Descargar FIX ONLINE', url: 'https://mega.nz/file/Py4klbiC#-mYHkTdmSRe6sABMLz7-s2l5oxkj9nlIc8p59z7t57o' }],
         'raft': [
             { text: 'Descargar Raft', url: 'https://www.mediafire.com/file/ps2j3etzmsl6zqb/Ra6f3t-1.09-elamigos.rar/file' },
             { text: 'Descargar FIX ONLINE', url: 'https://mega.nz/file/amo0yaTZ#rWwRrXVrfDZjiRMUP0DihkxlvzjPYP_SymbgEcmzAoc' }],
