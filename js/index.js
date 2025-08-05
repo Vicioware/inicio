@@ -122,6 +122,9 @@ document.addEventListener('DOMContentLoaded', () => {
         'combat-task-force': [{ text: 'Descargar Combat: Task Force 121', url: 'https://www.mediafire.com/file/i4resaqoost37ev/CTF.rar/file' }],
         'commandos-sf': [{ text: 'Descargar Commandos: Strike Force', url: 'https://www.mediafire.com/file/h3o7n9boad1hr38/CSF.rar/file' }],
         'sftg': [{ text: 'Descargar Stick Fight: The Game', url: 'https://www.mediafire.com/file/4ob4j8uxu6iauvo/SFtheGv05.06.2019.rar/file' }],
+		'deep-rock-galactic': [{ text: 'Descargar Deep Rock Galactic', url: 'https://www.mediafire.com/file/c02ed8y41g8mp03/Deep.Rock.Galactic.v1.39.113250.0-0xdeadcode.zip/file' }],
+		'lost-planet': [{ text: 'Descargar Lost Planet', url: 'https://www.mediafire.com/file/br6xop7n9r3cicx/L8st_Pl9n3t_3xtr3m3_C8nd1t18n_C8l8n13s_3d1t18n.rar/file' }],
+		'blood-knights': [{ text: 'Descargar Blood Knights', url: 'https://www.mediafire.com/file/tz5n0miu2lqe0am/BKPC.7z/file', readMoreText: '- Para poner el juego en español, abrir el archivo "settings.ini", y cambiar los valores de "game_language_text" y "game_language_voice" de "english" a "spanish"\n- En el mismo archivo, también puedes cambiar el valor de "vsync" de "true" a "false" para desactivar la sincronización vertical' }],
         'bbt': [
             { text: 'Descargar BattleBlock Theater', url: 'https://drive.usercontent.google.com/download?id=16ZdlYUXGIYwPEzQHxt49jeuoYPMxKoH_&export=download&authuser=0' },
             { text: 'Descargar FIX ONLINE', url: 'https://mega.nz/file/Py4klbiC#-mYHkTdmSRe6sABMLz7-s2l5oxkj9nlIc8p59z7t57o' }],
