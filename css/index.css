@@ -22,6 +22,18 @@ body {
     margin: 0;
     background-color: #1c1c1c;
     color: #f0f0f0;
+    overflow-x: hidden;
+}
+
+/* Ocultar barra de desplazamiento pero mantener funcionalidad */
+body::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+html {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 /* Utility class for hiding elements */

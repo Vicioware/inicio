@@ -11,8 +11,9 @@
     <link rel="preload" href="fonts/Manrope-Light.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="preload" href="fonts/Manrope-SemiBold.ttf" as="font" type="font/ttf" crossorigin>
 
-    <title>Vicioware</title>
+    <title>Plataformas - Vicioware</title>
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/plataformas.css">
 </head>
 <body>
     <header class="site-header">
@@ -34,69 +35,12 @@
     <div class="content-container">
         <div class="platform-block">
             <a href="#" class="platform-link">
-                <img src="resources/jar-games.png" class="platform-image">
+                <img src="resources/juegos-jar.png" class="platform-image">
             </a>
         </div>
     </div>
 
-    <style>
-        .content-container {
-            padding: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .content-container h1 {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #333;
-            font-family: 'Manrope-SemiBold', sans-serif;
-        }
-        
-        .platform-block {
-            display: flex;
-            justify-content: center;
-            margin: 2rem 0;
-        }
-        
-        .platform-link {
-            display: block;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-        .platform-link:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-        
-        .platform-link:hover .platform-image {
-            box-shadow: 0 0 20px rgba(90, 197, 96, 0.6), 0 0 40px rgba(90, 197, 96, 0.3);
-            transform: scale(1.02);
-        }
-        
-        .platform-image {
-            width: 200px;
-            height: auto;
-            display: block;
-            border-radius: 12px;
-            transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-        
-        @media (max-width: 768px) {
-            .platform-image {
-                width: 150px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .platform-image {
-                width: 125px;
-            }
-        }
-    </style>
+
 
     <script src="js/index.js"></script>
 </body>
