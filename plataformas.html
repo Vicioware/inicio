@@ -32,7 +32,6 @@
     </header>
 
     <div class="content-container">
-        <h1>Plataformas</h1>
         <div class="platform-block">
             <a href="#" class="platform-link">
                 <img src="resources/jar-games.png" class="platform-image">
@@ -73,22 +72,28 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
         
+        .platform-link:hover .platform-image {
+            box-shadow: 0 0 20px rgba(90, 197, 96, 0.6), 0 0 40px rgba(90, 197, 96, 0.3);
+            transform: scale(1.02);
+        }
+        
         .platform-image {
-            width: 400px;
+            width: 200px;
             height: auto;
             display: block;
             border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
         }
         
         @media (max-width: 768px) {
             .platform-image {
-                width: 300px;
+                width: 150px;
             }
         }
         
         @media (max-width: 480px) {
             .platform-image {
-                width: 250px;
+                width: 125px;
             }
         }
     </style>
