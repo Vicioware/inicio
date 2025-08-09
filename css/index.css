@@ -59,10 +59,14 @@ header.site-header {
     gap: 32px;
 }
 .header-center {
-    flex: 1 1 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1004;
 }
 .header-right {
     display: flex;
