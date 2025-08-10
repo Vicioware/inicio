@@ -673,7 +673,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- CARGA DINÁMICA DE LA GALERÍA Y FILTRO ---
-    fetch('gallery-index.html')
+    // Detectar si estamos en jar-games.html para cargar la galería correcta
+    const isJarGamesPage = window.location.pathname.includes('jar-games.html');
+    const galleryFile = isJarGamesPage ? 'gallery-jar.html' : 'gallery-index.html';
+    
+    fetch(galleryFile)
         .then(response => response.text())
         .then(html => {
             // Usar DOMParser para mayor seguridad

@@ -1,0 +1,97 @@
+/* Estilos específicos para la galería de juegos JAR */
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 15px 10px 10px 10px;
+    gap: 10px;
+}
+
+.game-item {
+    position: relative;
+    background: linear-gradient(to bottom, #1a1a1a, #111111 40%, #0a0a0a);
+    border-radius: 8px;
+    text-align: center;
+    width: 120px;
+    overflow: visible;
+    text-decoration: none;
+    transition: transform 0.2s ease-in-out, box-shadow 0.25s ease-out;
+    z-index: 1;
+}
+
+.game-item::after {
+    display: none;
+}
+
+.game-item::before {
+    display: none;
+}
+
+.game-item:hover {
+    transform: scale(1.05);
+}
+
+.game-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+    background-color: #2a2a2a;
+    min-height: 160px;
+    object-fit: cover;
+    will-change: opacity;
+    content-visibility: auto;
+    contain: layout style paint;
+}
+
+.game-item p {
+    margin: 10px 0;
+    font-size: 0.9em;
+    color: #fff;
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
+    padding: 0 5px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .gallery-container {
+        padding: 10px 5px;
+        gap: 8px;
+    }
+    
+    .game-item {
+        width: 100px;
+    }
+    
+    .game-item img {
+        min-height: 140px;
+    }
+    
+    .game-item p {
+        font-size: 0.8em;
+        margin: 8px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-container {
+        padding: 8px 3px;
+        gap: 6px;
+    }
+    
+    .game-item {
+        width: 90px;
+    }
+    
+    .game-item img {
+        min-height: 120px;
+    }
+    
+    .game-item p {
+        font-size: 0.75em;
+        margin: 6px 0;
+    }
+}
