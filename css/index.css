@@ -83,25 +83,7 @@ header.site-header {
 
 
 
-.plataformas-link {
-    position: static;
-    top: unset;
-    left: unset;
-    z-index: auto;
-    color: #dadada;
-    font-family: 'Manrope Light', 'Manrope', sans-serif;
-    font-size: 1.1em;
-    text-decoration: none;
-    padding: 6px 16px;
-    border-radius: 6px;
-    background: none;
-    transition: transform 0.3s, text-shadow 0.3s, color 0.2s;
-}
-.plataformas-link:hover {
-    transform: scale(1.045);
-    text-shadow: 0 0 8px rgba(255,255,255,0.7);
-    color: #f0f0f0;
-}
+
 /* Barra de búsqueda centrada en la parte superior */
 .searchbar-container {
     width: 100%;
@@ -162,7 +144,7 @@ header.site-header {
     z-index: 1;
 }
 
-/* Estilos de mochila eliminados */
+
 
 .game-item {
     position: relative;
@@ -715,9 +697,7 @@ body.modal-blur-active > *:not(#downloadModal):not(#detailsModal):not(#partsModa
         justify-content: flex-end;
     }
 
-    .plataformas-link {
-        display: none; /* Hide on small screens for simplicity */
-    }
+
 
     #searchBar {
         width: 100%;

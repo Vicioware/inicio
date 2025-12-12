@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalGameTitle = document.getElementById('modalGameTitle');
     const modalDownloadLinksList = document.getElementById('modalDownloadLinks');
     const closeButton = modal.querySelector('.close-button');
-    // const galleryContainer = document.querySelector('.gallery-container'); // No longer needed for icon alignment
+
     const searchBar = document.getElementById('searchBar'); // searchBar ya está aquí
 
 
@@ -73,174 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Data for download links
     const gameDownloadLinksData = {
-        'gta-sa': [{ text: 'Descargar GTA San Andreas', url: 'https://www.mediafire.com/file/cu77pvw068jlvxy/GTASA.iso/file' }],
-        'cuphead': [{ text: 'Descargar Cuphead', url: 'https://www.mediafire.com/file/z6qrhatejixijzs/CDE.rar/file', readMoreText: '- Incluye DLC' }],
-        'gta3': [{ text: 'Descargar GTA III', url: 'https://www.mediafire.com/file/zdvttk6hzyv1ola/GTA-III.rar/file', readMoreText: '- Archivos originales, juego completo\n- Si el juego no inicia, ejecutarlo en modo de compatibilidad con Windows Service Pack 2' }],
-        'kf1': [
-            { text: 'Descargar Killing Floor', url: 'https://www.mediafire.com/file/zffmwemajvs09dq/KF1.rar/file' },
-            { text: 'Descargar doblaje latino (mod)', url: 'https://drive.usercontent.google.com/download?id=1gMla8WvRv-XT9OIjqMre9gPsihb2QqAk&export=download&authuser=0' }],
-        'blur': [{ text: 'Descargar Blur', url: 'https://www.mediafire.com/file/gg1jyyp0grgf8fk/BLR.iso/file' }],
-        'gta-vc': [{ text: 'Descargar GTA Vice City', url: 'https://www.mediafire.com/file/negikbx0esjy4zb/GTAVC.iso/file', readMoreText: '- Archivos originales, juego completo.' }],
-        'vampire-survivors': [{ text: 'Descargar Vampire Survivors', url: 'https://www.mediafire.com/file/w7r10dc1rb85n4r/Vampi6reSurv1ivors-1.13.109-elamigos.rar/file', readMoreText: '- Versión 1.113.109\n- Todos los DLC' }],
-        'unmetal': [{ text: 'Descargar Unmetal', url: 'https://www.mediafire.com/file/7rw1oidswulksof/UCP.rar/file', readMoreText: '-Creator Pack incluído' }],
-        'portal': [{ text: 'Descargar Portal', url: 'https://www.mediafire.com/file/keszhjrcvsx5jra/PPC.iso/file' }],
-        'portal-prelude': [{ text: 'Descargar Portal: Prelude', url: 'https://www.mediafire.com/file/baty7j3o8cwtj6j/PP08.rar/file', readMoreText: '- Última actualización de la versión original (2008)' }],
-        'portal2': [
-            { text: 'Descargar Portal 2', url: 'https://www.mediafire.com/file/srerms85g91g4zw/P2PC.iso/file' },
-            { text: 'Descargar FIX ONLINE', url: 'https://mega.nz/file/IJcxgYTB#QSuKFAd5K0VyQqbQaKpgus8UBiDA_PeqXUK_2O_kJY4' }
-        ],
-        'cs16': [{ text: 'Descargar Counter Strike 1.6', url: 'https://www.mediafire.com/file/8g8eh2v1xja2pju/CS16.rar/file', readMoreText: '- Versión NO STEAM' }],
-        'REPO': [
-            { text: 'Descargar R.E.P.O', url: 'https://www.mediafire.com/file/lcb75sjs3daatgv' },
-            { text: 'Descargar traducción al español', url: 'https://www.mediafire.com/file/cl385wv3mzw7def/TRADUCCi%25C3%2593N_R.E.P.O_SPA.rar/file', readMoreText: '- Fix online incluído' }],
-        'dbfz': [
-            { text: 'Descargar Dragon Ball FighterZ', url: 'https://www.mediafire.com/file/6b8kehvf141zxbm/678950.rar/file' },
-            { text: 'Descargar Asistente DBFZ', url: 'https://www.mediafire.com/file/o2e5z2mewe4h8mr/DBFZ_Assistant.rar/file', readMoreText: '- Versión 1.31\n- Descargar el asistente solo si quieres:\n· actualizar a los personajes a la versión 1.38\n· optimización\n· solucionar errores de ejecución' }],
-        'conan04': [
-            { text: 'Descargar Conan (2004)', url: 'https://www.mediafire.com/file/xqlhnvi8pfggukf/C04.rar/file' }],
-        'horizon-chase-turbo': [{ text: 'Descargar Horizon Chase Turbo', url: 'https://www.mediafire.com/file/b7g6sh0gj0biort/HCT2018.Www.GamezFull.com.rar/file' }],
-        'brotato': [{ text: 'Descargar Brotato', url: 'https://www.mediafire.com/file/5okoinvbimse0h4' }],
-        'assassinscreed': [{ text: 'Descargar Assassin\'s Creed', url: 'https://example.com/assassinscreed-download' }],
-        'barony': [
-            { text: 'Descargar Barony', url: 'https://www.mediafire.com/file/zbdaq9intal95mf/BPC.rar/file', readMoreText: '- Versión 4.3.1' },
-            { text: 'Descargar traducción al español', url: 'https://www.mediafire.com/file/sjw4si78r9wy2ae/Barony_Spanish_Mod.rar/file' }],
-        'dmc-devil-may-cry': [{ text: 'Descargar DmC: Devil May Cry', url: 'https://rapidshare.co/en/d/QIkPCb4cBC3xXE' }],
-        'call-of-duty': [{ text: 'Descargar Call of Duty', url: 'https://www.mediafire.com/file/kfvfuduqbzlhor2/COD.rar/file', readMoreText: '- Inlcuye DLC' }],
-        'slendytubbies': [{ text: 'Descargar Slendytubbies', url: 'https://www.mediafire.com/file/55vwtdwziv20gg3/STB.zip/file' }],
-        'slendytubbies2': [{ text: 'Descargar Slendytubbies 2', url: 'https://www.mediafire.com/file/13z3i2116t00m0g/' }],
-        'slendytubbies3': [
-            { text: 'Descargar Slendytubbies 3 (Multijugador)', url: 'https://www.mediafire.com/file_premium/lqhyvva24iuinxc/Slendytubbies_3_Multiplayer_%2528x64%2529.zip/file' },
-            { text: 'Descargar Slendytubbies 3 (Campaña)', url: 'https://www.mediafire.com/file/249yxzi56wn17r6/Slendytubbies_3_V1_295_%252864bit%2529.zip/file' }
-        ],
-        'colin-mcrae-rally': [{ text: 'Descargar Colin Mcrae Rally (1998)', url: 'https://www.mediafire.com/file/bzhwoocqvzm7epe/CMR.rar/file' }],
-        'colin-mcrae-rally2': [{ text: 'Descargar Colin Mcrae Rally 2.0', url: 'https://www.mediafire.com/file/kd8zvf1wyr9srp6/CMR2.rar/file' }],
-        'colin-mcrae-rally3': [{ text: 'Descargar Colin Mcrae Rally 3', url: 'https://www.mediafire.com/file/nof15apkyr44lql/CMR3.rar/file' }],
-        'colin-mcrae-rally4': [{ text: 'Descargar Colin Mcrae Rally 04', url: 'https://www.mediafire.com/file/75l5fvnxof7xxbi/CMR4.rar/file' }],
-        'conflict-desert-storm': [{ text: 'Descargar Conflict: Desert Storm', url: 'https://www.mediafire.com/file/5x7es3quv6kyk0n/CDS.rar/file' }],
-        'cold-fear': [{ text: 'Descargar Cold Fear', url: 'https://www.mediafire.com/file/yftik1nkpzrvykv/CFPC.rar/file' }],
-        'combat-chess': [{ text: 'Descargar Combat Chess', url: 'https://www.mediafire.com/file/8am66wi60bfouzz/CCPC.rar/file' }],
-        'combat-task-force': [{ text: 'Descargar Combat: Task Force 121', url: 'https://www.mediafire.com/file/i4resaqoost37ev/CTF.rar/file' }],
-        'commandos-sf': [{ text: 'Descargar Commandos: Strike Force', url: 'https://www.mediafire.com/file/h3o7n9boad1hr38/CSF.rar/file' }],
-        'sftg': [{ text: 'Descargar Stick Fight: The Game', url: 'https://www.mediafire.com/file/4ob4j8uxu6iauvo/SFtheGv05.06.2019.rar/file' }],
-        'deep-rock-galactic': [{ text: 'Descargar Deep Rock Galactic', url: 'https://www.mediafire.com/file/c02ed8y41g8mp03/Deep.Rock.Galactic.v1.39.113250.0-0xdeadcode.zip/file' }],
-        'lost-planet': [{ text: 'Descargar Lost Planet', url: 'https://www.mediafire.com/file/br6xop7n9r3cicx/L8st_Pl9n3t_3xtr3m3_C8nd1t18n_C8l8n13s_3d1t18n.rar/file' }],
-        'blood-knights': [{ text: 'Descargar Blood Knights', url: 'https://www.mediafire.com/file/tz5n0miu2lqe0am/BKPC.7z/file', readMoreText: '- Para poner el juego en español, abrir el archivo "settings.ini", y cambiar los valores de "game_language_text" y "game_language_voice" de "english" a "spanish"\n- En el mismo archivo, también puedes cambiar el valor de "vsync" de "true" a "false" para desactivar la sincronización vertical' }],
-        'bbt': [
-            { text: 'Descargar BattleBlock Theater', url: 'https://drive.usercontent.google.com/download?id=16ZdlYUXGIYwPEzQHxt49jeuoYPMxKoH_&export=download&authuser=0' },
-            { text: 'Descargar FIX ONLINE', url: 'https://mega.nz/file/Py4klbiC#-mYHkTdmSRe6sABMLz7-s2l5oxkj9nlIc8p59z7t57o' }],
-        'raft': [
-            { text: 'Descargar Raft', url: 'https://www.mediafire.com/file/ps2j3etzmsl6zqb/Ra6f3t-1.09-elamigos.rar/file' },
-            { text: 'Descargar FIX ONLINE', url: 'https://mega.nz/file/amo0yaTZ#rWwRrXVrfDZjiRMUP0DihkxlvzjPYP_SymbgEcmzAoc' }],
-        'halo-ce': [{ text: 'Descargar Halo: Combat Evolved', url: 'https://www.mediafire.com/file/jftpybq93hfqy26/HCE_2001.rar/file', readMoreText: '- Versión 1.0.10\n- Multijugador funcional' }],
-        'fnaf': [
-            { text: 'Descargar FNAF (original)', url: 'https://www.mediafire.com/file/qa1jza71rr1uj9k/FNAF.exe/file' },
-            { text: 'Descargar FNAF (español)', url: 'https://www.mediafire.com/file/k5pj0giyyfdwihe/Five_Nights_at_Freddys_Edicion_Ultra.exe/file' }],
-        'fnaf2': [
-            { text: 'Descargar FNAF 2 (original)', url: 'https://www.mediafire.com/file/o0523msi4t3q4yk/FNAF2.exe/file' },
-            { text: 'Descargar FNAF 2 (español)', url: 'https://www.mediafire.com/file/6nigs93pugt11z2/Five+Nights+at+Freddy%27s+2.exe' }],
-        'fnaf3': [
-            { text: 'Descargar FNAF 3 (original)', url: 'https://www.mediafire.com/file/4wbu771d733e1f1/FNAF3.exe/file' },
-            { text: 'Descargar FNAF 3 (español)', url: 'https://www.mediafire.com/file/1rxjwsgflvdmtq7/Five+Nights+at+Freddy%27s+3.exe' }],
-        'fnaf4': [
-            { text: 'Descargar FNAF 4 (original)', url: 'https://www.mediafire.com/file/ddd6icjvzwotp77/FNAF4.exe/file' },
-            { text: 'Descargar FNAF 4 (español)', url: 'https://www.mediafire.com/file/c0fam74mtl87hft/Five_Nights_at_Freddy%25C2%25B4s_4.exe/file' }],
-        'fnaf4-hw': [
-            { text: 'Descargar FNAF 4: Halloween Edition (original)', url: 'https://www.mediafire.com/file/k9uy7if04x7hjhr/FNAF4-HWE.exe/file' },
-            { text: 'Descargar FNAF 4: Halloween Edition (español)', url: 'https://www.mediafire.com/file/hmmszewyab5t7fb/Five_Nights_at_Freddy%25C2%25B4s_4_Halloween_Edition.exe/file' }],
-        'fnaf5': [
-            { text: 'Descargar FNAF 5: Sister Location', url: 'https://www.mediafire.com/file/ye20nk6wxgbk8ch/FNAF5.exe/file' }],
-        'tomb-raider': [
-            {
-                text: 'Descargar Tomb Raider',
-                parts: [
-                    { text: 'Parte 1', url: 'https://www.mediafire.com/file/418clzp3v4p0d6n/TR2013DEPGv1.01.GamezFull.com.part1.rar/file' },
-                    { text: 'Parte 2', url: 'https://www.mediafire.com/file/whytecgki5rbyfv/TR2013DEPGv1.01.GamezFull.com.part2.rar/file' },
-                    { text: 'Parte 3', url: 'https://www.mediafire.com/file/fq9f3nvr5hc87hv/TR2013DEPGv1.01.GamezFull.com.part3.rar/file' },
-                    { text: 'Parte 4', url: 'https://www.mediafire.com/file/btulng3xrnp5yen/TR2013DEPGv1.01.GamezFull.com.part4.rar/file' },
-                    { text: 'Parte 5', url: 'https://www.mediafire.com/file/p27sw26lhfsi4ia/TR2013DEPGv1.01.GamezFull.com.part5.rar/file' },
-                    { text: 'Parte 6', url: 'https://www.mediafire.com/file/rcuxhlm4mutj34e/TR2013DEPGv1.01.GamezFull.com.part6.rar/file' }
-                ]
-            }
-        ],
-        'a-way-out': [
-            {
-                text: 'Descargar A Way Out',
-                parts: [
-                    { text: 'Parte 1', url: 'https://drive.usercontent.google.com/download?id=1nmenx7r2xLLADHH5FApeALxOzdilx7ob&export=download&authuser=0' },
-                    { text: 'Parte 2', url: 'https://drive.usercontent.google.com/download?id=13A_rsijBPnrA67en07g43XTTFuCZvXRr&export=download&authuser=0' },
-                    { text: 'Parte 3', url: 'https://drive.usercontent.google.com/download?id=19HniO96v74pxp2KMGArqibBPMShh1HBx&export=download&authuser=0' },
-                    { text: 'Parte 4', url: 'https://drive.usercontent.google.com/download?id=1F2dwf_41MBso52GozK4nqvE9QR5Ltr2G&export=download&authuser=0' },
-                    { text: 'Parte 5', url: 'https://drive.usercontent.google.com/download?id=1IxMM28k4aI7fTMapXVsUYzbhB87USPib&export=download&authuser=0' }
-                ]
-            }
-        ],
-        'age-of-empires': [
-            { text: 'Descargar Age of Empires', url: 'https://www.mediafire.com/file/07q3ddrnk95c436/AOEGE.iso/file', readMoreText: '- Gold Edition' }],
-        'dead-space': [
-            {
-                text: 'Descargar Dead Space',
-                parts: [
-                    { text: 'Parte 1', url: 'https://rapidshare.co/en/d/yo8qFSaU3ICHXR' },
-                    { text: 'Parte 2', url: 'https://rapidshare.co/en/d/BmwqHhDb1IGqDq' },
-                    { text: 'Parte 3', url: 'https://rapidshare.co/en/d/mV6eSdjw1Li9qF' },
-                    { text: 'Parte 4', url: 'https://rapidshare.co/en/d/pv7v3WHN74JHIu' }
-                ]
-            }
-        ],
-        'dead-space2': [
-            {
-                text: 'Descargar Dead Space 2',
-                parts: [
-                    { text: 'Parte 1', url: 'https://rapidshare.co/en/d/UeXMFiyuv1TmtQ' },
-                    { text: 'Parte 2', url: 'https://rapidshare.co/en/d/d0sauQDTj60K7x' },
-                    { text: 'Parte 3', url: 'https://rapidshare.co/en/d/I8Hn85I7H8QtFK' }
-                ]
-            }
-        ],
-        'dead-space3': [
-            {
-                text: 'Descargar Dead Space 3',
-                parts: [
-                    { text: 'Parte 1', url: 'https://rapidshare.co/en/d/rb85h9EyANiqSI' },
-                    { text: 'Parte 2', url: 'https://rapidshare.co/en/d/fQjBweUPQS506q' },
-                    { text: 'Parte 3', url: 'https://rapidshare.co/en/d/sRdLy4NKcTfQIP' },
-                    { text: 'Parte 4', url: 'https://rapidshare.co/en/d/wcw67QeXI5gU5j' },
-                    { text: 'Parte 5', url: 'https://rapidshare.co/en/d/x0JLK54NwTWNGg' },
-                    { text: 'Parte 6', url: 'https://rapidshare.co/en/d/fO28odU9HPTiTv' },
-                    { text: 'Parte 7', url: 'https://rapidshare.co/en/d/b2gxytlfBi2zEk' }
-                ]
-            }
-        ],
-        'life-is-strange': [
-            { text: 'Descargar Life is Strange', url: 'https://www.mediafire.com/file/0ccchy21bd51r51/L1f3_1s_Str4ng3.rar/file' }],
-        'life-is-strange-before-the-storm': [
-            { text: 'Descargar Life is Strange: Before the Storm', url: 'https://www.mediafire.com/file/skhjs6ailng2kya/L1f3_1s_Str4ng3_B3f8r3_th3_St8rm_%25281ncl._F4r3w3ll_3p1s8d3%2529.rar/file' }],
-        'life-is-strange-before-the-storm-r': [
-            {
-                text: 'Descargar Life is Strange: Before the Storm (REMASTER)',
-                parts: [
-                    { text: 'Parte 1', url: 'https://www.mediafire.com/file/q08m7zqfrrj8xl0/LISR2022PG.GamezFull.com.part01.rar/file' },
-                    { text: 'Parte 2', url: 'https://www.mediafire.com/file/6gwf56fvycwi7es/LISR2022PG.GamezFull.com.part02.rar/file' },
-                    { text: 'Parte 3', url: 'https://www.mediafire.com/file/e6zl1n35re0fzvn/LISR2022PG.GamezFull.com.part03.rar/file' },
-                    { text: 'Parte 4', url: 'https://www.mediafire.com/file/zzsigk13vzcheq7/LISR2022PG.GamezFull.com.part04.rar/file' },
-                    { text: 'Parte 5', url: 'https://www.mediafire.com/file/3hp4m91r3bnjqxn/LISR2022PG.GamezFull.com.part05.rar/file' },
-                    { text: 'Parte 6', url: 'https://www.mediafire.com/file/omxk66qeefqid46/LISR2022PG.GamezFull.com.part06.rar/file' },
-                    { text: 'Parte 7', url: 'https://www.mediafire.com/file/ooc8tz325kic4n5/LISR2022PG.GamezFull.com.part07.rar/file' },
-                    { text: 'Parte 8', url: 'https://www.mediafire.com/file/6idblgdr3xlhkfy/LISR2022PG.GamezFull.com.part08.rar/file' },
-                    { text: 'Parte 9', url: 'https://www.mediafire.com/file/zf0xvja4m8587cy/LISR2022PG.GamezFull.com.part09.rar/file' },
-                    { text: 'Parte 10', url: 'https://www.mediafire.com/file/ovfmgsqfwuwjp69/LISR2022PG.GamezFull.com.part10.rar/file' },
-                    { text: 'Parte 11', url: 'https://www.mediafire.com/file/m7apb8qe6grcl5j/LISR2022PG.GamezFull.com.part11.rar/file' },
-                    { text: 'Parte 12', url: 'https://www.mediafire.com/file/509o3n4mr0rw4cs/LISR2022PG.GamezFull.com.part12.rar/file' },
-                    { text: 'Parte 13', url: 'https://www.mediafire.com/file/pic8i7asaaypp4j/LISR2022PG.GamezFull.com.part13.rar/file' },
-                    { text: 'Parte 14', url: 'https://www.mediafire.com/file/ojvj03518eoqvfx/LISR2022PG.GamezFull.com.part14.rar/file' },
-                    { text: 'Parte 15', url: 'https://www.mediafire.com/file/vrg2w89n6eka8vl/LISR2022PG.GamezFull.com.part15.rar/file' },
-                    { text: 'Parte 16', url: 'https://www.mediafire.com/file/v6yyfnmaxe1s1ri/LISR2022PG.GamezFull.com.part16.rar/file' }
-                ]
-            },
-            { text: 'Descargar actualización 07.02.2022', url: 'https://www.mediafire.com/file/3gthu6ukt6ztcqx/Update+07.02.2022.rar/file' }
-        ],
-        'garrys-mod': [
-            { text: 'Descargar Garry\'s Mod', url: 'https://www.mediafire.com/file/53ubzb9a32lcu9u/Garrys_Mod_v1.5.80.0.rar/file', readMoreText: '- Actualizable\n- Página para descargar addons: https://kajar9.wixsite.com/cscheater2/downloads' }]
+        'ion-fury': [{ text: 'Descargar Ion Fury', url: 'https://drive.usercontent.google.com/download?id=1mHna_GXRcEDN6fr4zHoMCXF6Z7phlWOB&authuser=0' }],
+        'halo-ce': [{ text: 'Descargar Halo: Combat Evolved', url: 'https://www.mediafire.com/file/jftpybq93hfqy26/HCE_2001.rar/file', readMoreText: '- Versión 1.0.10\n- Multijugador funcional' }]
     };
 
     // Optimizaciones avanzadas para carga de imágenes
@@ -451,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            // Código de botón de mochila eliminado
+
         } else {
             const listItem = document.createElement('li');
             listItem.textContent = 'No hay enlaces de descarga disponibles para este juego.';
@@ -573,7 +407,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 img.setAttribute('loading', 'lazy');
             }
 
-            // Código de botón de mochila eliminado
 
             // Optimización de carga de imágenes
             function processLoadedImage() {
@@ -717,36 +550,5 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => {
             console.error('Error cargando la galería:', error);
         });
-
-
-
-    // Optimización de memoria y limpieza de recursos (ya no necesaria con LRU)
-    function cleanupResources() {
-        // La política LRU ya maneja el tamaño del cache automáticamente
-        // Solo limpiar entradas de acceso huérfanas si existen
-        for (const key of imageCacheAccess.keys()) {
-            if (!imageCache.has(key)) {
-                imageCacheAccess.delete(key);
-            }
-        }
-    }
-
-    // Limpiar recursos ocasionalmente (menos frecuente con LRU) usando setTimeout recursivo
-    function scheduleCleanup() {
-        setTimeout(() => {
-            cleanupResources();
-            scheduleCleanup(); // Programar la siguiente limpieza
-        }, 600000); // Cada 10 minutos
-    }
-    scheduleCleanup();
-
-    // Intersection Observer ya es eficiente automáticamente en background
-    // No es necesario pausarlo manualmente
-
-
-
-    // Event listeners para la mochila eliminados
-
-    // Fetch duplicado eliminado - ya se carga arriba
 
 });
