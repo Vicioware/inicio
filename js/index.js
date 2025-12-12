@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const gameItems = document.querySelectorAll('.game-item');
-    
+
     // Variable para almacenar el ID del juego actual
     let currentGameId = null;
 
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // const galleryContainer = document.querySelector('.gallery-container'); // No longer needed for icon alignment
     const searchBar = document.getElementById('searchBar'); // searchBar ya está aquí
 
-    
+
     // Elementos del modal de detalles
     const detailsModal = document.getElementById('detailsModal');
     const detailsContent = document.getElementById('detailsContent');
@@ -35,37 +35,37 @@ document.addEventListener('DOMContentLoaded', () => {
         const gameName = modalGameTitle.textContent;
         partsModalTitle.textContent = `Seleccionar parte`;
         partsContainer.innerHTML = '';
-        
+
         parts.forEach((part, index) => {
             const partButton = document.createElement('button');
             partButton.className = 'part-button';
             partButton.textContent = part.text;
-            
+
             // Verificar si esta parte ya fue descargada
             const partKey = `${gameId}-${index}`;
             if (downloadedParts[partKey]) {
                 partButton.classList.add('downloaded');
             }
-            
+
             partButton.addEventListener('click', () => {
                 // Marcar como descargada
                 downloadedParts[partKey] = true;
                 localStorage.setItem('downloadedParts', JSON.stringify(downloadedParts));
                 partButton.classList.add('downloaded');
-                
+
                 // Abrir enlace de descarga
                 window.open(part.url, '_blank', 'noopener');
-                
+
 
             });
-            
+
             partsContainer.appendChild(partButton);
         });
-        
+
         partsModal.classList.add('is-open');
         document.body.classList.add('modal-blur-active');
     }
-    
+
     function closePartsModal() {
         partsModal.classList.remove('is-open');
         document.body.classList.remove('modal-blur-active');
@@ -73,26 +73,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Data for download links
     const gameDownloadLinksData = {
-        'gta-sa': [ { text: 'Descargar GTA San Andreas', url: 'https://www.mediafire.com/file/cu77pvw068jlvxy/GTASA.iso/file' }],
-        'cuphead': [ { text: 'Descargar Cuphead', url: 'https://www.mediafire.com/file/z6qrhatejixijzs/CDE.rar/file', readMoreText: '- Incluye DLC' }],
-		'gta3': [{ text: 'Descargar GTA III', url: 'https://www.mediafire.com/file/zdvttk6hzyv1ola/GTA-III.rar/file', readMoreText: '- Archivos originales, juego completo\n- Si el juego no inicia, ejecutarlo en modo de compatibilidad con Windows Service Pack 2' }],
-		'kf1': [
+        'gta-sa': [{ text: 'Descargar GTA San Andreas', url: 'https://www.mediafire.com/file/cu77pvw068jlvxy/GTASA.iso/file' }],
+        'cuphead': [{ text: 'Descargar Cuphead', url: 'https://www.mediafire.com/file/z6qrhatejixijzs/CDE.rar/file', readMoreText: '- Incluye DLC' }],
+        'gta3': [{ text: 'Descargar GTA III', url: 'https://www.mediafire.com/file/zdvttk6hzyv1ola/GTA-III.rar/file', readMoreText: '- Archivos originales, juego completo\n- Si el juego no inicia, ejecutarlo en modo de compatibilidad con Windows Service Pack 2' }],
+        'kf1': [
             { text: 'Descargar Killing Floor', url: 'https://www.mediafire.com/file/zffmwemajvs09dq/KF1.rar/file' },
             { text: 'Descargar doblaje latino (mod)', url: 'https://drive.usercontent.google.com/download?id=1gMla8WvRv-XT9OIjqMre9gPsihb2QqAk&export=download&authuser=0' }],
-		'blur': [{ text: 'Descargar Blur', url: 'https://www.mediafire.com/file/gg1jyyp0grgf8fk/BLR.iso/file' }],
+        'blur': [{ text: 'Descargar Blur', url: 'https://www.mediafire.com/file/gg1jyyp0grgf8fk/BLR.iso/file' }],
         'gta-vc': [{ text: 'Descargar GTA Vice City', url: 'https://www.mediafire.com/file/negikbx0esjy4zb/GTAVC.iso/file', readMoreText: '- Archivos originales, juego completo.' }],
         'vampire-survivors': [{ text: 'Descargar Vampire Survivors', url: 'https://www.mediafire.com/file/w7r10dc1rb85n4r/Vampi6reSurv1ivors-1.13.109-elamigos.rar/file', readMoreText: '- Versión 1.113.109\n- Todos los DLC' }],
         'unmetal': [{ text: 'Descargar Unmetal', url: 'https://www.mediafire.com/file/7rw1oidswulksof/UCP.rar/file', readMoreText: '-Creator Pack incluído' }],
         'portal': [{ text: 'Descargar Portal', url: 'https://www.mediafire.com/file/keszhjrcvsx5jra/PPC.iso/file' }],
-        'portal-prelude': [{ text: 'Descargar Portal: Prelude', url: 'https://www.mediafire.com/file/baty7j3o8cwtj6j/PP08.rar/file', readMoreText: '- Última actualización de la versión original (2008)'}],
+        'portal-prelude': [{ text: 'Descargar Portal: Prelude', url: 'https://www.mediafire.com/file/baty7j3o8cwtj6j/PP08.rar/file', readMoreText: '- Última actualización de la versión original (2008)' }],
         'portal2': [
             { text: 'Descargar Portal 2', url: 'https://www.mediafire.com/file/srerms85g91g4zw/P2PC.iso/file' },
             { text: 'Descargar FIX ONLINE', url: 'https://mega.nz/file/IJcxgYTB#QSuKFAd5K0VyQqbQaKpgus8UBiDA_PeqXUK_2O_kJY4' }
         ],
         'cs16': [{ text: 'Descargar Counter Strike 1.6', url: 'https://www.mediafire.com/file/8g8eh2v1xja2pju/CS16.rar/file', readMoreText: '- Versión NO STEAM' }],
         'REPO': [
-			{ text: 'Descargar R.E.P.O', url: 'https://www.mediafire.com/file/lcb75sjs3daatgv' },
-			{ text: 'Descargar traducción al español', url: 'https://www.mediafire.com/file/cl385wv3mzw7def/TRADUCCi%25C3%2593N_R.E.P.O_SPA.rar/file', readMoreText: '- Fix online incluído' }],
+            { text: 'Descargar R.E.P.O', url: 'https://www.mediafire.com/file/lcb75sjs3daatgv' },
+            { text: 'Descargar traducción al español', url: 'https://www.mediafire.com/file/cl385wv3mzw7def/TRADUCCi%25C3%2593N_R.E.P.O_SPA.rar/file', readMoreText: '- Fix online incluído' }],
         'dbfz': [
             { text: 'Descargar Dragon Ball FighterZ', url: 'https://www.mediafire.com/file/6b8kehvf141zxbm/678950.rar/file' },
             { text: 'Descargar Asistente DBFZ', url: 'https://www.mediafire.com/file/o2e5z2mewe4h8mr/DBFZ_Assistant.rar/file', readMoreText: '- Versión 1.31\n- Descargar el asistente solo si quieres:\n· actualizar a los personajes a la versión 1.38\n· optimización\n· solucionar errores de ejecución' }],
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'slendytubbies2': [{ text: 'Descargar Slendytubbies 2', url: 'https://www.mediafire.com/file/13z3i2116t00m0g/' }],
         'slendytubbies3': [
             { text: 'Descargar Slendytubbies 3 (Multijugador)', url: 'https://www.mediafire.com/file_premium/lqhyvva24iuinxc/Slendytubbies_3_Multiplayer_%2528x64%2529.zip/file' },
-            { text: 'Descargar Slendytubbies 3 (Campaña)', url: 'https://www.mediafire.com/file/249yxzi56wn17r6/Slendytubbies_3_V1_295_%252864bit%2529.zip/file'}
+            { text: 'Descargar Slendytubbies 3 (Campaña)', url: 'https://www.mediafire.com/file/249yxzi56wn17r6/Slendytubbies_3_V1_295_%252864bit%2529.zip/file' }
         ],
         'colin-mcrae-rally': [{ text: 'Descargar Colin Mcrae Rally (1998)', url: 'https://www.mediafire.com/file/bzhwoocqvzm7epe/CMR.rar/file' }],
         'colin-mcrae-rally2': [{ text: 'Descargar Colin Mcrae Rally 2.0', url: 'https://www.mediafire.com/file/kd8zvf1wyr9srp6/CMR2.rar/file' }],
@@ -122,9 +122,9 @@ document.addEventListener('DOMContentLoaded', () => {
         'combat-task-force': [{ text: 'Descargar Combat: Task Force 121', url: 'https://www.mediafire.com/file/i4resaqoost37ev/CTF.rar/file' }],
         'commandos-sf': [{ text: 'Descargar Commandos: Strike Force', url: 'https://www.mediafire.com/file/h3o7n9boad1hr38/CSF.rar/file' }],
         'sftg': [{ text: 'Descargar Stick Fight: The Game', url: 'https://www.mediafire.com/file/4ob4j8uxu6iauvo/SFtheGv05.06.2019.rar/file' }],
-		'deep-rock-galactic': [{ text: 'Descargar Deep Rock Galactic', url: 'https://www.mediafire.com/file/c02ed8y41g8mp03/Deep.Rock.Galactic.v1.39.113250.0-0xdeadcode.zip/file' }],
-		'lost-planet': [{ text: 'Descargar Lost Planet', url: 'https://www.mediafire.com/file/br6xop7n9r3cicx/L8st_Pl9n3t_3xtr3m3_C8nd1t18n_C8l8n13s_3d1t18n.rar/file' }],
-		'blood-knights': [{ text: 'Descargar Blood Knights', url: 'https://www.mediafire.com/file/tz5n0miu2lqe0am/BKPC.7z/file', readMoreText: '- Para poner el juego en español, abrir el archivo "settings.ini", y cambiar los valores de "game_language_text" y "game_language_voice" de "english" a "spanish"\n- En el mismo archivo, también puedes cambiar el valor de "vsync" de "true" a "false" para desactivar la sincronización vertical' }],
+        'deep-rock-galactic': [{ text: 'Descargar Deep Rock Galactic', url: 'https://www.mediafire.com/file/c02ed8y41g8mp03/Deep.Rock.Galactic.v1.39.113250.0-0xdeadcode.zip/file' }],
+        'lost-planet': [{ text: 'Descargar Lost Planet', url: 'https://www.mediafire.com/file/br6xop7n9r3cicx/L8st_Pl9n3t_3xtr3m3_C8nd1t18n_C8l8n13s_3d1t18n.rar/file' }],
+        'blood-knights': [{ text: 'Descargar Blood Knights', url: 'https://www.mediafire.com/file/tz5n0miu2lqe0am/BKPC.7z/file', readMoreText: '- Para poner el juego en español, abrir el archivo "settings.ini", y cambiar los valores de "game_language_text" y "game_language_voice" de "english" a "spanish"\n- En el mismo archivo, también puedes cambiar el valor de "vsync" de "true" a "false" para desactivar la sincronización vertical' }],
         'bbt': [
             { text: 'Descargar BattleBlock Theater', url: 'https://drive.usercontent.google.com/download?id=16ZdlYUXGIYwPEzQHxt49jeuoYPMxKoH_&export=download&authuser=0' },
             { text: 'Descargar FIX ONLINE', url: 'https://mega.nz/file/Py4klbiC#-mYHkTdmSRe6sABMLz7-s2l5oxkj9nlIc8p59z7t57o' }],
@@ -150,8 +150,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'fnaf5': [
             { text: 'Descargar FNAF 5: Sister Location', url: 'https://www.mediafire.com/file/ye20nk6wxgbk8ch/FNAF5.exe/file' }],
         'tomb-raider': [
-            { 
-                text: 'Descargar Tomb Raider', 
+            {
+                text: 'Descargar Tomb Raider',
                 parts: [
                     { text: 'Parte 1', url: 'https://www.mediafire.com/file/418clzp3v4p0d6n/TR2013DEPGv1.01.GamezFull.com.part1.rar/file' },
                     { text: 'Parte 2', url: 'https://www.mediafire.com/file/whytecgki5rbyfv/TR2013DEPGv1.01.GamezFull.com.part2.rar/file' },
@@ -198,8 +198,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         ],
         'dead-space3': [
-            { 
-                text: 'Descargar Dead Space 3', 
+            {
+                text: 'Descargar Dead Space 3',
                 parts: [
                     { text: 'Parte 1', url: 'https://rapidshare.co/en/d/rb85h9EyANiqSI' },
                     { text: 'Parte 2', url: 'https://rapidshare.co/en/d/fQjBweUPQS506q' },
@@ -216,8 +216,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'life-is-strange-before-the-storm': [
             { text: 'Descargar Life is Strange: Before the Storm', url: 'https://www.mediafire.com/file/skhjs6ailng2kya/L1f3_1s_Str4ng3_B3f8r3_th3_St8rm_%25281ncl._F4r3w3ll_3p1s8d3%2529.rar/file' }],
         'life-is-strange-before-the-storm-r': [
-            { 
-                text: 'Descargar Life is Strange: Before the Storm (REMASTER)', 
+            {
+                text: 'Descargar Life is Strange: Before the Storm (REMASTER)',
                 parts: [
                     { text: 'Parte 1', url: 'https://www.mediafire.com/file/q08m7zqfrrj8xl0/LISR2022PG.GamezFull.com.part01.rar/file' },
                     { text: 'Parte 2', url: 'https://www.mediafire.com/file/6gwf56fvycwi7es/LISR2022PG.GamezFull.com.part02.rar/file' },
@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const imageCache = new Map();
     const imageCacheAccess = new Map(); // Para política LRU
     const MAX_CACHE_SIZE = 50;
-    
+
     const intersectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function loadImageOptimized(img) {
         const src = img.dataset.src || img.src;
-        
+
         // Actualizar acceso para política LRU
         if (imageCache.has(src)) {
             imageCacheAccess.set(src, Date.now());
@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Crear imagen WebP con fallback
         const webpSrc = src.replace(/\.(png|jpg|jpeg)$/i, '.webp');
         const testImg = new Image();
-        
+
         testImg.onload = () => {
             manageCacheSize();
             imageCache.set(src, webpSrc);
@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
             img.style.opacity = '1';
             img.style.willChange = 'auto';
         };
-        
+
         testImg.onerror = () => {
             manageCacheSize();
             imageCache.set(src, src);
@@ -298,24 +298,24 @@ document.addEventListener('DOMContentLoaded', () => {
             img.style.opacity = '1';
             img.style.willChange = 'auto';
         };
-        
+
         testImg.src = webpSrc;
     }
-    
+
     // Política LRU para el cache
     function manageCacheSize() {
         if (imageCache.size >= MAX_CACHE_SIZE) {
             // Encontrar la entrada menos recientemente usada
             let oldestKey = null;
             let oldestTime = Date.now();
-            
+
             for (const [key, time] of imageCacheAccess) {
                 if (time < oldestTime) {
                     oldestTime = time;
                     oldestKey = key;
                 }
             }
-            
+
             if (oldestKey) {
                 imageCache.delete(oldestKey);
                 imageCacheAccess.delete(oldestKey);
@@ -339,7 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const isVisible = visibleGameItems.includes(item);
             const isInViewport = index < 12; // Primeras 12 imágenes (3 filas típicas)
-            
+
             if (isVisible && isInViewport) {
                 // Carga inmediata para imágenes críticas
                 img.removeAttribute('loading');
@@ -385,11 +385,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (gameId && gameDownloadLinksData[gameId]) {
             const links = gameDownloadLinksData[gameId];
             let hasAnyDetails = links.some(linkInfo => linkInfo.readMoreText);
-            
+
             links.forEach((linkInfo, index) => {
-                
+
                 const listItem = document.createElement('li');
-                
+
                 // Verificar si el enlace tiene partes
                 if (linkInfo.parts && linkInfo.parts.length > 0) {
                     // Crear botón especial para juegos con partes
@@ -397,11 +397,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     partsButton.textContent = linkInfo.text;
                     partsButton.className = 'download-with-parts';
                     // Los estilos se aplican completamente desde CSS
-                    
+
                     partsButton.addEventListener('click', () => {
                         openPartsModal(linkInfo.parts, gameId);
                     });
-                    
+
                     listItem.appendChild(partsButton);
                 } else {
                     // Crear enlace normal
@@ -409,10 +409,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     anchor.href = linkInfo.url;
                     anchor.textContent = linkInfo.text;
                     anchor.target = '_blank'; // Abrir en nueva pestaña
-                    
+
                     listItem.appendChild(anchor);
                 }
-                
+
                 // Solo agregar event listener para enlaces normales
                 const anchor = listItem.querySelector('a');
                 if (anchor) {
@@ -437,10 +437,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     const detailsText = linkInfo.readMoreText;
 
                     // Evento para abrir el modal de detalles
-                    readMoreToggle.addEventListener('click', function() {
+                    readMoreToggle.addEventListener('click', function () {
                         // Establecer el contenido del modal
                         detailsContent.textContent = detailsText;
-                        
+
                         // Mostrar el modal
                         detailsModal.classList.add('is-open');
                     });
@@ -450,7 +450,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     listItem.appendChild(readMoreContainer);
                 }
             });
-            
+
             // Código de botón de mochila eliminado
         } else {
             const listItem = document.createElement('li');
@@ -479,12 +479,12 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }
     });
-    
+
     // Cerrar el modal de detalles al hacer clic en la X
     detailsCloseButton.addEventListener('click', () => {
         detailsModal.classList.remove('is-open');
     });
-    
+
     // Cerrar el modal de detalles al hacer clic fuera del contenido
     detailsModal.addEventListener('click', (e) => {
         if (e.target === detailsModal) {
@@ -494,7 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event listeners para el modal de partes
     partsCloseButton.addEventListener('click', closePartsModal);
-    
+
     // Cerrar el modal de partes al hacer clic fuera del contenido
     partsModal.addEventListener('click', (e) => {
         if (e.target === partsModal) {
@@ -543,14 +543,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         // Actualizar la prioridad de carga después de filtrar
         updateImageLoadingPriority();
-        
+
     });
 
     // --- INICIALIZACIÓN DE GALERÍA DINÁMICA Y EVENTOS ---
     function initGallery() {
         const gameItems = document.querySelectorAll('.game-item');
         const hoverImageCache = new Map();
-        
+
         // --- Eventos de tarjetas ---
         gameItems.forEach(item => {
             // Prevenir event listeners duplicados
@@ -558,7 +558,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             item.dataset.listenersAdded = 'true';
-            
+
             const img = item.querySelector('img');
             const originalSrc = img.getAttribute('src');
             const hoverSrc = item.dataset.hoverSrc;
@@ -585,7 +585,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     img.style.willChange = 'auto';
                 }
             }
-            
+
             if (img.complete && img.naturalWidth > 0) {
                 processLoadedImage();
             } else {
@@ -599,11 +599,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // Precarga hover mejorada con AbortController
             item.addEventListener('mouseenter', () => {
                 isMouseOverContainer = true;
-                
+
                 // Cancelar precarga anterior
                 preloadController.abort();
                 preloadController = new AbortController();
-                
+
                 // Precargar imagen hover solo después de 300ms de hover
                 if (hoverSrc && !hoverImageCache.has(hoverSrc)) {
                     const timeoutId = setTimeout(() => {
@@ -613,13 +613,13 @@ document.addEventListener('DOMContentLoaded', () => {
                             hoverImg.src = hoverSrc;
                         }
                     }, 300);
-                    
+
                     // Cancelar timeout si se aborta
                     preloadController.signal.addEventListener('abort', () => {
                         clearTimeout(timeoutId);
                     });
                 }
-                
+
                 if (hoverSrc) {
                     if (hoverTimer) clearTimeout(hoverTimer);
                     hoverTimer = setTimeout(() => {
@@ -630,13 +630,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     }, 800);
                 }
             });
-            
+
             item.addEventListener('mouseleave', () => {
                 isMouseOverContainer = false;
-                
+
                 // Cancelar precarga y hover
                 preloadController.abort();
-                
+
                 if (hoverTimer) {
                     clearTimeout(hoverTimer);
                     hoverTimer = null;
@@ -646,7 +646,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     isHoverImageDisplayed = false;
                 }
             });
-            
+
             // Modal al hacer clic
             item.addEventListener('click', (event) => {
                 event.preventDefault();
@@ -657,7 +657,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
-        
+
         updateImageLoadingPriority();
     }
     window.initGallery = initGallery;
@@ -673,10 +673,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- CARGA DINÁMICA DE LA GALERÍA Y FILTRO ---
-    // Detectar si estamos en jar-games.html para cargar la galería correcta
-    const isJarGamesPage = window.location.pathname.includes('jar-games.html');
-    const galleryFile = isJarGamesPage ? 'gallery-jar.html' : 'gallery-index.html';
-    
+    // Carga de la galería
+    const galleryFile = 'gallery-index.html';
+
     fetch(galleryFile)
         .then(response => response.text())
         .then(html => {
@@ -687,7 +686,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (gallery) {
                 document.querySelector('.gallery-container').innerHTML = gallery.innerHTML;
             }
-            
+
             // Optimizar viewport antes de inicializar
             optimizeViewport();
             window.initGallery();
@@ -701,7 +700,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     searchTimeout = setTimeout(() => {
                         const rawSearchTerm = event.target.value.trim();
                         const sanitizedSearchTerm = sanitizeSearchTerm(rawSearchTerm);
-                        
+
                         // Usar requestAnimationFrame para mejor rendimiento
                         requestAnimationFrame(() => {
                             document.querySelectorAll('.game-item').forEach(item => {
@@ -744,7 +743,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Intersection Observer ya es eficiente automáticamente en background
     // No es necesario pausarlo manualmente
 
-    
+
 
     // Event listeners para la mochila eliminados
 
