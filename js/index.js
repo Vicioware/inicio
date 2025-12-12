@@ -27,6 +27,30 @@ document.addEventListener('DOMContentLoaded', () => {
     // Array para rastrear partes descargadas
     let downloadedParts = JSON.parse(localStorage.getItem('downloadedParts')) || {};
 
+    // Limpieza de partes expiradas (1 minuto para pruebas)
+    const THIRTY_DAYS_MS = 60 * 1000;
+    const now = Date.now();
+    let partsUpdated = false;
+
+    Object.keys(downloadedParts).forEach(key => {
+        const value = downloadedParts[key];
+        if (value === true) {
+            // Migrar datos legacy (antes solo guardaba true)
+            downloadedParts[key] = now;
+            partsUpdated = true;
+        } else if (typeof value === 'number') {
+            // Verificar expiración
+            if (now - value > THIRTY_DAYS_MS) {
+                delete downloadedParts[key];
+                partsUpdated = true;
+            }
+        }
+    });
+
+    if (partsUpdated) {
+        localStorage.setItem('downloadedParts', JSON.stringify(downloadedParts));
+    }
+
 
 
     // Funciones para el modal de partes
@@ -48,8 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             partButton.addEventListener('click', () => {
-                // Marcar como descargada
-                downloadedParts[partKey] = true;
+                // Marcar como descargada con timestamp
+                downloadedParts[partKey] = Date.now();
                 localStorage.setItem('downloadedParts', JSON.stringify(downloadedParts));
                 partButton.classList.add('downloaded');
 
