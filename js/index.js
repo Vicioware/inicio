@@ -605,66 +605,107 @@ document.addEventListener('DOMContentLoaded', () => {
     window.initGallery = initGallery;
 
     function initAlphabetFilter() {
-        const toggleBtn = document.getElementById('filterToggleBtn');
+        const sortToggleBtn = document.getElementById('sortToggleBtn');
+        const filterToggleBtn = document.getElementById('filterToggleBtn');
+        const sortMenu = document.getElementById('sortMenu');
         const filterMenu = document.getElementById('filterMenu');
         const alphabetGrid = document.getElementById('alphabetGrid');
+
         const sortAscBtn = document.getElementById('sortAscBtn');
         const sortDescBtn = document.getElementById('sortDescBtn');
+        const sortRecentBtn = document.getElementById('sortRecentBtn');
 
-        if (!toggleBtn || !filterMenu || !alphabetGrid) return;
+        if (!sortToggleBtn || !filterToggleBtn || !sortMenu || !filterMenu || !alphabetGrid) return;
 
         let activeLetter = null;
-        let currentSortOrder = 'asc'; // 'asc' or 'desc'
+        let currentSortOrder = 'recent'; // 'recent', 'asc', 'desc'
 
-        // Toggle Menu
-        toggleBtn.addEventListener('click', (e) => {
+        // Helper to close all menus
+        function closeAllMenus() {
+            sortMenu.classList.remove('is-open');
+            filterMenu.classList.remove('is-open');
+            sortToggleBtn.classList.remove('active');
+            filterToggleBtn.classList.remove('active');
+        }
+
+        // Toggle Sort Menu
+        sortToggleBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            filterMenu.classList.toggle('is-open');
-            filterMenu.classList.remove('hidden'); // Ensure hidden class is removed for CSS transition
-            toggleBtn.classList.toggle('active');
+            if (sortMenu.classList.contains('is-open')) {
+                closeAllMenus();
+            } else {
+                closeAllMenus();
+                sortMenu.classList.add('is-open');
+                sortMenu.classList.remove('hidden');
+                sortToggleBtn.classList.add('active');
+            }
+        });
+
+        // Toggle Filter Menu
+        filterToggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (filterMenu.classList.contains('is-open')) {
+                closeAllMenus();
+            } else {
+                closeAllMenus();
+                filterMenu.classList.add('is-open');
+                filterMenu.classList.remove('hidden');
+                filterToggleBtn.classList.add('active');
+            }
         });
 
         // Close menu when clicking outside
         window.addEventListener('click', (e) => {
-            if (filterMenu.classList.contains('is-open') && !filterMenu.contains(e.target) && !toggleBtn.contains(e.target)) {
-                filterMenu.classList.remove('is-open');
-                toggleBtn.classList.remove('active');
+            if (!sortMenu.contains(e.target) && !filterMenu.contains(e.target) &&
+                !sortToggleBtn.contains(e.target) && !filterToggleBtn.contains(e.target)) {
+                closeAllMenus();
             }
         });
 
         // Sorting Logic
+        const gameKeys = Object.keys(gameDownloadLinksData);
+        // Map gameId -> index (higher index = more recent)
+        const gameIndexMap = new Map(gameKeys.map((key, index) => [key, index]));
+
         function sortGames(order) {
             const galleryContainer = document.querySelector('.gallery-container');
             const items = Array.from(document.querySelectorAll('.game-item'));
 
             items.sort((a, b) => {
+                const idA = a.dataset.gameId;
+                const idB = b.dataset.gameId;
                 const nameA = a.querySelector('p').textContent.trim().toLowerCase();
                 const nameB = b.querySelector('p').textContent.trim().toLowerCase();
-                return order === 'asc' ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
+
+                if (order === 'recent') {
+                    const indexA = gameIndexMap.has(idA) ? gameIndexMap.get(idA) : -1;
+                    const indexB = gameIndexMap.has(idB) ? gameIndexMap.get(idB) : -1;
+                    // Descending index
+                    return indexB - indexA;
+                } else if (order === 'asc') {
+                    return nameA.localeCompare(nameB);
+                } else if (order === 'desc') {
+                    return nameB.localeCompare(nameA);
+                }
             });
 
             // Re-append sorted items
             items.forEach(item => galleryContainer.appendChild(item));
 
             currentSortOrder = order;
+
+            // Update UI buttons
+            [sortAscBtn, sortDescBtn, sortRecentBtn].forEach(btn => btn.classList.remove('active'));
+            if (order === 'asc') sortAscBtn.classList.add('active');
+            if (order === 'desc') sortDescBtn.classList.add('active');
+            if (order === 'recent') sortRecentBtn.classList.add('active');
+
             updateImageLoadingPriority();
         }
 
-        sortAscBtn.addEventListener('click', () => {
-            if (currentSortOrder !== 'asc') {
-                sortGames('asc');
-                sortAscBtn.classList.add('active');
-                sortDescBtn.classList.remove('active');
-            }
-        });
-
-        sortDescBtn.addEventListener('click', () => {
-            if (currentSortOrder !== 'desc') {
-                sortGames('desc');
-                sortDescBtn.classList.add('active');
-                sortAscBtn.classList.remove('active');
-            }
-        });
+        sortAscBtn.addEventListener('click', () => sortGames('asc'));
+        sortDescBtn.addEventListener('click', () => sortGames('desc'));
+        sortRecentBtn.addEventListener('click', () => sortGames('recent'));
 
 
         // Alphabet Generation and Filtering

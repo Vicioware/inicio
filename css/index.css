@@ -958,3 +958,78 @@ body.modal-blur-active>*:not(#downloadModal):not(#detailsModal):not(#partsModal)
         transform: translateX(50%) translateY(0);
     }
 }
+.filter-wrapper {
+    gap: 12px;
+}
+
+.filter-group {
+    position: relative;
+}
+
+/* Adjust filter menu position for splitting */
+.filter-menu {
+    right: 0;
+    min-width: 240px;
+}
+
+.sort-menu {
+    min-width: 260px;
+}
+
+.sort-options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sort-option-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ccc;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.95em;
+    text-align: left;
+    transition: all 0.2s ease;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sort-option-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transform: translateX(2px);
+}
+
+.sort-option-btn.active {
+    background: #5ac560;
+    color: #fff;
+    border-color: #5ac560;
+    font-weight: 600;
+}
+
+/* Add checkmark for active sort */
+.sort-option-btn.active::after {
+    content: '✓';
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .filter-wrapper {
+        justify-content: center;
+    }
+
+    .filter-menu {
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%) translateY(-10px);
+    }
+
+    .filter-menu.is-open {
+        transform: translateX(-50%) translateY(0);
+    }
+}
