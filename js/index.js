@@ -206,7 +206,23 @@ document.addEventListener('DOMContentLoaded', () => {
             { text: 'Descargar FNAF 4: Halloween Edition (FANDUB ESPAÑOL)', url: 'https://www.mediafire.com/file/hmmszewyab5t7fb/Five_Nights_at_Freddy%25C2%25B4s_4_Halloween_Edition.exe/file' }
         ],
         'fnaf5': [{ text: 'Descargar FNAF: Sister Location', url: 'https://www.mediafire.com/file/ye20nk6wxgbk8ch/FNAF5.exe/file' }],
-        'aoe': [{ text: 'Descargar Age of Empires', url: 'https://www.mediafire.com/file/07q3ddrnk95c436/AOEGE.iso/file' }]
+        'aoe': [{ text: 'Descargar Age of Empires', url: 'https://www.mediafire.com/file/07q3ddrnk95c436/AOEGE.iso/file' }],
+        'cs16': [{ text: 'Descargar Counter Strike 1.6 (NO STEAM)', url: 'https://www.mediafire.com/file/8g8eh2v1xja2pju/CS16.rar/file' }],
+        'blur': [{ text: 'Descargar Blur', url: 'https://www.mediafire.com/file/gg1jyyp0grgf8fk/BLR.iso/file' }],
+        'conan04': [{ text: 'Descargar Conan (2004)', url: 'https://www.mediafire.com/file/xqlhnvi8pfggukf/C04.rar/file' }],
+        'assassinscreed': [
+            {
+                text: 'Descargar Assassin\'s Creed',
+                parts: [
+                    { text: 'Parte 1', url: 'https://rapidshare.co/en/d/vEj0YHJOFHMgF8' },
+                    { text: 'Parte 2', url: 'https://rapidshare.co/en/d/trIeSL6rItGv1R' }
+                ]
+            }
+        ]
+
+
+
+
 
 
 
