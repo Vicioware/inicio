@@ -150,6 +150,37 @@ document.addEventListener('DOMContentLoaded', () => {
                     { text: 'Parte 7', url: 'https://rapidshare.co/en/d/b2gxytlfBi2zEk' }
                 ]
             }
+        ],
+        'rcrdx': [{ text: 'Descargar Retro City Rampage DX', url: 'https://mega.nz/file/vuwhTRQL#FdYuUSz8Nr1s7wuROhCb7nJ2Vt-p2qwxKC2QCl18drs' }],
+        'into-the-breach': [{ text: 'Descargar Into the Breach', url: 'https://mega.nz/file/Nd0xlSIZ#28Tp9-1bQG2Wkjs80o-Q8CdBqoJGL2Dh3gmykAwpxtk' }],
+        'enter-the-gungeon': [{ text: 'Descargar Enter the Gungeon', url: 'https://www.mediafire.com/file/rws1g4w546qauae/Enter.the.gun.v2.1.9.rar/file' }],
+        'postal2': [
+            {
+                text: 'Descargar Postal 2',
+                parts: [
+                    { text: 'Parte 1', url: 'https://www.mediafire.com/file/mrsm05ufxazkehu/P2CPG.GamezFull.com.part1.rar/file' },
+                    { text: 'Parte 2', url: 'https://www.mediafire.com/file/2hc0bux8d192hs7/P2CPG.GamezFull.com.part2.rar/file' },
+                    { text: 'Parte 3', url: 'https://www.mediafire.com/file/xyy6kp1e2efcikp/P2CPG.GamezFull.com.part3.rar/file' },
+                    { text: 'Parte 4', url: 'https://www.mediafire.com/file/xc4xs641yb5f35w/P2CPG.GamezFull.com.part4.rar/file' },
+                    { text: 'Parte 5', url: 'https://www.mediafire.com/file/o13xhha8pinivp6/P2CPG.GamezFull.com.part5.rar/file' }
+                ]
+            }
+        ],
+        'cod4': [
+            {
+                text: 'Descargar Call of Duty 4: Modern Warfare',
+                parts: [
+                    { text: 'Parte 1', url: 'https://drive.usercontent.google.com/download?id=1vR01prco1VXQ1YCEAVvFmTksLxyEvO7H&authuser=0' },
+                    { text: 'Parte 2', url: 'https://drive.usercontent.google.com/download?id=1LrtO1-MAxXZu6pzgo6IFFEM5FWFvSjgu&authuser=0' },
+                    { text: 'Parte 3', url: 'https://drive.usercontent.google.com/download?id=1du3nxQj5XTuolIm4CSNBWxjz9dQ7PKAx&authuser=0' },
+                    { text: 'Parte 4', url: 'https://drive.usercontent.google.com/download?id=1Q96yRNbcfTMU7FlcmIj-LdCCBaX0voti&authuser=0' },
+                    { text: 'Parte 5', url: 'https://drive.usercontent.google.com/download?id=1vfUhUkhT4zdYEKYQ_fxSLcAeF-kRuaHX&authuser=0' },
+                    { text: 'Parte 6', url: 'https://drive.usercontent.google.com/download?id=1hr4Hx3hKCjdcsXUrEbdYCi5I30b5_5kX&authuser=0' },
+                    { text: 'Parte 7', url: 'https://drive.usercontent.google.com/download?id=1Oh9-Csoiu6SBQg-wYhjWyn-JaO_Yzuof&authuser=0' },
+                    { text: 'Parte 8', url: 'https://drive.usercontent.google.com/download?id=1UezTWvP5uiIgcj_f1oDJ20YgK16N6Fev&authuser=0' },
+                    { text: 'Parte 9', url: 'https://drive.usercontent.google.com/download?id=1s02qBfEGUQPRPl05ipiMSpbSdYY4pgYr&authuser=0' }
+                ]
+            }
         ]
 
     };
