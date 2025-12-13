@@ -222,7 +222,19 @@ document.addEventListener('DOMContentLoaded', () => {
         'cds': [{ text: 'Descargar Conflict Desert Storm', url: 'https://www.mediafire.com/file/5x7es3quv6kyk0n/CDS.rar/file' }],
         'cold-fear': [{ text: 'Descargar Cold Fear', url: 'https://www.mediafire.com/file/yftik1nkpzrvykv/CFPC.rar/file' }],
         'combat-chess': [{ text: 'Descargar Combat Chess', url: 'https://www.mediafire.com/file/8am66wi60bfouzz/CCPC.rar/file' }],
-        'combat-tf121': [{ text: 'Descargar Combat: Task Force 121', url: 'https://www.mediafire.com/file/i4resaqoost37ev/CTF.rar/file' }]
+        'combat-tf121': [{ text: 'Descargar Combat: Task Force 121', url: 'https://www.mediafire.com/file/i4resaqoost37ev/CTF.rar/file' }],
+        'commandos-sf': [{ text: 'Descargar Commandos: Strike Force', url: 'https://www.mediafire.com/file/h3o7n9boad1hr38/CSF.rar/file' }],
+        'stick-fight': [{ text: 'Descargar Stick Fight: The Game', url: 'https://www.mediafire.com/file/4ob4j8uxu6iauvo/SFtheGv05.06.2019.rar/file' }],
+        'lost-planet': [{ text: 'Descargar Lost Planet', url: 'https://www.mediafire.com/file/br6xop7n9r3cicx/L8st_Pl9n3t_3xtr3m3_C8nd1t18n_C8l8n13s_3d1t18n.rar/file' }],
+        'battleblock-theater': [{ text: 'Descargar BattleBlock Theater', url: 'https://drive.usercontent.google.com/download?id=16ZdlYUXGIYwPEzQHxt49jeuoYPMxKoH_&export=download&authuser=0' }],
+        'raft': [{ text: 'Descargar Raft', url: 'https://www.mediafire.com/file/ps2j3etzmsl6zqb/Ra6f3t-1.09-elamigos.rar/file' }],
+        'garrys-mod': [{ text: 'Descargar Garry\'s Mod', url: 'https://www.mediafire.com/file/53ubzb9a32lcu9u/Garrys_Mod_v1.5.80.0.rar/file' }]
+
+
+
+
+
+
 
 
 
