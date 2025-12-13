@@ -190,13 +190,27 @@ document.addEventListener('DOMContentLoaded', () => {
             { text: 'Descargar Slendytubbies 3 (Multijugador)', url: 'https://www.mediafire.com/file_premium/lqhyvva24iuinxc/Slendytubbies_3_Multiplayer_%2528x64%2529.zip/file' }
         ],
         'fnaf': [
-            { text: 'Descargar Five Nights at Freddy\'s (ORIGINAL)', url: 'https://www.mediafire.com/file/qa1jza71rr1uj9k/FNAF.exe/file' },
-            { text: 'Descargar Five Nights at Freddy\'s (FANDUB ESPAÑOL)', url: 'https://www.mediafire.com/file/k5pj0giyyfdwihe/Five_Nights_at_Freddys_Edicion_Ultra.exe/file' }
+            { text: 'Descargar FNAF (ORIGINAL)', url: 'https://www.mediafire.com/file/qa1jza71rr1uj9k/FNAF.exe/file' },
+            { text: 'Descargar FNAF (FANDUB ESPAÑOL)', url: 'https://www.mediafire.com/file/k5pj0giyyfdwihe/Five_Nights_at_Freddys_Edicion_Ultra.exe/file' }
         ],
         'fnaf2': [
-            { text: 'Descargar Five Nights at Freddy\'s 2 (ORIGINAL)', url: 'https://www.mediafire.com/file/o0523msi4t3q4yk/FNAF2.exe/file' },
-            { text: 'Descargar Five Nights at Freddy\'s 2 (FANDUB ESPAÑOL)', url: 'https://www.mediafire.com/file/6nigs93pugt11z2/Five+Nights+at+Freddy%27s+2.exe' }
+            { text: 'Descargar FNAF 2 (ORIGINAL)', url: 'https://www.mediafire.com/file/o0523msi4t3q4yk/FNAF2.exe/file' },
+            { text: 'Descargar FNAF 2 (FANDUB ESPAÑOL)', url: 'https://www.mediafire.com/file/6nigs93pugt11z2/Five+Nights+at+Freddy%27s+2.exe' }
+        ],
+        'fnaf3': [
+            { text: 'Descargar FNAF 3 (ORIGINAL)', url: 'https://www.mediafire.com/file/4wbu771d733e1f1/FNAF3.exe/file' },
+            { text: 'Descargar FNAF 3 (FANDUB ESPAÑOL)', url: 'https://www.mediafire.com/file/1rxjwsgflvdmtq7/Five+Nights+at+Freddy%27s+3.exe' }
+        ],
+        'fnaf4': [
+            { text: 'Descargar FNAF 4: Halloween Edition (ORIGINAL)', url: 'https://www.mediafire.com/file/k9uy7if04x7hjhr/FNAF4-HWE.exe/file' },
+            { text: 'Descargar FNAF 4: Halloween Edition (FANDUB ESPAÑOL)', url: 'https://www.mediafire.com/file/hmmszewyab5t7fb/Five_Nights_at_Freddy%25C2%25B4s_4_Halloween_Edition.exe/file' }
         ]
+
+
+
+
+
+
 
 
 
