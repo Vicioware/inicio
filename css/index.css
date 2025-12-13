@@ -1025,4 +1025,22 @@ body.modal-blur-active>*:not(#downloadModal):not(#detailsModal):not(#partsModal)
     .filter-menu.is-open {
         transform: translateX(-50%) translateY(0);
     }
+}.filter-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 15px 40px;
+    /* Aligned with typical side padding */
+    margin: 0;
+    max-width: 100%;
+}
+
+.filter-group {
+    position: relative;
+}
+
+/* Ensure menu positioning is correct relative to the button */
+.filter-menu {
+    right: 0;
+    margin-top: 5px;
 }
