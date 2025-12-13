@@ -751,7 +751,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Initial Sort
-        sortGames('asc');
+        sortGames('recent');
     }
 
 
