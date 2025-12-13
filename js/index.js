@@ -218,7 +218,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     { text: 'Parte 2', url: 'https://rapidshare.co/en/d/trIeSL6rItGv1R' }
                 ]
             }
-        ]
+        ],
+        'cds': [{ text: 'Descargar Conflict Desert Storm', url: 'https://www.mediafire.com/file/5x7es3quv6kyk0n/CDS.rar/file' }],
+        'cold-fear': [{ text: 'Descargar Cold Fear', url: 'https://www.mediafire.com/file/yftik1nkpzrvykv/CFPC.rar/file' }],
+        'combat-chess': [{ text: 'Descargar Combat Chess', url: 'https://www.mediafire.com/file/8am66wi60bfouzz/CCPC.rar/file' }]
+
+
+
+
 
 
 
