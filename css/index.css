@@ -822,16 +822,7 @@ body.modal-blur-active>*:not(#downloadModal):not(#detailsModal):not(#partsModal)
     }
 }
 
-/* Filter Menu */
-.filter-wrapper {
-    position: relative;
-    max-width: 900px;
-    margin: 0 auto 15px auto;
-    padding: 0 20px;
-    display: flex;
-    justify-content: center;
-    z-index: 1002;
-}
+
 
 .filter-toggle-btn {
     background: linear-gradient(135deg, #2c2c2c, #222);
@@ -962,9 +953,7 @@ body.modal-blur-active>*:not(#downloadModal):not(#detailsModal):not(#partsModal)
     }
 }
 
-.filter-wrapper {
-    gap: 12px;
-}
+
 
 .filter-group {
     position: relative;
