@@ -598,9 +598,64 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
+
         updateImageLoadingPriority();
+        initAlphabetFilter();
     }
     window.initGallery = initGallery;
+
+    function initAlphabetFilter() {
+        const filterContainer = document.getElementById('alphabetFilter');
+        if (!filterContainer) return;
+
+        const alphabet = '#ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+        let activeLetter = null;
+
+        filterContainer.innerHTML = ''; // Clear existing
+
+        alphabet.forEach(letter => {
+            const btn = document.createElement('button');
+            btn.textContent = letter;
+            btn.className = 'alphabet-btn';
+            btn.onclick = () => {
+                const gameItems = document.querySelectorAll('.game-item');
+
+                // Toggle logic
+                if (activeLetter === letter) {
+                    activeLetter = null;
+                    btn.classList.remove('active');
+                    // Show all
+                    gameItems.forEach(item => item.classList.remove('hidden'));
+                } else {
+                    // Remove active from other buttons
+                    document.querySelectorAll('.alphabet-btn').forEach(b => b.classList.remove('active'));
+                    activeLetter = letter;
+                    btn.classList.add('active');
+
+                    // Filter
+                    gameItems.forEach(item => {
+                        const name = item.querySelector('p').textContent.trim();
+                        const firstChar = name.charAt(0).toUpperCase();
+
+                        let match = false;
+                        if (letter === '#') {
+                            match = !/^[A-Z]/.test(firstChar); // Not a letter
+                        } else {
+                            match = firstChar === letter;
+                        }
+
+                        if (match) {
+                            item.classList.remove('hidden');
+                        } else {
+                            item.classList.add('hidden');
+                        }
+                    });
+                }
+                updateImageLoadingPriority();
+            };
+            filterContainer.appendChild(btn);
+        });
+    }
 
 
     function optimizeViewport() {
