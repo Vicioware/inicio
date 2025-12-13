@@ -605,13 +605,71 @@ document.addEventListener('DOMContentLoaded', () => {
     window.initGallery = initGallery;
 
     function initAlphabetFilter() {
-        const filterContainer = document.getElementById('alphabetFilter');
-        if (!filterContainer) return;
+        const toggleBtn = document.getElementById('filterToggleBtn');
+        const filterMenu = document.getElementById('filterMenu');
+        const alphabetGrid = document.getElementById('alphabetGrid');
+        const sortAscBtn = document.getElementById('sortAscBtn');
+        const sortDescBtn = document.getElementById('sortDescBtn');
 
-        const alphabet = '#ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+        if (!toggleBtn || !filterMenu || !alphabetGrid) return;
+
         let activeLetter = null;
+        let currentSortOrder = 'asc'; // 'asc' or 'desc'
 
-        filterContainer.innerHTML = ''; // Clear existing
+        // Toggle Menu
+        toggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            filterMenu.classList.toggle('is-open');
+            filterMenu.classList.remove('hidden'); // Ensure hidden class is removed for CSS transition
+            toggleBtn.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        window.addEventListener('click', (e) => {
+            if (filterMenu.classList.contains('is-open') && !filterMenu.contains(e.target) && !toggleBtn.contains(e.target)) {
+                filterMenu.classList.remove('is-open');
+                toggleBtn.classList.remove('active');
+            }
+        });
+
+        // Sorting Logic
+        function sortGames(order) {
+            const galleryContainer = document.querySelector('.gallery-container');
+            const items = Array.from(document.querySelectorAll('.game-item'));
+
+            items.sort((a, b) => {
+                const nameA = a.querySelector('p').textContent.trim().toLowerCase();
+                const nameB = b.querySelector('p').textContent.trim().toLowerCase();
+                return order === 'asc' ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
+            });
+
+            // Re-append sorted items
+            items.forEach(item => galleryContainer.appendChild(item));
+
+            currentSortOrder = order;
+            updateImageLoadingPriority();
+        }
+
+        sortAscBtn.addEventListener('click', () => {
+            if (currentSortOrder !== 'asc') {
+                sortGames('asc');
+                sortAscBtn.classList.add('active');
+                sortDescBtn.classList.remove('active');
+            }
+        });
+
+        sortDescBtn.addEventListener('click', () => {
+            if (currentSortOrder !== 'desc') {
+                sortGames('desc');
+                sortDescBtn.classList.add('active');
+                sortAscBtn.classList.remove('active');
+            }
+        });
+
+
+        // Alphabet Generation and Filtering
+        const alphabet = '#ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+        alphabetGrid.innerHTML = '';
 
         alphabet.forEach(letter => {
             const btn = document.createElement('button');
@@ -620,26 +678,23 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.onclick = () => {
                 const gameItems = document.querySelectorAll('.game-item');
 
-                // Toggle logic
                 if (activeLetter === letter) {
                     activeLetter = null;
                     btn.classList.remove('active');
                     // Show all
                     gameItems.forEach(item => item.classList.remove('hidden'));
                 } else {
-                    // Remove active from other buttons
                     document.querySelectorAll('.alphabet-btn').forEach(b => b.classList.remove('active'));
                     activeLetter = letter;
                     btn.classList.add('active');
 
-                    // Filter
                     gameItems.forEach(item => {
                         const name = item.querySelector('p').textContent.trim();
                         const firstChar = name.charAt(0).toUpperCase();
 
                         let match = false;
                         if (letter === '#') {
-                            match = !/^[A-Z]/.test(firstChar); // Not a letter
+                            match = !/^[A-Z]/.test(firstChar);
                         } else {
                             match = firstChar === letter;
                         }
@@ -653,8 +708,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 updateImageLoadingPriority();
             };
-            filterContainer.appendChild(btn);
+            alphabetGrid.appendChild(btn);
         });
+
+        // Initial Sort
+        sortGames('asc');
     }
 
 
