@@ -188,7 +188,14 @@ document.addEventListener('DOMContentLoaded', () => {
         'slendyt3': [
             { text: 'Descargar Slendytubbies 3 (Camapaña)', url: 'https://www.mediafire.com/file/249yxzi56wn17r6/Slendytubbies_3_V1_295_%252864bit%2529.zip/file' },
             { text: 'Descargar Slendytubbies 3 (Multijugador)', url: 'https://www.mediafire.com/file_premium/lqhyvva24iuinxc/Slendytubbies_3_Multiplayer_%2528x64%2529.zip/file' }
+        ],
+        'fnaf': [
+            { text: 'Descargar Five Nights at Freddy\'s (ORIGINAL)', url: 'https://www.mediafire.com/file/qa1jza71rr1uj9k/FNAF.exe/file' },
+            { text: 'Descargar Five Nights at Freddy\'s (FANDUB ESPAÑOL)', url: 'https://www.mediafire.com/file/k5pj0giyyfdwihe/Five_Nights_at_Freddys_Edicion_Ultra.exe/file' }
         ]
+
+
+
 };
 
     const imageCache = new Map();
