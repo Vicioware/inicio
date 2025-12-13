@@ -192,7 +192,12 @@ document.addEventListener('DOMContentLoaded', () => {
         'fnaf': [
             { text: 'Descargar Five Nights at Freddy\'s (ORIGINAL)', url: 'https://www.mediafire.com/file/qa1jza71rr1uj9k/FNAF.exe/file' },
             { text: 'Descargar Five Nights at Freddy\'s (FANDUB ESPAÑOL)', url: 'https://www.mediafire.com/file/k5pj0giyyfdwihe/Five_Nights_at_Freddys_Edicion_Ultra.exe/file' }
+        ],
+        'fnaf2': [
+            { text: 'Descargar Five Nights at Freddy\'s 2 (ORIGINAL)', url: 'https://www.mediafire.com/file/o0523msi4t3q4yk/FNAF2.exe/file' },
+            { text: 'Descargar Five Nights at Freddy\'s 2 (FANDUB ESPAÑOL)', url: 'https://www.mediafire.com/file/6nigs93pugt11z2/Five+Nights+at+Freddy%27s+2.exe' }
         ]
+
 
 
 
