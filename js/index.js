@@ -204,7 +204,11 @@ document.addEventListener('DOMContentLoaded', () => {
         'fnaf4': [
             { text: 'Descargar FNAF 4: Halloween Edition (ORIGINAL)', url: 'https://www.mediafire.com/file/k9uy7if04x7hjhr/FNAF4-HWE.exe/file' },
             { text: 'Descargar FNAF 4: Halloween Edition (FANDUB ESPAÑOL)', url: 'https://www.mediafire.com/file/hmmszewyab5t7fb/Five_Nights_at_Freddy%25C2%25B4s_4_Halloween_Edition.exe/file' }
-        ]
+        ],
+        'fnaf5': [{ text: 'Descargar FNAF: Sister Location', url: 'https://www.mediafire.com/file/ye20nk6wxgbk8ch/FNAF5.exe/file' }],
+        'aoe': [{ text: 'Descargar Age of Empires', url: 'https://www.mediafire.com/file/07q3ddrnk95c436/AOEGE.iso/file' }]
+
+
 
 
 
