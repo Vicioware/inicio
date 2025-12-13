@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Array para rastrear partes descargadas
     let downloadedParts = JSON.parse(localStorage.getItem('downloadedParts')) || {};
 
-    // Limpieza de partes expiradas (1 minuto para pruebas)
-    const THIRTY_DAYS_MS = 60 * 1000;
+    // Limpieza de partes expiradas (20 días)
+    const TWENTY_DAYS_MS = 20 * 24 * 60 * 60 * 1000;
     const now = Date.now();
     let partsUpdated = false;
 
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             partsUpdated = true;
         } else if (typeof value === 'number') {
             // Verificar expiración
-            if (now - value > THIRTY_DAYS_MS) {
+            if (now - value > TWENTY_DAYS_MS) {
                 delete downloadedParts[key];
                 partsUpdated = true;
             }
