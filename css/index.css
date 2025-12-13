@@ -4,12 +4,14 @@
     font-weight: 400;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'Manrope Light';
     src: url('../fonts/Manrope-Light.ttf') format('truetype');
     font-weight: 300;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'Manrope Regular';
     src: url('../fonts/Manrope-Regular.ttf') format('truetype');
@@ -25,7 +27,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Ocultar barra de desplazamiento pero mantener funcionalidad */
+
 body::-webkit-scrollbar {
     width: 0px;
     background: transparent;
@@ -36,11 +38,11 @@ html {
     -ms-overflow-style: none;
 }
 
-/* Utility class for hiding elements */
+
 .hidden {
     display: none !important;
 }
-/* HEADER GENERAL */
+
 header.site-header {
     width: 100%;
     background: #2c2c2c;
@@ -53,11 +55,13 @@ header.site-header {
     z-index: 1100;
     box-sizing: border-box;
 }
+
 .header-left {
     display: flex;
     align-items: center;
     gap: 32px;
 }
+
 .header-center {
     position: absolute;
     left: 50%;
@@ -68,11 +72,13 @@ header.site-header {
     align-items: center;
     z-index: 1004;
 }
+
 .header-right {
     display: flex;
     align-items: center;
     gap: 28px;
 }
+
 .vicioware-icon-link {
     position: static;
     top: unset;
@@ -84,7 +90,7 @@ header.site-header {
 
 
 
-/* Barra de búsqueda centrada en la parte superior */
+
 .searchbar-container {
     width: 100%;
     max-width: 500px;
@@ -94,7 +100,7 @@ header.site-header {
     position: relative;
     margin: 0;
     z-index: 1003;
-    pointer-events: none; /* Permite que los elementos detrás sean clickeables */
+    pointer-events: none;
 }
 
 #searchBar {
@@ -108,11 +114,11 @@ header.site-header {
     max-width: 90vw;
     font-family: 'Manrope Light', 'Manrope', sans-serif;
     outline: none;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
     transition: border-color 0.2s, box-shadow 0.2s;
     margin: 0;
     display: block;
-    pointer-events: auto; /* El input sigue siendo interactivo */
+    pointer-events: auto;
 }
 
 #searchBar:focus {
@@ -125,6 +131,7 @@ header.site-header {
     font-weight: 300;
     color: #bdbdbd;
 }
+
 .gallery-container {
     display: flex;
     flex-wrap: wrap;
@@ -132,6 +139,7 @@ header.site-header {
     padding: 15px 10px 10px 10px;
     gap: 10px;
 }
+
 .game-item {
     position: relative;
     background: linear-gradient(to bottom, #1a1a1a, #111111 40%, #0a0a0a);
@@ -157,15 +165,19 @@ header.site-header {
     transition: transform 0.2s ease-in-out, box-shadow 0.25s ease-out;
     z-index: 1;
 }
+
 .game-item::after {
     display: none;
 }
+
 .game-item::before {
     display: none;
 }
+
 .game-item:hover {
     transform: scale(1.05);
 }
+
 .game-item img {
     width: 100%;
     height: auto;
@@ -181,6 +193,7 @@ header.site-header {
     content-visibility: auto;
     contain: layout style paint;
 }
+
 .game-item p {
     margin: 10px 0;
     font-size: 0.9em;
@@ -188,7 +201,7 @@ header.site-header {
     text-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
     padding: 0 5px;
 }
-/* Modal Styles - Rediseño */
+
 .modal {
     display: flex;
     align-items: center;
@@ -199,49 +212,52 @@ header.site-header {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.85);
+    background-color: rgba(0, 0, 0, 0.85);
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.25s cubic-bezier(0.19, 1, 0.22, 1), visibility 0s linear 0.25s;
     backdrop-filter: blur(5px);
     will-change: opacity, visibility;
 }
+
 .modal.is-open {
     opacity: 1;
     visibility: visible;
     transition-delay: 0s;
 }
 
-/* Limpiar will-change después de las transiciones para optimizar memoria */
+
 .modal.is-open .modal-content,
 #detailsModal.is-open .details-modal-content,
 #partsModal.is-open .parts-modal-content {
     will-change: auto;
 }
+
 .modal-content {
     background: linear-gradient(145deg, #232323, #1a1a1a);
-    padding: 30px 30px 22px 30px; /* Aumentado el padding inferior para compensar */
+    padding: 30px 30px 22px 30px;
     border: none;
     width: 90%;
     max-width: 550px;
-    border-radius: 10px; /* Reducido en 2px */
+    border-radius: 10px;
     position: relative;
     color: #f0f0f0;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1); /* Reducida la distancia de la sombra */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.1);
     transform: translate3d(0, -40px, 0) scale(0.95);
     opacity: 0;
     transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s ease;
     will-change: transform, opacity;
 }
+
 .close-button {
     position: absolute;
     top: 15px;
     right: 20px;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255, 255, 255, 0.6);
     font-size: 28px;
     font-weight: normal;
     line-height: 1;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -250,16 +266,19 @@ header.site-header {
     justify-content: center;
     transition: all 0.3s ease;
 }
+
 .close-button:hover,
 .close-button:focus {
     color: #fff;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
     cursor: pointer;
 }
+
 .modal.is-open .modal-content {
     transform: translate3d(0, 0, 0) scale(1);
     opacity: 1;
 }
+
 #modalGameTitle {
     text-align: center;
     margin-top: 10px;
@@ -267,7 +286,7 @@ header.site-header {
     font-size: 2em;
     font-weight: 600;
     color: #ffffff;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     position: relative;
     padding-bottom: 15px;
 }
@@ -288,12 +307,12 @@ header.site-header {
     list-style: none;
     padding: 0;
     margin-top: 15px;
-    margin-bottom: 0; /* Aseguramos que no haya margen inferior adicional */
+    margin-bottom: 0;
 }
 
 
 #modalDownloadLinks li {
-    margin-bottom: 7px; /* Aumentado en 12px desde -5px */
+    margin-bottom: 7px;
     position: relative;
     transition: margin-bottom 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
@@ -342,9 +361,10 @@ header.site-header {
     transform: translateY(1px);
     box-shadow: 0 2px 10px rgba(90, 197, 96, 0.3);
 }
+
 .read-more-container {
     margin-top: 15px;
-    margin-bottom: 4px; /* Reducido en 3px según lo solicitado */
+    margin-bottom: 4px;
     position: relative;
 }
 
@@ -388,9 +408,9 @@ header.site-header {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Los estilos para el botón de mochila en el modal han sido eliminados */
 
-/* Contenedor para alinear botones */
+
+
 .modal-buttons-container {
     display: flex;
     align-items: center;
@@ -403,14 +423,14 @@ header.site-header {
     flex-wrap: wrap;
 }
 
-/* El botón clonado de detalles hereda los estilos del original */
 
 
-/* Estilos para el modal de detalles */
+
+
 #detailsModal {
     display: none;
     position: fixed;
-    z-index: 1300; /* Por encima del modal principal */
+    z-index: 1300;
     left: 0;
     top: 0;
     width: 100%;
@@ -420,7 +440,7 @@ header.site-header {
     backdrop-filter: blur(3px);
     opacity: 0;
     transition: opacity 0.3s ease;
-    text-align: center; /* Centra el contenido inline-block */
+    text-align: center;
 }
 
 #detailsModal.is-open {
@@ -430,29 +450,29 @@ header.site-header {
 
 .details-modal-content {
     background: linear-gradient(145deg, #232323, #1a1a1a);
-    margin: 45vh auto 0; /* Ajustado para mejor centrado vertical */
-    padding: 15px; /* Padding uniforme para mantener márgenes simétricos */
+    margin: 45vh auto 0;
+    padding: 15px;
     border: none;
-    width: 90%; /* Ancho relativo para adaptarse a diferentes pantallas */
-    min-width: 200px; /* Ancho mínimo para mantener legibilidad */
-    max-width: 400px; /* Ancho máximo para pantallas grandes */
-    height: auto; /* Altura automática según el contenido */
-    border-radius: 14px; /* Reducido en 2px */
+    width: 90%;
+    min-width: 200px;
+    max-width: 400px;
+    height: auto;
+    border-radius: 14px;
     position: relative;
     color: #f0f0f0;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1); /* Reducida la distancia de la sombra */
-    transform: translate3d(0, -55%, 0) scale(0.95); /* Ajustado para mejor centrado vertical */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    transform: translate3d(0, -55%, 0) scale(0.95);
     opacity: 0;
     transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s ease;
     will-change: transform, opacity;
-    overflow-y: auto; /* Permite desplazamiento si el contenido es demasiado grande */
-    display: inline-block; /* Permite que el contenedor se ajuste al contenido */
-    text-align: left; /* Restablece el alineamiento del texto dentro del modal */
-    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+    overflow-y: auto;
+    display: inline-block;
+    text-align: left;
+    box-sizing: border-box;
 }
 
 #detailsModal.is-open .details-modal-content {
-    transform: translate3d(0, -5%, 0) scale(1); /* Ajustado para mantener el centrado vertical */
+    transform: translate3d(0, -5%, 0) scale(1);
     opacity: 1;
 }
 
@@ -462,12 +482,12 @@ header.site-header {
     color: rgba(255, 255, 255, 0.85);
     white-space: pre-line;
     padding: 15px;
-    max-height: 60vh; /* Altura máxima para evitar que ocupe toda la pantalla */
-    margin-bottom: 10px; /* Reducido el margen inferior */
-    text-align: left; /* Alinea el texto a la izquierda */
-    word-wrap: break-word; /* Permite que las palabras largas se rompan */
-    overflow-wrap: break-word; /* Asegura que el texto no desborde el contenedor */
-    overflow-x: hidden; /* Evita el desplazamiento horizontal */
+    max-height: 60vh;
+    margin-bottom: 10px;
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    overflow-x: hidden;
 }
 
 .details-close-button {
@@ -484,7 +504,7 @@ header.site-header {
     color: rgba(255, 255, 255, 0.8);
 }
 
-/* Modal de Partes */
+
 #partsModal {
     display: flex;
     align-items: center;
@@ -502,7 +522,7 @@ header.site-header {
     border-radius: 14px;
     position: relative;
     color: #f0f0f0;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.1);
     transform: translate3d(0, -40px, 0) scale(0.95);
     opacity: 0;
     transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s ease;
@@ -555,13 +575,13 @@ header.site-header {
     font-size: 0.9em;
     font-family: 'Manrope', sans-serif;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .part-button:hover {
     background: #5a5a5a;
     transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .part-button.downloaded {
@@ -573,7 +593,7 @@ header.site-header {
     background: #4fb556;
 }
 
-/* Botón con icono de partes - idéntico al botón de descarga clásico */
+
 .download-with-parts {
     display: flex;
     align-items: center;
@@ -596,7 +616,7 @@ header.site-header {
     cursor: pointer;
     width: 100% !important;
     margin-bottom: 8px !important;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
     padding-right: 50px !important;
 }
 
@@ -628,7 +648,7 @@ header.site-header {
 .download-with-parts::after {
     content: '';
     position: absolute;
-    right: 15px; /* Movido 10px a la izquierda desde el borde derecho */
+    right: 15px;
     top: 50%;
     transform: translateY(-50%);
     width: 20px;
@@ -638,13 +658,15 @@ header.site-header {
     background-repeat: no-repeat;
     background-position: center;
     opacity: 0.9;
-    /* Carga prioritaria del SVG */
+
     will-change: transform;
 }
-body.modal-blur-active > *:not(#downloadModal):not(#detailsModal):not(#partsModal) {
+
+body.modal-blur-active>*:not(#downloadModal):not(#detailsModal):not(#partsModal) {
     filter: blur(5px);
     transition: filter 0.3s ease-in-out;
 }
+
 .gallery-container {
     transition: filter 0.3s ease-in-out;
 }
@@ -658,17 +680,19 @@ body.modal-blur-active > *:not(#downloadModal):not(#detailsModal):not(#partsModa
     z-index: auto;
     display: block;
 }
+
 .vicioware-icon-link img {
     width: 48px;
     height: 48px;
     transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
 }
+
 .vicioware-icon-link:hover img {
     transform: scale(1.15);
     filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
 }
 
-/* Responsive Design for Mobile */
+
 @media (max-width: 768px) {
     header.site-header {
         flex-direction: column;
@@ -676,14 +700,15 @@ body.modal-blur-active > *:not(#downloadModal):not(#detailsModal):not(#partsModa
         min-height: auto;
     }
 
-    .header-left, .header-right {
+    .header-left,
+    .header-right {
         width: 100%;
         justify-content: space-between;
     }
 
     .header-center {
         width: 100%;
-        order: 2; /* Move search bar below icons */
+        order: 2;
         padding: 16px 0 0 0;
     }
 
@@ -693,7 +718,7 @@ body.modal-blur-active > *:not(#downloadModal):not(#detailsModal):not(#partsModa
 
     .header-right {
         order: 1;
-        flex-grow: 1; /* Allow it to take space */
+        flex-grow: 1;
         justify-content: flex-end;
     }
 
@@ -704,27 +729,27 @@ body.modal-blur-active > *:not(#downloadModal):not(#detailsModal):not(#partsModa
     }
 
     .game-item {
-        width: calc(50% - 10px); /* 2 columns on mobile */
+        width: calc(50% - 10px);
     }
 
     .modal-content {
         width: 95%;
         padding: 15px;
     }
-    
+
     .details-modal-content {
         width: 85%;
         min-width: 250px;
         max-width: 320px;
-        margin: 45vh auto 0; /* Ajustado para coincidir con el cambio en escritorio */
-        padding: 12px 15px; /* Reducido el padding en móviles */
+        margin: 45vh auto 0;
+        padding: 12px 15px;
     }
-    
+
     .details-content {
         font-size: 0.9em;
         max-height: 50vh;
-        padding: 0; /* Eliminar padding en móviles */
-        margin-bottom: 5px; /* Reducir margen inferior en móviles */
+        padding: 0;
+        margin-bottom: 5px;
         text-align: center;
     }
 }

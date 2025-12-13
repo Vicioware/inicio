@@ -1,33 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
     const gameItems = document.querySelectorAll('.game-item');
 
-    // Variable para almacenar el ID del juego actual
+
     let currentGameId = null;
 
-    // Modal elements
+
     const modal = document.getElementById('downloadModal');
     const modalGameTitle = document.getElementById('modalGameTitle');
     const modalDownloadLinksList = document.getElementById('modalDownloadLinks');
     const closeButton = modal.querySelector('.close-button');
 
-    const searchBar = document.getElementById('searchBar'); // searchBar ya está aquí
+    const searchBar = document.getElementById('searchBar');
 
 
-    // Elementos del modal de detalles
+
     const detailsModal = document.getElementById('detailsModal');
     const detailsContent = document.getElementById('detailsContent');
     const detailsCloseButton = detailsModal.querySelector('.details-close-button');
 
-    // Elementos del modal de partes
+
     const partsModal = document.getElementById('partsModal');
     const partsModalTitle = document.getElementById('partsModalTitle');
     const partsContainer = document.getElementById('partsContainer');
     const partsCloseButton = partsModal.querySelector('.parts-close-button');
 
-    // Array para rastrear partes descargadas
+
     let downloadedParts = JSON.parse(localStorage.getItem('downloadedParts')) || {};
 
-    // Limpieza de partes expiradas (20 días)
+
     const TWENTY_DAYS_MS = 20 * 24 * 60 * 60 * 1000;
     const now = Date.now();
     let partsUpdated = false;
@@ -35,11 +35,11 @@ document.addEventListener('DOMContentLoaded', () => {
     Object.keys(downloadedParts).forEach(key => {
         const value = downloadedParts[key];
         if (value === true) {
-            // Migrar datos legacy (antes solo guardaba true)
+
             downloadedParts[key] = now;
             partsUpdated = true;
         } else if (typeof value === 'number') {
-            // Verificar expiración
+
             if (now - value > TWENTY_DAYS_MS) {
                 delete downloadedParts[key];
                 partsUpdated = true;
@@ -53,9 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // Funciones para el modal de partes
+
     function openPartsModal(parts, gameId) {
-        // Obtener el nombre del juego desde el título del modal principal
+
         const gameName = modalGameTitle.textContent;
         partsModalTitle.textContent = `Seleccionar parte`;
         partsContainer.innerHTML = '';
@@ -65,19 +65,19 @@ document.addEventListener('DOMContentLoaded', () => {
             partButton.className = 'part-button';
             partButton.textContent = part.text;
 
-            // Verificar si esta parte ya fue descargada
+
             const partKey = `${gameId}-${index}`;
             if (downloadedParts[partKey]) {
                 partButton.classList.add('downloaded');
             }
 
             partButton.addEventListener('click', () => {
-                // Marcar como descargada con timestamp
+
                 downloadedParts[partKey] = Date.now();
                 localStorage.setItem('downloadedParts', JSON.stringify(downloadedParts));
                 partButton.classList.add('downloaded');
 
-                // Abrir enlace de descarga
+
                 window.open(part.url, '_blank', 'noopener');
 
 
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.remove('modal-blur-active');
     }
 
-    // Data for download links
+
     const gameDownloadLinksData = {
         'ion-fury': [{ text: 'Descargar Ion Fury', url: 'https://drive.usercontent.google.com/download?id=1mHna_GXRcEDN6fr4zHoMCXF6Z7phlWOB&authuser=0' }],
         'gta-vc': [{ text: 'Descargar GTA Vice City', url: 'https://www.mediafire.com/file/negikbx0esjy4zb/GTAVC.iso/file' }],
@@ -154,9 +154,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     };
 
-    // Optimizaciones avanzadas para carga de imágenes
     const imageCache = new Map();
-    const imageCacheAccess = new Map(); // Para política LRU
+    const imageCacheAccess = new Map();
     const MAX_CACHE_SIZE = 50;
 
     const intersectionObserver = new IntersectionObserver((entries) => {
@@ -175,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadImageOptimized(img) {
         const src = img.dataset.src || img.src;
 
-        // Actualizar acceso para política LRU
+
         if (imageCache.has(src)) {
             imageCacheAccess.set(src, Date.now());
             img.src = imageCache.get(src);
@@ -184,11 +183,11 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Agregar atributos nativos para mejor rendimiento
+
         img.setAttribute('decoding', 'async');
         img.setAttribute('loading', 'lazy');
 
-        // Crear imagen WebP con fallback
+
         const webpSrc = src.replace(/\.(png|jpg|jpeg)$/i, '.webp');
         const testImg = new Image();
 
@@ -213,10 +212,10 @@ document.addEventListener('DOMContentLoaded', () => {
         testImg.src = webpSrc;
     }
 
-    // Política LRU para el cache
+
     function manageCacheSize() {
         if (imageCache.size >= MAX_CACHE_SIZE) {
-            // Encontrar la entrada menos recientemente usada
+
             let oldestKey = null;
             let oldestTime = Date.now();
 
@@ -243,36 +242,36 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Configurar lazy loading inteligente
+
         gameItems.forEach((item, index) => {
             const img = item.querySelector('img');
             if (!img) return;
 
             const isVisible = visibleGameItems.includes(item);
-            const isInViewport = index < 12; // Primeras 12 imágenes (3 filas típicas)
+            const isInViewport = index < 12;
 
             if (isVisible && isInViewport) {
-                // Carga inmediata para imágenes críticas
+
                 img.removeAttribute('loading');
                 if (img.dataset.src) {
                     loadImageOptimized(img);
                 }
             } else if (isVisible) {
-                // Lazy loading para imágenes visibles pero no críticas
+
                 img.setAttribute('loading', 'lazy');
                 if (!img.dataset.observed) {
                     intersectionObserver.observe(img);
                     img.dataset.observed = 'true';
                 }
             } else {
-                // Lazy loading para imágenes ocultas
+
                 img.setAttribute('loading', 'lazy');
                 intersectionObserver.unobserve(img);
                 img.dataset.observed = 'false';
             }
         });
 
-        // Preload de las siguientes 6 imágenes críticas
+
         const criticalImages = visibleGameItems.slice(0, 18);
         criticalImages.forEach((item, index) => {
             if (index >= 12) {
@@ -288,10 +287,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function openModal(gameId, gameName) {
-        // Variable global para acceder al gameId desde otros contextos
+
         currentGameId = gameId;
-        modalGameTitle.textContent = gameName; // Actualiza el título del modal
-        modalDownloadLinksList.innerHTML = ''; // Limpia enlaces anteriores
+        modalGameTitle.textContent = gameName;
+        modalDownloadLinksList.innerHTML = '';
 
         if (gameId && gameDownloadLinksData[gameId]) {
             const links = gameDownloadLinksData[gameId];
@@ -301,13 +300,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const listItem = document.createElement('li');
 
-                // Verificar si el enlace tiene partes
+
                 if (linkInfo.parts && linkInfo.parts.length > 0) {
-                    // Crear botón especial para juegos con partes
+
                     const partsButton = document.createElement('button');
                     partsButton.textContent = linkInfo.text;
                     partsButton.className = 'download-with-parts';
-                    // Los estilos se aplican completamente desde CSS
+
 
                     partsButton.addEventListener('click', () => {
                         openPartsModal(linkInfo.parts, gameId);
@@ -315,16 +314,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     listItem.appendChild(partsButton);
                 } else {
-                    // Crear enlace normal
+
                     const anchor = document.createElement('a');
                     anchor.href = linkInfo.url;
                     anchor.textContent = linkInfo.text;
-                    anchor.target = '_blank'; // Abrir en nueva pestaña
+                    anchor.target = '_blank';
 
                     listItem.appendChild(anchor);
                 }
 
-                // Solo agregar event listener para enlaces normales
+
                 const anchor = listItem.querySelector('a');
                 if (anchor) {
 
@@ -332,7 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 modalDownloadLinksList.appendChild(listItem);
 
-                // Añadir "Leer más" si existe texto
+
                 if (linkInfo.readMoreText) {
                     const readMoreContainer = document.createElement('div');
                     readMoreContainer.className = 'read-more-container';
@@ -344,15 +343,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     readMoreToggle.className = 'read-more-toggle';
                     readMoreToggle.textContent = 'Detalles';
 
-                    // Guardar el texto de detalles para usarlo en el modal
+
                     const detailsText = linkInfo.readMoreText;
 
-                    // Evento para abrir el modal de detalles
+
                     readMoreToggle.addEventListener('click', function () {
-                        // Establecer el contenido del modal
+
                         detailsContent.textContent = detailsText;
 
-                        // Mostrar el modal
+
                         detailsModal.classList.add('is-open');
                     });
 
@@ -369,79 +368,79 @@ document.addEventListener('DOMContentLoaded', () => {
             modalDownloadLinksList.appendChild(listItem);
             console.warn('No se encontraron enlaces de descarga para el juego:', gameId);
         }
-        document.body.classList.add('modal-blur-active'); // Aplicar desenfoque al fondo
-        modal.classList.add('is-open'); // Mostrar y animar modal
+        document.body.classList.add('modal-blur-active');
+        modal.classList.add('is-open');
     }
 
-    // Llamada inicial para establecer la prioridad de carga al cargar la página
+
     updateImageLoadingPriority();
 
     function closeModal() {
-        document.body.classList.remove('modal-blur-active'); // Quitar desenfoque
-        modal.classList.remove('is-open'); // Ocultar y animar modal de descarga
+        document.body.classList.remove('modal-blur-active');
+        modal.classList.remove('is-open');
     }
 
-    // Event listener para el botón de cierre del modal
+
     closeButton.addEventListener('click', closeModal);
 
-    // Event listener para cerrar el modal haciendo clic fuera de su contenido
+
     window.addEventListener('click', (event) => {
         if (event.target === modal) {
             closeModal();
         }
     });
 
-    // Cerrar el modal de detalles al hacer clic en la X
+
     detailsCloseButton.addEventListener('click', () => {
         detailsModal.classList.remove('is-open');
     });
 
-    // Cerrar el modal de detalles al hacer clic fuera del contenido
+
     detailsModal.addEventListener('click', (e) => {
         if (e.target === detailsModal) {
             detailsModal.classList.remove('is-open');
         }
     });
 
-    // Event listeners para el modal de partes
+
     partsCloseButton.addEventListener('click', closePartsModal);
 
-    // Cerrar el modal de partes al hacer clic fuera del contenido
+
     partsModal.addEventListener('click', (e) => {
         if (e.target === partsModal) {
             closePartsModal();
         }
     });
 
-    // Event listener para cerrar los modales con la tecla Escape
+
     window.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') {
-            // Primero cerrar el modal de partes si está abierto
+
             if (partsModal.classList.contains('is-open')) {
                 closePartsModal();
                 event.stopPropagation();
                 return;
             }
-            // Luego cerrar el modal de detalles si está abierto
+
             if (detailsModal.classList.contains('is-open')) {
                 detailsModal.classList.remove('is-open');
-                // Prevenir que se cierre también el modal principal
+
                 event.stopPropagation();
                 return;
             }
-            // Si ningún modal secundario está abierto, cerrar el modal principal
+
             if (modal.classList.contains('is-open')) {
                 closeModal();
             }
         }
     });
 
-    // Función para limpiar cadenas para la búsqueda (ignorar mayúsculas/minúsculas y caracteres especiales)
+
     function sanitizeSearchTerm(term) {
         return term.toLowerCase().replace(/[^a-z0-9]/g, '');
     }
 
-    // Event listener para la barra de búsqueda
+
     searchBar.addEventListener('input', (event) => {
         const rawSearchTerm = event.target.value.trim();
         const sanitizedSearchTerm = sanitizeSearchTerm(rawSearchTerm);
@@ -449,22 +448,22 @@ document.addEventListener('DOMContentLoaded', () => {
         gameItems.forEach(item => {
             const rawGameTitle = item.querySelector('p').textContent;
             const sanitizedGameTitle = sanitizeSearchTerm(rawGameTitle);
-            // Usar classList.toggle para evitar reflows
+
             item.classList.toggle('hidden', !sanitizedGameTitle.includes(sanitizedSearchTerm));
         });
-        // Actualizar la prioridad de carga después de filtrar
+
         updateImageLoadingPriority();
 
     });
 
-    // --- INICIALIZACIÓN DE GALERÍA DINÁMICA Y EVENTOS ---
+
     function initGallery() {
         const gameItems = document.querySelectorAll('.game-item');
         const hoverImageCache = new Map();
 
-        // --- Eventos de tarjetas ---
+
         gameItems.forEach(item => {
-            // Prevenir event listeners duplicados
+
             if (item.dataset.listenersAdded) {
                 return;
             }
@@ -478,17 +477,17 @@ document.addEventListener('DOMContentLoaded', () => {
             let isHoverImageDisplayed = false;
             let isMouseOverContainer = false;
 
-            // Agregar atributos nativos para mejor rendimiento
+
             img.setAttribute('decoding', 'async');
             if (!img.hasAttribute('loading')) {
                 img.setAttribute('loading', 'lazy');
             }
 
 
-            // Optimización de carga de imágenes
+
             function processLoadedImage() {
                 img.style.opacity = '1';
-                // Mantener will-change mientras la imagen esté en viewport o en cache activo
+
                 const rect = img.getBoundingClientRect();
                 const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
                 if (!isInViewport && !imageCache.has(img.src)) {
@@ -506,15 +505,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, { once: true });
             }
 
-            // Precarga hover mejorada con AbortController
+
             item.addEventListener('mouseenter', () => {
                 isMouseOverContainer = true;
 
-                // Cancelar precarga anterior
+
                 preloadController.abort();
                 preloadController = new AbortController();
 
-                // Precargar imagen hover solo después de 300ms de hover
+
                 if (hoverSrc && !hoverImageCache.has(hoverSrc)) {
                     const timeoutId = setTimeout(() => {
                         if (isMouseOverContainer && !preloadController.signal.aborted) {
@@ -524,7 +523,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }, 300);
 
-                    // Cancelar timeout si se aborta
+
                     preloadController.signal.addEventListener('abort', () => {
                         clearTimeout(timeoutId);
                     });
@@ -544,7 +543,7 @@ document.addEventListener('DOMContentLoaded', () => {
             item.addEventListener('mouseleave', () => {
                 isMouseOverContainer = false;
 
-                // Cancelar precarga y hover
+
                 preloadController.abort();
 
                 if (hoverTimer) {
@@ -557,7 +556,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            // Modal al hacer clic
+
             item.addEventListener('click', (event) => {
                 event.preventDefault();
                 const gameId = item.dataset.gameId;
@@ -572,24 +571,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     window.initGallery = initGallery;
 
-    // Optimización de viewport
+
     function optimizeViewport() {
-        // Configurar viewport meta para mejor rendimiento
+
         const viewport = document.querySelector('meta[name="viewport"]');
         if (viewport) {
             viewport.content = 'width=device-width, initial-scale=1, viewport-fit=cover';
         }
-        // DNS prefetch eliminado - no se usan dominios externos
+
     }
 
-    // --- CARGA DINÁMICA DE LA GALERÍA Y FILTRO ---
-    // Carga de la galería
+
+
     const galleryFile = 'gallery-index.html';
 
     fetch(galleryFile)
         .then(response => response.text())
         .then(html => {
-            // Usar DOMParser para mayor seguridad
+
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
             const gallery = doc.querySelector('.gallery-container');
@@ -597,11 +596,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.querySelector('.gallery-container').innerHTML = gallery.innerHTML;
             }
 
-            // Optimizar viewport antes de inicializar
+
             optimizeViewport();
             window.initGallery();
 
-            // Filtro de búsqueda optimizado con debounce
+
             const searchBar = document.getElementById('searchBar');
             if (searchBar) {
                 let searchTimeout;
@@ -611,7 +610,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const rawSearchTerm = event.target.value.trim();
                         const sanitizedSearchTerm = sanitizeSearchTerm(rawSearchTerm);
 
-                        // Usar requestAnimationFrame para mejor rendimiento
+
                         requestAnimationFrame(() => {
                             document.querySelectorAll('.game-item').forEach(item => {
                                 const rawGameTitle = item.querySelector('p').textContent;
@@ -620,7 +619,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             });
                             updateImageLoadingPriority();
                         });
-                    }, 150); // Debounce de 150ms
+                    }, 150);
                 });
             }
         })
