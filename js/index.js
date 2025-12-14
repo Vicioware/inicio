@@ -228,7 +228,20 @@ document.addEventListener('DOMContentLoaded', () => {
         'lost-planet': [{ text: 'Descargar Lost Planet', url: 'https://www.mediafire.com/file/br6xop7n9r3cicx/L8st_Pl9n3t_3xtr3m3_C8nd1t18n_C8l8n13s_3d1t18n.rar/file' }],
         'battleblock-theater': [{ text: 'Descargar BattleBlock Theater', url: 'https://drive.usercontent.google.com/download?id=16ZdlYUXGIYwPEzQHxt49jeuoYPMxKoH_&export=download&authuser=0' }],
         'raft': [{ text: 'Descargar Raft', url: 'https://www.mediafire.com/file/ps2j3etzmsl6zqb/Ra6f3t-1.09-elamigos.rar/file' }],
-        'garrys-mod': [{ text: 'Descargar Garry\'s Mod', url: 'https://www.mediafire.com/file/53ubzb9a32lcu9u/Garrys_Mod_v1.5.80.0.rar/file' }]
+        'garrys-mod': [{ text: 'Descargar Garry\'s Mod', url: 'https://www.mediafire.com/file/53ubzb9a32lcu9u/Garrys_Mod_v1.5.80.0.rar/file' }],
+        'gta-sa': [{ text: 'Descargar GTA: San Andreas', url: 'https://www.mediafire.com/file/mplrdftfwxmd0x0/GTA+San+Andreas+By+Sajord.zip/file' }],
+        'dusk': [{ text: 'Descargar DUSK', url: 'https://www.mediafire.com/file/vch5x45tzoya7w4' }],
+        'hrot': [{ text: 'Descargar HROT', url: 'https://www.mediafire.com/file/x7tg4a8fzsqca9r' }],
+        'devil-daggers': [{ text: 'Descargar Devil Daggers', url: 'https://www.mediafire.com/file/pf2d92ev9ou9gm0/DDPC.rar/file' }],
+        'hedon-b': [{ text: 'Descargar Hedon: Bloodrite', url: 'https://www.mediafire.com/file/vjcw4o3ixc8918r/Hedon.Bloodrite.v2.4.2.zip/file' }],
+        'maximum-action': [{ text: 'Descargar Maximum Action', url: 'https://www.mediafire.com/file/7k89sf8zim6a1pt' }]
+
+
+
+
+
+
+
 
 
 
