@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     { text: 'Parte 2', url: 'https://rapidshare.co/en/d/f4R4STgh5MjGnk' },
                     { text: 'Parte 3', url: 'https://rapidshare.co/en/d/Yw8ppRdHLPBZ9x' },
                     { text: 'Parte 4', url: 'https://rapidshare.co/en/d/gPfaS53XQ1Snkk' },
-                    { text: 'Parte 5', url: 'https://rapidshare.co/en/d/bH8OirQIMAZpTW' },
+                    { text: 'Parte 5', url: 'https://rapidshare.co/en/d/bH8OirQIMAZpTW' }
                 ],
 				text: 'Descargar actualización v29.05.2025', url: 'https://www.mediafire.com/file/fnjsbc6ckom2g7a/Pow1erWa6shSi-Update29.05.2025-elamigos.rar/file'
             }
