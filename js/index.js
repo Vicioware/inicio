@@ -235,7 +235,20 @@ document.addEventListener('DOMContentLoaded', () => {
         'devil-daggers': [{ text: 'Descargar Devil Daggers', url: 'https://www.mediafire.com/file/pf2d92ev9ou9gm0/DDPC.rar/file' }],
         'hedon-b': [{ text: 'Descargar Hedon: Bloodrite', url: 'https://www.mediafire.com/file/vjcw4o3ixc8918r/Hedon.Bloodrite.v2.4.2.zip/file' }],
         'maximum-action': [{ text: 'Descargar Maximum Action', url: 'https://www.mediafire.com/file/7k89sf8zim6a1pt' }],
-        'ziggurat': [{ text: 'Descargar Ziggurat', url: 'http://go4up.com/dl/431fc3e47f4c/ppt-zigg.iso' }]
+        'ziggurat': [{ text: 'Descargar Ziggurat', url: 'http://go4up.com/dl/431fc3e47f4c/ppt-zigg.iso' }],
+        'powerwash-sim': [
+            {
+                text: 'Descargar PowerWash Simulator',
+                parts: [
+                    { text: 'Parte 1', url: 'https://rapidshare.co/en/d/hpzZRgK2EhrCnf' },
+                    { text: 'Parte 2', url: 'https://rapidshare.co/en/d/f4R4STgh5MjGnk' },
+                    { text: 'Parte 3', url: 'https://rapidshare.co/en/d/Yw8ppRdHLPBZ9x' },
+                    { text: 'Parte 4', url: 'https://rapidshare.co/en/d/gPfaS53XQ1Snkk' },
+                    { text: 'Parte 5', url: 'https://rapidshare.co/en/d/bH8OirQIMAZpTW' },
+                ]
+				text: 'Descargar actualización v29.05.2025', url: 'https://www.mediafire.com/file/fnjsbc6ckom2g7a/Pow1erWa6shSi-Update29.05.2025-elamigos.rar/file'
+            }
+        ]
 
 
 
