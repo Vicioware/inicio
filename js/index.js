@@ -403,7 +403,41 @@ document.addEventListener('DOMContentLoaded', () => {
                     { text: 'Parte 8', url: 'https://www.mediafire.com/file/ntdd9a1qlei28uq/C1PGGOG_GamezFull.part8.rar' }
                 ]
             }
+        ],
+        'hollow-knight-s': [
+            { text: 'Descargar Hollow Knight: Silksong', url: 'https://www.mediafire.com/file/f8z87nzyo33fcw6/HKSPG2025.GamezFullCOM.rar/file' },
+            { text: 'Descargar actualizaciones', url: 'https://www.mediafire.com/file/33cx3t80r79magl/+Updates2025-HKS.GamezFullCOM.rar/file' }
+        ],
+        'hollow-knight': [
+            { text: 'Descargar Hollow Knight', url: 'https://www.mediafire.com/file/lgpu2jts8wya393/HKPG2021.v1.5.78.GamezFullCOM.rar/file' }
+        ],
+        'human-fall-flat': [
+            { text: 'Descargar Human Fall Flat', url: 'https://www.mediafire.com/file/3xjyx96kxmywdwg/HFFPG2025.24.04.2025.gamezfull.com.rar/file' }
+        ],
+        'super-bunny-man': [
+            { text: 'Descargar Super Bunny Man', url: 'https://www.mediafire.com/file/etg6r2fwaprvsvw' }
+        ],
+        'alan-wake': [
+            {
+                text: 'Descargar Alan Wake',
+                parts: [
+                    { text: 'Parte 1', url: 'https://cdn2.steamgriddb.com/grid/eae7aadd02dfcc93a198d256ec0833ed.jpg' },
+                    { text: 'Parte 2', url: 'https://www.mediafire.com/file/y11tgfl4c676v4w/AWCCPG.GFZDCOMORG.part2.rar/file' },
+                    { text: 'Parte 3', url: 'https://www.mediafire.com/file/zy0u2koxiix358o/AWCCPG.GFZDCOMORG.part3.rar/file' },
+                    { text: 'Parte 4', url: 'https://www.mediafire.com/file/thxyajmkk87epk1/AWCCPG.GFZDCOMORG.part4.rar/file' },
+                    { text: 'Parte 5', url: 'https://www.mediafire.com/file/ednd1vn9r99bcf3/AWCCPG.GFZDCOMORG.part5.rar/file' }
+                ]
+            }
+        ],
+        'payday-th': [
+            { text: 'Descargar PAYDAY: The Heist', url: 'https://www.mediafire.com/file/by5reo6kg1doimo/PD.TH.Wolfpack.v1.12.2..rar/file' }
         ]
+
+
+
+
+
+
 
 
 
