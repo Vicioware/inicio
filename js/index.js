@@ -97,25 +97,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     const gameDownloadLinksData = {
-        'ion-fury': [{ text: 'Descargar Ion Fury', url: 'https://drive.usercontent.google.com/download?id=1mHna_GXRcEDN6fr4zHoMCXF6Z7phlWOB&authuser=0' }],
-        'gta-vc': [{ text: 'Descargar GTA Vice City', url: 'https://www.mediafire.com/file/negikbx0esjy4zb/GTAVC.iso/file' }],
-        'gta-iii': [{ text: 'Descargar GTA III', url: 'https://www.mediafire.com/file/zdvttk6hzyv1ola/GTA-III.rar/file' }],
-        'cuphead': [{ text: 'Descargar Cuphead', url: 'https://www.mediafire.com/file/z6qrhatejixijzs/CDE.rar/file' }],
-        'blood-knights': [{ text: 'Descargar Blood Knights', url: 'https://www.mediafire.com/file/tz5n0miu2lqe0am/BKPC.7z/file' }],
-        'unmetal': [{ text: 'Descargar Unmetal', url: 'https://www.mediafire.com/file/7rw1oidswulksof/UCP.rar/file' }],
-        'halo-ce': [{ text: 'Descargar Halo: Combat Evolved', url: 'https://www.mediafire.com/file/jftpybq93hfqy26/HCE_2001.rar/file' }],
-        'portal': [{ text: 'Descargar Portal', url: 'https://www.mediafire.com/file/keszhjrcvsx5jra/PPC.iso/file' }],
-        'portal2': [{ text: 'Descargar Portal 2', url: 'https://www.mediafire.com/file/srerms85g91g4zw/P2PC.iso/file' }],
-        'killing-floor': [{ text: 'Descargar Killing Floor', url: 'https://www.mediafire.com/file/zffmwemajvs09dq/KF1.rar/file' }],
-        'brotato': [{ text: 'Descargar Brotato', url: 'https://www.mediafire.com/file/5okoinvbimse0h4' }],
-        'vampire-survivors': [{ text: 'Descargar Vampire Survivors', url: 'https://www.mediafire.com/file/w7r10dc1rb85n4r/Vampi6reSurv1ivors-1.13.109-elamigos.rar/file' }],
-        'hct': [{ text: 'Descargar Horizon Chase Turbo', url: 'https://www.mediafire.com/file/b7g6sh0gj0biort/HCT2018.Www.GamezFull.com.rar/file' }],
+        'ion-fury': [
+            { text: 'Descargar Ion Fury', url: 'https://drive.usercontent.google.com/download?id=1mHna_GXRcEDN6fr4zHoMCXF6Z7phlWOB&authuser=0' }
+        ],
+        'gta-vc': [
+            { text: 'Descargar GTA Vice City', url: 'https://www.mediafire.com/file/negikbx0esjy4zb/GTAVC.iso/file' }
+        ],
+        'gta-iii': [
+            { text: 'Descargar GTA III', url: 'https://www.mediafire.com/file/zdvttk6hzyv1ola/GTA-III.rar/file' }
+        ],
+        'cuphead': [
+            { text: 'Descargar Cuphead', url: 'https://www.mediafire.com/file/z6qrhatejixijzs/CDE.rar/file' }
+        ],
+        'blood-knights': [
+            { text: 'Descargar Blood Knights', url: 'https://www.mediafire.com/file/tz5n0miu2lqe0am/BKPC.7z/file' }
+        ],
+        'unmetal': [
+            { text: 'Descargar Unmetal', url: 'https://www.mediafire.com/file/7rw1oidswulksof/UCP.rar/file' }
+        ],
+        'halo-ce': [
+            { text: 'Descargar Halo: Combat Evolved', url: 'https://www.mediafire.com/file/jftpybq93hfqy26/HCE_2001.rar/file' }
+        ],
+        'portal': [
+            { text: 'Descargar Portal', url: 'https://www.mediafire.com/file/keszhjrcvsx5jra/PPC.iso/file' }
+        ],
+        'portal2': [
+            { text: 'Descargar Portal 2', url: 'https://www.mediafire.com/file/srerms85g91g4zw/P2PC.iso/file' }
+        ],
+        'killing-floor': [
+            { text: 'Descargar Killing Floor', url: 'https://www.mediafire.com/file/zffmwemajvs09dq/KF1.rar/file' }
+        ],
+        'brotato': [
+            { text: 'Descargar Brotato', url: 'https://www.mediafire.com/file/5okoinvbimse0h4' }
+        ],
+        'vampire-survivors': [
+            { text: 'Descargar Vampire Survivors', url: 'https://www.mediafire.com/file/w7r10dc1rb85n4r/Vampi6reSurv1ivors-1.13.109-elamigos.rar/file' }
+        ],
+        'hct': [
+            { text: 'Descargar Horizon Chase Turbo', url: 'https://www.mediafire.com/file/b7g6sh0gj0biort/HCT2018.Www.GamezFull.com.rar/file' }
+        ],
         'barony': [
             { text: 'Descargar Barony', url: 'https://www.mediafire.com/file/zbdaq9intal95mf/BPC.rar/file' },
             { text: 'Descargar traducción al español', url: 'https://www.mediafire.com/file/sjw4si78r9wy2ae/Barony_Spanish_Mod.rar/file' }
         ],
-        'dmc': [{ text: 'Descargar DmC: Devil May Cry', url: 'https://rapidshare.co/en/d/QIkPCb4cBC3xXE' }],
-        'cod': [{ text: 'Descargar Call of Duty', url: 'https://www.mediafire.com/file/kfvfuduqbzlhor2/COD.rar/file' }],
+        'dmc': [
+            { text: 'Descargar DmC: Devil May Cry', url: 'https://rapidshare.co/en/d/QIkPCb4cBC3xXE' }
+        ],
+        'cod': [
+            { text: 'Descargar Call of Duty', url: 'https://www.mediafire.com/file/kfvfuduqbzlhor2/COD.rar/file' }
+        ],
         'dead-space': [
             {
                 text: 'Descargar Dead Space',
@@ -151,9 +181,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 ]
             }
         ],
-        'rcrdx': [{ text: 'Descargar Retro City Rampage DX', url: 'https://mega.nz/file/vuwhTRQL#FdYuUSz8Nr1s7wuROhCb7nJ2Vt-p2qwxKC2QCl18drs' }],
-        'into-the-breach': [{ text: 'Descargar Into the Breach', url: 'https://mega.nz/file/Nd0xlSIZ#28Tp9-1bQG2Wkjs80o-Q8CdBqoJGL2Dh3gmykAwpxtk' }],
-        'enter-the-gungeon': [{ text: 'Descargar Enter the Gungeon', url: 'https://www.mediafire.com/file/rws1g4w546qauae/Enter.the.gun.v2.1.9.rar/file' }],
+        'rcrdx': [
+            { text: 'Descargar Retro City Rampage DX', url: 'https://mega.nz/file/vuwhTRQL#FdYuUSz8Nr1s7wuROhCb7nJ2Vt-p2qwxKC2QCl18drs' }
+        ],
+        'into-the-breach': [
+            { text: 'Descargar Into the Breach', url: 'https://mega.nz/file/Nd0xlSIZ#28Tp9-1bQG2Wkjs80o-Q8CdBqoJGL2Dh3gmykAwpxtk' }
+        ],
+        'enter-the-gungeon': [
+            { text: 'Descargar Enter the Gungeon', url: 'https://www.mediafire.com/file/rws1g4w546qauae/Enter.the.gun.v2.1.9.rar/file' }
+        ],
         'postal2': [
             {
                 text: 'Descargar Postal 2',
@@ -182,9 +218,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 ]
             }
         ],
-        'lis': [{ text: 'Descargar Life is Strange', url: 'https://www.mediafire.com/file/0ccchy21bd51r51/L1f3_1s_Str4ng3.rar/file' }],
-        'slendyt': [{ text: 'Descargar Slendytubbies', url: 'https://www.mediafire.com/file/55vwtdwziv20gg3/STB.zip/file' }],
-        'slendyt2': [{ text: 'Descargar Slendytubbies 2', url: 'https://www.mediafire.com/file/13z3i2116t00m0g/' }],
+        'lis': [
+            { text: 'Descargar Life is Strange', url: 'https://www.mediafire.com/file/0ccchy21bd51r51/L1f3_1s_Str4ng3.rar/file' }
+        ],
+        'slendyt': [
+            { text: 'Descargar Slendytubbies', url: 'https://www.mediafire.com/file/55vwtdwziv20gg3/STB.zip/file' }
+        ],
+        'slendyt2': [
+            { text: 'Descargar Slendytubbies 2', url: 'https://www.mediafire.com/file/13z3i2116t00m0g/' }
+        ],
         'slendyt3': [
             { text: 'Descargar Slendytubbies 3 (Camapaña)', url: 'https://www.mediafire.com/file/249yxzi56wn17r6/Slendytubbies_3_V1_295_%252864bit%2529.zip/file' },
             { text: 'Descargar Slendytubbies 3 (Multijugador)', url: 'https://www.mediafire.com/file_premium/lqhyvva24iuinxc/Slendytubbies_3_Multiplayer_%2528x64%2529.zip/file' }
@@ -205,11 +247,21 @@ document.addEventListener('DOMContentLoaded', () => {
             { text: 'Descargar FNAF 4: Halloween Edition (ORIGINAL)', url: 'https://www.mediafire.com/file/k9uy7if04x7hjhr/FNAF4-HWE.exe/file' },
             { text: 'Descargar FNAF 4: Halloween Edition (FANDUB ESPAÑOL)', url: 'https://www.mediafire.com/file/hmmszewyab5t7fb/Five_Nights_at_Freddy%25C2%25B4s_4_Halloween_Edition.exe/file' }
         ],
-        'fnaf5': [{ text: 'Descargar FNAF: Sister Location', url: 'https://www.mediafire.com/file/ye20nk6wxgbk8ch/FNAF5.exe/file' }],
-        'aoe': [{ text: 'Descargar Age of Empires', url: 'https://www.mediafire.com/file/07q3ddrnk95c436/AOEGE.iso/file' }],
-        'cs16': [{ text: 'Descargar Counter Strike 1.6 (NO STEAM)', url: 'https://www.mediafire.com/file/8g8eh2v1xja2pju/CS16.rar/file' }],
-        'blur': [{ text: 'Descargar Blur', url: 'https://www.mediafire.com/file/gg1jyyp0grgf8fk/BLR.iso/file' }],
-        'conan04': [{ text: 'Descargar Conan (2004)', url: 'https://www.mediafire.com/file/xqlhnvi8pfggukf/C04.rar/file' }],
+        'fnaf5': [
+            { text: 'Descargar FNAF: Sister Location', url: 'https://www.mediafire.com/file/ye20nk6wxgbk8ch/FNAF5.exe/file' }
+        ],
+        'aoe': [
+            { text: 'Descargar Age of Empires', url: 'https://www.mediafire.com/file/07q3ddrnk95c436/AOEGE.iso/file' }
+        ],
+        'cs16': [
+            { text: 'Descargar Counter Strike 1.6 (NO STEAM)', url: 'https://www.mediafire.com/file/8g8eh2v1xja2pju/CS16.rar/file' }
+        ],
+        'blur': [
+            { text: 'Descargar Blur', url: 'https://www.mediafire.com/file/gg1jyyp0grgf8fk/BLR.iso/file' }
+        ],
+        'conan04': [
+            { text: 'Descargar Conan (2004)', url: 'https://www.mediafire.com/file/xqlhnvi8pfggukf/C04.rar/file' }
+        ],
         'assassinscreed': [
             {
                 text: 'Descargar Assassin\'s Creed',
@@ -219,23 +271,57 @@ document.addEventListener('DOMContentLoaded', () => {
                 ]
             }
         ],
-        'cds': [{ text: 'Descargar Conflict Desert Storm', url: 'https://www.mediafire.com/file/5x7es3quv6kyk0n/CDS.rar/file' }],
-        'cold-fear': [{ text: 'Descargar Cold Fear', url: 'https://www.mediafire.com/file/yftik1nkpzrvykv/CFPC.rar/file' }],
-        'combat-chess': [{ text: 'Descargar Combat Chess', url: 'https://www.mediafire.com/file/8am66wi60bfouzz/CCPC.rar/file' }],
-        'combat-tf121': [{ text: 'Descargar Combat: Task Force 121', url: 'https://www.mediafire.com/file/i4resaqoost37ev/CTF.rar/file' }],
-        'commandos-sf': [{ text: 'Descargar Commandos: Strike Force', url: 'https://www.mediafire.com/file/h3o7n9boad1hr38/CSF.rar/file' }],
-        'stick-fight': [{ text: 'Descargar Stick Fight: The Game', url: 'https://www.mediafire.com/file/4ob4j8uxu6iauvo/SFtheGv05.06.2019.rar/file' }],
-        'lost-planet': [{ text: 'Descargar Lost Planet', url: 'https://www.mediafire.com/file/br6xop7n9r3cicx/L8st_Pl9n3t_3xtr3m3_C8nd1t18n_C8l8n13s_3d1t18n.rar/file' }],
-        'battleblock-theater': [{ text: 'Descargar BattleBlock Theater', url: 'https://drive.usercontent.google.com/download?id=16ZdlYUXGIYwPEzQHxt49jeuoYPMxKoH_&export=download&authuser=0' }],
-        'raft': [{ text: 'Descargar Raft', url: 'https://www.mediafire.com/file/ps2j3etzmsl6zqb/Ra6f3t-1.09-elamigos.rar/file' }],
-        'garrys-mod': [{ text: 'Descargar Garry\'s Mod', url: 'https://www.mediafire.com/file/53ubzb9a32lcu9u/Garrys_Mod_v1.5.80.0.rar/file' }],
-        'gta-sa': [{ text: 'Descargar GTA: San Andreas', url: 'https://www.mediafire.com/file/mplrdftfwxmd0x0/GTA+San+Andreas+By+Sajord.zip/file' }],
-        'dusk': [{ text: 'Descargar DUSK', url: 'https://www.mediafire.com/file/vch5x45tzoya7w4' }],
-        'hrot': [{ text: 'Descargar HROT', url: 'https://www.mediafire.com/file/x7tg4a8fzsqca9r' }],
-        'devil-daggers': [{ text: 'Descargar Devil Daggers', url: 'https://www.mediafire.com/file/pf2d92ev9ou9gm0/DDPC.rar/file' }],
-        'hedon-b': [{ text: 'Descargar Hedon: Bloodrite', url: 'https://www.mediafire.com/file/vjcw4o3ixc8918r/Hedon.Bloodrite.v2.4.2.zip/file' }],
-        'maximum-action': [{ text: 'Descargar Maximum Action', url: 'https://www.mediafire.com/file/7k89sf8zim6a1pt' }],
-        'ziggurat': [{ text: 'Descargar Ziggurat', url: 'http://go4up.com/dl/431fc3e47f4c/ppt-zigg.iso' }],
+        'cds': [
+            { text: 'Descargar Conflict Desert Storm', url: 'https://www.mediafire.com/file/5x7es3quv6kyk0n/CDS.rar/file' }
+        ],
+        'cold-fear': [
+            { text: 'Descargar Cold Fear', url: 'https://www.mediafire.com/file/yftik1nkpzrvykv/CFPC.rar/file' }
+        ],
+        'combat-chess': [
+            { text: 'Descargar Combat Chess', url: 'https://www.mediafire.com/file/8am66wi60bfouzz/CCPC.rar/file' }
+        ],
+        'combat-tf121': [
+            { text: 'Descargar Combat: Task Force 121', url: 'https://www.mediafire.com/file/i4resaqoost37ev/CTF.rar/file' }
+        ],
+        'commandos-sf': [
+            { text: 'Descargar Commandos: Strike Force', url: 'https://www.mediafire.com/file/h3o7n9boad1hr38/CSF.rar/file' }
+        ],
+        'stick-fight': [
+            { text: 'Descargar Stick Fight: The Game', url: 'https://www.mediafire.com/file/4ob4j8uxu6iauvo/SFtheGv05.06.2019.rar/file' }
+        ],
+        'lost-planet': [
+            { text: 'Descargar Lost Planet', url: 'https://www.mediafire.com/file/br6xop7n9r3cicx/L8st_Pl9n3t_3xtr3m3_C8nd1t18n_C8l8n13s_3d1t18n.rar/file' }
+        ],
+        'battleblock-theater': [
+            { text: 'Descargar BattleBlock Theater', url: 'https://drive.usercontent.google.com/download?id=16ZdlYUXGIYwPEzQHxt49jeuoYPMxKoH_&export=download&authuser=0' }
+        ],
+        'raft': [
+            { text: 'Descargar Raft', url: 'https://www.mediafire.com/file/ps2j3etzmsl6zqb/Ra6f3t-1.09-elamigos.rar/file' }
+        ],
+        'garrys-mod': [
+            { text: 'Descargar Garry\'s Mod', url: 'https://www.mediafire.com/file/53ubzb9a32lcu9u/Garrys_Mod_v1.5.80.0.rar/file' }
+        ],
+        'gta-sa': [
+            { text: 'Descargar GTA: San Andreas', url: 'https://www.mediafire.com/file/mplrdftfwxmd0x0/GTA+San+Andreas+By+Sajord.zip/file' }
+        ],
+        'dusk': [
+            { text: 'Descargar DUSK', url: 'https://www.mediafire.com/file/vch5x45tzoya7w4' }
+        ],
+        'hrot': [
+            { text: 'Descargar HROT', url: 'https://www.mediafire.com/file/x7tg4a8fzsqca9r' }
+        ],
+        'devil-daggers': [
+            { text: 'Descargar Devil Daggers', url: 'https://www.mediafire.com/file/pf2d92ev9ou9gm0/DDPC.rar/file' }
+        ],
+        'hedon-b': [
+            { text: 'Descargar Hedon: Bloodrite', url: 'https://www.mediafire.com/file/vjcw4o3ixc8918r/Hedon.Bloodrite.v2.4.2.zip/file' }
+        ],
+        'maximum-action': [
+            { text: 'Descargar Maximum Action', url: 'https://www.mediafire.com/file/7k89sf8zim6a1pt' }
+        ],
+        'ziggurat': [
+            { text: 'Descargar Ziggurat', url: 'http://go4up.com/dl/431fc3e47f4c/ppt-zigg.iso' }
+        ],
         'powerwash-sim': [
             {
                 text: 'Descargar PowerWash Simulator',
@@ -248,7 +334,83 @@ document.addEventListener('DOMContentLoaded', () => {
                 ]
             },
             { text: 'Descargar actualización v29.05.2025', url: 'https://www.mediafire.com/file/fnjsbc6ckom2g7a/Pow1erWa6shSi-Update29.05.2025-elamigos.rar/file' }
+        ],
+        'mafia-ii': [
+            {
+                text: 'Descargar Mafia II',
+                parts: [
+                    { text: 'Parte 1', url: 'https://www.mediafire.com/file/b5vlxh753wt68gj/MIIPG.Update5.GamezFull.com.part01.rar/file' },
+                    { text: 'Parte 2', url: 'https://www.mediafire.com/file/gyngoc9ctowvvos/MIIPG.Update5.GamezFull.com.part02.rar/file' },
+                    { text: 'Parte 3', url: 'https://www.mediafire.com/file/8iilv1kqfy1p79x/MIIPG.Update5.GamezFull.com.part03.rar/file' },
+                    { text: 'Parte 4', url: 'https://www.mediafire.com/file/at9zhpebjfkrgmh/MIIPG.Update5.GamezFull.com.part04.rar/file' },
+                    { text: 'Parte 5', url: 'https://www.mediafire.com/file/k78bbxldr2307tn/MIIPG.Update5.GamezFull.com.part05.rar/file' },
+                    { text: 'Parte 6', url: 'https://www.mediafire.com/file/178yl2dv95cvwop/MIIPG.Update5.GamezFull.com.part06.rar/file' },
+                    { text: 'Parte 7', url: 'https://www.mediafire.com/file/xgg8gv1ssymioz4/MIIPG.Update5.GamezFull.com.part07.rar/file' },
+                    { text: 'Parte 8', url: 'https://www.mediafire.com/file/5jm37nxrjg5iyeb/MIIPG.Update5.GamezFull.com.part08.rar/file' },
+                    { text: 'Parte 9', url: 'https://www.mediafire.com/file/6wi420szsk3pdwv/MIIPG.Update5.GamezFull.com.part09.rar/file' }
+                ]
+            }
+        ],
+        'hitman-bm': [
+            {
+                text: 'Descargar Hitman: Blood Money',
+                parts: [
+                    { text: 'Parte 1', url: 'https://www.mediafire.com/file/ry55hdmvtrjnte3/HBMPG.GamezFull.part1.rar' },
+                    { text: 'Parte 2', url: 'https://www.mediafire.com/file/01fiaobbb3l9qyk/HBMPG.GamezFull.part2.rar' },
+                    { text: 'Parte 3', url: 'https://www.mediafire.com/file/angujsh5kmw3br1/HBMPG.GamezFull.part3.rar' },
+                    { text: 'Parte 4', url: 'https://www.mediafire.com/file/m1w7c880a26trt4/HBMPG.GamezFull.part4.rar' },
+                    { text: 'Parte 5', url: 'https://www.mediafire.com/file/bi5newenlkuyyvj/HBMPG.GamezFull.part5.rar' },
+                    { text: 'Parte 6', url: 'https://www.mediafire.com/file/86xkr37ykor433x/HBMPG.GamezFull.part6.rar' }
+                ]
+            }
+        ],
+        'hitman-contracts': [
+            { text: 'Descargar Hitman: Contracts', url: 'https://drive.usercontent.google.com/download?id=1ZK3wvkBZF95yrIgYUsnHI2aVW4T1jtzY&authuser=0' }
+        ],
+        'batman-as': [
+            { text: 'Descargar Batman: Arkham Asylum', url: 'https://www.mediafire.com/file/13hn1c1digxt061/BAA2011PG1.1.GamezFullCOM.rar/file' }
+        ],
+        'turok-08': [
+            {
+                text: 'Descargar Turok (2008)',
+                parts: [
+                    { text: 'Parte 1', url: 'https://www.mediafire.com/file/wenjq69q8btisr3/T2008PG.GamezFull.com.part01.rar/file' },
+                    { text: 'Parte 2', url: 'https://www.mediafire.com/file/lws7djotsqqkeka/T2008PG.GamezFull.com.part02.rar/file' },
+                    { text: 'Parte 3', url: 'https://www.mediafire.com/file/pzaz1z8qf46fhxs/T2008PG.GamezFull.com.part03.rar/file' },
+                    { text: 'Parte 4', url: 'https://www.mediafire.com/file/xchiz7lwdhm0ymx/T2008PG.GamezFull.com.part04.rar/file' },
+                    { text: 'Parte 5', url: 'https://www.mediafire.com/file/u60kdrrnq8vl6or/T2008PG.GamezFull.com.part05.rar/file' },
+                    { text: 'Parte 6', url: 'https://www.mediafire.com/file/fs8a05y2277kbwz/T2008PG.GamezFull.com.part06.rar/file' },
+                    { text: 'Parte 7', url: 'https://www.mediafire.com/file/a3knseipq5lhqng/T2008PG.GamezFull.com.part07.rar/file' },
+                    { text: 'Parte 8', url: 'https://www.mediafire.com/file/stasdgkp4inon2f/T2008PG.GamezFull.com.part08.rar/file' },
+                    { text: 'Parte 9', url: 'https://www.mediafire.com/file/3fjrhtx2rwcscig/T2008PG.GamezFull.com.part09.rar/file' },
+                    { text: 'Parte 10', url: 'https://www.mediafire.com/file/8pxa4yinqoi0ql9/T2008PG.GamezFull.com.part10.rar/file' },
+                    { text: 'Parte 11', url: 'https://www.mediafire.com/file/36ps24je5got4xt/T2008PG.GamezFull.com.part11.rar/file' },
+                    { text: 'Parte 12', url: 'https://www.mediafire.com/file/n5fdeycfi5usuo2/T2008PG.GamezFull.com.part12.rar/file' }
+                ]
+            }
+        ],
+        'crysis': [
+            {
+                text: 'Descargar Crysis',
+                parts: [
+                    { text: 'Parte 1', url: 'https://www.mediafire.com/file/s2gw40w4qsz4hgy/C1PGGOG_GamezFull.part1.rar' },
+                    { text: 'Parte 2', url: 'https://www.mediafire.com/file/d77x7ir4aed7mzy/C1PGGOG_GamezFull.part2.rar' },
+                    { text: 'Parte 3', url: 'https://www.mediafire.com/file/uqour43opfi8rko/C1PGGOG_GamezFull.part3.rar' },
+                    { text: 'Parte 4', url: 'https://www.mediafire.com/file/07lo82a19s524is/C1PGGOG_GamezFull.part4.rar' },
+                    { text: 'Parte 5', url: 'https://www.mediafire.com/file/77jx88vw2ej92bp/C1PGGOG_GamezFull.part5.rar' },
+                    { text: 'Parte 6', url: 'https://www.mediafire.com/file/45qk97e1x3dd595/C1PGGOG_GamezFull.part6.rar' },
+                    { text: 'Parte 7', url: 'https://www.mediafire.com/file/gkywbm79k59d68m/C1PGGOG_GamezFull.part7.rar' },
+                    { text: 'Parte 8', url: 'https://www.mediafire.com/file/ntdd9a1qlei28uq/C1PGGOG_GamezFull.part8.rar' }
+                ]
+            }
         ]
+
+
+
+
+
+
+
 
 
 
