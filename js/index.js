@@ -431,7 +431,39 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
         'payday-th': [
             { text: 'Descargar PAYDAY: The Heist', url: 'https://www.mediafire.com/file/by5reo6kg1doimo/PD.TH.Wolfpack.v1.12.2..rar/file' }
+        ],
+        'bioshock': [
+            { text: 'Descargar Bioshock', url: 'https://www.mediafire.com/file/h3246t5yl96chd9/B18Sh8ck_1.1.rar/file' }
+        ],
+        'shaun-white-skate': [
+            { text: 'Descargar Shaun White Skateboarding', url: 'https://www.mediafire.com/file/2u0070h2dzd4mz1/Sh4un_Wh1t3_Sk4t3b84rd1ng.rar/file' }
+        ],
+        'minecraft-bedrock': [
+            { text: 'Descargar Minecraft Bedrock Edition', url: 'https://www.mediafire.com/file/gpzlw9oleh6ccc0/M1necr4ft_Bedr8ck_Ed1t18n_v1.21.130.rar/file' }
+        ],
+        'rayman-rr': [
+            { text: 'Descargar Rayman Raving Rabbids', url: 'https://www.mediafire.com/file/am36zltdx0ld5ay/R44ym44n.R44v1ng.R44bb1ds.G8G.rar/file' }
+        ],
+        'capcom-fc': [
+            { text: 'Descargar Capcom Fighting Collection', url: 'https://www.mediafire.com/file/dot121cqf8atzvu/Ca4pc4om_F1ighti1ng_Co4lle3ct1i4n.rar/file' }
+        ],
+        'scott-pilgrim-vstw': [
+            { text: 'Descargar Scott Pilgrim vs. The World', url: 'https://www.mediafire.com/file/4htg3fqykliscuk/v81ces38-sc8tt.p1lgr1m.vs.the.w8rld.rar/file' }
+        ],
+        'terminator2d': [
+            { text: 'Descargar Terminator 2D: NO FATE', url: 'https://www.mediafire.com/file/1z23msazche4rgv/Term1n4t8r_2D_N8_F4te.rar/file' }
+        ],
+        'lord-of-rings-tq': [
+            { text: 'Descargar El Señor de los Anillos: La Conquista', url: 'https://www.mediafire.com/file/igc2e2f1ozm7k8b/3l_S3%25C3%25B10r_d3_l0s_7n3ll0s_L7_C0nqu3st7.rar/file' }
         ]
+
+
+
+
+
+
+
+
 
 
 
