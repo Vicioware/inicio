@@ -461,7 +461,11 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
         'star-wars-bh': [
             { text: 'Descargar Star Wars: Bounty Hunter', url: 'https://www.mediafire.com/file/ihl4mijc3jvul61/St4r_W4rs_B8unty_Hunt3r_R3m4st3r.rar/file' }
+        ],
+        'freshly-frosted': [
+            { text: 'Descargar Freshly Frosted', url: 'https://www.mediafire.com/file/1xk7yiucflhdv8m' }
         ]
+
 
 
 
