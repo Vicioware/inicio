@@ -455,7 +455,15 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
         'lord-of-rings-tq': [
             { text: 'Descargar El Señor de los Anillos: La Conquista', url: 'https://www.mediafire.com/file/igc2e2f1ozm7k8b/3l_S3%25C3%25B10r_d3_l0s_7n3ll0s_L7_C0nqu3st7.rar/file' }
+        ],
+        'dave-the-diver': [
+            { text: 'Descargar Dave the Diver', url: 'https://www.mediafire.com/file/m7a0j89kgqff412/D4v3_th3_D1v3r_1.0.2.1214.rar/file' }
+        ],
+        'star-wars-bh': [
+            { text: 'Descargar Star Wars: Bounty Hunter', url: 'https://www.mediafire.com/file/ihl4mijc3jvul61/St4r_W4rs_B8unty_Hunt3r_R3m4st3r.rar/file' }
         ]
+
+
 
 
 
