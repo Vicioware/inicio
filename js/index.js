@@ -464,7 +464,22 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
         'freshly-frosted': [
             { text: 'Descargar Freshly Frosted', url: 'https://www.mediafire.com/file/1xk7yiucflhdv8m' }
+        ],
+        'dread-templar': [
+            {
+                text: 'Descargar Dread Templar',
+                parts: [
+                    { text: 'Parte 1', url: 'https://www.mediafire.com/file/7cnafp4jkxop2bb/DTPG.v1.02b.GamezFull.com.part1.rar/file' },
+                    { text: 'Parte 2', url: 'https://www.mediafire.com/file/nthejlbv95vdprs/DTPG.v1.02b.GamezFull.com.part2.rar/file' },
+                    { text: 'Parte 3', url: 'https://www.mediafire.com/file/2j0zxiwz34g4v4r/DTPG.v1.02b.GamezFull.com.part3.rar/file' }
+                ]
+            }
+        ],
+        'ultrakill': [
+            { text: 'Descargar Ultrakill', url: 'https://www.mediafire.com/file/1wrw2cu37dgdh18' }
         ]
+
+
 
 
 
