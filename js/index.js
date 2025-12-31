@@ -491,7 +491,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { text: 'Descargar Mortal Kombat: Unchained', url: 'https://www.mediafire.com/file/3rb0vmoy7wq6aj6/M8rt4l_K8mb4t_Unch4in3d_3mul4d8.rar/file' }
         ],
         'pokemon-colleccion': [
-            { text: 'Descargar Pokemón Colección', url: 'https://www.mediafire.com/file/v1b0s3cy3u6cjeu/P0ketVL1.Y2.rar/file' }
+            { text: 'Descargar Pokemón Colección', url: 'https://www.mediafire.com/file/v1b0s3cy3u6cjeu/P0ketVL1.Y2.rar/file', readMoreText: 'Contiene los siguientes títulos:' }
         ],
         'mario-kart64': [
             { text: 'Descargar Mario Kart 64', url: 'https://www.mediafire.com/file/vgpp7iinb16cqlg/M4ari1o_K4rt_64.rar/file' }
@@ -547,6 +547,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'turok3': [
             { text: 'Descargar Turok 3: Shadow of Oblivion', url: 'https://www.mediafire.com/file/ye0qix5yn2mzrcy/tur8k_3.rar/file' }
         ]
+
 
 
 
