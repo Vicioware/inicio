@@ -491,7 +491,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { text: 'Descargar Mortal Kombat: Unchained', url: 'https://www.mediafire.com/file/3rb0vmoy7wq6aj6/M8rt4l_K8mb4t_Unch4in3d_3mul4d8.rar/file' }
         ],
         'pokemon-colleccion': [
-            { text: 'Descargar Pokemón Colección', url: 'https://www.mediafire.com/file/v1b0s3cy3u6cjeu/P0ketVL1.Y2.rar/file', readMoreText: 'Contiene los siguientes títulos:\n\nPokemon Azul\nPokemon Rojo\nPokemon Verde (Inglés)\nPokemon Pinball\nPokemon Oro\nPokemon Plata\nPokemon Cristal\nPokemon Amarillo\nPokemon Puzzle Challenge\nPokemon Trading Card Game\nPokemon Rubi\nPokemon Zafiro\nPokemon Esmeralda\nPokemon Rojo Fuego\nPokemon Verde Hoja\nPokemon Mundo Misterioso\nPokemon Pinball RZ\nPokemon Stadium 1\nPokemon Stadium 2\nPokemon Snap\nPokemon – Edicion Perla\nPokemon – Edicion Diamante\nPokemon – Edicion Platino\nPokemon – Edicion Blanca\nPokemon – Edicion Negra\nPokemon – Edicion Blanca 2\nPokemon – Edicion Negra 2\nPokemon – Edicion Oro HeartGold\nPokemon – Edicion Plata SoulSilver\nPokemon Mundo Misterioso – Equipo de Rescate Azul\nPokemon Mundo Misterioso – Exploradores de la Oscuridad\nPokemon Mundo Misterioso – Exploradores del Tiempo\nPokemon Mundo Misterioso – Explotadores del Cielo\nPokemon Ranger – Sombras de Almia\nPokemon Ranger – Trazos de Luz\nPokemon Sol\nPokemon Luna\nPokemon Ultra Sol\nPokemon Ultra Luna\nPokemon X\nPokemon Y\nPokemon Rubi Omega\nPokemon Zafiro Alfa' }
+            { text: 'Descargar Pokemón Colección', url: 'https://www.mediafire.com/file/v1b0s3cy3u6cjeu/P0ketVL1.Y2.rar/file', readMoreText: 'Contiene los siguientes títulos:\n\n- Pokemon Azul\n- Pokemon Rojo\n- Pokemon Verde (Inglés)\n- Pokemon Pinball\n- Pokemon Oro\n- Pokemon Plata\n- Pokemon Cristal\n- Pokemon Amarillo\n- Pokemon Puzzle Challenge\n- Pokemon Trading Card Game\n- Pokemon Rubi\n- Pokemon Zafiro\n- Pokemon Esmeralda\n- Pokemon Rojo Fuego\n- Pokemon Verde Hoja\n- Pokemon Mundo Misterioso\n- Pokemon Pinball RZ\n- Pokemon Stadium 1\n- Pokemon Stadium 2\n- Pokemon Snap\n- Pokemon – Edicion Perla\n- Pokemon – Edicion Diamante\n- Pokemon – Edicion Platino\n- Pokemon – Edicion Blanca\n- Pokemon – Edicion Negra\n- Pokemon – Edicion Blanca 2\n- Pokemon – Edicion Negra 2\n- Pokemon – Edicion Oro HeartGold\n- Pokemon – Edicion Plata SoulSilver\n- Pokemon Mundo Misterioso – Equipo de Rescate Azul\n- Pokemon Mundo Misterioso – Exploradores de la Oscuridad\n- Pokemon Mundo Misterioso – Exploradores del Tiempo\n- Pokemon Mundo Misterioso – Explotadores del Cielo\n- Pokemon Ranger – Sombras de Almia\n- Pokemon Ranger – Trazos de Luz\n- Pokemon Sol\n- Pokemon Luna\n- Pokemon Ultra Sol\n- Pokemon Ultra Luna\n- Pokemon X\n- Pokemon Y\n- Pokemon Rubi Omega\n- Pokemon Zafiro Alfa' }
         ],
         'mario-kart64': [
             { text: 'Descargar Mario Kart 64', url: 'https://www.mediafire.com/file/vgpp7iinb16cqlg/M4ari1o_K4rt_64.rar/file' }
@@ -547,6 +547,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'turok3': [
             { text: 'Descargar Turok 3: Shadow of Oblivion', url: 'https://www.mediafire.com/file/ye0qix5yn2mzrcy/tur8k_3.rar/file' }
         ]
+
 
 
 
