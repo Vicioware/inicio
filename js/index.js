@@ -546,7 +546,40 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
         'turok3': [
             { text: 'Descargar Turok 3: Shadow of Oblivion', url: 'https://www.mediafire.com/file/ye0qix5yn2mzrcy/tur8k_3.rar/file' }
+        ],
+        'pvz-replanted': [
+            { text: 'Descargar Plants vs. Zombies: Replanted', url: 'https://www.mediafire.com/file/hb5kg3etfsn8apr/Pl4ants_vs_Zo8mbi13es_R3epl4ante3d.rar/file' }
+        ],
+        'just-cause': [
+            { text: 'Descargar Just Cause', url: 'https://www.mediafire.com/file/u53hyk4b3hx3kka/Just_C4use.rar/file' }
+        ],
+        'tloz-oft': [
+            { text: 'Descargar The Legend of Zelda: Ocarina of Time', url: 'https://www.mediafire.com/file/tgw0icud59q94jo/Z3elda4_Oc4arin4_of_Ti1m3e.rar/file' }
+        ],
+        'motogp': [
+            { text: 'Descargar MotoGP', url: 'https://www.mediafire.com/file/to7dv5jhw3pa1bo/M8t8GP_2000.rar/file' }
+        ],
+        'motogp2': [
+            { text: 'Descargar MotoGP 2', url: 'https://www.mediafire.com/file/6ped66pmq65jm3t/M8t8GP_2.rar/file' }
+        ],
+        'motogp3': [
+            { text: 'Descargar MotoGP 3', url: 'https://www.mediafire.com/file/sr8f0lkzbuwfdd1/M8t8GP_Ultim4t3_R4cing_T3chn8l8gy_3.rar/file' }
+        ],
+        'motogp07': [
+            { text: 'Descargar MotoGP 07', url: 'https://www.mediafire.com/file/edrj3xuqrbcvft2/M8t8GP_07_MULTI5_-_F4irlight.rar/file' }
+        ],
+        'soldier-of-fortune': [
+            { text: 'Descargar Soldier of Fortune', url: 'https://www.mediafire.com/file/hqmdn8ztntaymov/S8ld13r_8f_F8rtun3_Pl4t1num_3d1t18n.rar/file' }
         ]
+
+
+
+
+
+
+
+
+
 
 
 
