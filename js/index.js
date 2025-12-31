@@ -477,7 +477,99 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
         'ultrakill': [
             { text: 'Descargar Ultrakill', url: 'https://www.mediafire.com/file/1wrw2cu37dgdh18' }
+        ],
+        'mk1992': [
+            { text: 'Descargar Mortal Kombat (1992)', url: 'https://www.mediafire.com/file/ksnpjbs025t3sg4/M8rt4l_K8mb4t_1.rar/file' }
+        ],
+        'mafia': [
+            { text: 'Descargar Mafia', url: 'https://download938.mediafire.com/a90rvcgo9zfgZGhE25SISEPQGbIpUjcay5RAFfYBKMo4pZwyCn7fUgFEnZGjuDR3Je3VVahfvaLq2HG7IjEZu5gb2S208IFT6h0rH0Klbrra93TD044HJKkCSMLNC6mCxUBjY2ZUIqD0oOCFvjczma-S6vaxlb9lO1dSSOYMD-4-gw/h2qiku2rbm1nwu3/M7f17+1.rar' }
+        ],
+        'mk-deception': [
+            { text: 'Descargar Mortal Kombat: Deception', url: 'https://www.mediafire.com/file/aa4wphwzq2lzyal/M8rt4l_K8mb4t_D3c3pti8n.rar/file' }
+        ],
+        'mk-unchained': [
+            { text: 'Descargar Mortal Kombat: Unchained', url: 'https://www.mediafire.com/file/3rb0vmoy7wq6aj6/M8rt4l_K8mb4t_Unch4in3d_3mul4d8.rar/file' }
+        ],
+        'pokemon-colleccion': [
+            { text: 'Descargar Pokemón Colección', url: 'https://www.mediafire.com/file/v1b0s3cy3u6cjeu/P0ketVL1.Y2.rar/file' }
+        ],
+        'mario-kart64': [
+            { text: 'Descargar Mario Kart 64', url: 'https://www.mediafire.com/file/vgpp7iinb16cqlg/M4ari1o_K4rt_64.rar/file' }
+        ],
+        'pacman-af': [
+            { text: 'Descargar Pac-Man y las Aventuras Fantasmales', url: 'https://www.mediafire.com/file/545l3zrqxwzasq9/Pa4c-M4n_a4nd_th3_Gh8stly_4dv4ntur4s.rar/file' }
+        ],
+        'real-bout-tn': [
+            { text: 'Descargar Real Bout Fatal Fury 2: The Newcomers', url: 'https://www.mediafire.com/file/tp7trp0gcap0fc1/R34L.BOUT.F4T4L.FURY.2.TH3.N3WCOM3RS.Bu1ld.20035572.rar/file' }
+        ],
+        'beyond-tip2': [
+            { text: 'Descargar Beyond the Ice Palace 2', url: 'https://www.mediafire.com/file/wnw3od2keqerakk/b3yond_th3_8c3_p4l4c3_2.rar/file' }
+        ],
+        'cs-source': [
+            { text: 'Descargar Counter-Strike: Source', url: 'https://www.mediafire.com/file/048wx0szmr9w2c1/CSS_v3277112.rar/file' }
+        ],
+        'flatout-uc': [
+            { text: 'Descargar FlatOut: Ultimate Carnage', url: 'https://www.mediafire.com/file/a93n8bpb8k75nl2/Fl4t8ut_Ult1m4t3_C4rn4g3._C8ll3ct8r%2527s_3d1t18n_%25282008%2529.rar/file' }
+        ],
+        'bridge-portal': [
+            { text: 'Descargar Bridge Constructor Portal', url: 'https://www.mediafire.com/file/i4ly0urtgw752pw/Br1dg3_C8nstruct8r_P8rt4l_5.0.rar/file' }
+        ],
+        'balatro': [
+            { text: 'Descargar Balatro', url: 'https://www.mediafire.com/file/3o0i9fqlu6y56q7/B4l4tr8_v1.0.18-FULL.rar/file' }
+        ],
+        'rayman-origins': [
+            { text: 'Descargar Rayman Origins', url: 'https://www.mediafire.com/file/p1x6i26pwymk4vu/R4ym4n_Or8g8ns_1.0.32504.rar/file' }
+        ],
+        'toy-story2': [
+            { text: 'Descargar Toy Story 2: Buzz Lightyear al Rescate!', url: 'https://www.mediafire.com/file/lnl4jgvsrsv4qjj/TOY2.rar/file' }
+        ],
+        'the-sims-medieval': [
+            { text: 'Descargar The Sims Medieval', url: 'https://www.mediafire.com/file/utzej7l3qgqdtvw/Th3_S8ms_M3d83v4l_Ult8m4t3_3d8t8on.rar/file' }
+        ],
+        'silent-hill': [
+            { text: 'Descargar Silent Hill', url: 'https://www.mediafire.com/file/ycl0tmeiggi2m85/S8l3nt_H8ll.rar/file' }
+        ],
+        'kung-fu-panda': [
+            { text: 'Descargar Kung Fu Panda', url: 'https://www.mediafire.com/file/illz8sjyh3n5krn/P4ND4.rar/file' }
+        ],
+        'half-life-anthology': [
+            { text: 'Descargar Half-Life Anthology', url: 'https://www.mediafire.com/file/w98hqba5o99vn1k/H4lf-L1fe_1_4nth8l8gy.rar/file' }
+        ],
+        'cs-cz': [
+            { text: 'Descargar Counter-Strike: Condition Zero', url: 'https://www.mediafire.com/file/4i9wu83r2e6vqxa/C8unt3r_Str1k3_C8nd1t18n_Z3r8.rar/file' }
+        ],
+        'turok': [
+            { text: 'Descargar Turok (1997)', url: 'https://www.mediafire.com/file/opdw4hhthzz58ax/Tur8k_D1n8s4ur_Hunt3r_%2528bu1ld_23.04.2025%2529.rar/file' }
+        ],
+        'turok2': [
+            { text: 'Descargar Turok 2: Seeds of Evil', url: 'https://www.mediafire.com/file/dwds1gv193r439j/Tur8k_2_S33ds_8f_3v1l_R3m4st3r3d_%2528bu1ld_10.05.2023%2529.rar/file' }
+        ],
+        'turok3': [
+            { text: 'Descargar Turok 3: Shadow of Oblivion', url: 'https://www.mediafire.com/file/ye0qix5yn2mzrcy/tur8k_3.rar/file' }
         ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
