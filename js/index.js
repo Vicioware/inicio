@@ -488,7 +488,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { text: 'Descargar Mortal Kombat: Deception', url: 'https://www.mediafire.com/file/aa4wphwzq2lzyal/M8rt4l_K8mb4t_D3c3pti8n.rar/file' }
         ],
         'mk-unchained': [
-            { text: 'Descargar Mortal Kombat: Unchained', url: 'https://www.mediafire.com/file/3rb0vmoy7wq6aj6/M8rt4l_K8mb4t_Unch4in3d_3mul4d8.rar/file' }
+            { text: 'Descargar Mortal Kombat: Unchained', url: 'https://www.mediafire.com/file/3rb0vmoy7wq6aj6/M8rt4l_K8mb4t_Unch4in3d_3mul4d8.rar/file', readMoreText: 'Esta versión es el "Mortal Kombat: Deception" pero con las siguientes caracteísticas:\n\n- Nuevos personajes: Blaze, Frost, Jax y Kitana.\n- Modo Endurance (oleadas contínuas de oponentes).\n- Modo multijugador por red inalambrica ad hoc.' }
         ],
         'pokemon-colleccion': [
             { text: 'Descargar Pokemón Colección', url: 'https://www.mediafire.com/file/v1b0s3cy3u6cjeu/P0ketVL1.Y2.rar/file', readMoreText: 'Contiene los siguientes títulos:\n\n- Pokemon Azul\n- Pokemon Rojo\n- Pokemon Verde (Inglés)\n- Pokemon Pinball\n- Pokemon Oro\n- Pokemon Plata\n- Pokemon Cristal\n- Pokemon Amarillo\n- Pokemon Puzzle Challenge\n- Pokemon Trading Card Game\n- Pokemon Rubi\n- Pokemon Zafiro\n- Pokemon Esmeralda\n- Pokemon Rojo Fuego\n- Pokemon Verde Hoja\n- Pokemon Mundo Misterioso\n- Pokemon Pinball RZ\n- Pokemon Stadium 1\n- Pokemon Stadium 2\n- Pokemon Snap\n- Pokemon – Edicion Perla\n- Pokemon – Edicion Diamante\n- Pokemon – Edicion Platino\n- Pokemon – Edicion Blanca\n- Pokemon – Edicion Negra\n- Pokemon – Edicion Blanca 2\n- Pokemon – Edicion Negra 2\n- Pokemon – Edicion Oro HeartGold\n- Pokemon – Edicion Plata SoulSilver\n- Pokemon Mundo Misterioso – Equipo de Rescate Azul\n- Pokemon Mundo Misterioso – Exploradores de la Oscuridad\n- Pokemon Mundo Misterioso – Exploradores del Tiempo\n- Pokemon Mundo Misterioso – Explotadores del Cielo\n- Pokemon Ranger – Sombras de Almia\n- Pokemon Ranger – Trazos de Luz\n- Pokemon Sol\n- Pokemon Luna\n- Pokemon Ultra Sol\n- Pokemon Ultra Luna\n- Pokemon X\n- Pokemon Y\n- Pokemon Rubi Omega\n- Pokemon Zafiro Alfa' }
@@ -533,7 +533,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { text: 'Descargar Kung Fu Panda', url: 'https://www.mediafire.com/file/illz8sjyh3n5krn/P4ND4.rar/file' }
         ],
         'half-life-anthology': [
-            { text: 'Descargar Half-Life Anthology', url: 'https://www.mediafire.com/file/w98hqba5o99vn1k/H4lf-L1fe_1_4nth8l8gy.rar/file' }
+            { text: 'Descargar Half-Life Anthology', url: 'https://www.mediafire.com/file/w98hqba5o99vn1k/H4lf-L1fe_1_4nth8l8gy.rar/file', readMoreText: 'Contiene los siguientes títulos:\n\n- Half-Life: Opposing Force\n- Half-Life: Blue Shift\n- Half-Life: Source\n- Half-Life Deathmatch: Source' }
         ],
         'cs-cz': [
             { text: 'Descargar Counter-Strike: Condition Zero', url: 'https://www.mediafire.com/file/4i9wu83r2e6vqxa/C8unt3r_Str1k3_C8nd1t18n_Z3r8.rar/file' }
@@ -547,6 +547,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'turok3': [
             { text: 'Descargar Turok 3: Shadow of Oblivion', url: 'https://www.mediafire.com/file/ye0qix5yn2mzrcy/tur8k_3.rar/file' }
         ]
+
+
 
 
 
