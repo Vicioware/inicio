@@ -488,7 +488,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { text: 'Descargar Mortal Kombat: Deception', url: 'https://www.mediafire.com/file/aa4wphwzq2lzyal/M8rt4l_K8mb4t_D3c3pti8n.rar/file' }
         ],
         'mk-unchained': [
-            { text: 'Descargar Mortal Kombat: Unchained', url: 'https://www.mediafire.com/file/3rb0vmoy7wq6aj6/M8rt4l_K8mb4t_Unch4in3d_3mul4d8.rar/file', readMoreText: 'Esta versión es el "Mortal Kombat: Deception" pero con las siguientes caracteísticas:\n\n- Nuevos personajes: Blaze, Frost, Jax y Kitana.\n- Modo Endurance (oleadas contínuas de oponentes).\n- Modo multijugador por red inalambrica ad hoc.' }
+            { text: 'Descargar Mortal Kombat: Unchained', url: 'https://www.mediafire.com/file/3rb0vmoy7wq6aj6/M8rt4l_K8mb4t_Unch4in3d_3mul4d8.rar/file', readMoreText: 'Esta versión es el "Mortal Kombat: Deception" pero con las siguientes características:\n\n- Nuevos personajes: Blaze, Frost, Jax y Kitana.\n- Modo Endurance (oleadas contínuas de oponentes).\n- Modo multijugador por red inalámbrica ad hoc.' }
         ],
         'pokemon-colleccion': [
             { text: 'Descargar Pokemón Colección', url: 'https://www.mediafire.com/file/v1b0s3cy3u6cjeu/P0ketVL1.Y2.rar/file', readMoreText: 'Contiene los siguientes títulos:\n\n- Pokemon Azul\n- Pokemon Rojo\n- Pokemon Verde (Inglés)\n- Pokemon Pinball\n- Pokemon Oro\n- Pokemon Plata\n- Pokemon Cristal\n- Pokemon Amarillo\n- Pokemon Puzzle Challenge\n- Pokemon Trading Card Game\n- Pokemon Rubi\n- Pokemon Zafiro\n- Pokemon Esmeralda\n- Pokemon Rojo Fuego\n- Pokemon Verde Hoja\n- Pokemon Mundo Misterioso\n- Pokemon Pinball RZ\n- Pokemon Stadium 1\n- Pokemon Stadium 2\n- Pokemon Snap\n- Pokemon – Edicion Perla\n- Pokemon – Edicion Diamante\n- Pokemon – Edicion Platino\n- Pokemon – Edicion Blanca\n- Pokemon – Edicion Negra\n- Pokemon – Edicion Blanca 2\n- Pokemon – Edicion Negra 2\n- Pokemon – Edicion Oro HeartGold\n- Pokemon – Edicion Plata SoulSilver\n- Pokemon Mundo Misterioso – Equipo de Rescate Azul\n- Pokemon Mundo Misterioso – Exploradores de la Oscuridad\n- Pokemon Mundo Misterioso – Exploradores del Tiempo\n- Pokemon Mundo Misterioso – Explotadores del Cielo\n- Pokemon Ranger – Sombras de Almia\n- Pokemon Ranger – Trazos de Luz\n- Pokemon Sol\n- Pokemon Luna\n- Pokemon Ultra Sol\n- Pokemon Ultra Luna\n- Pokemon X\n- Pokemon Y\n- Pokemon Rubi Omega\n- Pokemon Zafiro Alfa' }
@@ -570,7 +570,126 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
         'soldier-of-fortune': [
             { text: 'Descargar Soldier of Fortune', url: 'https://www.mediafire.com/file/hqmdn8ztntaymov/S8ld13r_8f_F8rtun3_Pl4t1num_3d1t18n.rar/file' }
+        ],
+        'mgs': [
+            { text: 'Descargar Metal Gear Solid', url: 'https://www.mediafire.com/file/hjdslamv7xgqoo5/M3t7l_G37r_S0l1d.rar/file' }
+        ],
+        'battlefield1942': [
+            { text: 'Descargar Battlefield 1942', url: 'https://www.mediafire.com/file/bmcz9kigazydlng/B7ttl3f13ld_1942.rar/file', readMoreText: 'Contiene DLCs:\n\n- Road to Rome\n- Secret Weapons of WWII' }
+        ],
+        'nfs-underground': [
+            { text: 'Descargar Need for Speed: Underground', url: 'https://www.mediafire.com/file/giz1dym04i4d3b5/N33d_f0r_sp33d_und3rgr0und.rar/file' }
+        ],
+        'nfs-underground2': [
+            { text: 'Descargar Need for Speed: Underground 2', url: 'https://www.mediafire.com/file/vpfl7pbk42ij32g/N33d_f0r_sp33d_und3rgr0und_2.rar/file' }
+        ],
+        'nfs-most-wanted': [
+            { text: 'Descargar Need for Speed: Most Wanted', url: 'https://www.mediafire.com/file/abmgh8f40f4e261/N33d_f0r_sp33d_m0st_w7nt3d.rar/file' }
+        ],
+        'nfs-most-wanted-be': [
+            { text: 'Descargar Need for Speed: Most Wanted Black Edition', url: 'https://www.mediafire.com/file/10k6ccit6gtff1q/N33d_f8r_Sp33d_M8st_W4nt3d_2005.rar/file' }
+        ],
+        'nfs-carbon': [
+            { text: 'Descargar Need for Speed: Carbon', url: 'https://www.mediafire.com/file/w233rhgr8tl458n/N33d_f0r_sp33d_c7rb0n0.rar/file' }
+        ],
+        'nfs-high-stakes': [
+            { text: 'Descargar Need for Speed High Stakes', url: 'https://www.mediafire.com/file/qurxo0ktsvpfdmh/n33d_f0r_sp33d_h1gh_st7k3s.rar/file' }
+        ],
+        'nfs-hot-pursuit2': [
+            { text: 'Descargar Need for Speed: Hot Pursuit 2', url: 'https://www.mediafire.com/file/obcqe99za2055gg/N33d_f0r_Sp33d_H0t_Pursu1t_2.rar/file' }
+        ],
+        'chrome-specforce': [
+            { text: 'Descargar Chrome: Specforce', url: 'https://www.mediafire.com/file/kypfnoaqm10a92i/Chr0m3_Sp3cF0rc3.rar/file' }
+        ],
+        'terrordrome': [
+            { text: 'Descargar Terrordrome', url: 'https://www.mediafire.com/file/iimk44hd26riw4r/T3rr0rdr0m3.rar/file' }
+        ],
+        'chrome': [
+            { text: 'Descargar Chrome', url: 'https://www.mediafire.com/file/tqgmcku3jz9dknn/Chr8m3_2003.rar/file' }
+        ],
+        'rome-total-war': [
+            { text: 'Descargar Rome Total War', url: 'https://www.mediafire.com/file/r50rjibgawyxwcz/R0m3_T0t7l_W7r.rar/file' }
+        ],
+        'bb-miamitakedown': [
+            { text: 'Descargar Bad Boys: Miami Takedown', url: 'https://www.mediafire.com/file/s1yfueoepe2en4g/B4d_B8ys_M14m1_T4k3d8wn.rar/file' }
+        ],
+        'pop-ww': [
+            { text: 'Descargar Prince of Persia: Warrior Within', url: 'https://www.mediafire.com/file/2vv7vef09wh6cu8/Pr1nc3_0f_P3rs17_3l_7lm7_d3l_Gu3rr3r0.rar/file' }
+        ],
+        'battlefled2': [
+            { text: 'Descargar Battlefield 2', url: 'https://www.mediafire.com/file/c1cz6zl09v0m8c6/B7tt3f13l_2.rar/file' }
+        ],
+        'flatout': [
+            { text: 'Descargar FlatOut', url: 'https://www.mediafire.com/file/iba5scif69hdtlh/Fl4t-8ut1+PC.rar/file' }
+        ],
+        'flatout2': [
+            { text: 'Descargar FlatOut 2', url: 'https://www.mediafire.com/file/6rj3q21rhi41wss/Fl7t0ut_t2.rar/file' }
+        ],
+        'flatout3': [
+            { text: 'Descargar FlatOut 3: Chaos & Destruction', url: 'https://www.mediafire.com/file/mk81qn4sd8g119m/Fl7t0ut_3_Ch70s_7nd_D3struct10n_MULT18_-_PR0PH3T.rar/file' }
+        ],
+        'street-racing-syndicate': [
+            { text: 'Descargar Street Racing Syndicate', url: 'https://www.mediafire.com/file/12xe520a8pi9xn3/Str33t_R7c3ng_synd3c7t3.rar/file' }
+        ],
+        'syberia': [
+            { text: 'Descargar Syberia', url: 'https://www.mediafire.com/file/seakciy9tt1pggj/Syb3r14.rar/file' }
+        ],
+        'syberia2': [
+            { text: 'Descargar Syberia 2', url: 'https://www.mediafire.com/file/tanzmsled6ftw6m/Syb3r14_2.rar/file' }
+        ],
+        'worms-3d': [
+            { text: 'Descargar Worms 3D', url: 'https://www.mediafire.com/file/zs1msz8znmqv2u1/W8rms_3D.rar/fil' }
+        ],
+        'worms-revolution': [
+            { text: 'Descargar Worms Revolution', url: 'https://www.mediafire.com/file/k0l6xz7dr5jxu7q/W0rms_R3v0lut30n_G0ld_3d3t30n_Pr0ph3t.rar/file' }
+        ],
+        'worms2-armageddon': [
+            { text: 'Descargar Worms 2: Armageddon', url: 'https://www.mediafire.com/file/ns4dh8793nzah5b/W8rms_4rm4g3dd8n_v3.8.rar/file' }
+        ],
+        'worms-clan-wars': [
+            { text: 'Descargar Worms Clan Wars', url: 'https://www.mediafire.com/file/s7banwql66m2zuv/W8rms_Cl4n_W4rs.rar/file' }
+        ],
+        'worms-reloaded': [
+            { text: 'Descargar Worms: Reloaded', url: 'https://www.mediafire.com/file/p0mbea7sr5vprcn/W8rms_R3l84d3d.rar/file' }
+        ],
+        'worms-ultimate-mayhem': [
+            { text: 'Descargar Worms Ultimate Mayhem', url: 'https://www.mediafire.com/file/2epwynvn9n9mbq4/W8rms_Ult1m4t3_M4yh3m.rar/file' }
+        ],
+        'worms-wmd': [
+            { text: 'Descargar Worms W.M.D', url: 'https://www.mediafire.com/file/9s3wvknwer0omkn/W8rms_W.M.D.rar/file' }
         ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
