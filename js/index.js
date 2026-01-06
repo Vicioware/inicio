@@ -657,7 +657,97 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
         'worms-wmd': [
             { text: 'Descargar Worms W.M.D', url: 'https://www.mediafire.com/file/9s3wvknwer0omkn/W8rms_W.M.D.rar/file' }
+        ],
+        'diablo': [
+            { text: 'Descargar Diablo', url: 'https://www.mediafire.com/file/m9yifx9a6tzuovd/D17bl0.rar/file' }
+        ],
+        'diablo2': [
+            { text: 'Descargar Diablo II', url: 'https://www.mediafire.com/file/8bjva0c9byqlvbt/D17bl0_2.rar/file' }
+        ],
+        'battlefield-vietnam': [
+            { text: 'Descargar Battlefield Vietnam', url: 'https://www.mediafire.com/file/whtea4z0khsgnu8/BF.V13tn4m.2004.rar/file' }
+        ],
+        'cmr04': [
+            { text: 'Descargar Colin McRae Rally 04', url: 'https://www.mediafire.com/file/92a68xgexgf9z33/C0l1nMcR73R7lly04.rar/file' }
+        ],
+        'pes2012': [
+            { text: 'Descargar Pro Evolution Soccer 2012', url: 'https://www.mediafire.com/file/xqrqjeuprynu5ge/P3S+2012.rar/file' }
+        ],
+        'pes2009': [
+            { text: 'Descargar Pro Evolution Soccer 2009', url: 'https://www.mediafire.com/file/s8qbdexnobb7fcz/Pr8_3v8lut18n_S8cc3r_2009.rar/file' }
+        ],
+        'pes2008': [
+            { text: 'Descargar Pro Evolution Soccer 2008', url: 'https://www.mediafire.com/file/xf6dhg0czroivhp/P3s_2008.rar/file' }
+        ],
+        'pes2007': [
+            { text: 'Descargar Pro Evolution Soccer 2007', url: 'https://www.mediafire.com/file/dzx8fl98yrflwhl/P3S_7.rar/file' }
+        ],
+        'pes5': [
+            { text: 'Descargar Pro Evolution Soccer 5', url: 'https://www.mediafire.com/file/5gd3lmjvoty5qgy/Pr8_3v8lut18n_S8cc3r_2005.rar/file' }
+        ],
+        'pes2010': [
+            { text: 'Descargar Pro Evolution Soccer 2010', url: 'https://www.mediafire.com/file/41h06zda4x9nfhe/P3S2010.rar/file' }
+        ],
+        'pes2013': [
+            { text: 'Descargar Pro Evolution Soccer 2013', url: 'https://www.mediafire.com/file/p5ls0753976n5e3/P3S_2013.rar/file', readMoreText: 'Serial: SHVY-3LE9-TMNH-7K5L-JN73' }
+        ],
+        'nba2004': [
+            { text: 'Descargar NBA Live 2004', url: 'https://drive.google.com/file/d/1iTWv3m1Okj7NL3yCBfX-MhB9tA7HLA-F/view' }
+        ],
+        'nba08': [
+            { text: 'Descargar NBA Live 08', url: 'https://www.mediafire.com/file/wy8829uawr0l89v/NB4_L1v3_2008.rar/file' }
+        ],
+        'nba2k10': [
+            { text: 'Descargar NBA 2K10', url: 'https://www.mediafire.com/file/8srokwxtn7jsxqw/NB4_2K10_MULT15.rar/file' }
+        ],
+        'miami-vice': [
+            { text: 'Descargar Miami Vice', url: 'https://www.mediafire.com/file/q9dog9l7638eqwi/MVPG.Www.GamezFull.com.rar' }
+        ],
+        'wwe-raw': [
+            { text: 'Descargar WWE RAW', url: 'https://www.mediafire.com/file/3pvfbqfp97tmchb/WWERAW2002.Www.GamezFull.com.rar' }
+        ],
+        'spiderman2000': [
+            { text: 'Descargar Spider-Man', url: 'https://www.mediafire.com/file/yobl74uyclv48os/Sp1d3r-M4n_2001.rar/file' }
+        ],
+        'spiderman-fof': [
+            { text: 'Descargar Spider-Man: Amigo o Enemigo', url: 'https://www.mediafire.com/file/2leksgudqpyjct7/Sp1d3r-M4n_Fr13nd_8r_F83.rar/file' }
+        ],
+        'spiderman2-2004': [
+            { text: 'Descargar Spider-Man 2', url: 'https://www.mediafire.com/file/f82ok56sbu5idx0/Sp1d3rM7n_2.rar/file' }
+        ],
+        'spiderman3-2007': [
+            { text: 'Descargar Spider-Man 3', url: 'https://www.mediafire.com/file/4u58awb9hgw9g6l/Sp1d3rm7n+3.rar/file' }
+        ],
+        'spiderman-wos': [
+            { text: 'Descargar Spider-Man: Web of Shadows', url: 'https://www.mediafire.com/file/6r7az54xd3ucjcs/Sp1d3r-M7n_W3b_0f_Sh7d0ws.rar/file' }
+        ],
+        'spiderman-sd': [
+            { text: 'Descargar Spider-Man: Shattered Dimensions', url: 'https://www.mediafire.com/file/yw3gdjo091avw9x/Sp1d3r-M7n_Sh7tt3r3d_D1m3ns10ns.rar/file' }
         ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
