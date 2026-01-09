@@ -723,7 +723,107 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
         'spiderman-sd': [
             { text: 'Descargar Spider-Man: Shattered Dimensions', url: 'https://www.mediafire.com/file/yw3gdjo091avw9x/Sp1d3r-M7n_Sh7tt3r3d_D1m3ns10ns.rar/file' }
+        ],
+        'wolfenstein': [
+            { text: 'Descargar Wolfenstein', url: 'https://www.mediafire.com/file/vb2lc63wmhe6v7a/W0lf3nst31n_1.2.rar/file' }
+        ],
+        'wolfenstein-et': [
+            { text: 'Descargar Wolfenstein: Enemy Territory', url: 'https://www.mediafire.com/file/g4w0ril684cbwg8/W0lf3nst31n_3n3my_T3rr1t0ry_2.60.rar/file' }
+        ],
+        'wolfenstein-return': [
+            { text: 'Descargar Return to Castle Wolfenstein', url: 'https://www.mediafire.com/file/tlbiiqfzgvm2z43/R3turn_t0_C7stl3_W0lf3nst31n.rar/file' }
+        ],
+        'harry-potter-pf': [
+            { text: 'Descargar Harry Potter y la Piedra Filosofal', url: 'https://www.mediafire.com/file/a90yrmkctp4mp85/H4rry_P8tt3r_y_l4_p13dr4_f1l8s8f4l.rar/file' }
+        ],
+        'harry-potter-cs': [
+            { text: 'Descargar Harry Potter y La Cámara Secreta', url: 'https://www.mediafire.com/file/nyxjc7yxn7f4086/H4rry_P8tt3r_Y_L4_C4m4r4_S3cr3t4.rar/file' }
+        ],
+        'harry-potter-cf': [
+            { text: 'Descargar Harry Potter y el Cáliz de Fuego', url: 'https://www.mediafire.com/file/miexlbybwqxmle2/H4rry_P8tt3r_y_3l_C4l1z_d3_Fu3g8.rar/file' }
+        ],
+        'harry-potter-qcm': [
+            { text: 'Descargar Harry Potter: Quidditch Copa del Mundo', url: 'https://www.mediafire.com/file/idxioorkofb70z7/H4rry_P8tt3r_Qu1dd1tch_C8p4_d3l_Mund8.rar/file' }
+        ],
+        'harry-potter-of': [
+            { text: 'Descargar Harry Potter y la Orden del Fénix', url: 'https://www.mediafire.com/file/vtwi4k9pacltfdp/H7rry_P0tt3r_7nd_th3_0rd3r_0f_th3_Ph03n1x.rar/file' }
+        ],
+        'harry-potter-rm': [
+            { text: 'Descargar Harry Potter y las Reliquias de la Muerte', url: 'https://www.mediafire.com/file/howzbotp7igotod/H7rry_P0tt3r_7nd_th3_H7lf-Bl00d_Pr1nc3.rar/file' }
+        ],
+        'harry-potter-pda': [
+            { text: 'Descargar Harry Potter y el prisionero de Azkaban', url: 'https://www.mediafire.com/file/8oievtoeqfp6ju0/H7rry_P0tt3r_7nd_th3_Pr1s0n3r_0f_7zk7b7n.rar/file' }
+        ],
+        'obscure': [
+            { text: 'Descargar Obscure', url: 'https://www.mediafire.com/file/fd13wyn2xrqlnua/0bscur3.rar/file' }
+        ],
+        'obscure2': [
+            { text: 'Descargar Obscure 2', url: 'https://www.mediafire.com/file/wdpd0bxnxabdl3c/0bscur32.rar/file' }
+        ],
+        'rage': [
+            { text: 'Descargar Rage', url: 'https://www.mediafire.com/file/j3ju1dql8gvl3g4/R4g3_C8mpl3t3_3d1t18n_1.3.rar/file' }
+        ],
+        'harry-potter-mp': [
+            { text: 'Descargar Harry Potter y el Misterio del Príncipe', url: 'https://www.mediafire.com/file/howzbotp7igotod/H7rry_P0tt3r_7nd_th3_H7lf-Bl00d_Pr1nc3.rar/file' }
+        ],
+        'midnight-club2': [
+            { text: 'Descargar Midnight Club 2', url: 'https://www.mediafire.com/file/kjvr2ouiuvh739r/M1dn1ght_Club_2.rar/file' }
+        ],
+        'bully': [
+            { text: 'Descargar Bully', url: 'https://www.mediafire.com/file/jm21v7b24oy46d7/Bully_-_Sch0l7rsh1p_3d1t10n.rar/file' }
+        ],
+        'delta-force': [
+            { text: 'Descargar Delta Force', url: 'https://www.mediafire.com/file/dvoser3gx75jzop/D3lt7_f0rc3.rar/file' }
+        ],
+        'delta-force2': [
+            { text: 'Descargar Delta Force 2', url: 'https://www.mediafire.com/file/ksia5uee46bz4cx/D3lt7_f0rc3_2.rar/file' }
+        ],
+        'delta-force-x': [
+            { text: 'Descargar Delta Force Xtreme', url: 'https://www.mediafire.com/file/z2clq8eeb8b9v7b/D3lt7_f0rc3_xtr3m3.rar/file' }
+        ],
+        'delta-force-tsd': [
+            { text: 'Descargar Delta Force: Task Force Dagger', url: 'https://www.mediafire.com/file/oroa5vjbay3pqk9/D3lt7_f0rc3_t7sk_f0rc3_d7gg3r.rar/file' }
+        ],
+        'delta-force-bhd': [
+            { text: 'Descargar Delta Force: Black Hawk Down', url: 'https://www.mediafire.com/file/1m012tm38ipj4k4/D3lt7_f0rc3_bl7ck_h7wk_d0wn.rar/file' }
+        ],
+        'delta-force-lw': [
+            { text: 'Descargar Delta Force: Land Warrior', url: 'https://www.mediafire.com/file/pcl9a7vapkdd758/D3lt7_f0rc3_l7nd_w7rr10r.rar/file' }
+        ],
+        'nosferatu-malachi': [
+            { text: 'Descargar Nosferatu: The Wrath of Malachi', url: 'https://www.mediafire.com/file/n288q5ykjc8adc5/NWOMPG.Www.GamezFull.com.rar' }
+        ],
+        'land-of-the-dead': [
+            { text: 'Descargar Land Of The Dead', url: 'https://www.mediafire.com/file/ksmdfu6q2sg3d65/L7nd_0f_Th3_D37d.rar/file' }
+        ],
+        'painkiller-had': [
+            { text: 'Descargar Painkiller: Hell & Damnation', url: 'https://www.mediafire.com/file/fjjkeqxx1pm4fzi/P71nk1ll3r_H3ll_7nd_D7mn7t10n.rar/file' }
         ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
