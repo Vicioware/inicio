@@ -798,7 +798,104 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
         'painkiller-had': [
             { text: 'Descargar Painkiller: Hell & Damnation', url: 'https://www.mediafire.com/file/fjjkeqxx1pm4fzi/P71nk1ll3r_H3ll_7nd_D7mn7t10n.rar/file' }
+        ],
+        'max-payne': [
+            { text: 'Descargar Max Payne', url: 'https://www.mediafire.com/file/o3xcwpftsud7hci/M7x_P7yn3.rar/file' }
+        ],
+        'gta-chinatown': [
+            { text: 'Descargar GTA: Chinatown Wars', url: 'https://www.mediafire.com/file/fndsipnccxfqxfq/Gt4_Ch1n4t8wn_W4rs.rar/file' }
+        ],
+        'jump-force': [
+            { text: 'Descargar JUMP FORCE', url: 'https://www.mediafire.com/file/u8fn63c7ombfuw3/J8mp_F8rc3_Ult1m8te3_Ed1it18n_v3.00.rar/file' }
+        ],
+        'power-rangers-bftg': [
+            { text: 'Descargar Power Rangers: Battle for the Grid', url: 'https://www.mediafire.com/file/fbv2oybd1vsxuze/P0w3r_R7ng3rs_B7ttl3_f0r_th3_Gr1d_2.9.1.rar/file' }
+        ],
+        'mk4': [
+            { text: 'Descargar Mortal Kombat 4', url: 'https://www.mediafire.com/file/2edptib063gsl21/M8rt4l_K8mb4t_4_%2528MK4%2529_%25E2%2580%2593_G8G.rar/file' }
+        ],
+        'mk-new-era': [
+            { text: 'Descargar Mortal Kombat New Era', url: 'https://www.patreon.com/file?h=147400901&m=591451546' }
+        ],
+        'mk3': [
+            { text: 'Descargar Mortal Kombat 3', url: 'https://www.mediafire.com/file/pszlnubxhc60mvs/M8rt4l_K8mb4t_3_%2528Mk3%2529_-_G8G.rar/file' }
+        ],
+        'mk2': [
+            { text: 'Descargar Mortal Kombat 2', url: 'https://www.mediafire.com/file/235evedubhmlb3x/M8rt4l_K8mb4t_2_-_G8G.rar/file' }
+        ],
+        'mk-trilogy': [
+            { text: 'Descargar Mortal Kombat Trilogy', url: 'https://www.mediafire.com/file/hza5zonejzar02l/M0rt7l_K0mb7t_Tr1l0gy.rar/file' }
+        ],
+        'mega-man-x4': [
+            { text: 'Descargar Mega Man X4', url: 'https://www.mediafire.com/file/7322y9sk3xky79c/M3g4m4n_X4.rar/file' }
+        ],
+        'phoenix-wright-trilogy': [
+            { text: 'Descargar Phoenix Wright: Ace Attorney Trilogy', url: 'https://www.mediafire.com/file/d47cql2r9u8zj1n/Ph8en1x.Wr1ght.4ce.4tt8rney.Tr1l8gy.MULT17-El4m1g8s.rar/file' }
+        ],
+        'contra-anniversary': [
+            { text: 'Descargar Contra Anniversary Collection', url: 'https://www.mediafire.com/file/uwn4kwuhld9682w/C0ntr7_7nn1v3rs7ry_C0ll3ct10n.rar/file', readMoreText: 'Contiene los siguientes títulos:\n- Contra (Arcade)\n- Super Contra\n- Contra (NA)\n- Contra (JP)\n- Super C\n- Contra III: The Alien Wars\n- Operation C\n -Contra Hard Corps\n- Super Probotector Alien Rebels\n- Probotector' }
+        ],
+        'scribblenauts-nlimited': [
+            { text: 'Descargar Scribblenauts Unlimited', url: 'https://www.mediafire.com/file/eighk65cs16qomc/Scr1bbl3n44uts_Unl1m1t3d.rar/file' }
+        ],
+        'madden-08': [
+            { text: 'Descargar Madden NFL 08', url: 'https://www.mediafire.com/file/0iu51zium9hmqyp/M4dd3n_NFL_08.rar/file' }
+        ],
+        'wonder-boys-tdt': [
+            { text: 'Descargar Wonder Boys: The Dragon\'s Trap', url: 'https://www.mediafire.com/file/dwqon30e04pawat/Wond3er_B8oy_-_The3_D4agons.rar/file' }
+        ],
+        'omerta-cog': [
+            { text: 'Descargar Omerta: City of Gangsters', url: 'https://www.mediafire.com/file/lldwra5ix8q5sbd/8m3rt4_C1ty_8f_G4ngst3rs_1.07.rar/file' }
+        ],
+        'ballxpit': [
+            { text: 'Descargar BALL x PIT', url: 'https://www.mediafire.com/file/9kgf8q4zr68hq3p/B4LL_x_P1T_b20625643.rar/file' }
+        ],
+        'super-mario-g2': [
+            { text: 'Descargar Super Mario Galaxy 2', url: 'https://www.mediafire.com/file/46o75e5v8ngww8n/Sup3r_M4r18_G4l4xy_2_PC.rar/file' }
+        ],
+        'scribblenauts-unmasked': [
+            { text: 'Descargar Scribblenauts Unmasked', url: 'https://www.mediafire.com/file/p5buctqhaksan2g/Scr1bbl3n44uts.Unm44sk3d.rar/file' }
+        ],
+        'mega-man-c2': [
+            { text: 'Descargar Mega Man Legacy Collection 2', url: 'https://www.mediafire.com/file/43i29sptvtotnyk/M3g4_Ma4n_3egac1y_Coll3ction_2_Build_2844818.rar/file' }
+        ],
+        'blaster-master2': [
+            { text: 'Descargar Blaster Master Zero 2', url: 'https://www.mediafire.com/file/gcmoj2t3me1yn3b/Bl4st3r.M4st3r.Z3ro.2.v6847890.rar/file' }
+        ],
+        'blaster-master3': [
+            { text: 'Descargar Blaster Master Zero 3', url: 'https://www.mediafire.com/file/72irenip8m9r27y/Bl4st3r.M4st3r.Z3ro.3.rar/file' }
+        ],
+        'blaster-master': [
+            { text: 'Descargar Blaster Master Zero', url: 'https://www.mediafire.com/file/nshbzlwtgo8i5x9/Bl4st3r.M4st3r.Z3r8.v6838219.rar/file' }
+        ],
+        '18-wheels-haulin': [
+            { text: 'Descargar 18 Wheels of Steel Haulin', url: 'https://www.mediafire.com/file/fzo43div0tvoljl/18_Wh33ls_8f_St33l_H4ul1n.rar/file' }
         ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
