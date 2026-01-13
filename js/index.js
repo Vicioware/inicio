@@ -805,9 +805,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'gta-chinatown': [
             { text: 'Descargar GTA: Chinatown Wars', url: 'https://www.mediafire.com/file/fndsipnccxfqxfq/Gt4_Ch1n4t8wn_W4rs.rar/file' }
         ],
-        'jump-force': [
-            { text: 'Descargar JUMP FORCE', url: 'https://www.mediafire.com/file/u8fn63c7ombfuw3/J8mp_F8rc3_Ult1m8te3_Ed1it18n_v3.00.rar/file' }
-        ],
         'power-rangers-bftg': [
             { text: 'Descargar Power Rangers: Battle for the Grid', url: 'https://www.mediafire.com/file/fbv2oybd1vsxuze/P0w3r_R7ng3rs_B7ttl3_f0r_th3_Gr1d_2.9.1.rar/file' }
         ],
@@ -815,7 +812,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { text: 'Descargar Mortal Kombat 4', url: 'https://www.mediafire.com/file/2edptib063gsl21/M8rt4l_K8mb4t_4_%2528MK4%2529_%25E2%2580%2593_G8G.rar/file' }
         ],
         'mk-new-era': [
-            { text: 'Descargar Mortal Kombat New Era', url: 'https://www.patreon.com/file?h=147400901&m=591451546' }
+            { text: 'Descargar Mortal Kombat New Era (Mugen)', url: 'https://www.patreon.com/file?h=147400901&m=591451546' }
         ],
         'mk3': [
             { text: 'Descargar Mortal Kombat 3', url: 'https://www.mediafire.com/file/pszlnubxhc60mvs/M8rt4l_K8mb4t_3_%2528Mk3%2529_-_G8G.rar/file' }
@@ -870,7 +867,21 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
         '18-wheels-haulin': [
             { text: 'Descargar 18 Wheels of Steel Haulin', url: 'https://www.mediafire.com/file/fzo43div0tvoljl/18_Wh33ls_8f_St33l_H4ul1n.rar/file' }
+        ],
+        'stalker-trilogy': [
+            { text: 'Descargar S.T.A.L.K.E.R. Trilogy', url: 'https://www.mediafire.com/file/0ao1497fg70o2ae/S.T.4.L.K.3.R._Tril8gy.rar/file', readMoreText: 'Contiene los siguientes títulos:\n- S.T.A.L.K.E.R.: Shadow of Chernobyl\n- S.T.A.L.K.E.R.: Clear Sky\n- S.T.A.L.K.E.R.: Call of Pripyat' }
+        ],
+        'scourge-outbreak': [
+            { text: 'Descargar Scourge: Outbreak', url: 'https://www.mediafire.com/file/svtbusxxmag982o/Sc8urg3.8utbr34k.rar/file' }
+        ],
+        'castlevania-los': [
+            { text: 'Descargar Castlevania: Lords of Shadow', url: 'https://www.mediafire.com/file/gfi1wdihryjfsqv/C7stl3v7n17_L0rds_0f_Sh7d0w.rar/file' }
         ]
+
+
+
+
+
 
 
 
