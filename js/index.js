@@ -876,7 +876,115 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
         'castlevania-los': [
             { text: 'Descargar Castlevania: Lords of Shadow', url: 'https://www.mediafire.com/file/gfi1wdihryjfsqv/C7stl3v7n17_L0rds_0f_Sh7d0w.rar/file' }
+        ],
+        'heaven-dust2': [
+            { text: 'Descargar Heaven Dust 2', url: 'https://www.mediafire.com/file/ubuuwi9010bhio6/H34v3n_Dust_2_bu1ld_12167776.rar/file' }
+        ],
+        'mercenary-kings': [
+            { text: 'Descargar Mercenary Kings', url: 'https://www.mediafire.com/file/1sr3nxpb45o37yz/M3rc3n4ry.K1ngs-bu1ld.6029296.rar/file' }
+        ],
+        'dino-crisis-bundle': [
+            { text: 'Descargar Dino Crisis Bundle', url: 'https://www.mediafire.com/file/pfv970zd8py39am/D1n8.Cr1s1s.v1.rar/file' }
+        ],
+        'dead-of-darkness': [
+            { text: 'Descargar Dead of Darkness', url: 'https://www.mediafire.com/file/o3upbndp1d6exc1/D34d_8f_D4rkn3ss-T3N8K3.rar/file' }
+        ],
+        'battle-realms-ze': [
+            { text: 'Descargar Battle Realms Zen Edition', url: 'https://www.mediafire.com/file/7vii7khh5lr56jm/B4ttl3.R34lms.Z3n.3d1t18n-Bu1ld.17150943.rar/file' }
+        ],
+        'blade-chimera': [
+            { text: 'Descargar BLADE CHIMERA', url: 'https://www.mediafire.com/file/pnp3wqcbulsgnsx/Bl4d3_Ch1m3r4_v0.1.3.5.rar/file' }
+        ],
+        'intravenous2': [
+            { text: 'Descargar Intravenous 2', url: 'https://www.mediafire.com/file/mk4lj7f29fn7e02/1ntr4v3n8us_2_v1.4.3.rar/file' }
+        ],
+        'delta-particles': [
+            { text: 'Descargar Delta Particles', url: 'https://www.mediafire.com/file/jjih0bxuogzutz3/D3lt4_P4rt1cl3s_bu1ld_16812629.rar/file' }
+        ],
+        'spore': [
+            { text: 'Descargar Spore', url: 'https://www.mediafire.com/file/1958va4cmidjsff/Sp8r3.rar/file' }
+        ],
+        'deus-ex-revision': [
+            { text: 'Descargar Deus Ex: Revision', url: 'https://www.mediafire.com/file/fo2z36cud9sa21b/D3us.3x.R3v1s18n.rar/file' }
+        ],
+        'astra-ascent': [
+            { text: 'Descargar Astral Ascent', url: 'https://www.mediafire.com/file/7p275fd6unyir94/4str4l.4sc3nt.th3.8ut3r.r34ch3s.rar/file' }
+        ],
+        'il2-sturmovik': [
+            { text: 'Descargar IL-2 Sturmovik Ultimate Edition', url: 'https://www.mediafire.com/file/8gvfg0j4bta032f/1L-2.Sturm8v1k.1946.rar/file', readMoreText: 'Incluye lo siguiente:\n- IL-2 Sturmovik: Forgotten Battles\n- IL-2 Sturmovik: Forgotten Battles - Ace Expansion Pack\n- IL-2 Sturmovik 1946\n- Pacific Fighters' }
+        ],
+        'rollercoaster-tycoon-adventures': [
+            { text: 'Descargar Rollercoaster Tycoon Adventures', url: 'https://www.mediafire.com/file/a08ublx6nwpepmk/R8ll3rc84st3r.Tyc88n.4dv3ntur3s-H88DLUM.rar/file' }
+        ],
+        'rollercoaster-tycoon3': [
+            { text: 'Descargar RollerCoaster Tycoon 3 Complete Edition', url: 'https://www.mediafire.com/file/35wiob9yjfk02qg/R8ll3r.C84st3r.Tyc88n.3_v3.2.5.13.rar/file', readMoreText: 'Contiene los siguientes títulos:\n- RollerCoaster Tycoon 3\n- RollerCoaster Tycoon 3: Soaked!\n- RollerCoaster Tycoon 3: Wild!' }
+        ],
+        'kof-2003': [
+            { text: 'Descargar The King of Fighters 2003', url: 'https://www.mediafire.com/file/8shxngp6lbvc8dn/Th3_K1ng_8f_F1ght3rs_2003_-_G8G.rar/file' }
+        ],
+        'anima-gom': [
+            { text: 'Descargar Anima: Gate of Memories', url: 'https://www.mediafire.com/file/q8lq7lrhen72jeu/4n1m4.g4t3.8f.m3m8r13s-%252816593%2529.rar/file' }
+        ],
+        'a-space-ft-unbound': [
+            { text: 'Descargar A Space for the Unbound', url: 'https://www.mediafire.com/file/k2lifrrbf9l91xc/4_Sp4c3_f8r_th3_Unb8und_v1.0.35.0-T3N8K3.rar/file' }
+        ],
+        'snk-vs-capcom-svcc': [
+            { text: 'Descargar SNK vs. Capcom SVC Chaos', url: 'https://www.mediafire.com/file/qyfkt3ipau47uv4/SNK_VS._C4PC8M_SVC_CH48S_%255BBu1ld_15003653%255D.rar/file' }
+        ],
+        'gestalt-stemacinder': [
+            { text: 'Descargar Gestalt: Steam & Cinder', url: 'https://www.mediafire.com/file/b579ggq3gi5g3w0/G3st4lt_St34m_%2526_C1nd3r_v1.0.0.0.rar/file' }
+        ],
+        'blitzkrieg3': [
+            { text: 'Descargar Blitzkrieg 3', url: 'https://www.mediafire.com/file/v6veg261gsu0f7o/B.3.D3.V21.02.2023.B10601228.rar/file' }
+        ],
+        'metal-slug-a-reloaded': [
+            { text: 'Descargar Metal Slug Attack Reloaded', url: 'https://www.mediafire.com/file/v9maf2bayan2j5i/M3T4L_SLUG_4TT4CK_R3L84D3D_R31k4_f8r_L1b3rty_Bu1ld_16214511.rar/file' }
+        ],
+        'bia-collection': [
+            { text: 'Descargar Brothers in Arms Collection', url: 'https://www.mediafire.com/file/47phrs0tdzc9gbc/Br8th3rs_1n_4rms_C8ll3ct18n.rar/file', readMoreText: 'Contiene los siguientes títulos:\n- Road to Hill 30\n- Earned in Blood\n- Hell’s Highway' }
+        ],
+        'wallachia-reign-dracula': [
+            { text: 'Descargar Wallachia: Reign of Dracula', url: 'https://www.mediafire.com/file/hyqm1mvqwfd9fuz/W4ll4ch14.R31gn.8f.Dr4cul4-DRMFR33.rar/file' }
+        ],
+        'the-suffering-c': [
+            { text: 'Descargar The Suffering Collection', url: 'https://www.mediafire.com/file/hxloiyupvlp19bg/Th3_Suff3r1ng_C8ll3ct18n.rar/file', readMoreText: 'Contiene los siguientes títulos:\n- The Suffering\n- The Suffering: Ties That Bind' }
+        ],
+        'xcom-enemy-unkown': [
+            { text: 'Descargar XCOM: Enemy Unknown', url: 'https://www.mediafire.com/file/cot9khfaioa9l58/XC8M_3n3my_Unkn8wn_%252B_W1th1n.rar/file' }
+        ],
+        'adams-venture-c': [
+            { text: 'Descargar Adam’s Venture Chronicles', url: 'https://www.mediafire.com/file/ey8g31me42sj4yr/4d4ms.V3ntur3.Chr8n1cl3s.MULT15-PR8PH3T.rar/file' }
         ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
