@@ -954,7 +954,11 @@ document.addEventListener('DOMContentLoaded', () => {
         ],
         'adams-venture-c': [
             { text: 'Descargar Adam’s Venture Chronicles', url: 'https://www.mediafire.com/file/ey8g31me42sj4yr/4d4ms.V3ntur3.Chr8n1cl3s.MULT15-PR8PH3T.rar/file' }
+        ],
+        'top-racer-collection': [
+            { text: 'Descargar Top Racer Collection', url: 'https://www.mediafire.com/file/v4y4dojf5rd5ew4/t8p.r4c3r.c8ll3ct18n.rar/file', readMoreText: 'Contiene los siguientes títulos:\n-  Top Racer\n-  Top Racer 2\n-  Top Racer 3000\n-  Top Racer Crossroads\n- Nuevos autos y contenido exclusivo' }
         ]
+
 
 
 
