@@ -962,9 +962,10 @@ document.addEventListener('DOMContentLoaded', () => {
             { text: 'Descargar LEGO The Hobbit', url: 'https://www.mediafire.com/file/hu1t89kc73urlhx/L3G8_Th3_H8bb1t_1.0.0.49534.rar/file' }
         ],
         'shadow-of-mordor': [
-            { text: 'Descargar La Tierra Media: Sombras de Mordor', url: 'https://www.mediafire.com/file/3p2jjz02i2g0qnf/Middl4_4arth_Shad8w_8f_M8rd8r.part1.rar/file', readMoreText: '- El juego estará en inglés luego de aplicar el crack que viene con el juego. Para solucionar esto, descargar el parche, aplicarlo reemplazando los archivos originales, y asegurarte de que el parámetro "Language" del archivo "steam.api.ini" esté en "spanish", de manera que se vea así:\n"Language=spanish" sin las comillas.\n\nMuy probablemente el parche sea marcado como virus o amenaza por tu navegador o tu antivirus. Asegúrate de permitir el archivo en tu sistema, no es dañino.' },
+            { text: 'Descargar La Tierra Media: Sombras de Mordor', url: 'https://www.mediafire.com/file/3p2jjz02i2g0qnf/Middl4_4arth_Shad8w_8f_M8rd8r.part1.rar/file', readMoreText: 'El juego estará en inglés luego de aplicar el crack que viene con el juego. Para solucionar esto, descargar el parche, aplicarlo reemplazando los archivos originales, y asegurarte de que el parámetro "Language" del archivo "steam_api.ini" esté en "spanish", de manera que se vea así:\n"Language=spanish" sin las comillas.\n\nMuy probablemente el parche sea marcado como virus o amenaza por tu navegador o tu antivirus. Asegúrate de permitir el archivo en tu sistema, no es dañino.' },
             { text: 'Descargar parche', url: 'https://d2.consoletarget.com/?y=798093de&x=Y9IUMSpqEb8axjvBtdSbBbZ7PJ49es%2B0FpGvEVgGb6g97AmcrY%2FMO9H%2F3AhguMj4P0xCn%2B6tJeJGLI7GLWreiWm2AUUufANiGX15AFWVaqe4WsWmOMg8iiEnDaThhLXw' }
         ]
+
 
 
 
