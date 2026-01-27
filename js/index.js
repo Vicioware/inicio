@@ -973,8 +973,65 @@ document.addEventListener('DOMContentLoaded', () => {
                     { text: 'Parte 6', url: 'https://www.mediafire.com/file/texn0g6427vcmza/Middl4_4arth_Shad8w_8f_M8rd8r.part6.rar/file' }
                 ]
             },
-            { text: 'Descargar parche', url: 'https://d2.consoletarget.com/?y=798093de&x=Y9IUMSpqEb8axjvBtdSbBbZ7PJ49es%2B0FpGvEVgGb6g97AmcrY%2FMO9H%2F3AhguMj4P0xCn%2B6tJeJGLI7GLWreiWm2AUUufANiGX15AFWVaqe4WsWmOMg8iiEnDaThhLXw', readMoreText: 'El juego estará en inglés luego de aplicar el crack que viene con el juego. Para solucionar esto, descarga el parche, aplícalo reemplazando los archivos originales, y asegurarte de que el parámetro "Language" del archivo "steam_api.ini" esté en "spanish", de manera que se vea así:\n"Language=spanish" sin las comillas.\n\nMuy probablemente el parche sea marcado como virus o amenaza por tu navegador o tu antivirus. Asegúrate de permitir el archivo en tu sistema, no es dañino.' }
+            { text: 'Descargar parche', url: 'https://d2.consoletarget.com/?y=798093de&x=Y9IUMSpqEb8axjvBtdSbBbZ7PJ49es%2B0FpGvEVgGb6g97AmcrY%2FMO9H%2F3AhguMj4P0xCn%2B6tJeJGLI7GLWreiWm2AUUufANiGX15AFWVaqe4WsWmOMg8iiEnDaThhLXw', readMoreText: 'El juego estará en inglés luego de aplicar el crack que tiene incluído. Para solucionar esto: descarga el parche, aplícalo reemplazando los archivos originales, y asegúrate de que el parámetro "Language" del archivo "steam_api.ini" esté en "spanish", de manera que se vea así:\n"Language=spanish" sin las comillas.\n\nMuy probablemente el parche sea marcado como virus o amenaza por tu navegador o tu antivirus. Asegúrate de permitir el archivo en tu sistema. No es dañino.' }
+        ],
+        'helicopter-simulator-sar': [
+            { text: 'Descargar Helicopter Simulator 2014: Search & Rescue', url: 'https://www.mediafire.com/file/oq34au9hpcw6vgi/H3l1c8pt3r_S1mul4t8r_S34rch_%2526_R3scu3.rar/file' }
+        ],
+        'mother-russia': [
+            { text: 'Descargar Mother Russia Bleeds', url: 'https://www.mediafire.com/file/zxoapwauwuow1sz/M8th3r_Russ14_Bl33ds_1.0.4.rar/file' }
+        ],
+        'zero-sievert': [
+            { text: 'Descargar ZERO Sievert', url: 'https://www.mediafire.com/file/g4mcy4o1jc3sezq/Z3R8.S13v3rt.Bu1ld.16949520.rar/file' }
+        ],
+        'valfaris-mecha-therion': [
+            { text: 'Descargar Valfaris: Mecha Therion', url: 'https://www.mediafire.com/file/7b9il0kwdjjmcsc/v4lf4r1s.m3ch4.th3r18n.v1.0.5.rar/file' }
+        ],
+        'shadow-complex': [
+            { text: 'Descargar Shadow Complex', url: 'https://www.mediafire.com/file/zpcapj8ut2h263v/Sh4d8w_C8mpl3x_R3m4st3r3d.rar/file' }
+        ],
+        'insanely-tsp': [
+            { text: 'Descargar Insanely Twisted Shadow Planet', url: 'https://www.mediafire.com/file/zcgwo0vp0w2x5sv/1ns4n3ly_Tw1st3d_Sh4d8w_Pl4n3t__Bu1ld_433415.rar/file' }
+        ],
+        'knights-and-guns': [
+            { text: 'Descargar Knights & Guns', url: 'https://www.mediafire.com/file/3c9qongpvai3vjr/Kn1ghts4ndguns.rar/file' }
+        ],
+        'fear-and-hunger': [
+            { text: 'Descargar Fear & Hunger', url: 'https://www.mediafire.com/file/uxw86kfpg6hqj0i/F34r_4nd_Hung3r.rar/file' }
+        ],
+        'fear-and-hunger2': [
+            { text: 'Descargar Fear & Hunger 2: Termina', url: 'https://www.mediafire.com/file/shwymcvyby81v4v/F34r_4nd_Hung3r_2_T3rm1n4.rar/file' }
+        ],
+        'real-heroes-firefighter': [
+            { text: 'Descargar Real Heroes: Firefighter', url: 'https://www.mediafire.com/file/b4fwee4os5jdhhk/R34l.h3r83s.fir3fight3r-%252845846%2529.rar/file' }
+        ],
+        'imperivm2': [
+            { text: 'Descargar Imperivm II: La conquista de Hispania', url: 'https://www.mediafire.com/file/ahkbz1dxqqs5t00/Imp3rivm_II_L4_c8nquist4_d3_Hisp4ni4.rar/file' }
+        ],
+        'crypt-ot-necrodancer': [
+            { text: 'Descargar Crypt of the NecroDancer', url: 'https://www.mediafire.com/file/pwbmpgjhxqt1b5z/Crypt_8f_th3_N3cr8D4nc3r_v4.1.0.rar/file' }
+        ],
+        'no-planb': [
+            { text: 'Descargar No Plan B', url: 'https://www.mediafire.com/file/9ad3cg31jzwqmvg/N8.Pl4n.B.Bu1ld.13924503.rar/file' }
+        ],
+        'aeternoblade': [
+            { text: 'Descargar AeternoBlade', url: 'https://www.mediafire.com/file/587mjb6g149ippf/43t3rn8Bl4d3_Bu1ld_5576930.rar/file' }
         ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
